@@ -20,14 +20,12 @@ namespace IERSystem
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/bower_components/bootstrap/dist/js/bootstrap.min.js",
+                      "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/bower_components/bootstrap/dist/css/bootstrap.min.css",
-                      "~/bower_components/metisMenu/dist/metisMenu.min.css",
-                      "~/Content/timeline.css",
-                      "~/Content/sb-admin-2.css"));
+                      "~/Content/bootstrap.css",
+                      "~/Content/site.css"));
         }
     }
 }
