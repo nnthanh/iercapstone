@@ -22,7 +22,6 @@ namespace IERSystem.Areas.Administrator.Models
         {
             // khai báo Id sẽ là khóa chính
             modelBuilder.Entity<User>().HasKey(b => b.Id);
-
             // khai báo Id sẽ tự động tăng
             modelBuilder.Entity<User>().Property(b => b.Id)
             .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
@@ -30,20 +29,18 @@ namespace IERSystem.Areas.Administrator.Models
 
             // khai báo Id sẽ là khóa chính
             modelBuilder.Entity<Request>().HasKey(b => b.Id);
-
             // khai báo Id sẽ tự động tăng
             modelBuilder.Entity<Request>().Property(b => b.Id)
-            .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+                        .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
             base.OnModelCreating(modelBuilder);
-
-
+      
             // khai báo Id sẽ là khóa chính
             modelBuilder.Entity<MauLayHienTruong>().HasKey(b => b.Id);
-
             // khai báo Id sẽ tự động tăng
             modelBuilder.Entity<MauLayHienTruong>().Property(b => b.Id)
-            .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+                        .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
             base.OnModelCreating(modelBuilder);
+      
         }
     }
 }

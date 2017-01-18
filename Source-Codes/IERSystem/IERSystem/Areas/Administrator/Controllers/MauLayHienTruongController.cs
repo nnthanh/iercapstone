@@ -47,7 +47,10 @@ namespace IERSystem.Areas.Administrator.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include="Id,MaMau,ViTriLayMau,DonVi,MoTaMau,NgayNhanMau,NgayTraMau,MaHDPhanTich,MaChiTieuPhanTich")] MauLayHienTruong maulayhientruong)
+        public async Task<ActionResult> Create(
+          [Bind(Include="Id,MaMau,ViTriLayMau,DonVi,MoTaMau,NgayNhanMau,NgayTraMau,MaHDPhanTich,MaChiTieuPhanTich")]
+          MauLayHienTruong maulayhientruong
+          )
         {
             if (ModelState.IsValid)
             {
