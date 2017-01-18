@@ -322,7 +322,7 @@
     <script src="~/Areas/Administrator/Content/js/maps/jquery-jvectormap-world-mill-en.js"></script>
     <script src="~/Areas/Administrator/Content/js/maps/jquery-jvectormap-us-aea-en.js"></script>
     <script src="~/Areas/Administrator/Content/js/maps/gdp-data.js"></script>
-    <script>
+    @*<script>
         $(document).ready(function () {
             $('#world-map-gdp').vectorMap({
                 map: 'world_mill_en',
@@ -340,7 +340,7 @@
                 }
             });
         });
-    </script>
+    </script>*@
     <!-- /jVectorMap -->
     <!-- Skycons -->
     <script>
@@ -363,7 +363,7 @@
     </script>
     <!-- /Skycons -->
     <!-- Doughnut Chart -->
-    <script>
+    @*<script>
         $(document).ready(function () {
             var options = {
                 legend: false,
@@ -402,7 +402,7 @@
                 options: options
             });
         });
-    </script>
+    </script>*@
     <!-- /Doughnut Chart -->
     <!-- bootstrap-daterangepicker -->
     <script>
@@ -503,6 +503,7 @@
         gauge.setTextField(document.getElementById("gauge-text"));
     </script>
     <!-- /gauge.js -->
+
     @RenderSection("scripts", required: false)
 </body>
 </html>

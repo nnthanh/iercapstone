@@ -24,5 +24,7 @@ namespace IERSystem.Areas.Administrator.Models
         public double? TienKhachHangTraTruoc { get; set; }
         public Boolean DaGuiMau { get; set; }
         public uint NamLayHD { get; set; }
+
+        public virtual ICollection<MauLayHienTruong> MauLayHienTruongs { get; set; }
     }
 }
