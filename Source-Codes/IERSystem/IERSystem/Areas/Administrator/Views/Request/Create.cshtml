@@ -1,0 +1,164 @@
+﻿@model IERSystem.Areas.Administrator.Models.Request
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Administrator/Views/Shared/_Layout.cshtml";}
+
+<h2>Tạo yêu cầu lấy mẫu</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Tạo yêu cầu mới</h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <br>
+                    <form id="demo-form2" data-parsley-validate="" class="form-horizontal form-label-left" novalidate="">
+                        <div class="form-group">
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                                Mã đơn
+                            </label>
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                @Html.TextBoxFor(model => model.MaDon, new { @class = "form-control col-md-4 col-xs-12" })
+                                @Html.ValidationMessageFor(model => model.MaDon)
+                            </div>
+                        </div>
+                        <div class="clearfix"/>
+                        <div class="form-group">
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                                Tên khách hàng
+                            </label>
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                @Html.TextBoxFor(model => model.TenKhachHang, new { @class = "form-control col-md-4 col-xs-12" })
+                                @Html.ValidationMessageFor(model => model.TenKhachHang)
+                            </div>
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                                Mã số thuế
+                            </label>
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                @Html.TextBoxFor(model => model.MaSoThue, new { @class = "form-control col-md-4 col-xs-12" })
+                                @Html.ValidationMessageFor(model => model.MaSoThue)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                                Người đại diện
+                            </label>
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                @Html.TextBoxFor(model => model.TenDaiDien, new { @class = "form-control col-md-4 col-xs-12" })
+                                @Html.ValidationMessageFor(model => model.TenDaiDien)
+                            </div>
+                            <label class="control-label col-md-1 col-sm-1 col-xs-12" for="first-name">
+                                SĐT
+                            </label>
+                            <div class="col-md-2 col-sm-2 col-xs-12">
+                                @Html.TextBoxFor(model => model.SoDienThoai, new { @class = "form-control col-md-2 col-xs-12" })
+                                @Html.ValidationMessageFor(model => model.SoDienThoai)
+                            </div>
+                            <label class="control-label col-md-1 col-sm-1 col-xs-12" for="first-name">
+                                Fax
+                            </label>
+                            <div class="col-md-2 col-sm-2 col-xs-12">
+                                @Html.TextBoxFor(model => model.SoFax, new { @class = "form-control col-md-2 col-xs-12" })
+                                @Html.ValidationMessageFor(model => model.SoFax)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                                Nơi lấy mẫu
+                            </label>
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                @Html.TextBoxFor(model => model.DiaChiLayMau, new { @class = "form-control col-md-4 col-xs-12" })
+                                @Html.ValidationMessageFor(model => model.DiaChiLayMau)
+                            </div>
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                                Ngày gửi mẫu/lấy mẫu
+                            </label>
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                @Html.TextBoxFor(model => model.NgayTaoHD, new { @class = "form-control col-md-4 col-xs-12" })
+                                @Html.ValidationMessageFor(model => model.NgayTaoHD)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                                Địa chỉ
+                            </label>
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                @Html.TextBoxFor(model => model.DiaChiKhachHang, new { @class = "form-control col-md-4 col-xs-12" })
+                                @Html.ValidationMessageFor(model => model.DiaChiKhachHang)
+                            </div>
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                                Ngày dự kiến trả mẫu
+                            </label>
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                @Html.TextBoxFor(model => model.NgayDuKienTraMau, new { @class = "form-control col-md-4 col-xs-12" })
+                                @Html.ValidationMessageFor(model => model.NgayDuKienTraMau)
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="form-group" style="display:none">
+                            @Html.LabelFor(model => model.PhuongPhapLayMau, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.PhuongPhapLayMau)
+                                @Html.ValidationMessageFor(model => model.PhuongPhapLayMau)
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="display:none">
+                            @Html.LabelFor(model => model.TenTieuChuanDoiChieu, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.TenTieuChuanDoiChieu)
+                                @Html.ValidationMessageFor(model => model.TenTieuChuanDoiChieu)
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="display:none">
+                            @Html.LabelFor(model => model.PhiThiNghiemTamTinh, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.PhiThiNghiemTamTinh, new {@value="0" })
+                                @Html.ValidationMessageFor(model => model.PhiThiNghiemTamTinh)
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="display:none">
+                            @Html.LabelFor(model => model.TienKhachHangTraTruoc, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.TienKhachHangTraTruoc, new { @value = "0" })
+                                @Html.ValidationMessageFor(model => model.TienKhachHangTraTruoc)
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="display:none">
+                            @Html.LabelFor(model => model.DaGuiMau, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.DaGuiMau)
+                                @Html.ValidationMessageFor(model => model.DaGuiMau)
+                            </div>
+                        </div>
+                        <div class="ln_solid"></div>
+                        <div class="form-group">
+                            <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                <input type="submit" class="btn btn-primary" value="Tạo" />
+                                <input type="button" class="btn btn-danger" value="Quay lại" onclick="location.href='@Url.Action("Index", "Request")'" />
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
