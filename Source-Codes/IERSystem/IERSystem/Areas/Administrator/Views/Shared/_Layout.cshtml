@@ -60,6 +60,11 @@
                                             <a href="~/Administrator/User/Index">Thiết bị</a>
                                         </li>
                                     </ul>
+                                    <a href="~/Administrator/Request/Index"><i class="fa fa-home"></i> Hợp đồng lấy mẫu</a>
+                                    <a href="~/Administrator/FormKQ/Index"><i class="fa fa-home"></i> Form kết quả</a>
+                                    <a href="~/Administrator/SoNhanMau/Index"><i class="fa fa-home"></i> Sổ nhận mẫu</a>
+                                    <a href="~/Administrator/SoChuyenMau/Index"><i class="fa fa-home"></i> Sổ chuyển mẫu</a>
+                                    <a href="~/Administrator/SoKQThuNghiem/Index"><i class="fa fa-home"></i> Sổ kết quả thử nghiệm</a>
                                 </li>
                             </ul>
                         </div>
@@ -503,6 +508,12 @@
         gauge.setTextField(document.getElementById("gauge-text"));
     </script>
     <!-- /gauge.js -->
+    <!-- bootstrap-daterangepicker -->
+    <script src="js/moment/moment.min.js"></script>
+    <script src="js/datepicker/daterangepicker.js"></script>
+
+     <!-- jQuery autocomplete -->
+    <script src="../vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js"></script>
 
     @RenderSection("scripts", required: false)
 </body>

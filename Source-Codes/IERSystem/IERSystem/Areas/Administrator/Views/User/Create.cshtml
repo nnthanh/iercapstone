@@ -1,11 +1,11 @@
 ﻿@model IERSystem.Areas.Administrator.Models.User
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Tạo người dùng mớ";
     Layout = "~/Areas/Administrator/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Create</h2>
+<h2>Tạo người dùng mới</h2>
 
 
 @using (Html.BeginForm()) 
@@ -15,7 +15,7 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Tạo người dùng mới</h2>
+                    <h2>Thông tin người dùng</h2>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
@@ -35,7 +35,7 @@
                                 Mật khẩu <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                @Html.TextBoxFor(model => model.password, new { @class = "form-control col-md-7 col-xs-12" })
+                                @Html.PasswordFor(model => model.password, new { @class = "form-control col-md-7 col-xs-12" })
                                 @Html.ValidationMessageFor(model => model.password)
                             </div>
                         </div>

@@ -17,6 +17,7 @@ namespace IERSystem.Areas.Administrator.Models
         public DbSet<User> Users { get; set; }
         public DbSet<Request> Requests { get; set; }
         public DbSet<MauLayHienTruong> MauLayHienTruong { get; set; }
+        public DbSet<SoNhanMau> SoNhanMau { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -40,7 +41,19 @@ namespace IERSystem.Areas.Administrator.Models
             modelBuilder.Entity<MauLayHienTruong>().Property(b => b.Id)
                         .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
             base.OnModelCreating(modelBuilder);
-      
+
+            // khai báo Id sẽ là khóa chính
+            modelBuilder.Entity<SoNhanMau>().HasKey(b => b.Id);
+            // khai báo Id sẽ tự động tăng
+            modelBuilder.Entity<SoNhanMau>().Property(b => b.Id)
+                        .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            base.OnModelCreating(modelBuilder);
         }
+
+        public System.Data.Entity.DbSet<IERSystem.Areas.Administrator.Models.SoChuyenMau> SoChuyenMaus { get; set; }
+
+        public System.Data.Entity.DbSet<IERSystem.Areas.Administrator.Models.SoKQThuNghiem> SoKQThuNghiems { get; set; }
+
+        public System.Data.Entity.DbSet<IERSystem.Areas.Administrator.Models.FormKQ> FormKQs { get; set; }
     }
 }

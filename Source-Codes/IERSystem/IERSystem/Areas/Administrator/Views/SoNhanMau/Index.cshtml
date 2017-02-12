@@ -1,0 +1,194 @@
+﻿@model IEnumerable<IERSystem.Areas.Administrator.Models.SoNhanMau>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Administrator/Views/Shared/_Layout.cshtml";
+}
+
+<h2>SỔ NHẬN MẪU</h2>
+
+<input type="button" class="btn btn-primary" value="Tạo mẫu nhận mới" onclick="location.href='@Url.Action("Create", "SoNhanMau")'" />
+<input type="button" class="btn btn-success" value="In" onclick="location.href='@Url.Action("Create", "FormKQ")'" />
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class>
+    <div class="page-title">
+        <div class="title-left">
+            <h3>Sổ nhận mẫu</h3>
+        </div>
+        <div class="title-right">
+            <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search for...">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">Go!</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>
+                        SỔ NHẬN MẪU
+                    </h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li>
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                <i class="fa fa-wrench"></i>
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>
+                                    <a href="#">Settings 1</a>
+                                </li>
+                                <li>
+                                    <a href="#">Settings 2</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="close-link">
+                                <i class="fa fa-close"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content" style="display:block;">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th rowspan="4">Phiếu yêu cầu</th>
+                                <th rowspan="4">Tên/ Địa chỉ khách hàng</th>
+                                <th rowspan="4">Mã số</th>
+                                <th rowspan="4">Chỉ tiêu thử nghiệm</th>
+                                <th rowspan="4">Ngày nhận</th>
+                                <th rowspan="4">Ngày trả kết quả</th>
+                                <th rowspan="4">KH ký nhận (Nếu nhận lại mẫu)</th>
+                                <th rowspan="4">Ký hiệu mẫu</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.PhieuYeuCau)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TenDiaChiKhachHang)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.MaSo)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ChiTieuThuNghiem)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.NgayNhan)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.NgayTraKetQua)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.KHKyNhan)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.KyHieuMau)
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                                        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+@*
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PhieuYeuCau)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TenDiaChiKhachHang)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MaSo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ChiTieuThuNghiem)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NgayNhan)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NgayTraKetQua)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.KHKyNhan)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.KyHieuMau)
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhieuYeuCau)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenDiaChiKhachHang)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaSo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ChiTieuThuNghiem)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NgayNhan)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NgayTraKetQua)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.KHKyNhan)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.KyHieuMau)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            </td>
+        </tr>
+    }
+
+    </table>
+*@

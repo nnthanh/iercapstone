@@ -1,16 +1,145 @@
 ﻿@model IEnumerable<IERSystem.Areas.Administrator.Models.Request>
 
 @{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Danh sách phiếu yêu cầu";
+    Layout = "~/Areas/Administrator/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<br />
+<h2>DANH SÁCH PHIẾU YÊU CẦU</h2>
+<input type="button" class="btn btn-primary" value="Tạo phiếu yêu cầu mới" onclick="location.href='@Url.Action("Create", "Request")'" />
+<input type="button" class="btn btn-success" value="In" onclick="location.href='@Url.Action("Create", "FormKQ")'" />
+<div>
+    <div class="page-title">
+        <div class="title-left">
+            <h3>Danh sách phiếu yêu cầu</h3>
+        </div>
+        <div class="title-right">
+            <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search for...">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">Go!</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>
+                        PHIẾU YÊU CẦU
+                    </h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li>
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                <i class="fa fa-wrench"></i>
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>
+                                    <a href="#">Settings 1</a>
+                                </li>
+                                <li>
+                                    <a href="#">Settings 2</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="close-link">
+                                <i class="fa fa-close"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content" style="display:block;">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Mã đơn</th>
+                                <th>Tên khách hàng</th>
+                                <th>Tên đại diện</th>
+                                <th>Địa chỉ lấy mẫu</th>
+                                <th>Địa chỉ KH</th>
+                                <th>Mã số thuế</th>
+                                <th>Số điện thoại</th>
+                                <th>Số Fax</th>
+                                <th>Ngày tạo HD</th>
+                                <th>Ngày trả mẫu</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.MaDon)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TenKhachHang)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TenDaiDien)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.DiaChiLayMau)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.DiaChiKhachHang)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.MaSoThue)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.SoDienThoai)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.SoFax)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.NgayTaoHD)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.NgayDuKienTraMau)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.PhuongPhapLayMau)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TenTieuChuanDoiChieu)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.PhiThiNghiemTamTinh)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TienKhachHangTraTruoc)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.DaGuiMau)
+                                    </td>
+                                    <td>
+                                        <input type="button" class="btn btn-primary" value="Chỉnh sửa" onclick="location.href='@Url.Action("Edit", "Request", new { id = item.Id })'" />
+                                        <input type="button" class="btn btn-danger" value="Xóa" onclick="location.href='@Url.Action("Delete", "Request", new { id = item.Id })'" />
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
+@*<table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.MaDon)
@@ -115,4 +244,4 @@
     </tr>
 }
 
-</table>
+</table>*@

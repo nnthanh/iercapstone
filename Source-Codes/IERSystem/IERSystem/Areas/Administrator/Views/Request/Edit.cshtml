@@ -1,155 +1,276 @@
 ﻿@model IERSystem.Areas.Administrator.Models.Request
 
 @{
-    ViewBag.Title = "Edit";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Chỉnh sửa yêu cầu";
+    Layout = "~/Areas/Administrator/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Edit</h2>
+<h2>Chỉnh sửa yêu cầu</h2>
 
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
     <div class="form-horizontal">
-        <h4>Request</h4>
-        <hr />
-        @Html.ValidationSummary(true)
-        @Html.HiddenFor(model => model.Id)
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Tạo yêu cầu mới</h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <br>
+                    <form id="demo-form2" data-parsley-validate="" class="form-horizontal form-label-left" novalidate="">
+                        <div class="form-group">
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                                Mã đơn
+                            </label>
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                @Html.TextBoxFor(model => model.MaDon, new { @class = "form-control col-md-4 col-xs-12" })
+                                @Html.ValidationMessageFor(model => model.MaDon)
+                            </div>
+                        </div>
+                        <div class="clearfix"/>
+                        <div class="form-group">
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                                Tên khách hàng
+                            </label>
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                @Html.TextBoxFor(model => model.TenKhachHang, new { @class = "form-control col-md-4 col-xs-12" })
+                                @Html.ValidationMessageFor(model => model.TenKhachHang)
+                            </div>
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                                Mã số thuế
+                            </label>
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                @Html.TextBoxFor(model => model.MaSoThue, new { @class = "form-control col-md-4 col-xs-12" })
+                                @Html.ValidationMessageFor(model => model.MaSoThue)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                                Người đại diện
+                            </label>
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                @Html.TextBoxFor(model => model.TenDaiDien, new { @class = "form-control col-md-4 col-xs-12" })
+                                @Html.ValidationMessageFor(model => model.TenDaiDien)
+                            </div>
+                            <label class="control-label col-md-1 col-sm-1 col-xs-12" for="first-name">
+                                SĐT
+                            </label>
+                            <div class="col-md-2 col-sm-2 col-xs-12">
+                                @Html.TextBoxFor(model => model.SoDienThoai, new { @class = "form-control col-md-2 col-xs-12" })
+                                @Html.ValidationMessageFor(model => model.SoDienThoai)
+                            </div>
+                            <label class="control-label col-md-1 col-sm-1 col-xs-12" for="first-name">
+                                Fax
+                            </label>
+                            <div class="col-md-2 col-sm-2 col-xs-12">
+                                @Html.TextBoxFor(model => model.SoFax, new { @class = "form-control col-md-2 col-xs-12" })
+                                @Html.ValidationMessageFor(model => model.SoFax)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                                Nơi lấy mẫu
+                            </label>
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                @Html.TextBoxFor(model => model.DiaChiLayMau, new { @class = "form-control col-md-4 col-xs-12" })
+                                @Html.ValidationMessageFor(model => model.DiaChiLayMau)
+                            </div>
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                                Ngày gửi mẫu/lấy mẫu
+                            </label>
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                @Html.TextBoxFor(model => model.NgayTaoHD, new { @class = "form-control col-md-4 col-xs-12" })
+                                @Html.ValidationMessageFor(model => model.NgayTaoHD)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                                Địa chỉ
+                            </label>
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                @Html.TextBoxFor(model => model.DiaChiKhachHang, new { @class = "form-control col-md-4 col-xs-12" })
+                                @Html.ValidationMessageFor(model => model.DiaChiKhachHang)
+                            </div>
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                                Ngày dự kiến trả mẫu
+                            </label>
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                @Html.TextBoxFor(model => model.NgayDuKienTraMau, new { @class = "form-control col-md-4 col-xs-12" })
+                                @Html.ValidationMessageFor(model => model.NgayDuKienTraMau)
+                            </div>
+                        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.MaDon, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.MaDon)
-                @Html.ValidationMessageFor(model => model.MaDon)
-            </div>
-        </div>
+                        <div class="form-group" style="display:none">
+                            @Html.LabelFor(model => model.PhuongPhapLayMau, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.PhuongPhapLayMau)
+                                @Html.ValidationMessageFor(model => model.PhuongPhapLayMau)
+                            </div>
+                        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.TenKhachHang, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TenKhachHang)
-                @Html.ValidationMessageFor(model => model.TenKhachHang)
-            </div>
-        </div>
+                        <div class="form-group" style="display:none">
+                            @Html.LabelFor(model => model.TenTieuChuanDoiChieu, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.TenTieuChuanDoiChieu)
+                                @Html.ValidationMessageFor(model => model.TenTieuChuanDoiChieu)
+                            </div>
+                        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.TenDaiDien, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TenDaiDien)
-                @Html.ValidationMessageFor(model => model.TenDaiDien)
-            </div>
-        </div>
+                        <div class="form-group" style="display:none">
+                            @Html.LabelFor(model => model.PhiThiNghiemTamTinh, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.PhiThiNghiemTamTinh, new {@value="0" })
+                                @Html.ValidationMessageFor(model => model.PhiThiNghiemTamTinh)
+                            </div>
+                        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.DiaChiLayMau, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.DiaChiLayMau)
-                @Html.ValidationMessageFor(model => model.DiaChiLayMau)
-            </div>
-        </div>
+                        <div class="form-group" style="display:none">
+                            @Html.LabelFor(model => model.TienKhachHangTraTruoc, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.TienKhachHangTraTruoc, new { @value = "0" })
+                                @Html.ValidationMessageFor(model => model.TienKhachHangTraTruoc)
+                            </div>
+                        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.DiaChiKhachHang, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.DiaChiKhachHang)
-                @Html.ValidationMessageFor(model => model.DiaChiKhachHang)
-            </div>
-        </div>
+                        <div class="form-group" style="display:none">
+                            @Html.LabelFor(model => model.DaGuiMau, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.DaGuiMau)
+                                @Html.ValidationMessageFor(model => model.DaGuiMau)
+                            </div>
+                        </div>
+                        <h2 class="StepTitle">Thông Tin Các Mẫu</h2>
+                        <div class="row">
+                            <div class="col-md-2 col-sm-2 col-xs-2">
+                                <button id="btnThemMau" type="button" 
+                                        data-toggle="modal" data-target="#themMauModal"
+                                        class="btn btn-success">Thêm Mẫu</button>
+                            </div>
+                            <!-- Modal -->
+                            <div id="themMauModal" class="modal fade" role="dialog">
+                                <div class="modal-dialog">
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.MaSoThue, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.MaSoThue)
-                @Html.ValidationMessageFor(model => model.MaSoThue)
-            </div>
-        </div>
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">Modal Header</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <label for="email">Kí Hiệu Mẫu:</label>
+                                                <input type="email" class="form-control" id="kh-mau">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="email">Vị Trí Lấy Mẫu:</label>
+                                                <input type="email" class="form-control" id="vitri-laymau">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="email">Số Lượng:</label>
+                                                <input type="email" class="form-control" id="so-luong">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="email">Mô Tả Mẫu:</label>
+                                                <input type="email" class="form-control" id="mota-mau">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="email">Chỉ Tiêu Yêu Cầu:</label>
+                                                <input type="email" class="form-control" id="chitieu-yeucau">
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button id="saveMauBtn" type="button" class="btn btn-success" data-dismiss="modal">Thêm Mẫu</button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                                        </div>
+                                    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.SoDienThoai, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.SoDienThoai)
-                @Html.ValidationMessageFor(model => model.SoDienThoai)
-            </div>
-        </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.SoFax, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.SoFax)
-                @Html.ValidationMessageFor(model => model.SoFax)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.NgayTaoHD, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.NgayTaoHD)
-                @Html.ValidationMessageFor(model => model.NgayTaoHD)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.NgayDuKienTraMau, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.NgayDuKienTraMau)
-                @Html.ValidationMessageFor(model => model.NgayDuKienTraMau)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.PhuongPhapLayMau, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.PhuongPhapLayMau)
-                @Html.ValidationMessageFor(model => model.PhuongPhapLayMau)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.TenTieuChuanDoiChieu, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TenTieuChuanDoiChieu)
-                @Html.ValidationMessageFor(model => model.TenTieuChuanDoiChieu)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.PhiThiNghiemTamTinh, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.PhiThiNghiemTamTinh)
-                @Html.ValidationMessageFor(model => model.PhiThiNghiemTamTinh)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.TienKhachHangTraTruoc, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TienKhachHangTraTruoc)
-                @Html.ValidationMessageFor(model => model.TienKhachHangTraTruoc)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.DaGuiMau, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.DaGuiMau)
-                @Html.ValidationMessageFor(model => model.DaGuiMau)
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <table id="sampledata-table"
+                                       class="table table-striped table-bordered dataTable no-footer"
+                                       role="grid">
+                                    <thead>
+                                        <tr role="row">
+                                            <th class="column-title">TT</th>
+                                            <th class="column-title">KH Mẫu</th>
+                                            <th class="column-title">Vị Trí Lấy Mẫu</th>
+                                            <th class="column-title">Số Lượng</th>
+                                            <th class="column-title">Mô Tả Mẫu</th>
+                                            <th class="column-title">Chỉ Tiêu Yêu Cầu</th>
+                                            <th class="column-title"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="ln_solid"></div>
+                        <div class="form-group">
+                            <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                <input type="submit" class="btn btn-primary" value="Lưu" />
+                                <input type="button" class="btn btn-danger" value="Quay lại" onclick="location.href='@Url.Action("Index", "Request")'" />
+                            </div>
+                        </div>
+                    </form> 
+                 </div>
             </div>
         </div>
     </div>
+    
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+<script>
+    $(document).ready(function () {
+        $('#themMauModal').on('hidden.bs.modal', function () {
+            $(this).find("input,textarea,select").val('').end();
+
+        });
+        function Save() {
+            var tabledata = $("#sampledata-table tbody");
+            tabledata.append(
+                "<tr>" +
+                "<td></td>" +
+                "<td>" + $("#kh-mau").val() + "</td>" +
+                "<td>" + $("#vitri-laymau").val() + "</td>" +
+                "<td>" + $("#so-luong").val() + "</td>" +
+                "<td>" + $("#mota-mau").val() + "</td>" +
+                "<td>" + $("#chitieu-yeucau").val() + "</td>" +
+                "<td></td>" +
+                "</tr>");
+
+            //On Row Hover
+            tabledata.children().last().hover(OnRowIn, OnRowOut)
+        }
+
+        function Delete() {
+            var par = $(this).parent().parent(); //tr
+            par.remove();
+        }
+
+        function OnRowIn() {
+            var deleteCell = $(this).children().last();
+            deleteCell.html("<a id='deleteRowBtn' href='#'><span class='glyphicon glyphicon-remove'></span></a>");
+            $('#deleteRowBtn').bind("click", Delete);
+        }
+
+        function OnRowOut() {
+            $(this).children().last().html('');
+        }
+
+        $("#saveMauBtn").bind("click", Save);
+
+    });
+</script>
+
 }

@@ -1,0 +1,83 @@
+﻿@model IERSystem.Areas.Administrator.Models.SoNhanMau
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Administrator/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>SoNhanMau</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PhieuYeuCau)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhieuYeuCau)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TenDiaChiKhachHang)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenDiaChiKhachHang)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MaSo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaSo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChiTieuThuNghiem)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChiTieuThuNghiem)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NgayNhan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgayNhan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NgayTraKetQua)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgayTraKetQua)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KHKyNhan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KHKyNhan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KyHieuMau)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KyHieuMau)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

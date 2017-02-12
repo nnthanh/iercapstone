@@ -1,0 +1,164 @@
+﻿@model IERSystem.Areas.Administrator.Models.SoChuyenMau
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Administrator/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Tạo mẫu mới</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Thêm mẫu chuyển</h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <br>
+                    <form id="demo-form2" data-parsley-validate="" class="form-horizontal form-label-left" novalidate="">
+                        @Html.ValidationSummary(true)
+
+                        <div class="form-group">
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                                Mã khách hàng
+                            </label>
+
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                @Html.TextBoxFor(model => model.MaKhachHang, new { @class = "form-control col-md-4 col-xs-12" })
+                                @Html.ValidationMessageFor(model => model.MaKhachHang)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                                Mã mẫu
+                            </label>
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <select class="form-control col-md-4 col-xs-12">
+                                    <option>Chọn một mẫu</option>
+                                    <option>NT</option>
+                                    <option>NC</option>
+                                    <option>KK</option>
+                                    <option>CTR</option>
+                                </select>
+                                @Html.ValidationMessageFor(model => model.MaMau)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                                Chỉ tiêu thử nghiệm
+                            </label>
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                @Html.TextBoxFor(model => model.ChiTieuThuNghiem, new { @class = "form-control col-md-4 col-xs-12" })
+                                @Html.ValidationMessageFor(model => model.ChiTieuThuNghiem)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                                Người giao mẫu
+                            </label>
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                @Html.TextBoxFor(model => model.NguoiGiaoMau, new { @class = "form-control col-md-4 col-xs-12" })
+                                @Html.ValidationMessageFor(model => model.NguoiGiaoMau)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                                Người nhận mẫu
+                            </label>
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                @Html.TextBoxFor(model => model.NguoiNhanMau, new { @class = "form-control col-md-4 col-xs-12" })
+                                @Html.ValidationMessageFor(model => model.NguoiNhanMau)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                                Ngày giao mẫu
+                            </label>
+                            <div class="form-group input-group-sm col-md-4 col-sm-4 col-xs-12">
+                                @Html.TextBoxFor(model => model.NgayGiaoMau, new { @class = "form-control datepicker", placeholder = "Nhập ngày giao mẫu vào đây", required = "required", type = "text", id = "NgayGiaoMau" })
+                                @Html.ValidationMessageFor(model => model.NgayGiaoMau)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                                Ngày trả kết quả
+                            </label>
+                            <div class="form-group input-group-sm col-md-4 col-sm-4 col-xs-12">
+                                @Html.TextBoxFor(model => model.NgayTraKetQua, new { @class = "form-control datepicker", placeholder = "Nhập ngày trả kết quả vào đây", required = "required", type = "text", id = "NgayTraKQ" })
+                                @Html.ValidationMessageFor(model => model.NgayTraKetQua)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                                Điền tên
+                            </label>
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                @Html.TextBoxFor(model => model.DienTien, new { @class = "form-control col-md-4 col-xs-12" })
+                                @Html.ValidationMessageFor(model => model.DienTien)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                                Ghi chú
+                            </label>
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                @Html.TextBoxFor(model => model.GhiChu, new { @class = "form-control col-md-4 col-xs-12" })
+                                @Html.ValidationMessageFor(model => model.GhiChu)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Tạo" class="btn btn-success" />
+                                <input type="button" class="btn btn-danger" value="Quay lại" onclick="location.href='@Url.Action("Index", "SoChuyenMau")'" />
+                            </div>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+                </div>
+                }
+
+                <div>
+                    @Html.ActionLink("Back to List", "Index")
+                </div>
+
+                @section Scripts {
+                    @Scripts.Render("~/bundles/jqueryval")
+                    <script>
+                        $(document).ready(function () {
+                            $('#NgayGiaoMau').daterangepicker({
+                                singleDatePicker: true,
+                                calender_style: "picker_1"
+                            }, function (start, end, label) {
+                                console.log(start.toISOString(), end.toISOString(), label);
+                            });
+                        });
+                    </script>
+
+                    <script>
+                        $(document).ready(function () {
+                            $('#NgayTraKQ').daterangepicker({
+                                singleDatePicker: true,
+                                calender_style: "picker_1"
+                            }, function (start, end, label) {
+                                console.log(start.toISOString(), end.toISOString(), label);
+                            });
+                        });
+                    </script>
+                }

@@ -3,39 +3,95 @@
 @{
     ViewBag.Title = "Danh sách người dùng";
 }
-
-<div class="row" style="min-height:663px">
-    <h2>DANH SÁCH NGƯỜI DÙNG</h2>
-    <input type="button" class="btn btn-primary" value="Thêm người dùng" onclick="location.href='@Url.Action("Create", "User")'" />
-    <table class="table">
-        <tr>
-            <th>
-                Tên tài khoản
-            </th>
-
-            <th>
-                Họ và tên
-            </th>
-            <th></th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
+@*
+    <div class="row" style="min-height:663px">
+        <h2>DANH SÁCH NGƯỜI DÙNG</h2>
+        <table class="table">
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.username)
-                </td>
- 
-                <td>
-                    @Html.DisplayFor(modelItem => item.fullname)
-                </td>
-                <td>
-                    <input type="button" class="btn btn-primary" value="Chỉnh sửa" onclick="location.href='@Url.Action("Edit", "User", new { id = item.Id })'" />
-                    <input type="button" class="btn btn-danger" value="Xóa" onclick="location.href='@Url.Action("Delete", "User", new { id = item.Id })'" />
-                </td>
-            </tr>
-        }
+                <th>
+                    Tên tài khoản
+                </th>
 
-    </table>
+                <th>
+                    Họ và tên
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.username)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.fullname)
+                    </td>
+                    <td>
+                        <input type="button" class="btn btn-primary" value="Chỉnh sửa" onclick="location.href='@Url.Action("Edit", "User", new { id = item.Id })'" />
+                        <input type="button" class="btn btn-danger" value="Xóa" onclick="location.href='@Url.Action("Delete", "User", new { id = item.Id })'" />
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+*@
+<h2>Quản lí người dùng</h2>
+<input type="button" class="btn btn-primary" value="Thêm người dùng" onclick="location.href='@Url.Action("Create", "User")'" />
+<div>
+    <div class="page-title">
+        <div class="title-left">
+            <h3>Danh sách người dùng</h3>
+        </div>
+
+    </div>
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>
+                        PHIẾU YÊU CẦU
+                    </h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content" style="display:block;">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Tên tài khoản
+                                </th>
+                                <th>
+                                    Họ và tên
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.username)
+                                    </td>
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.fullname)
+                                    </td>
+                                    <td>
+                                        <input type="button" class="btn btn-primary" value="Chỉnh sửa" onclick="location.href='@Url.Action("Edit", "User", new { id = item.Id })'" />
+                                        <input type="button" class="btn btn-danger" value="Xóa" onclick="location.href='@Url.Action("Delete", "User", new { id = item.Id })'" />
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
