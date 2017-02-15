@@ -7,7 +7,7 @@
 
 <br />
 <h2>DANH SÁCH PHIẾU YÊU CẦU</h2>
-<input type="button" class="btn btn-primary" value="Tạo phiếu yêu cầu mới" onclick="location.href='@Url.Action("Create", "Request")'" />
+<input type="button" class="btn btn-info" value="Tạo phiếu yêu cầu mới" onclick="location.href='@Url.Action("Create", "Request")'" />
 <input type="button" class="btn btn-success" value="In" onclick="location.href='@Url.Action("Create", "FormKQ")'" />
 <div>
     <div class="page-title">
@@ -126,8 +126,11 @@
                                         @Html.DisplayFor(modelItem => item.DaGuiMau)
                                     </td>
                                     <td>
-                                        <input type="button" class="btn btn-primary" value="Chỉnh sửa" onclick="location.href='@Url.Action("Edit", "Request", new { id = item.Id })'" />
-                                        <input type="button" class="btn btn-danger" value="Xóa" onclick="location.href='@Url.Action("Delete", "Request", new { id = item.Id })'" />
+                                        @*<input type="button" class="btn btn-primary" value="Chỉnh sửa" onclick="location.href='@Url.Action("Edit", "Request", new { id = item.Id })'" />
+                                        <input type="button" class="btn btn-danger" value="Xóa" onclick="location.href='@Url.Action("Delete", "Request", new { id = item.Id })'" />*@
+                                        @Html.ActionLink("Chỉnh", "Edit", new { id = item.Id }) |
+                                        @Html.ActionLink("Chi tiết", "Details", new { id = item.Id }) |
+                                        @Html.ActionLink("Xóa", "Delete", new { id = item.Id })
                                     </td>
                                 </tr>
                             }
