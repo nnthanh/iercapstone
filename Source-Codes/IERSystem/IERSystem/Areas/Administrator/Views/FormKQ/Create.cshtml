@@ -145,7 +145,13 @@
                                 Phương pháp phân tích
                             </label>
                             <div class="col-md-4 col-sm-4 col-xs-12">
-                                @Html.TextBoxFor(model => model.PhuongPhapPhanTich, new { @class = "form-control col-md-4 col-xs-12" })
+                                <select class="form-control col-md-4 col-xs-12">
+                                    <option>Chọn phương pháp</option>
+                                    <option>Hóa nghiệm</option>
+                                    <option>Lý nghiệm</option>
+                                    <option>Sinh chất</option>
+                                    <option>Ống nghiệm</option>
+                                </select>
                                 @Html.ValidationMessageFor(model => model.PhuongPhapPhanTich)
                             </div>
                         </div>

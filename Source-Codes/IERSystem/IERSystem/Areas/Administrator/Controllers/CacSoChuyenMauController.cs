@@ -11,107 +11,107 @@ using IERSystem.Areas.Administrator.Models;
 
 namespace IERSystem.Areas.Administrator.Controllers
 {
-    public class SoNhanMauController : Controller
+    public class CacSoChuyenMauController : Controller
     {
         private IERSystemDBContext db = new IERSystemDBContext();
 
-        // GET: /Administrator/SoNhanMau/
+        // GET: /Administrator/CacSoChuyenMau/
         public async Task<ActionResult> Index()
         {
-            return View(await db.SoNhanMau.ToListAsync());
+            return View(await db.CacSoChuyenMaus.ToListAsync());
         }
 
-        // GET: /Administrator/SoNhanMau/Details/5
+        // GET: /Administrator/CacSoChuyenMau/Details/5
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SoNhanMau sonhanmau = await db.SoNhanMau.FindAsync(id);
-            if (sonhanmau == null)
+            CacSoChuyenMau cacsochuyenmau = await db.CacSoChuyenMaus.FindAsync(id);
+            if (cacsochuyenmau == null)
             {
                 return HttpNotFound();
             }
-            return View(sonhanmau);
+            return View(cacsochuyenmau);
         }
 
-        // GET: /Administrator/SoNhanMau/Create
+        // GET: /Administrator/CacSoChuyenMau/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: /Administrator/SoNhanMau/Create
+        // POST: /Administrator/CacSoChuyenMau/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include="Id,PhieuYeuCau,TenDiaChiKhachHang,MaSo,ChiTieuThuNghiem,NgayNhan,NgayTraKetQua,KHKyNhan,KyHieuMau")] SoNhanMau sonhanmau)
+        public async Task<ActionResult> Create([Bind(Include="Id,Year,From,To")] CacSoChuyenMau cacsochuyenmau)
         {
             if (ModelState.IsValid)
             {
-                db.SoNhanMau.Add(sonhanmau);
+                db.CacSoChuyenMaus.Add(cacsochuyenmau);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            return View(sonhanmau);
+            return View(cacsochuyenmau);
         }
 
-        // GET: /Administrator/SoNhanMau/Edit/5
+        // GET: /Administrator/CacSoChuyenMau/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SoNhanMau sonhanmau = await db.SoNhanMau.FindAsync(id);
-            if (sonhanmau == null)
+            CacSoChuyenMau cacsochuyenmau = await db.CacSoChuyenMaus.FindAsync(id);
+            if (cacsochuyenmau == null)
             {
                 return HttpNotFound();
             }
-            return View(sonhanmau);
+            return View(cacsochuyenmau);
         }
 
-        // POST: /Administrator/SoNhanMau/Edit/5
+        // POST: /Administrator/CacSoChuyenMau/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include="Id,PhieuYeuCau,TenDiaChiKhachHang,MaSo,ChiTieuThuNghiem,NgayNhan,NgayTraKetQua,KHKyNhan,KyHieuMau")] SoNhanMau sonhanmau)
+        public async Task<ActionResult> Edit([Bind(Include="Id,Year,From,To")] CacSoChuyenMau cacsochuyenmau)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(sonhanmau).State = EntityState.Modified;
+                db.Entry(cacsochuyenmau).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(sonhanmau);
+            return View(cacsochuyenmau);
         }
 
-        // GET: /Administrator/SoNhanMau/Delete/5
+        // GET: /Administrator/CacSoChuyenMau/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SoNhanMau sonhanmau = await db.SoNhanMau.FindAsync(id);
-            if (sonhanmau == null)
+            CacSoChuyenMau cacsochuyenmau = await db.CacSoChuyenMaus.FindAsync(id);
+            if (cacsochuyenmau == null)
             {
                 return HttpNotFound();
             }
-            return View(sonhanmau);
+            return View(cacsochuyenmau);
         }
 
-        // POST: /Administrator/SoNhanMau/Delete/5
+        // POST: /Administrator/CacSoChuyenMau/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            SoNhanMau sonhanmau = await db.SoNhanMau.FindAsync(id);
-            db.SoNhanMau.Remove(sonhanmau);
+            CacSoChuyenMau cacsochuyenmau = await db.CacSoChuyenMaus.FindAsync(id);
+            db.CacSoChuyenMaus.Remove(cacsochuyenmau);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
