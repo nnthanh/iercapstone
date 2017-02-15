@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -30,6 +30,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -161,6 +162,8 @@
     <Compile Include="Areas\Administrator\AccountController.cs" />
     <Compile Include="Areas\Administrator\AdministratorAreaRegistration.cs" />
     <Compile Include="Areas\Administrator\Controllers\AccountController.cs" />
+    <Compile Include="Areas\Administrator\Controllers\CacSoChuyenMauController.cs" />
+    <Compile Include="Areas\Administrator\Controllers\CacSoNhanMauController.cs" />
     <Compile Include="Areas\Administrator\Controllers\FormKQController.cs" />
     <Compile Include="Areas\Administrator\Controllers\MauLayHienTruongController.cs" />
     <Compile Include="Areas\Administrator\Controllers\RequestController.cs" />
@@ -170,6 +173,8 @@
     <Compile Include="Areas\Administrator\Controllers\UserController.cs" />
     <Compile Include="Areas\Administrator\HomeController.cs" />
     <Compile Include="Areas\Administrator\Models\AccountModel.cs" />
+    <Compile Include="Areas\Administrator\Models\CacSoChuyenMau.cs" />
+    <Compile Include="Areas\Administrator\Models\CacSoNhanMau.cs" />
     <Compile Include="Areas\Administrator\Models\FormKQ.cs" />
     <Compile Include="Areas\Administrator\Models\IERSystemDBContext.cs" />
     <Compile Include="Areas\Administrator\Models\MauLayHienTruong.cs" />
@@ -3790,6 +3795,16 @@
     <Content Include="Areas\Administrator\Views\SoKQThuNghiem\Details.cshtml" />
     <Content Include="Areas\Administrator\Views\SoKQThuNghiem\Edit.cshtml" />
     <Content Include="Areas\Administrator\Views\SoKQThuNghiem\Index.cshtml" />
+    <Content Include="Areas\Administrator\Views\CacSoNhanMau\Create.cshtml" />
+    <Content Include="Areas\Administrator\Views\CacSoNhanMau\Delete.cshtml" />
+    <Content Include="Areas\Administrator\Views\CacSoNhanMau\Details.cshtml" />
+    <Content Include="Areas\Administrator\Views\CacSoNhanMau\Edit.cshtml" />
+    <Content Include="Areas\Administrator\Views\CacSoNhanMau\Index.cshtml" />
+    <Content Include="Areas\Administrator\Views\CacSoChuyenMau\Create.cshtml" />
+    <Content Include="Areas\Administrator\Views\CacSoChuyenMau\Delete.cshtml" />
+    <Content Include="Areas\Administrator\Views\CacSoChuyenMau\Details.cshtml" />
+    <Content Include="Areas\Administrator\Views\CacSoChuyenMau\Edit.cshtml" />
+    <Content Include="Areas\Administrator\Views\CacSoChuyenMau\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

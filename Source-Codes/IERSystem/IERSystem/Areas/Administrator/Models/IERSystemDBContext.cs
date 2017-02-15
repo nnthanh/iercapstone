@@ -55,5 +55,9 @@ namespace IERSystem.Areas.Administrator.Models
         public System.Data.Entity.DbSet<IERSystem.Areas.Administrator.Models.SoKQThuNghiem> SoKQThuNghiems { get; set; }
 
         public System.Data.Entity.DbSet<IERSystem.Areas.Administrator.Models.FormKQ> FormKQs { get; set; }
+
+        public System.Data.Entity.DbSet<IERSystem.Areas.Administrator.Models.CacSoNhanMau> CacSoNhanMaus { get; set; }
+
+        public System.Data.Entity.DbSet<IERSystem.Areas.Administrator.Models.CacSoChuyenMau> CacSoChuyenMaus { get; set; }
     }
 }

@@ -8,9 +8,12 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using IERSystem.Areas.Administrator.Models;
+using System.IO;
+using Newtonsoft.Json;
 
 namespace IERSystem.Areas.Administrator.Controllers
 {
+  
     public class RequestController : Controller
     {
         private IERSystemDBContext db = new IERSystemDBContext();
@@ -47,16 +50,44 @@ namespace IERSystem.Areas.Administrator.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include="Id,MaDon,TenKhachHang,TenDaiDien,DiaChiLayMau,DiaChiKhachHang,MaSoThue,SoDienThoai,SoFax,NgayTaoHD,NgayDuKienTraMau,PhuongPhapLayMau,TenTieuChuanDoiChieu,PhiThiNghiemTamTinh,TienKhachHangTraTruoc,DaGuiMau")] Request request)
+        public async Task<ActionResult> Create(
+            [Bind(Include="MaDon,TenKhachHang,TenDaiDien,DiaChiLayMau,MaSoThue,SoDienThoai,SoFax,NgayTaoHD,NgayDuKienTraMau, MauLayHienTruong")]
+            RequestInputModel inputRequest)
         {
+            //bool isOk = false;
+            //string errMsg = "";
             if (ModelState.IsValid)
             {
-                db.Requests.Add(request);
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                //    db.Requests.Add(request);
+                //    await db.SaveChangesAsync();
+                //    return RedirectToAction("Index");
+                //return Json(new { isOk, errMsg });
             }
 
-            return View(request);
+            return View(inputRequest);
+        }
+
+        // POST: /Administrator/Request/CreateNew
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        public async Task<JsonResult> CreateNew(RequestInputModel inputRequest) 
+        {
+            bool isOk = false;
+            string errMsg = "";
+            if (ModelState.IsValid) {
+                db.Requests.Add(inputRequest.ToModel());
+                try {
+                    await db.SaveChangesAsync();
+                    Console.WriteLine("OK");
+                    isOk = true;
+                } catch (System.Data.Entity.Infrastructure.DbUpdateException e) {
+                    Console.WriteLine(e.Message);
+                    isOk = false;
+                }
+            }
+
+            return Json(new { isOk, errMsg });
         }
 
         // GET: /Administrator/Request/Edit/5
