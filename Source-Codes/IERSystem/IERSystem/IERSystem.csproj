@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -21,6 +21,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <TargetFrameworkProfile />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -178,7 +179,9 @@
     <Compile Include="Areas\Administrator\Models\FormKQ.cs" />
     <Compile Include="Areas\Administrator\Models\IERSystemDBContext.cs" />
     <Compile Include="Areas\Administrator\Models\MauLayHienTruong.cs" />
+    <Compile Include="Areas\Administrator\Models\MauPTInputModel.cs" />
     <Compile Include="Areas\Administrator\Models\Request.cs" />
+    <Compile Include="Areas\Administrator\Models\RequestInputModel.cs" />
     <Compile Include="Areas\Administrator\Models\SoChuyenMau.cs" />
     <Compile Include="Areas\Administrator\Models\SoKQThuNghiem.cs" />
     <Compile Include="Areas\Administrator\Models\SoNhanMau.cs" />
