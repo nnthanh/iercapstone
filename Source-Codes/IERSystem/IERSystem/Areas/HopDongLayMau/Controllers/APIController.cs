@@ -23,11 +23,12 @@ namespace IERSystem.Areas.HopDongLayMau.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        public async Task<JsonResult> Create(YeuCauLayMauInputModel inputRequest) {
+        public async Task<JsonResult> Create(YeuCauLayMauInputModel input_request) {
             bool isOk = false;
             string errMsg = "";
             if (ModelState.IsValid) {
-                db.Requests.Add(inputRequest.ToModel());
+                var encoded_inp_req = ItemEncoding.HopDongLayMauEncoding.MaHoa(input_request, db);
+                db.PhieuYeuCaus.Add(encoded_inp_req.ToModel(db));
                 try {
                     await db.SaveChangesAsync();
                     Console.WriteLine("OK");

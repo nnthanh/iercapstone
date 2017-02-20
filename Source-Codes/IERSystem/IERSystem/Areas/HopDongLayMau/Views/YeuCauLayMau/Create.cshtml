@@ -20,7 +20,7 @@
                 <div class="x_content">
                     <br>
                     <form id="demo-form2" data-parsley-validate="" class="form-horizontal form-label-left" novalidate="">
-                        <div class="form-group">
+                        @*<div class="form-group">
                             <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
                                 Mã đơn
                             </label>
@@ -28,7 +28,7 @@
                                 @Html.TextBoxFor(model => model.MaDon, new { @class = "form-control col-md-4 col-xs-12" })
                                 @Html.ValidationMessageFor(model => model.MaDon)
                             </div>
-                        </div>
+                        </div>*@
                         <div class="clearfix"/>
                         <div class="form-group">
                             <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
@@ -164,16 +164,33 @@
                                         </div>
                                         <div class="modal-body">
                                             <div class="form-group">
+                                                <label for="email">Mã Mẫu:</label>
+                                                <input type="email" class="form-control" id="ma-mau">
+                                            </div>
+                                            <div class="form-group">
                                                 <label for="email">Kí Hiệu Mẫu:</label>
-                                                <input type="email" class="form-control" id="kh-mau">
+                                                <select id="kh-mau" class="form-control">
+                                                    <option>NT: Nước Thải</option>
+                                                    <option>NC: Nước Cấp</option>
+                                                    <option>NM: Nước Mặt</option>
+                                                    <option>KK: Không Khí</option>
+                                                    <option>BĐ: Bùn Đất</option>
+                                                    <option>TP: Thực Phẩm</option>
+                                                </select>
                                             </div>
                                             <div class="form-group">
                                                 <label for="email">Vị Trí Lấy Mẫu:</label>
                                                 <input type="email" class="form-control" id="vitri-laymau">
                                             </div>
                                             <div class="form-group">
-                                                <label for="email">Số Lượng:</label>
-                                                <input type="email" class="form-control" id="so-luong">
+                                                <div class="col-sm-8">
+                                                    <label for="email">Số Lượng:</label>
+                                                    <input type="email" class="form-control" id="so-luong">
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <label for="email">Đơn Vị:</label>
+                                                    <input type="email" class="form-control" id="don-vi">
+                                                </div>
                                             </div>
                                             <div class="form-group">
                                                 <label for="email">Mô Tả Mẫu:</label>
@@ -201,7 +218,8 @@
                                        role="grid">
                                     <thead>
                                         <tr role="row">
-                                            <th class="column-title">TT</th>
+                                            @*<th class="column-title">TT</th>*@
+                                            <th class="column-title">Mã Mẫu</th>
                                             <th class="column-title">KH Mẫu</th>
                                             <th class="column-title">Vị Trí Lấy Mẫu</th>
                                             <th class="column-title">Số Lượng</th>
@@ -257,7 +275,14 @@
 </script>
 
 <script>
+
+</script>
+
+<script>
     $(document).ready(function () {
+
+        const $Global = [];
+
         $('#themMauModal').on('hidden.bs.modal', function () {
             $(this).find("input,textarea,select").val('').end();
 
@@ -280,19 +305,28 @@
 
         $("#saveMauBtn").bind("click", function() {
             var tabledata = $("#sampledata-table tbody");
+            var soluong = $("#so-luong").val();
+            var donvi = $("#don-vi").val();
+
+            $Global.push({
+                SoLuong: soluong,
+                DonVi: donvi
+            });
+
             tabledata.append(
                 "<tr>" +
-                "<td></td>" +
+                //"<td></td>" +
+                "<td>" + $("#ma-mau").val() + "</td>" +
                 "<td>" + $("#kh-mau").val() + "</td>" +
                 "<td>" + $("#vitri-laymau").val() + "</td>" +
-                "<td>" + $("#so-luong").val() + "</td>" +
+                "<td>" + soluong + " " +  donvi + "</td>" +
                 "<td>" + $("#mota-mau").val() + "</td>" +
                 "<td>" + $("#chitieu-yeucau").val() + "</td>" +
                 "<td></td>" +
                 "</tr>");
 
             //On Row Hover
-            tabledata.children().last().hover(OnRowIn, OnRowOut)
+            tabledata.children().last().hover(OnRowIn, OnRowOut);
         });
 
 
@@ -300,7 +334,6 @@
 
             function getFormData() {
                 var res = {
-                    MaDon: $("#MaDon").val(),
                     TenKhachHang: $("#TenKhachHang").val(),
                     MaSoThue: $("#MaSoThue").val(),
                     TenDaiDien: $("#TenDaiDien").val(),
@@ -319,14 +352,18 @@
                     var rowdata = $(elem).find("td").map(function () { return $(this).text(); }).get();
                     //alert(rowdata);
                     return {
-                        MaMau: rowdata[1],
+                        MaMauKH: rowdata[0],
+                        //Get the first 2 characters of Kí Hiệu Mẫu
+                        KiHieuMau: rowdata[1].slice(0, 2),
                         ViTriLayMau: rowdata[2],
-                        Soluong: rowdata[3],
+                        Soluong:  $Global[i].SoLuong,
+                        DonVi:  $Global[i].DonVi,
                         MoTaMau: rowdata[4],
                         ChiTieuPhanTich: rowdata[5]
                     }
                 }).get();
                 res.MauLayHienTruongs = sampledata;
+                console.log(res);
                 return res;
             }
             var formData = getFormData();

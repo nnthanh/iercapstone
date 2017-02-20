@@ -22,7 +22,7 @@ namespace IERSystem.Areas.HopDongLayMau.Controllers
         // GET: /HopDongLayMau/YeuCauLayMau/
         public async Task<ActionResult> Index()
         {
-            return View(await db.Requests.ToListAsync());
+            return View(await db.PhieuYeuCaus.ToListAsync());
         }
 
         // GET: /HopDongLayMau/YeuCauLayMau/Details/5
@@ -32,7 +32,7 @@ namespace IERSystem.Areas.HopDongLayMau.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Request request = await db.Requests.FindAsync(id);
+            PhieuYeuCau request = await db.PhieuYeuCaus.FindAsync(id);
             if (request == null)
             {
                 return HttpNotFound();
@@ -52,9 +52,10 @@ namespace IERSystem.Areas.HopDongLayMau.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(
-            [Bind(
-               Include="MaDon,TenKhachHang,TenDaiDien,DiaChiLayMau,MaSoThue,SoDienThoai,SoFax,NgayTaoHD,NgayDuKienTraMau, MauLayHienTruong"
-            )] YeuCauLayMauInputModel inputRequest)
+            //[Bind(
+            //   Include="MaDon,TenKhachHang,TenDaiDien,DiaChiLayMau,MaSoThue,SoDienThoai,SoFax,NgayTaoHD,NgayDuKienTraMau, MauLayHienTruong"
+            //)] 
+            YeuCauLayMauInputModel inputRequest)
         {
             return View(inputRequest);
         }
@@ -67,7 +68,7 @@ namespace IERSystem.Areas.HopDongLayMau.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Request request = await db.Requests.FindAsync(id);
+            PhieuYeuCau request = await db.PhieuYeuCaus.FindAsync(id);
             if (request == null)
             {
                 return HttpNotFound();
@@ -80,7 +81,7 @@ namespace IERSystem.Areas.HopDongLayMau.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include="Id,MaDon,TenKhachHang,TenDaiDien,DiaChiLayMau,DiaChiKhachHang,MaSoThue,SoDienThoai,SoFax,NgayTaoHD,NgayDuKienTraMau,PhuongPhapLayMau,TenTieuChuanDoiChieu,PhiThiNghiemTamTinh,TienKhachHangTraTruoc,DaGuiMau")] Request request)
+        public async Task<ActionResult> Edit([Bind(Include="Id,MaDon,TenKhachHang,TenDaiDien,DiaChiLayMau,DiaChiKhachHang,MaSoThue,SoDienThoai,SoFax,NgayTaoHD,NgayDuKienTraMau,PhuongPhapLayMau,TenTieuChuanDoiChieu,PhiThiNghiemTamTinh,TienKhachHangTraTruoc,DaGuiMau")] PhieuYeuCau request)
         {
             if (ModelState.IsValid)
             {
@@ -98,7 +99,7 @@ namespace IERSystem.Areas.HopDongLayMau.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Request request = await db.Requests.FindAsync(id);
+            PhieuYeuCau request = await db.PhieuYeuCaus.FindAsync(id);
             if (request == null)
             {
                 return HttpNotFound();
@@ -111,8 +112,8 @@ namespace IERSystem.Areas.HopDongLayMau.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Request request = await db.Requests.FindAsync(id);
-            db.Requests.Remove(request);
+            PhieuYeuCau request = await db.PhieuYeuCaus.FindAsync(id);
+            db.PhieuYeuCaus.Remove(request);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

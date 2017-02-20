@@ -5,9 +5,10 @@ using System.Web;
 
 namespace IERSystem.Areas.Administrator.Models
 {
-    public class Request
+    public class PhieuYeuCau
     {
         public int Id { get; set; }
+        //nthoang Encoded string value for Phieu Yeu Cau (model)
         public String MaDon { get; set; }
         public String TenKhachHang { get; set; }
         public String TenDaiDien { get; set; }
@@ -18,12 +19,18 @@ namespace IERSystem.Areas.Administrator.Models
         public String SoFax { get; set; }
         public DateTime NgayTaoHD { get; set; }
         public DateTime NgayDuKienTraMau { get; set; }
-        public String PhuongPhapLayMau { get; set; }
-        public String TenTieuChuanDoiChieu { get; set; }
-        public double? PhiThiNghiemTamTinh { get; set; }
-        public double? TienKhachHangTraTruoc { get; set; }
-        public Boolean DaGuiMau { get; set; }
-        public uint NamLayHD { get; set; }
+        //TODO: nthoang DB Missing Field
+        //public String PhuongPhapLayMau { get; set; }
+        //TODO: nthoang DB Missing Field
+        //public String TenTieuChuanDoiChieu { get; set; }
+        //TODO: nthoang DB Missing Field
+        //public double? PhiThiNghiemTamTinh { get; set; }
+        //TODO: nthoang DB Missing Field
+        //public double? TienKhachHangTraTruoc { get; set; }
+        //TODO: nthoang DB Missing Field
+        //public Boolean DaGuiMau { get; set; }
+        //TODO: nthoang DB Missing Field
+        public int NamLayHD { get; set; }
 
         public virtual ICollection<MauLayHienTruong> MauLayHienTruongs { get; set; }
     }

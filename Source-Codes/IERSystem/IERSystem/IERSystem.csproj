@@ -158,6 +158,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Code\ItemEncoding\HopDongLayMauEncoding.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -183,7 +184,7 @@
     <Compile Include="Areas\HopDongLayMau\Controllers\APIController.cs" />
     <Compile Include="Areas\HopDongLayMau\Controllers\DefaultController.cs" />
     <Compile Include="Areas\HopDongLayMau\Models\MauPTInputModel.cs" />
-    <Compile Include="Areas\Administrator\Models\Request.cs" />
+    <Compile Include="Areas\Administrator\Models\PhieuYeuCau.cs" />
     <Compile Include="Areas\HopDongLayMau\Models\YeuCauLayMauInputModel.cs" />
     <Compile Include="Areas\Administrator\Models\SoChuyenMau.cs" />
     <Compile Include="Areas\Administrator\Models\SoKQThuNghiem.cs" />

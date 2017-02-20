@@ -4,11 +4,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
+using IERSystem;
+using IERSystem.ItemEncoding;
+
 namespace IERSystem.Areas.HopDongLayMau.Models
 {
     [Serializable]
     public class YeuCauLayMauInputModel
     {
+        //nthoang Encoded string value for Yeu Cau Lay Mau (input model)
         public String MaDon { get; set; }
         public String TenKhachHang { get; set; }
         public String TenDaiDien { get; set; }
@@ -28,30 +32,34 @@ namespace IERSystem.Areas.HopDongLayMau.Models
 
         public List<MauPTInputModel> MauLayHienTruongs { get; set; }
 
-        //TODO: nthoang Convert InputModel to Database Model
-        public Request ToModel() 
+        //nthoang Convert InputModel to Database Model
+        public PhieuYeuCau ToModel(IERSystemDBContext db) 
         {
-            var req = new Request();
+            var req = new PhieuYeuCau();
             req.MaDon = this.MaDon;
+            req.TenDaiDien = this.TenDaiDien;
+            req.TenKhachHang = this.TenKhachHang;
+            req.DiaChiKhachHang = this.DiaChiKhachHang;
+            req.DiaChiLayMau = this.DiaChiLayMau;
             req.MaSoThue = this.MaSoThue;
+            req.SoFax = this.SoFax;
+            req.SoDienThoai = this.SoDienThoai;
+            req.NgayTaoHD = this.NgayTaoHD;
+            req.NgayDuKienTraMau = this.NgayDuKienTraMau;
+            req.NamLayHD = this.NgayTaoHD.Year;
             req.MauLayHienTruongs = this.MauLayHienTruongs.Select((elem) => {
                 var mapped = new MauLayHienTruong();
                 mapped.MoTaMau = elem.MoTaMau;
-                mapped.Soluong = elem.Soluong;
+                mapped.SoLuong = elem.SoLuong;
+                mapped.DonVi = elem.DonVi;
                 mapped.ViTriLayMau = elem.ViTriLayMau;
-                //TODO: nthoang separate into New Table?
+                //TODO: nthoang MaChiTieuPhanTich separate into New Table?
                 mapped.MaChiTieuPhanTich = elem.ChiTieuPhanTich;
+                mapped.NamLayMau = req.NamLayHD;
+                mapped.MaMauKH = elem.MaMauKH;
                 mapped.MaMau = elem.MaMau;
                 return mapped;
             }).ToArray();
-            req.DiaChiKhachHang = this.DiaChiKhachHang;
-            req.DiaChiLayMau = this.DiaChiLayMau;
-            req.NgayDuKienTraMau = this.NgayDuKienTraMau;
-            req.SoFax = this.SoFax;
-            req.SoDienThoai = this.SoDienThoai;
-            req.TenDaiDien = this.TenDaiDien;
-            req.TenKhachHang = this.TenKhachHang;
-            req.NgayTaoHD = this.NgayTaoHD;
             return req;
         }
     }

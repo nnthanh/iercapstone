@@ -1,4 +1,4 @@
-﻿@model IEnumerable<IERSystem.Areas.Administrator.Models.Request>
+﻿@model IEnumerable<IERSystem.Areas.Administrator.Models.PhieuYeuCau>
 
 @{
     ViewBag.Title = "Danh sách phiếu yêu cầu";
@@ -7,7 +7,7 @@
 
 <br />
 <h2>DANH SÁCH PHIẾU YÊU CẦU</h2>
-<input type="button" class="btn btn-info" value="Tạo phiếu yêu cầu mới" onclick="location.href='@Url.Action("Create", "Request")'" />
+<input type="button" class="btn btn-info" value="Tạo phiếu yêu cầu mới" onclick="location.href='@Url.Action("Create", "YeuCauLayMau")'" />
 <input type="button" class="btn btn-success" value="In" onclick="location.href='@Url.Action("Create", "FormKQ")'" />
 <div>
     <div class="page-title">
@@ -110,7 +110,7 @@
                                     <td>
                                         @Html.DisplayFor(modelItem => item.NgayDuKienTraMau)
                                     </td>
-                                    <td>
+                                    @*<td>
                                         @Html.DisplayFor(modelItem => item.PhuongPhapLayMau)
                                     </td>
                                     <td>
@@ -124,7 +124,7 @@
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.DaGuiMau)
-                                    </td>
+                                    </td>*@
                                     <td>
                                         @*<input type="button" class="btn btn-primary" value="Chỉnh sửa" onclick="location.href='@Url.Action("Edit", "Request", new { id = item.Id })'" />
                                         <input type="button" class="btn btn-danger" value="Xóa" onclick="location.href='@Url.Action("Delete", "Request", new { id = item.Id })'" />*@

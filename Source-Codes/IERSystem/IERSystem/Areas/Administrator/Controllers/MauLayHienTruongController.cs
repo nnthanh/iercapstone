@@ -18,7 +18,7 @@ namespace IERSystem.Areas.Administrator.Controllers
         // GET: /Administrator/MauLayHienTruong/
         public async Task<ActionResult> Index()
         {
-            return View(await db.MauLayHienTruong.ToListAsync());
+            return View(await db.MauLayHienTruongs.ToListAsync());
         }
 
         // GET: /Administrator/MauLayHienTruong/Details/5
@@ -28,7 +28,7 @@ namespace IERSystem.Areas.Administrator.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            MauLayHienTruong maulayhientruong = await db.MauLayHienTruong.FindAsync(id);
+            MauLayHienTruong maulayhientruong = await db.MauLayHienTruongs.FindAsync(id);
             if (maulayhientruong == null)
             {
                 return HttpNotFound();
@@ -54,7 +54,7 @@ namespace IERSystem.Areas.Administrator.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.MauLayHienTruong.Add(maulayhientruong);
+                db.MauLayHienTruongs.Add(maulayhientruong);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
@@ -69,7 +69,7 @@ namespace IERSystem.Areas.Administrator.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            MauLayHienTruong maulayhientruong = await db.MauLayHienTruong.FindAsync(id);
+            MauLayHienTruong maulayhientruong = await db.MauLayHienTruongs.FindAsync(id);
             if (maulayhientruong == null)
             {
                 return HttpNotFound();
@@ -100,7 +100,7 @@ namespace IERSystem.Areas.Administrator.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            MauLayHienTruong maulayhientruong = await db.MauLayHienTruong.FindAsync(id);
+            MauLayHienTruong maulayhientruong = await db.MauLayHienTruongs.FindAsync(id);
             if (maulayhientruong == null)
             {
                 return HttpNotFound();
@@ -113,8 +113,8 @@ namespace IERSystem.Areas.Administrator.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            MauLayHienTruong maulayhientruong = await db.MauLayHienTruong.FindAsync(id);
-            db.MauLayHienTruong.Remove(maulayhientruong);
+            MauLayHienTruong maulayhientruong = await db.MauLayHienTruongs.FindAsync(id);
+            db.MauLayHienTruongs.Remove(maulayhientruong);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
