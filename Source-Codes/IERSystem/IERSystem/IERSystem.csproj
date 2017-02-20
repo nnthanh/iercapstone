@@ -42,6 +42,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -109,12 +117,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.1.0.0\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
@@ -167,7 +169,6 @@
     <Compile Include="Areas\Administrator\Controllers\CacSoNhanMauController.cs" />
     <Compile Include="Areas\Administrator\Controllers\FormKQController.cs" />
     <Compile Include="Areas\Administrator\Controllers\MauLayHienTruongController.cs" />
-    <Compile Include="Areas\Administrator\Controllers\RequestController.cs" />
     <Compile Include="Areas\Administrator\Controllers\SoChuyenMauController.cs" />
     <Compile Include="Areas\Administrator\Controllers\SoKQThuNghiemController.cs" />
     <Compile Include="Areas\Administrator\Controllers\SoNhanMauController.cs" />
@@ -179,13 +180,17 @@
     <Compile Include="Areas\Administrator\Models\FormKQ.cs" />
     <Compile Include="Areas\Administrator\Models\IERSystemDBContext.cs" />
     <Compile Include="Areas\Administrator\Models\MauLayHienTruong.cs" />
-    <Compile Include="Areas\Administrator\Models\MauPTInputModel.cs" />
+    <Compile Include="Areas\HopDongLayMau\Controllers\APIController.cs" />
+    <Compile Include="Areas\HopDongLayMau\Controllers\DefaultController.cs" />
+    <Compile Include="Areas\HopDongLayMau\Models\MauPTInputModel.cs" />
     <Compile Include="Areas\Administrator\Models\Request.cs" />
-    <Compile Include="Areas\Administrator\Models\RequestInputModel.cs" />
+    <Compile Include="Areas\HopDongLayMau\Models\YeuCauLayMauInputModel.cs" />
     <Compile Include="Areas\Administrator\Models\SoChuyenMau.cs" />
     <Compile Include="Areas\Administrator\Models\SoKQThuNghiem.cs" />
     <Compile Include="Areas\Administrator\Models\SoNhanMau.cs" />
     <Compile Include="Areas\Administrator\Models\User.cs" />
+    <Compile Include="Areas\HopDongLayMau\Controllers\YeuCauLayMauController.cs" />
+    <Compile Include="Areas\HopDongLayMau\HopDongLayMauAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -3768,11 +3773,11 @@
     <Content Include="Areas\Administrator\Views\User\Details.cshtml" />
     <Content Include="Areas\Administrator\Views\User\Edit.cshtml" />
     <Content Include="Areas\Administrator\Views\User\Index.cshtml" />
-    <Content Include="Areas\Administrator\Views\Request\Create.cshtml" />
-    <Content Include="Areas\Administrator\Views\Request\Delete.cshtml" />
-    <Content Include="Areas\Administrator\Views\Request\Details.cshtml" />
-    <Content Include="Areas\Administrator\Views\Request\Edit.cshtml" />
-    <Content Include="Areas\Administrator\Views\Request\Index.cshtml" />
+    <Content Include="Areas\HopDongLayMau\Views\YeuCauLayMau\Create.cshtml" />
+    <Content Include="Areas\HopDongLayMau\Views\YeuCauLayMau\Delete.cshtml" />
+    <Content Include="Areas\HopDongLayMau\Views\YeuCauLayMau\Details.cshtml" />
+    <Content Include="Areas\HopDongLayMau\Views\YeuCauLayMau\Edit.cshtml" />
+    <Content Include="Areas\HopDongLayMau\Views\YeuCauLayMau\Index.cshtml" />
     <Content Include="Areas\Administrator\Views\MauLayHienTruong\Create.cshtml" />
     <Content Include="Areas\Administrator\Views\MauLayHienTruong\Delete.cshtml" />
     <Content Include="Areas\Administrator\Views\MauLayHienTruong\Details.cshtml" />
@@ -3808,6 +3813,7 @@
     <Content Include="Areas\Administrator\Views\CacSoChuyenMau\Details.cshtml" />
     <Content Include="Areas\Administrator\Views\CacSoChuyenMau\Edit.cshtml" />
     <Content Include="Areas\Administrator\Views\CacSoChuyenMau\Index.cshtml" />
+    <Content Include="Areas\HopDongLayMau\Views\web.config" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -3849,6 +3855,9 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Administrator\Views\Account\" />
+    <Folder Include="Areas\HopDongLayMau\Views\API\" />
+    <Folder Include="Areas\HopDongLayMau\Views\Default\" />
+    <Folder Include="Areas\HopDongLayMau\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

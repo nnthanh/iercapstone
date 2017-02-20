@@ -1,0 +1,138 @@
+﻿@model IERSystem.Areas.Administrator.Models.Request
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Administrator/Views/Shared/_Layout.cshtml";}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Request</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MaDon)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaDon)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TenKhachHang)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenKhachHang)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TenDaiDien)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenDaiDien)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DiaChiLayMau)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DiaChiLayMau)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DiaChiKhachHang)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DiaChiKhachHang)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MaSoThue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaSoThue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SoDienThoai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SoDienThoai)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SoFax)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SoFax)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NgayTaoHD)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgayTaoHD)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NgayDuKienTraMau)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgayDuKienTraMau)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PhuongPhapLayMau)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhuongPhapLayMau)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TenTieuChuanDoiChieu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenTieuChuanDoiChieu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PhiThiNghiemTamTinh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhiThiNghiemTamTinh)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TienKhachHangTraTruoc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TienKhachHangTraTruoc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DaGuiMau)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DaGuiMau)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
