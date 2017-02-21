@@ -18,5 +18,6 @@ namespace IERSystem.Areas.Administrator.Models
         public String DienTien { get; set; }
         public String GhiChu { get; set; }
 
+        public virtual CacSoChuyenMau CacSoChuyenMau { get; set; }
     }
 }

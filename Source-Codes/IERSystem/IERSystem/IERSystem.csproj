@@ -158,7 +158,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Code\ItemEncoding\HopDongLayMauEncoding.cs" />
+    <Compile Include="Areas\HopDongLayMau\BusinessLogic\HopDongLayMauEncoding.cs" />
+    <Compile Include="Areas\HopDongLayMau\BusinessLogic\HopDongLayMauAPIImpl.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -181,6 +182,9 @@
     <Compile Include="Areas\Administrator\Models\FormKQ.cs" />
     <Compile Include="Areas\Administrator\Models\IERSystemDBContext.cs" />
     <Compile Include="Areas\Administrator\Models\MauLayHienTruong.cs" />
+    <Compile Include="Areas\Administrator\Models\SoChuyenMauOutputModel.cs" />
+    <Compile Include="Areas\Administrator\Models\SoNhanMauOutputModel.cs" />
+    <Compile Include="Areas\HopDongLayMau\BusinessLogic\TableForms\CacSoNhanMauAPIImpl.cs" />
     <Compile Include="Areas\HopDongLayMau\Controllers\APIController.cs" />
     <Compile Include="Areas\HopDongLayMau\Controllers\DefaultController.cs" />
     <Compile Include="Areas\HopDongLayMau\Models\MauPTInputModel.cs" />
@@ -192,6 +196,7 @@
     <Compile Include="Areas\Administrator\Models\User.cs" />
     <Compile Include="Areas\HopDongLayMau\Controllers\YeuCauLayMauController.cs" />
     <Compile Include="Areas\HopDongLayMau\HopDongLayMauAreaRegistration.cs" />
+    <Compile Include="Areas\HopDongLayMau\Tests\HDLayMau_SNhanMauTest.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -3804,17 +3809,9 @@
     <Content Include="Areas\Administrator\Views\SoKQThuNghiem\Details.cshtml" />
     <Content Include="Areas\Administrator\Views\SoKQThuNghiem\Edit.cshtml" />
     <Content Include="Areas\Administrator\Views\SoKQThuNghiem\Index.cshtml" />
-    <Content Include="Areas\Administrator\Views\CacSoNhanMau\Create.cshtml" />
-    <Content Include="Areas\Administrator\Views\CacSoNhanMau\Delete.cshtml" />
-    <Content Include="Areas\Administrator\Views\CacSoNhanMau\Details.cshtml" />
-    <Content Include="Areas\Administrator\Views\CacSoNhanMau\Edit.cshtml" />
-    <Content Include="Areas\Administrator\Views\CacSoNhanMau\Index.cshtml" />
-    <Content Include="Areas\Administrator\Views\CacSoChuyenMau\Create.cshtml" />
-    <Content Include="Areas\Administrator\Views\CacSoChuyenMau\Delete.cshtml" />
-    <Content Include="Areas\Administrator\Views\CacSoChuyenMau\Details.cshtml" />
-    <Content Include="Areas\Administrator\Views\CacSoChuyenMau\Edit.cshtml" />
-    <Content Include="Areas\Administrator\Views\CacSoChuyenMau\Index.cshtml" />
     <Content Include="Areas\HopDongLayMau\Views\web.config" />
+    <Content Include="Areas\Administrator\Views\CacSoChuyenMau\Index.cshtml" />
+    <Content Include="Areas\Administrator\Views\CacSoNhanMau\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -3854,6 +3851,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Code\" />
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Administrator\Views\Account\" />
     <Folder Include="Areas\HopDongLayMau\Views\API\" />

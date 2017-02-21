@@ -53,6 +53,13 @@ namespace IERSystem.Areas.Administrator.Models
             modelBuilder.Entity<SoNhanMau>().Property(b => b.Id)
                         .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
             base.OnModelCreating(modelBuilder);
+
+            // khai báo Id sẽ là khóa chính
+            modelBuilder.Entity<CacSoNhanMau>().HasKey(b => b.Id);
+            // khai báo Id sẽ tự động tăng
+            modelBuilder.Entity<CacSoNhanMau>().Property(b => b.Id)
+                        .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

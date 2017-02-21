@@ -2,11 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-
-using IERSystem;
-using IERSystem.ItemEncoding;
-using System.Diagnostics;
 
 namespace IERSystem.Areas.HopDongLayMau.Models
 {
@@ -34,7 +29,7 @@ namespace IERSystem.Areas.HopDongLayMau.Models
         public List<MauPTInputModel> MauLayHienTruongs { get; set; }
 
         //nthoang Convert InputModel to Database Model
-        public PhieuYeuCau ToModel(IERSystemDBContext db) 
+        public PhieuYeuCau ToModel() 
         {
             var req = new PhieuYeuCau();
             req.MaDon = this.MaDon;
@@ -64,6 +59,6 @@ namespace IERSystem.Areas.HopDongLayMau.Models
                 return mapped;
             }).ToArray();
             return req;
-        }
+        } 
     }
 }
