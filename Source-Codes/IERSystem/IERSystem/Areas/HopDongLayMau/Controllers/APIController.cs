@@ -1,5 +1,6 @@
 ﻿using IERSystem.Areas.Administrator.Models;
 using IERSystem.Areas.HopDongLayMau.Models;
+using IERSystem.BusinessLogic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,22 +25,19 @@ namespace IERSystem.Areas.HopDongLayMau.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         public async Task<JsonResult> Create(YeuCauLayMauInputModel input_request) {
-            bool isOk = false;
-            string errMsg = "";
             if (ModelState.IsValid) {
-                var encoded_inp_req = ItemEncoding.HopDongLayMauEncoding.MaHoa(input_request, db);
-                db.PhieuYeuCaus.Add(encoded_inp_req.ToModel(db));
                 try {
+                    HopDongLayMauAPIImpl.Create(input_request, db);
                     await db.SaveChangesAsync();
                     Console.WriteLine("OK");
-                    isOk = true;
+                    return Json(new UpsertDBResponse { IsOK = true, ErrMsg = "" });
                 } catch (System.Data.Entity.Infrastructure.DbUpdateException e) {
                     Console.WriteLine(e.Message);
-                    isOk = false;
+                    return Json(new UpsertDBResponse { IsOK = false, ErrMsg = "" });
                 }
+            } else {
+                return Json(new UpsertDBResponse { IsOK = false, ErrMsg = "" }); 
             }
-
-            return Json(new { isOk, errMsg });
         }
 
         protected override void Dispose(bool disposing) {
