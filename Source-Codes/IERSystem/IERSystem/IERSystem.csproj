@@ -51,6 +51,9 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Rotativa">
+      <HintPath>..\packages\Rotativa.1.6.4\lib\net40\Rotativa.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -2938,6 +2941,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Rotativa\wkhtmltopdf.exe" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\Administrator\Views\web.config" />
@@ -3812,6 +3816,9 @@
     <Content Include="Areas\Administrator\Views\SoNhanMau\Create.cshtml" />
     <Content Include="Areas\Administrator\Views\SoNhanMau\Edit.cshtml" />
     <Content Include="Areas\Administrator\Views\SoNhanMau\Delete.cshtml" />
+    <Content Include="App_Browsers\qt.browser" />
+    <Content Include="Areas\HopDongLayMau\Views\YeuCauLayMau\ExportToExcel.cshtml" />
+    <Content Include="Areas\HopDongLayMau\Views\YeuCauLayMau\_danhsachmau.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -3849,6 +3856,7 @@
     <Content Include="Views\Account\Manage.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\_DanhSauMau.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />
