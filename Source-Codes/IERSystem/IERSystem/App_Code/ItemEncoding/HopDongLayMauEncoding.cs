@@ -41,6 +41,7 @@ namespace IERSystem.ItemEncoding
                 var result = request_inp;
                 var today_day = request_inp.NgayTaoHD.Day;
                 var this_month = request_inp.NgayTaoHD.Month;
+                var this_year = request_inp.NgayTaoHD.Year;
                 var today_day_str = StringifyNumberTo2Digit(today_day);
                 var this_month_str = StringifyNumberTo2Digit(this_month);
 
@@ -48,7 +49,9 @@ namespace IERSystem.ItemEncoding
                 //nthoang: this is the number of current request
                 var req_next_str =
                     StringifyNumberTo2Digit(
-                        db.PhieuYeuCaus.Count((item) => item.NgayTaoHD.Day.Equals(today_day))
+                        db.PhieuYeuCaus.Count((item) => 
+                            item.NgayTaoHD.Equals(request_inp.NgayTaoHD)
+                        )
                     );
 
                 //nthoang: retrieve samples for this month
@@ -57,7 +60,8 @@ namespace IERSystem.ItemEncoding
                 var this_month_samples_by_type =
                         (from sample in db.MauLayHienTruongs
                          join request in db.PhieuYeuCaus on sample.PhieuYeuCau.Id equals request.Id
-                         where request.NgayTaoHD.Month.Equals(this_month)
+                         where (request.NgayTaoHD.Month.Equals(this_month)
+                                && request.NgayTaoHD.Year.Equals(this_year))
                          group sample by sample.MaMau.Substring(0, 2) into sample_type_group
                          select new { SampleType = sample_type_group.Key, Count = sample_type_group.Count() }
                         ).ToDictionary((item) => item.SampleType, (item) => item.Count);
