@@ -1,6 +1,6 @@
 ﻿using IERSystem.Areas.Administrator.Models;
 using IERSystem.Areas.HopDongLayMau.Models;
-using IERSystem.BusinessLogic;
+using IERSystem.BusinessLogic.TableForms;
 using System;
 using System.Collections.Generic;
 using System.Linq;

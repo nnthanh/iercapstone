@@ -1,4 +1,5 @@
 ﻿using IERSystem.Areas.Administrator.Models;
+using IERSystem.BusinessLogic.TableForms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace IERSystem.Areas.HopDongLayMau.Controllers
         {
             try {
                 var test = Tests.HDLayMau_SNhanMauTest.CreateTest();
-                BusinessLogic.HopDongLayMauAPIImpl.Create(test[0], db);
+                HopDongLayMauAPIImpl.Create(test[0], db);
                 await db.SaveChangesAsync();
                 Console.WriteLine("OK");
             } catch (System.Data.Entity.Infrastructure.DbUpdateException e) {

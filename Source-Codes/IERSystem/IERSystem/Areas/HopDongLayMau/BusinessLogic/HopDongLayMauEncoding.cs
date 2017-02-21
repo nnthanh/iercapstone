@@ -88,7 +88,6 @@ namespace IERSystem.BusinessLogic
             }
         }
 
-        [MethodImpl(MethodImplOptions.Synchronized)]
         private static int getRequestNext(YeuCauLayMauInputModel request_inp, IERSystemDBContext db) {
             return db.PhieuYeuCaus.Count((item) =>
                 item.NgayTaoHD.Equals(request_inp.NgayTaoHD)
@@ -100,7 +99,6 @@ namespace IERSystem.BusinessLogic
             public int Count { get; set; }
         }
 
-        [MethodImpl(MethodImplOptions.Synchronized)]
         private static IQueryable<SampleCounter> getSamplesOfThisMonth(IERSystemDBContext db, int this_month, int this_year) {
             return
                 (from sample in db.MauLayHienTruongs

@@ -41,7 +41,6 @@ namespace IERSystem.BusinessLogic.TableForms
             }
         }
 
-        [MethodImpl(MethodImplOptions.Synchronized)]
         private static CacSoNhanMau queryCacSoNhanMau_Row(YeuCauLayMauInputModel request, IERSystemDBContext db) {
             //nthoang: Find the row contains the current Year from CacSoNhanMaus
             //The rows in CacSoNhanMaus should have unique Year columns

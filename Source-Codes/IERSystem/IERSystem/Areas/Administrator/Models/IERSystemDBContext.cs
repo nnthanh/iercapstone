@@ -60,6 +60,20 @@ namespace IERSystem.Areas.Administrator.Models
             modelBuilder.Entity<CacSoNhanMau>().Property(b => b.Id)
                         .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
             base.OnModelCreating(modelBuilder);
+
+            // khai báo Id sẽ là khóa chính
+            modelBuilder.Entity<SoChuyenMau>().HasKey(b => b.Id);
+            // khai báo Id sẽ tự động tăng
+            modelBuilder.Entity<SoChuyenMau>().Property(b => b.Id)
+                        .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            base.OnModelCreating(modelBuilder);
+
+            // khai báo Id sẽ là khóa chính
+            modelBuilder.Entity<CacSoChuyenMau>().HasKey(b => b.Id);
+            // khai báo Id sẽ tự động tăng
+            modelBuilder.Entity<CacSoChuyenMau>().Property(b => b.Id)
+                        .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

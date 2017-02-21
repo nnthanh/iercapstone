@@ -159,7 +159,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Areas\HopDongLayMau\BusinessLogic\HopDongLayMauEncoding.cs" />
-    <Compile Include="Areas\HopDongLayMau\BusinessLogic\HopDongLayMauAPIImpl.cs" />
+    <Compile Include="Areas\HopDongLayMau\BusinessLogic\TableForms\FormKQAPIImpl.cs" />
+    <Compile Include="Areas\HopDongLayMau\BusinessLogic\TableForms\HopDongLayMauAPIImpl.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -182,8 +183,7 @@
     <Compile Include="Areas\Administrator\Models\FormKQ.cs" />
     <Compile Include="Areas\Administrator\Models\IERSystemDBContext.cs" />
     <Compile Include="Areas\Administrator\Models\MauLayHienTruong.cs" />
-    <Compile Include="Areas\Administrator\Models\SoChuyenMauOutputModel.cs" />
-    <Compile Include="Areas\Administrator\Models\SoNhanMauOutputModel.cs" />
+    <Compile Include="Areas\HopDongLayMau\BusinessLogic\TableForms\CacSoChuyenMauAPIImpl.cs" />
     <Compile Include="Areas\HopDongLayMau\BusinessLogic\TableForms\CacSoNhanMauAPIImpl.cs" />
     <Compile Include="Areas\HopDongLayMau\Controllers\APIController.cs" />
     <Compile Include="Areas\HopDongLayMau\Controllers\DefaultController.cs" />
@@ -3789,11 +3789,6 @@
     <Content Include="Areas\Administrator\Views\MauLayHienTruong\Details.cshtml" />
     <Content Include="Areas\Administrator\Views\MauLayHienTruong\Edit.cshtml" />
     <Content Include="Areas\Administrator\Views\MauLayHienTruong\Index.cshtml" />
-    <Content Include="Areas\Administrator\Views\SoNhanMau\Create.cshtml" />
-    <Content Include="Areas\Administrator\Views\SoNhanMau\Delete.cshtml" />
-    <Content Include="Areas\Administrator\Views\SoNhanMau\Details.cshtml" />
-    <Content Include="Areas\Administrator\Views\SoNhanMau\Edit.cshtml" />
-    <Content Include="Areas\Administrator\Views\SoNhanMau\Index.cshtml" />
     <Content Include="Areas\Administrator\Views\SoChuyenMau\Create.cshtml" />
     <Content Include="Areas\Administrator\Views\SoChuyenMau\Delete.cshtml" />
     <Content Include="Areas\Administrator\Views\SoChuyenMau\Details.cshtml" />
@@ -3812,6 +3807,11 @@
     <Content Include="Areas\HopDongLayMau\Views\web.config" />
     <Content Include="Areas\Administrator\Views\CacSoChuyenMau\Index.cshtml" />
     <Content Include="Areas\Administrator\Views\CacSoNhanMau\Index.cshtml" />
+    <Content Include="Areas\Administrator\Views\SoNhanMau\Index.cshtml" />
+    <Content Include="Areas\Administrator\Views\SoNhanMau\Details.cshtml" />
+    <Content Include="Areas\Administrator\Views\SoNhanMau\Create.cshtml" />
+    <Content Include="Areas\Administrator\Views\SoNhanMau\Edit.cshtml" />
+    <Content Include="Areas\Administrator\Views\SoNhanMau\Delete.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
