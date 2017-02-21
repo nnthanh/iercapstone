@@ -6,6 +6,7 @@ using System.Web;
 
 using IERSystem;
 using IERSystem.ItemEncoding;
+using System.Diagnostics;
 
 namespace IERSystem.Areas.HopDongLayMau.Models
 {
@@ -46,6 +47,7 @@ namespace IERSystem.Areas.HopDongLayMau.Models
             req.SoDienThoai = this.SoDienThoai;
             req.NgayTaoHD = this.NgayTaoHD;
             req.NgayDuKienTraMau = this.NgayDuKienTraMau;
+            //nthoang: PhieuYeuCau.NamLayHD set here
             req.NamLayHD = this.NgayTaoHD.Year;
             req.MauLayHienTruongs = this.MauLayHienTruongs.Select((elem) => {
                 var mapped = new MauLayHienTruong();
@@ -55,6 +57,7 @@ namespace IERSystem.Areas.HopDongLayMau.Models
                 mapped.ViTriLayMau = elem.ViTriLayMau;
                 //TODO: nthoang MaChiTieuPhanTich separate into New Table?
                 mapped.MaChiTieuPhanTich = elem.ChiTieuPhanTich;
+                //nthoang: MauLayHienTruong.NamLayMau set here
                 mapped.NamLayMau = req.NamLayHD;
                 mapped.MaMauKH = elem.MaMauKH;
                 mapped.MaMau = elem.MaMau;

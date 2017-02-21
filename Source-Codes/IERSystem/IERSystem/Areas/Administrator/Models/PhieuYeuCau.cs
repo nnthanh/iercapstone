@@ -29,7 +29,6 @@ namespace IERSystem.Areas.Administrator.Models
         //public double? TienKhachHangTraTruoc { get; set; }
         //TODO: nthoang DB Missing Field
         //public Boolean DaGuiMau { get; set; }
-        //TODO: nthoang DB Missing Field
         public int NamLayHD { get; set; }
 
         public virtual ICollection<MauLayHienTruong> MauLayHienTruongs { get; set; }
