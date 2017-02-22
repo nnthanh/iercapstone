@@ -14,6 +14,8 @@ namespace IERSystem.Areas.HopDongLayMau.Controllers
     {
         private IERSystemDBContext db = new IERSystemDBContext();
 
+        private static readonly object _api_create_lock = new object();
+
         // GET: HopDongLayMau/API
         public ActionResult Index()
         {
@@ -24,11 +26,13 @@ namespace IERSystem.Areas.HopDongLayMau.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        public async Task<JsonResult> Create(YeuCauLayMauInputModel input_request) {
+        public JsonResult Create(YeuCauLayMauInputModel input_request) {
             if (ModelState.IsValid) {
                 try {
-                    HopDongLayMauAPIImpl.Create(input_request, db);
-                    await db.SaveChangesAsync();
+                    lock (_api_create_lock) {
+                        HopDongLayMauAPIImpl.Create(input_request, db);
+                        db.SaveChanges();
+                    }
                     Console.WriteLine("OK");
                     return Json(new UpsertDBResponse { IsOK = true, ErrMsg = "" });
                 } catch (System.Data.Entity.Infrastructure.DbUpdateException e) {
