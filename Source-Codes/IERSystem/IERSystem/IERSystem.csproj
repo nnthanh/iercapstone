@@ -51,8 +51,9 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Rotativa">
+    <Reference Include="Rotativa, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Rotativa.1.6.4\lib\net40\Rotativa.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -3817,9 +3818,9 @@
     <Content Include="Areas\Administrator\Views\SoNhanMau\Create.cshtml" />
     <Content Include="Areas\Administrator\Views\SoNhanMau\Edit.cshtml" />
     <Content Include="Areas\Administrator\Views\SoNhanMau\Delete.cshtml" />
-    <Content Include="App_Browsers\qt.browser" />
     <Content Include="Areas\HopDongLayMau\Views\YeuCauLayMau\ExportToExcel.cshtml" />
     <Content Include="Areas\HopDongLayMau\Views\YeuCauLayMau\_danhsachmau.cshtml" />
+    <Content Include="App_Browsers\qt.browser" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
