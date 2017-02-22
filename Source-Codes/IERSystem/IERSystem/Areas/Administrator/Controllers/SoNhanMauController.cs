@@ -18,7 +18,7 @@ namespace IERSystem.Areas.Administrator.Controllers
         // GET: /Administrator/SoNhanMau/
         public async Task<ActionResult> Index()
         {
-            return View(await db.SoNhanMau.ToListAsync());
+            return View(await db.SoNhanMaus.ToListAsync());
         }
 
         // GET: /Administrator/SoNhanMau/Details/5
@@ -28,7 +28,7 @@ namespace IERSystem.Areas.Administrator.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SoNhanMau sonhanmau = await db.SoNhanMau.FindAsync(id);
+            SoNhanMau sonhanmau = await db.SoNhanMaus.FindAsync(id);
             if (sonhanmau == null)
             {
                 return HttpNotFound();
@@ -51,7 +51,7 @@ namespace IERSystem.Areas.Administrator.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.SoNhanMau.Add(sonhanmau);
+                db.SoNhanMaus.Add(sonhanmau);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
@@ -66,7 +66,7 @@ namespace IERSystem.Areas.Administrator.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SoNhanMau sonhanmau = await db.SoNhanMau.FindAsync(id);
+            SoNhanMau sonhanmau = await db.SoNhanMaus.FindAsync(id);
             if (sonhanmau == null)
             {
                 return HttpNotFound();
@@ -97,7 +97,7 @@ namespace IERSystem.Areas.Administrator.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SoNhanMau sonhanmau = await db.SoNhanMau.FindAsync(id);
+            SoNhanMau sonhanmau = await db.SoNhanMaus.FindAsync(id);
             if (sonhanmau == null)
             {
                 return HttpNotFound();
@@ -110,8 +110,8 @@ namespace IERSystem.Areas.Administrator.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            SoNhanMau sonhanmau = await db.SoNhanMau.FindAsync(id);
-            db.SoNhanMau.Remove(sonhanmau);
+            SoNhanMau sonhanmau = await db.SoNhanMaus.FindAsync(id);
+            db.SoNhanMaus.Remove(sonhanmau);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
