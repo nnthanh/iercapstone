@@ -126,5 +126,34 @@ namespace IERSystem.Areas.HopDongLayMau.Controllers
             }
             base.Dispose(disposing);
         }
+        public async Task<ActionResult> ExportToExcel(int? RequestID)
+        {
+            if (RequestID == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            PhieuYeuCau request = await db.PhieuYeuCaus.FindAsync(RequestID);
+            ViewBag.RequestID = RequestID;
+            if (request == null)
+            {
+                return HttpNotFound();
+            }
+            return View(request);
+        }
+        public ActionResult GeneratePDF(int? RequestID)
+        {
+            return new Rotativa.ActionAsPdf("ExportToExcel", new { RequestID = RequestID });
+        }
+
+
+        [ChildActionOnly]
+        public ActionResult DanhSachMau(int? RequestID)
+        {
+
+            var query = from pro in db.MauLayHienTruongs
+                        where pro.PhieuYeuCau.Id == RequestID
+                        select pro ;
+            return PartialView("_danhsachmau", query.ToList());
+        }
     }
 }
