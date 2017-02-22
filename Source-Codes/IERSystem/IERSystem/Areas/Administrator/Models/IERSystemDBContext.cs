@@ -74,6 +74,15 @@ namespace IERSystem.Areas.Administrator.Models
             modelBuilder.Entity<CacSoChuyenMau>().Property(b => b.Id)
                         .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
             base.OnModelCreating(modelBuilder);
+
+            // khai báo Id sẽ là khóa chính
+            modelBuilder.Entity<RoleMaster>().HasKey(b => b.Id);
+            // khai báo Id sẽ tự động tăng
+            modelBuilder.Entity<RoleMaster>().Property(b => b.Id)
+                        .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            base.OnModelCreating(modelBuilder);
+
+
         }
     }
 }

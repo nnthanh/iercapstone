@@ -13,6 +13,8 @@ namespace IERSystem.Areas.Administrator.Models
         public String username { get; set; }
         public String password { get; set; }
         public String fullname { get; set; }
+
+        public int roleId { get; set; }
     }
     
 }

@@ -161,6 +161,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Areas\Administrator\Models\RoleMaster.cs" />
     <Compile Include="Areas\HopDongLayMau\BusinessLogic\HopDongLayMauEncoding.cs" />
     <Compile Include="Areas\HopDongLayMau\BusinessLogic\TableForms\FormKQAPIImpl.cs" />
     <Compile Include="Areas\HopDongLayMau\BusinessLogic\TableForms\HopDongLayMauAPIImpl.cs" />
