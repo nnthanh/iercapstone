@@ -1,0 +1,37 @@
+- Phiếu Yêu cầu thử ngiệm (BM 14.01)
+	+ Add
+	+ Delete
+	+ Edit
+	+ In
+
+- Sổ nhận mẫu (	BM 14.03)
+	+ Add
+	+ Delete
+	+ Edit
+	+ In
+	
+- Sổ chuyễn mẫu (BM 15.01)
+	+ Add
+	+ Delete
+	+ Edit
+	+ In
+	
+- Form Kết quả TN (BM 19.01)
+	+ Add
+	+ Delete
+	+ Edit
+	+ In
+	
+- Sổ Kết quả TN (BM 19.02)
+	+ Add
+	+ Delete
+	+ Edit
+	+ In
+	
+NOTE:
+- Thông tin từ "Phiếu Yêu cầu thử ngiệm" sẽ được parse qua các form bên dưới.
+- Feature "In": phải in đủ thông tin và theo mẫu.
+
+- Quy trình dược giả sử là: tạo Phiếu Yêu cầu thử ngiệm (BM 14.01) khi đã có mẫu thử nghiệm.
+	-> bước phân công lấy mẫu sẽ ko có trong hệ thống.
+

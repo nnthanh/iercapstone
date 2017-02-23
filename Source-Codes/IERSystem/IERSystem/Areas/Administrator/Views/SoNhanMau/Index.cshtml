@@ -5,15 +5,75 @@
     Layout = "~/Areas/Administrator/Views/Shared/_Layout.cshtml";
 }
 
-<h2>SỔ NHẬN MẪU</h2>
+<h2>Index</h2>
 
-<input type="button" class="btn btn-info" value="Tạo sổ nhận mẫu mới" onclick="location.href='@Url.Action("Create", "CacSoNhanMau")'" />
-<input type="button" class="btn btn-success" value="In" onclick="location.href='@Url.Action("Create", "FormKQ")'" />
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PhieuYeuCau)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TenDiaChiKhachHang)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MaSo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ChiTieuThuNghiem)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NgayNhan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NgayTraKetQua)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.KHKyNhan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MaMauKH)
+        </th>
+        <th></th>
+    </tr>
 
-@{
-    ViewBag.Title = "Index";
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PhieuYeuCau)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TenDiaChiKhachHang)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MaSo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ChiTieuThuNghiem)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NgayNhan)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NgayTraKetQua)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.KHKyNhan)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MaMauKH)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
 }
 
+<<<<<<< HEAD
 <div class>
     <div class="page-title">
         <div class="title-left">
@@ -236,3 +296,6 @@
         </div>
     </div>
 </div>
+=======
+</table>
+>>>>>>> master

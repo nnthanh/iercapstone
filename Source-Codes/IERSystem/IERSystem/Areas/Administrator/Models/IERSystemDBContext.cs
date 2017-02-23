@@ -15,9 +15,14 @@ namespace IERSystem.Areas.Administrator.Models
         }
 
         public DbSet<User> Users { get; set; }
-        public DbSet<Request> Requests { get; set; }
-        public DbSet<MauLayHienTruong> MauLayHienTruong { get; set; }
-        public DbSet<SoNhanMau> SoNhanMau { get; set; }
+        public DbSet<PhieuYeuCau> PhieuYeuCaus { get; set; }
+        public DbSet<MauLayHienTruong> MauLayHienTruongs { get; set; }
+        public DbSet<SoNhanMau> SoNhanMaus { get; set; }
+        public DbSet<SoChuyenMau> SoChuyenMaus { get; set; }
+        public DbSet<SoKQThuNghiem> SoKQThuNghiems { get; set; }
+        public DbSet<FormKQ> FormKQs { get; set; }
+        public DbSet<CacSoNhanMau> CacSoNhanMaus { get; set; }
+        public DbSet<CacSoChuyenMau> CacSoChuyenMaus { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -29,9 +34,9 @@ namespace IERSystem.Areas.Administrator.Models
             base.OnModelCreating(modelBuilder);
 
             // khai báo Id sẽ là khóa chính
-            modelBuilder.Entity<Request>().HasKey(b => b.Id);
+            modelBuilder.Entity<PhieuYeuCau>().HasKey(b => b.Id);
             // khai báo Id sẽ tự động tăng
-            modelBuilder.Entity<Request>().Property(b => b.Id)
+            modelBuilder.Entity<PhieuYeuCau>().Property(b => b.Id)
                         .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
             base.OnModelCreating(modelBuilder);
       
@@ -48,16 +53,36 @@ namespace IERSystem.Areas.Administrator.Models
             modelBuilder.Entity<SoNhanMau>().Property(b => b.Id)
                         .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
             base.OnModelCreating(modelBuilder);
+
+            // khai báo Id sẽ là khóa chính
+            modelBuilder.Entity<CacSoNhanMau>().HasKey(b => b.Id);
+            // khai báo Id sẽ tự động tăng
+            modelBuilder.Entity<CacSoNhanMau>().Property(b => b.Id)
+                        .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            base.OnModelCreating(modelBuilder);
+
+            // khai báo Id sẽ là khóa chính
+            modelBuilder.Entity<SoChuyenMau>().HasKey(b => b.Id);
+            // khai báo Id sẽ tự động tăng
+            modelBuilder.Entity<SoChuyenMau>().Property(b => b.Id)
+                        .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            base.OnModelCreating(modelBuilder);
+
+            // khai báo Id sẽ là khóa chính
+            modelBuilder.Entity<CacSoChuyenMau>().HasKey(b => b.Id);
+            // khai báo Id sẽ tự động tăng
+            modelBuilder.Entity<CacSoChuyenMau>().Property(b => b.Id)
+                        .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            base.OnModelCreating(modelBuilder);
+
+            // khai báo Id sẽ là khóa chính
+            modelBuilder.Entity<RoleMaster>().HasKey(b => b.Id);
+            // khai báo Id sẽ tự động tăng
+            modelBuilder.Entity<RoleMaster>().Property(b => b.Id)
+                        .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            base.OnModelCreating(modelBuilder);
+
+
         }
-
-        public System.Data.Entity.DbSet<IERSystem.Areas.Administrator.Models.SoChuyenMau> SoChuyenMaus { get; set; }
-
-        public System.Data.Entity.DbSet<IERSystem.Areas.Administrator.Models.SoKQThuNghiem> SoKQThuNghiems { get; set; }
-
-        public System.Data.Entity.DbSet<IERSystem.Areas.Administrator.Models.FormKQ> FormKQs { get; set; }
-
-        public System.Data.Entity.DbSet<IERSystem.Areas.Administrator.Models.CacSoNhanMau> CacSoNhanMaus { get; set; }
-
-        public System.Data.Entity.DbSet<IERSystem.Areas.Administrator.Models.CacSoChuyenMau> CacSoChuyenMaus { get; set; }
     }
 }
