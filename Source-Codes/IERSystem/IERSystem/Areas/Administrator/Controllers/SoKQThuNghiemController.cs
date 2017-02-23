@@ -47,7 +47,7 @@ namespace IERSystem.Areas.Administrator.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include="Id,KyHieuMau,NgayNhanMau,NgayTraMau,ChiTieuThuNghiem,DonVi,KetQua,NguoiThucHien")] SoKQThuNghiem sokqthunghiem)
+        public async Task<ActionResult> Create([Bind(Include="Id,KyHieuMau,NgayNhanMau,NgayTraMau")] SoKQThuNghiem sokqthunghiem)
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +79,7 @@ namespace IERSystem.Areas.Administrator.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include="Id,KyHieuMau,NgayNhanMau,NgayTraMau,ChiTieuThuNghiem,DonVi,KetQua,NguoiThucHien")] SoKQThuNghiem sokqthunghiem)
+        public async Task<ActionResult> Edit([Bind(Include="Id,KyHieuMau,NgayNhanMau,NgayTraMau")] SoKQThuNghiem sokqthunghiem)
         {
             if (ModelState.IsValid)
             {

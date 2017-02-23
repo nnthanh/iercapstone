@@ -30,7 +30,7 @@
                             </label>
 
                             <div class="col-md-4 col-sm-4 col-xs-12">
-                                @Html.TextBoxFor(model => model.MaKhachHang, new { @class = "form-control col-md-4 col-xs-12" })
+                                @Html.TextBoxFor(model => model.MaKhachHang, new { @class = "form-control col-md-4 col-xs-12", @readonly = "readonly" })
                                 @Html.ValidationMessageFor(model => model.MaKhachHang)
                             </div>
                         </div>
@@ -40,13 +40,7 @@
                                 Mã mẫu
                             </label>
                             <div class="col-md-4 col-sm-4 col-xs-12">
-                                <select class="form-control col-md-4 col-xs-12">
-                                    <option>Chọn một mẫu</option>
-                                    <option>NT</option>
-                                    <option>NC</option>
-                                    <option>KK</option>
-                                    <option>CTR</option>
-                                </select>
+                                @Html.TextBoxFor(model => model.MaMau, new { @class = "form-control col-md-4 col-xs-12", @readonly = "readonly" })
                                 @Html.ValidationMessageFor(model => model.MaMau)
                             </div>
                         </div>
@@ -56,7 +50,7 @@
                                 Chỉ tiêu thử nghiệm
                             </label>
                             <div class="col-md-4 col-sm-4 col-xs-12">
-                                @Html.TextBoxFor(model => model.ChiTieuThuNghiem, new { @class = "form-control col-md-4 col-xs-12" })
+                                @Html.TextBoxFor(model => model.ChiTieuThuNghiem, new { @class = "form-control col-md-4 col-xs-12", @readonly = "readonly" })
                                 @Html.ValidationMessageFor(model => model.ChiTieuThuNghiem)
                             </div>
                         </div>
@@ -86,7 +80,7 @@
                                 Ngày giao mẫu
                             </label>
                             <div class="form-group input-group-sm col-md-4 col-sm-4 col-xs-12">
-                                @Html.TextBoxFor(model => model.NgayGiaoMau, new { @class = "form-control datepicker", placeholder = "Nhập ngày giao mẫu vào đây", required = "required", type = "text", id = "NgayGiaoMau" })
+                                @Html.TextBoxFor(model => model.NgayGiaoMau, new { @class = "form-control datepicker", @readonly = "readonly" })
                                 @Html.ValidationMessageFor(model => model.NgayGiaoMau)
                             </div>
                         </div>
@@ -96,7 +90,7 @@
                                 Ngày trả kết quả
                             </label>
                             <div class="form-group input-group-sm col-md-4 col-sm-4 col-xs-12">
-                                @Html.TextBoxFor(model => model.NgayTraKetQua, new { @class = "form-control datepicker", placeholder = "Nhập ngày trả kết quả vào đây", required = "required", type = "text", id = "NgayTraKQ" })
+                                @Html.TextBoxFor(model => model.NgayTraKetQua, new { @class = "form-control datepicker", @readonly = "readonly" })
                                 @Html.ValidationMessageFor(model => model.NgayTraKetQua)
                             </div>
                         </div>

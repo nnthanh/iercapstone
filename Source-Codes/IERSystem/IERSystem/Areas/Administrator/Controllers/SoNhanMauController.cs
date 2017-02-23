@@ -47,7 +47,7 @@ namespace IERSystem.Areas.Administrator.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include="Id,PhieuYeuCau,TenDiaChiKhachHang,MaSo,ChiTieuThuNghiem,NgayNhan,NgayTraKetQua,KHKyNhan,KyHieuMau")] SoNhanMau sonhanmau)
+        public async Task<ActionResult> Create([Bind(Include="Id,PhieuYeuCau,TenDiaChiKhachHang,MaSo,ChiTieuThuNghiem,NgayNhan,NgayTraKetQua,KyHieuMau,KHKyNhanTraTien,KHKyNhanTraKQ")] SoNhanMau sonhanmau)
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +79,7 @@ namespace IERSystem.Areas.Administrator.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include="Id,PhieuYeuCau,TenDiaChiKhachHang,MaSo,ChiTieuThuNghiem,NgayNhan,NgayTraKetQua,KHKyNhan,KyHieuMau")] SoNhanMau sonhanmau)
+        public async Task<ActionResult> Edit([Bind(Include="Id,PhieuYeuCau,TenDiaChiKhachHang,MaSo,ChiTieuThuNghiem,NgayNhan,NgayTraKetQua,KyHieuMau,KHKyNhanTraTien,KHKyNhanTraKQ")] SoNhanMau sonhanmau)
         {
             if (ModelState.IsValid)
             {

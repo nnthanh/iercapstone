@@ -29,7 +29,7 @@
                                 Phiếu yêu cầu
                             </label>
                             <div class="col-md-4 col-sm-4 col-xs-12">
-                                @Html.TextBoxFor(model => model.PhieuYeuCau, new { @class = "form-control col-md-4 col-xs-12" })
+                                @Html.TextBoxFor(model => model.PhieuYeuCau, new { @class = "form-control col-md-4 col-xs-12", @readonly = "readonly" })
                                 @Html.ValidationMessageFor(model => model.PhieuYeuCau)
                             </div>
                         </div>
@@ -39,7 +39,7 @@
                                 Tên/Địa chỉ khách hàng
                             </label>
                             <div class="col-md-4 col-sm-4 col-xs-12">
-                                @Html.TextBoxFor(model => model.TenDiaChiKhachHang, new { @class = "form-control col-md-4 col-xs-12" })
+                                @Html.TextBoxFor(model => model.TenDiaChiKhachHang, new { @class = "form-control col-md-4 col-xs-12", @readonly = "readonly" })
                                 @Html.ValidationMessageFor(model => model.TenDiaChiKhachHang)
                             </div>
                         </div>
@@ -49,13 +49,7 @@
                                 Mã số
                             </label>
                             <div class="col-md-4 col-sm-4 col-xs-12">
-                                <select class="form-control col-md-4 col-xs-12">
-                                    <option>Chọn một mẫu</option>
-                                    <option>NT</option>
-                                    <option>NC</option>
-                                    <option>KK</option>
-                                    <option>CTR</option>
-                                </select>
+                                @Html.TextBoxFor(model => model.MaSo, new { @class = "form-control col-md-4 col-xs-12", @readonly = "readonly" })
                                 @Html.ValidationMessageFor(model => model.MaSo)
                             </div>
                         </div>
@@ -65,7 +59,7 @@
                                 Chỉ tiêu thử nghiệm
                             </label>
                             <div class="col-md-4 col-sm-4 col-xs-12">
-                                @Html.TextBoxFor(model => model.ChiTieuThuNghiem, new { @class = "form-control col-md-4 col-xs-12" })
+                                @Html.TextBoxFor(model => model.ChiTieuThuNghiem, new { @class = "form-control col-md-4 col-xs-12", @readonly = "readonly" })
                                 @Html.ValidationMessageFor(model => model.ChiTieuThuNghiem)
                             </div>
                         </div>
@@ -75,7 +69,7 @@
                                 Ngày nhận
                             </label>
                             <div class="form-group input-group-sm col-md-4 col-sm-4 col-xs-12">
-                                @Html.TextBoxFor(model => model.NgayNhan, new { @class = "form-control datepicker", placeholder = "Nhập ngày nhận KQ vào đây", required = "required", type = "text", id = "NgayNhan" })
+                                @Html.TextBoxFor(model => model.NgayNhan, new { @class = "form-control datepicker", @readonly = "readonly" })
                                 @Html.ValidationMessageFor(model => model.NgayNhan)
                             </div>
                         </div>
@@ -85,7 +79,7 @@
                                 Ngày trả kết quả
                             </label>
                             <div class="form-group input-group-sm col-md-4 col-sm-4 col-xs-12   ">
-                                @Html.TextBoxFor(model => model.NgayTraKetQua, new { @class = "form-control datepicker", placeholder = "Nhập ngày trả KQ vào đây", required = "required", type = "text", id = "NgayTraKQ" })
+                                @Html.TextBoxFor(model => model.NgayTraKetQua, new { @class = "form-control datepicker", @readonly = "readonly" })
                                 @Html.ValidationMessageFor(model => model.NgayTraKetQua)
                             </div>
                         </div>
@@ -105,7 +99,7 @@
                                 Ký hiệu mẫu
                             </label>
                             <div class="col-md-4 col-sm-4 col-xs-12">
-                                @Html.TextBoxFor(model => model.KyHieuMau, new { @class = "form-control col-md-4 col-xs-12" })
+                                @Html.TextBoxFor(model => model.KyHieuMau, new { @class = "form-control col-md-4 col-xs-12", @readonly = "readonly" })
                                 @Html.ValidationMessageFor(model => model.KyHieuMau)
                             </div>
                         </div>
