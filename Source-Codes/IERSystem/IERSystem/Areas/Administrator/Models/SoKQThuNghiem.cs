@@ -11,10 +11,7 @@ namespace IERSystem.Areas.Administrator.Models
         public String KyHieuMau { get; set; }
         public String NgayNhanMau { get; set; }
         public String NgayTraMau { get; set; }
-        public String ChiTieuThuNghiem { get; set; }
-        public String DonVi { get; set; }
-        public String KetQua { get; set; }
-        public String NguoiThucHien { get; set; }
+        public virtual ICollection<KQThuNghiemMau> KQThuNghiemMaus { get; set; }
 
     }
 }

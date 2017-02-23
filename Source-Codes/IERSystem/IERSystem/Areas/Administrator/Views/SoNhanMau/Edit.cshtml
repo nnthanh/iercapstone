@@ -26,50 +26,80 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.TenDiaChiKhachHang, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TenDiaChiKhachHang)
+            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                Phiếu yêu cầu
+            </label>
+            <div class="col-md-4 col-sm-4 col-xs-12">
+                @Html.TextBoxFor(model => model.PhieuYeuCau, new { @class = "form-control col-md-4 col-xs-12", @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.PhieuYeuCau)
+            </div>
+        </div>
+        <div class="clearfix" />
+        <div class="form-group">
+            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                Tên/Địa chỉ khách hàng
+            </label>
+            <div class="col-md-4 col-sm-4 col-xs-12">
+                @Html.TextBoxFor(model => model.TenDiaChiKhachHang, new { @class = "form-control col-md-4 col-xs-12", @readonly = "readonly" })
                 @Html.ValidationMessageFor(model => model.TenDiaChiKhachHang)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.MaSo, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.MaSo)
+            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                Mã số
+            </label>
+            <div class="col-md-4 col-sm-4 col-xs-12">
+                @Html.TextBoxFor(model => model.MaSo, new { @class = "form-control col-md-4 col-xs-12", @readonly = "readonly" })
                 @Html.ValidationMessageFor(model => model.MaSo)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ChiTieuThuNghiem, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ChiTieuThuNghiem)
+            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                Chỉ tiêu thử nghiệm
+            </label>
+            <div class="col-md-4 col-sm-4 col-xs-12">
+                @Html.TextBoxFor(model => model.ChiTieuThuNghiem, new { @class = "form-control col-md-4 col-xs-12", @readonly = "readonly" })
                 @Html.ValidationMessageFor(model => model.ChiTieuThuNghiem)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.NgayNhan, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.NgayNhan)
+            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                Ngày nhận
+            </label>
+            <div class="form-group input-group-sm col-md-4 col-sm-4 col-xs-12">
+                @Html.TextBoxFor(model => model.NgayNhan, new { @class = "form-control datepicker", @readonly = "readonly" })
                 @Html.ValidationMessageFor(model => model.NgayNhan)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.NgayTraKetQua, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.NgayTraKetQua)
+            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                Ngày trả kết quả
+            </label>
+            <div class="form-group input-group-sm col-md-4 col-sm-4 col-xs-12   ">
+                @Html.TextBoxFor(model => model.NgayTraKetQua, new { @class = "form-control datepicker", @readonly = "readonly" })
                 @Html.ValidationMessageFor(model => model.NgayTraKetQua)
             </div>
         </div>
 
-        <div class="form-group">
+        @*<div class="form-group">
             @Html.LabelFor(model => model.KHKyNhan, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.KHKyNhan)
                 @Html.ValidationMessageFor(model => model.KHKyNhan)
+            </div>
+        </div>*@
+
+        <div class="form-group">
+            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                Ký hiệu mẫu
+            </label>
+            <div class="col-md-4 col-sm-4 col-xs-12">
+                @Html.TextBoxFor(model => model.KyHieuMau, new { @class = "form-control col-md-4 col-xs-12", @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.KyHieuMau)
             </div>
         </div>
 

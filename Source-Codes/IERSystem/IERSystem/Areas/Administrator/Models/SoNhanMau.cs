@@ -15,7 +15,10 @@ namespace IERSystem.Areas.Administrator.Models
         public String ChiTieuThuNghiem { get; set; }
         public DateTime NgayNhan { get; set; }
         public DateTime NgayTraKetQua { get; set; }
-        public String KHKyNhan { get; set; }
+
+        public String KyHieuMau { get; set; }
+        public Boolean KHKyNhanTraTien { get; set; }
+        public Boolean KHKyNhanTraKQ { get; set; }
 
         //public String KyHieuMau { get; set; }
         //nthoang: Alias for KyHieuMau?
