@@ -68,10 +68,10 @@
                                 <th rowspan="4">Ký hiệu mẫu</th>
                                 <th rowspan="4">Ngày nhận mẫu</th>
                                 <th rowspan="4">Ngày trả mẫu</th>
-                                <th rowspan="4">Chỉ tiêu thử nghiệm</th>
-                                <th rowspan="4">Đơn vị</th>
-                                <th rowspan="4">Kết quả</th>
-                                <th rowspan="4">Người thực hiện</th>
+                                @*<th rowspan="4">Chỉ tiêu thử nghiệm</th>
+                                    <th rowspan="4">Đơn vị</th>
+                                    <th rowspan="4">Kết quả</th>
+                                    <th rowspan="4">Người thực hiện</th>*@
                             </tr>
                         </thead>
                         <tbody>
@@ -87,22 +87,22 @@
                                     <td>
                                         @Html.DisplayFor(modelItem => item.NgayTraMau)
                                     </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.ChiTieuThuNghiem)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.DonVi)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.KetQua)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.NguoiThucHien)
-                                    </td>
+                                    @*<td>
+                                            @Html.DisplayFor(modelItem => item.ChiTieuThuNghiem)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.DonVi)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.KetQua)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.NguoiThucHien)
+                                        </td>*@
                                     <td>
                                         @Html.ActionLink("Chỉnh", "Edit", new { id = item.Id }) |
-@Html.ActionLink("Chi tiết", "Details", new { id = item.Id }) |
-@Html.ActionLink("Xóa", "Delete", new { id = item.Id })
+                                        @Html.ActionLink("Chi tiết", "Details", new { id = item.Id }) |
+                                        @Html.ActionLink("Xóa", "Delete", new { id = item.Id })
                                     </td>
                                 </tr>
                             }
@@ -113,81 +113,3 @@
         </div>
     </div>
 </div>
-
-@*<table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.NoiLayMau)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NgayGuiMau)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DiaChi)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LoaiMau)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ViTriLayMau)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.STT)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ChiTieu)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DonVi)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.GiaTri)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PhuongPhapPhanTich)
-            </th>
-            <th></th>
-        </tr>
-
-    @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.NoiLayMau)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NgayGuiMau)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DiaChi)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LoaiMau)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ViTriLayMau)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.STT)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ChiTieu)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DonVi)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.GiaTri)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PhuongPhapPhanTich)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-            </td>
-        </tr>
-    }
-
-    </table>
-*@
