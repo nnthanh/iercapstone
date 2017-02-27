@@ -18,7 +18,7 @@ namespace IERSystem.Areas.Administrator.Models
         public DateTime NgayGiaoMau { get; set; }
         public DateTime NgayTraKetQua { get; set; }
         //TODO: nthoang DB Field needed to be worked on
-        public String DienTien { get; set; }
+        public String DienTen { get; set; }
         //TODO: nthoang DB Field needed to be worked on
         public String GhiChu { get; set; }
 

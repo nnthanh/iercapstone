@@ -12,5 +12,7 @@ namespace IERSystem.Areas.Administrator.Models
         public String DonVi { get; set; }
         public String KetQua { get; set; }
         public String NguoiThucHien { get; set; }
+
+        public virtual SoKQThuNghiem SoKQThuNghiems { get; set; }
     }
 }
