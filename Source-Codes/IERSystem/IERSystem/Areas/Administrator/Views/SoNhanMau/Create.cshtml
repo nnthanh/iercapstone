@@ -8,7 +8,7 @@
 <h2>Tạo mẫu nhận</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
@@ -92,16 +92,6 @@
 
                         <div class="form-group">
                             <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
-                                Khách hàng ký nhận
-                                </label>
-                                <div class="col-md-4 col-sm-4 col-xs-12">
-                                    @Html.TextBoxFor(model => model.KHKyNhan, new { @class = "form-control col-md-4 col-xs-12" })
-                                    @Html.ValidationMessageFor(model => model.KHKyNhan)
-                                </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
                                 Ký hiệu mẫu
                             </label>
                             <div class="col-md-4 col-sm-4 col-xs-12">
@@ -111,44 +101,73 @@
                         </div>
 
                         <div class="form-group">
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                                KH ký nhận trả tiền
+                            </label>
+                            <div class="col-md-1 col-sm-4 col-xs-12">
+                                <div class="checkbox">
+                                    <label class="">
+                                        <div class="icheckbox_flat-green" style="position: relative;"><input type="checkbox" class="flat" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>
+                                    </label>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.KHKyNhanTraTien)
+                            </div>
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                                KH ký nhận trả KQ
+                            </label>
+                            <div class="col-md-1 col-sm-4 col-xs-12">
+                                <div class="checkbox">
+                                    <label class="">
+                                        <div class="icheckbox_flat-green" style="position: relative;"><input type="checkbox" class="flat" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>
+                                    </label>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.KHKyNhanTraKQ)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+
+                        </div>
+
+                        <div class="form-group">
                             <div class="col-md-offset-2 col-md-10">
                                 <input type="submit" value="Tạo" class="btn btn-success" />
                                 <input type="button" class="btn btn-danger" value="Quay lại" onclick="location.href='@Url.Action("Index", "SoNhanMau")'" />
                             </div>
                         </div>
-                        </form>
-                </div>
+                    </form>
                 </div>
             </div>
         </div>
-                }
+    </div>
+}
 
-                <div>
-                    @Html.ActionLink("Back to List", "Index")
-                </div>
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
 
-                @section Scripts {
-                    @Scripts.Render("~/bundles/jqueryval")
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
 
-                    <script>
-                        $(document).ready(function () {
-                            $('#NgayNhan').daterangepicker({
-                                singleDatePicker: true,
-                                calender_style: "picker_1"
-                            }, function (start, end, label) {
-                                console.log(start.toISOString(), end.toISOString(), label);
-                            });
-                        });
-                    </script>
+    <script>
+        $(document).ready(function () {
+            $('#NgayNhan').daterangepicker({
+                singleDatePicker: true,
+                calender_style: "picker_1"
+            }, function (start, end, label) {
+                console.log(start.toISOString(), end.toISOString(), label);
+            });
+        });
+    </script>
 
-                    <script>
-                        $(document).ready(function () {
-                            $('#NgayTraKQ').daterangepicker({
-                                singleDatePicker: true,
-                                calender_style: "picker_1"
-                            }, function (start, end, label) {
-                                console.log(start.toISOString(), end.toISOString(), label);
-                            });
-                        });
-                    </script>
-                }
+    <script>
+        $(document).ready(function () {
+            $('#NgayTraKQ').daterangepicker({
+                singleDatePicker: true,
+                calender_style: "picker_1"
+            }, function (start, end, label) {
+                console.log(start.toISOString(), end.toISOString(), label);
+            });
+        });
+    </script>
+}
