@@ -54,8 +54,6 @@ namespace IERSystem.Areas.HopDongLayMau.Models
                 mapped.SoLuong = elem.SoLuong;
                 mapped.DonVi = elem.DonVi;
                 mapped.ViTriLayMau = elem.ViTriLayMau;
-                //TODO: nthoang MaChiTieuPhanTich separate into New Table?
-                mapped.MaChiTieuPhanTich = elem.ChiTieuPhanTich;
                 //nthoang: MauLayHienTruong.NamLayMau set here
                 mapped.NamLayMau = req.NamLayHD;
                 //nthoang: MauLayHienTruong.NgayDuKienTraMau and MauLayHienTruong.NgayNhanMau set here

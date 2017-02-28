@@ -191,7 +191,6 @@
     <Compile Include="Areas\BaoGiaChiTieu\BusinessLogic\BaoGiaChiTieuSheetParser.cs" />
     <Compile Include="Areas\BaoGiaChiTieu\Controllers\MauBaoGiaController.cs" />
     <Compile Include="Areas\BaoGiaChiTieu\Models\MauBaoGiaInputModel.cs" />
-    <Compile Include="Areas\HopDongLayMau\BusinessLogic\HopDongLayMauEncoding.cs" />
     <Compile Include="Areas\HopDongLayMau\BusinessLogic\TableForms\FormKQAPIImpl.cs" />
     <Compile Include="Areas\HopDongLayMau\BusinessLogic\TableForms\HopDongLayMauAPIImpl.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -219,6 +218,7 @@
     <Compile Include="Areas\Administrator\Models\MauLayHienTruong.cs" />
     <Compile Include="Areas\HopDongLayMau\BusinessLogic\TableForms\CacSoChuyenMauAPIImpl.cs" />
     <Compile Include="Areas\HopDongLayMau\BusinessLogic\TableForms\CacSoNhanMauAPIImpl.cs" />
+    <Compile Include="Areas\HopDongLayMau\BusinessLogic\YeuCauLayMauEncoding.cs" />
     <Compile Include="Areas\HopDongLayMau\Controllers\APIController.cs" />
     <Compile Include="Areas\HopDongLayMau\Controllers\DefaultController.cs" />
     <Compile Include="Areas\HopDongLayMau\Models\MauPTInputModel.cs" />
