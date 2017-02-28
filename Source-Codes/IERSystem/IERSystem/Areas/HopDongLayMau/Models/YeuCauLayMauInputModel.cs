@@ -1,6 +1,7 @@
 ﻿using IERSystem.Areas.Administrator.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 namespace IERSystem.Areas.HopDongLayMau.Models
@@ -27,8 +28,11 @@ namespace IERSystem.Areas.HopDongLayMau.Models
         //public uint NamLayHD { get; set; }
 
         public List<MauPTInputModel> MauLayHienTruongs { get; set; }
-
-        //nthoang Convert InputModel to Database Model
+        
+        /// <summary>
+        /// Convert InputModel to Database Model
+        /// </summary>
+        /// <returns>The database model</returns>
         public PhieuYeuCau ToModel() 
         {
             var req = new PhieuYeuCau();
@@ -54,7 +58,12 @@ namespace IERSystem.Areas.HopDongLayMau.Models
                 mapped.MaChiTieuPhanTich = elem.ChiTieuPhanTich;
                 //nthoang: MauLayHienTruong.NamLayMau set here
                 mapped.NamLayMau = req.NamLayHD;
+                //nthoang: MauLayHienTruong.NgayDuKienTraMau and MauLayHienTruong.NgayNhanMau set here
+                mapped.NgayNhanMau = req.NgayTaoHD;
+                mapped.NgayTraMau = req.NgayDuKienTraMau;
                 mapped.MaMauKH = elem.MaMauKH;
+                //nthoang: here MauLayHienTruong should be Encoded
+                Debug.Assert(elem.MaMau != null);
                 mapped.MaMau = elem.MaMau;
                 return mapped;
             }).ToArray();

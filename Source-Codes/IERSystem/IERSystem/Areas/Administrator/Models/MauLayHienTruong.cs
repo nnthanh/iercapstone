@@ -26,6 +26,6 @@ namespace IERSystem.Areas.Administrator.Models
         
         public virtual PhieuYeuCau PhieuYeuCau { get; set; }
         public virtual ChiTieuPhanTich ChiTieuPhanTich { get; set; }
-
+        
     }
 }

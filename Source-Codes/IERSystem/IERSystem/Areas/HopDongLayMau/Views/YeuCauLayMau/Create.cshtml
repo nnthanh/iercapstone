@@ -174,7 +174,8 @@
                                                     <option>NC: Nước Cấp</option>
                                                     <option>NM: Nước Mặt</option>
                                                     <option>KK: Không Khí</option>
-                                                    <option>BĐ: Bùn Đất</option>
+                                                    <option>BT: Bùn Thải</option>
+                                                    <option>Đ: Đất</option>
                                                     <option>TP: Thực Phẩm</option>
                                                 </select>
                                             </div>
@@ -353,8 +354,8 @@
                     //alert(rowdata);
                     return {
                         MaMauKH: rowdata[0],
-                        //Get the first 2 characters of Kí Hiệu Mẫu
-                        KiHieuMau: rowdata[1].slice(0, 2),
+                        //nthoang: Get the first token of the string splitted by ':' character of Kí Hiệu Mẫu
+                        KiHieuMau: rowdata[1].split(":")[0],
                         ViTriLayMau: rowdata[2],
                         SoLuong:  $Global[i].SoLuong,
                         DonVi:  $Global[i].DonVi,

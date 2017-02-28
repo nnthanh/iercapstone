@@ -33,10 +33,19 @@ namespace IERSystem.BusinessLogic
 
         //nthoang Mã khách hàng: XXDDMM
         //nthoang Mã mẫu: AAZZZ/MM
+        
+        /// <summary>
+        /// Encode All MauPTInputModels in YeuCauLayMauInputModel
+        /// This means YeuCauLayMauInputModel.MaDon and all MauPTInputModel.MaMau
+        /// will be generated here
+        /// </summary>
+        /// <param name="request_inp">The request that will be encoded</param>
+        /// <param name="db">DB Dependency</param>
+        /// <returns>The encoded request_inp</returns>
         public static YeuCauLayMauInputModel Encode(
             YeuCauLayMauInputModel request_inp, IERSystemDBContext db
         ) {
-            if (db != null && request_inp != null) {
+            if (db != null && request_inp != null && request_inp.MauLayHienTruongs != null) {
                 var result = request_inp;
                 var today_day = request_inp.NgayTaoHD.Day;
                 var this_month = request_inp.NgayTaoHD.Month;
@@ -45,7 +54,7 @@ namespace IERSystem.BusinessLogic
                 var this_month_str = stringifyNumberTo2Digit(this_month);
                 //nthoang: Count the current number of today requests
                 //nthoang: this is the number of current request
-                string req_next_str = stringifyNumberTo2Digit(getRequestNext(request_inp, db));
+                string req_next_str = stringifyNumberTo2Digit(getRequestNextNumber(request_inp, db));
 
                 //nthoang: retrieve samples for this month
                 //nthoang: And group them by their type (first 2 letter of their encoded MaMau)
@@ -84,11 +93,11 @@ namespace IERSystem.BusinessLogic
                 result.MaDon = req_next_str + today_day_str + this_month_str;
                 return result;
             } else {
-                throw new ArgumentException("request and db must not be null");
+                throw new ArgumentException("request and request.MauLayHienTruongs and db must not be null");
             }
         }
 
-        private static int getRequestNext(YeuCauLayMauInputModel request_inp, IERSystemDBContext db) {
+        private static int getRequestNextNumber(YeuCauLayMauInputModel request_inp, IERSystemDBContext db) {
             return db.PhieuYeuCaus.Count((item) =>
                 item.NgayTaoHD.Equals(request_inp.NgayTaoHD)
             );
