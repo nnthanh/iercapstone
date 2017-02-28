@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="828b25fc5ff543bbbad874f3bf4c75d9" Name="Diagram1" ZoomLevel="86" >
+        <EntityTypeShape EntityType="IERSystemModel.PhieuYeuCau" Width="1.5" PointX="5.25" PointY="0.5" />
+        <EntityTypeShape EntityType="IERSystemModel.MauLayHienTruong" Width="1.5" PointX="7.5" PointY="0.5" />
+        <AssociationConnector Association="IERSystemModel.PhieuYeuCau_MauLayHienTruong" />
+        <EntityTypeShape EntityType="IERSystemModel.ChiTieuPhanTich" Width="1.5" PointX="9.875" PointY="1.625" />
+        <AssociationConnector Association="IERSystemModel.MauLayHienTruong_ChiTieuPhanTich" />
+        <EntityTypeShape EntityType="IERSystemModel.SoNhanMau" Width="1.5" PointX="3" PointY="4" />
+        <AssociationConnector Association="IERSystemModel.SoNhanMau_PhieuYeuCau" />
+        <EntityTypeShape EntityType="IERSystemModel.CacSoNhanMau" Width="1.5" PointX="0.75" PointY="4.75" />
+        <AssociationConnector Association="IERSystemModel.CacSoNhanMau_SoNhanMau" />
+        <AssociationConnector Association="IERSystemModel.MauLayHienTruong_SoNhanMau" />
+        <EntityTypeShape EntityType="IERSystemModel.SoChuyenMau" Width="1.5" PointX="3" PointY="7.625" />
+        <EntityTypeShape EntityType="IERSystemModel.CacSoChuyenMau" Width="1.5" PointX="0.625" PointY="8.125" />
+        <AssociationConnector Association="IERSystemModel.CacSoChuyenMauSoChuyenMau" />
+        <EntityTypeShape EntityType="IERSystemModel.KQThuNghiemMau" Width="1.5" PointX="10" PointY="7.125" />
+        <EntityTypeShape EntityType="IERSystemModel.SoKQThuNghiem" Width="1.5" PointX="10" PointY="4.625" />
+        <AssociationConnector Association="IERSystemModel.SoKQThuNghiemKQThuNghiemMau" />
+        <EntityTypeShape EntityType="IERSystemModel.FormKQ" Width="1.5" PointX="12.25" PointY="7.25" />
+        <AssociationConnector Association="IERSystemModel.MauLayHienTruong_SoChuyenMau" />
+        <EntityTypeShape EntityType="IERSystemModel.PhuongPhapPhanTich" Width="1.75" PointX="12" PointY="1.25" />
+        <AssociationConnector Association="IERSystemModel.ChiTieuPhanTich_PhuongPhapPhanTich" />
+        <EntityTypeShape EntityType="IERSystemModel.KQPhanTichFormKQ" Width="1.875" PointX="12" PointY="4.5" />
+        <AssociationConnector Association="IERSystemModel.FormKQ_KQPhanTichFormKQ" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
