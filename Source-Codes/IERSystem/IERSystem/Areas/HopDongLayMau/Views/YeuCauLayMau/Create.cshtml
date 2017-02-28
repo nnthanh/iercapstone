@@ -101,8 +101,8 @@
                                 Ngày dự kiến trả mẫu
                             </label>
                             <div class="form-group input-group-sm col-md-4 col-sm-4 col-xs-12">
-                                @Html.TextBoxFor(model => model.NgayDuKienTraMau, new { @class = "form-control datepicker", placeholder = "Nhập ngày dự kiến trả mẫu vào đây",required = "required", type = "text",id="NgayDuKienTraMau" })
-                                @Html.ValidationMessageFor(model => model.NgayDuKienTraMau)
+                                @Html.TextBoxFor(model => model.NgayHenTraKQ, new { @class = "form-control datepicker", placeholder = "Nhập ngày dự kiến trả mẫu vào đây",required = "required", type = "text",id="NgayDuKienTraMau" })
+                                @Html.ValidationMessageFor(model => model.NgayHenTraKQ)
                             </div>
                         </div>
 
@@ -343,7 +343,7 @@
                     DiaChiLayMau: $("#DiaChiLayMau").val(),
                     DiaChiKhachHang: $("#DiaChiKhachHang").val(),
                     NgayTaoHD: $("#NgayTaoHD").val(),
-                    NgayDuKienTraMau: $("#NgayDuKienTraMau").val(),
+                    NgayHenTraKQ: $("#NgayHenTraKQ").val(),
                     PhuongPhapLayMau: $("#PhuongPhapLayMau").val(),
                     TenTieuChuanDoiChieu: $("#TenTieuChuanDoiChieu").val(),
                     PhiThiNghiemTamTinh: $("#PhiThiNghiemTamTinh").val(),

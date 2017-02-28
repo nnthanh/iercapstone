@@ -11,7 +11,7 @@ namespace IERSystem.Areas.HopDongLayMau.Controllers
 {
     public class DefaultController : Controller
     {
-        private IERSystemDBContext db = new IERSystemDBContext();
+        private IERSystemModelContainer db = new IERSystemModelContainer();
 
         // GET: HopDongLayMau/Default
         public async Task<string> Index()

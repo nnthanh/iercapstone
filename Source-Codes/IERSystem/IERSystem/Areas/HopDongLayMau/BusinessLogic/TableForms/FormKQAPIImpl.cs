@@ -9,7 +9,7 @@ namespace IERSystem.Areas.HopDongLayMau.BusinessLogic.TableForms
 {
     public static partial class FormKQAPIImpl
     {
-        public static void Create(YeuCauLayMauInputModel request, IERSystemDBContext db) {
+        public static void Create(YeuCauLayMauInputModel request, IERSystemModelContainer db) {
 
         }
     }

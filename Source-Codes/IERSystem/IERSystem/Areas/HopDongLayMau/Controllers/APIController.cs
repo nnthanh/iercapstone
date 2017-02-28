@@ -12,7 +12,7 @@ namespace IERSystem.Areas.HopDongLayMau.Controllers
 {
     public class APIController : Controller
     {
-        private IERSystemDBContext db = new IERSystemDBContext();
+        private IERSystemModelContainer db = new IERSystemModelContainer();
 
         private static readonly object _api_create_lock = new object();
 

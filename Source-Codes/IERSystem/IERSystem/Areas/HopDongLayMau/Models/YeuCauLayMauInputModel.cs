@@ -19,7 +19,7 @@ namespace IERSystem.Areas.HopDongLayMau.Models
         public String SoDienThoai { get; set; }
         public String SoFax { get; set; }
         public DateTime NgayTaoHD { get; set; }
-        public DateTime NgayDuKienTraMau { get; set; }
+        public DateTime NgayHenTraKQ { get; set; }
         public String PhuongPhapLayMau { get; set; }
         public String TenTieuChuanDoiChieu { get; set; }
         public double? PhiThiNghiemTamTinh { get; set; }
@@ -36,6 +36,8 @@ namespace IERSystem.Areas.HopDongLayMau.Models
         public PhieuYeuCau ToModel() 
         {
             var req = new PhieuYeuCau();
+            //nthoang: here PhieuYeuCau should already been Encoded
+            Debug.Assert(this.MaDon != null);
             req.MaDon = this.MaDon;
             req.TenDaiDien = this.TenDaiDien;
             req.TenKhachHang = this.TenKhachHang;
@@ -45,22 +47,19 @@ namespace IERSystem.Areas.HopDongLayMau.Models
             req.SoFax = this.SoFax;
             req.SoDienThoai = this.SoDienThoai;
             req.NgayTaoHD = this.NgayTaoHD;
-            req.NgayDuKienTraMau = this.NgayDuKienTraMau;
-            //nthoang: PhieuYeuCau.NamLayHD set here
-            req.NamLayHD = this.NgayTaoHD.Year;
+            req.NgayHenTraKQ = this.NgayHenTraKQ;
+            //req.NamLayHD = this.NgayTaoHD.Year;
             req.MauLayHienTruongs = this.MauLayHienTruongs.Select((elem) => {
                 var mapped = new MauLayHienTruong();
                 mapped.MoTaMau = elem.MoTaMau;
                 mapped.SoLuong = elem.SoLuong;
                 mapped.DonVi = elem.DonVi;
                 mapped.ViTriLayMau = elem.ViTriLayMau;
-                //nthoang: MauLayHienTruong.NamLayMau set here
-                mapped.NamLayMau = req.NamLayHD;
-                //nthoang: MauLayHienTruong.NgayDuKienTraMau and MauLayHienTruong.NgayNhanMau set here
-                mapped.NgayNhanMau = req.NgayTaoHD;
-                mapped.NgayTraMau = req.NgayDuKienTraMau;
+                //mapped.NamLayMau = req.NamLayHD;
+                //mapped.NgayNhanMau = req.NgayTaoHD;
+                //mapped.NgayTraMau = req.NgayDuKienTraMau;
                 mapped.MaMauKH = elem.MaMauKH;
-                //nthoang: here MauLayHienTruong should be Encoded
+                //nthoang: here MauLayHienTruong should already been Encoded
                 Debug.Assert(elem.MaMau != null);
                 mapped.MaMau = elem.MaMau;
                 return mapped;

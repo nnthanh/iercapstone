@@ -19,7 +19,7 @@ namespace IERSystem.Areas.HopDongLayMau.Tests
                     DiaChiLayMau = "absfsd",
                     DiaChiKhachHang = "bqwqwc",
                     NgayTaoHD = new DateTime(2011,3,4),
-                    NgayDuKienTraMau = new DateTime(2013,3,4),
+                    NgayHenTraKQ = new DateTime(2013,3,4),
                     MauLayHienTruongs = new List<MauPTInputModel>() {
                         new MauPTInputModel() {
                             MaMauKH = "m2011",

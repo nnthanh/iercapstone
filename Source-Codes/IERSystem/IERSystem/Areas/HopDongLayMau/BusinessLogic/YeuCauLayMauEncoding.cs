@@ -43,7 +43,7 @@ namespace IERSystem.BusinessLogic
         /// <param name="db">DB Dependency</param>
         /// <returns>The encoded request_inp</returns>
         public static YeuCauLayMauInputModel Encode(
-            YeuCauLayMauInputModel request_inp, IERSystemDBContext db
+            YeuCauLayMauInputModel request_inp, IERSystemModelContainer db
         ) {
             if (db != null && request_inp != null && request_inp.MauLayHienTruongs != null) {
                 var result = request_inp;
@@ -97,7 +97,7 @@ namespace IERSystem.BusinessLogic
             }
         }
 
-        private static int getRequestNextNumber(YeuCauLayMauInputModel request_inp, IERSystemDBContext db) {
+        private static int getRequestNextNumber(YeuCauLayMauInputModel request_inp, IERSystemModelContainer db) {
             return db.PhieuYeuCaus.Count((item) =>
                 item.NgayTaoHD.Equals(request_inp.NgayTaoHD)
             );
@@ -108,7 +108,7 @@ namespace IERSystem.BusinessLogic
             public int Count { get; set; }
         }
 
-        private static IQueryable<SampleCounter> getSamplesOfThisMonth(IERSystemDBContext db, int this_month, int this_year) {
+        private static IQueryable<SampleCounter> getSamplesOfThisMonth(IERSystemModelContainer db, int this_month, int this_year) {
             return
                 (from sample in db.MauLayHienTruongs
                  join request in db.PhieuYeuCaus on sample.PhieuYeuCau.Id equals request.Id
