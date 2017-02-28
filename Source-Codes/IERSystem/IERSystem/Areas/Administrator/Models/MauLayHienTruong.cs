@@ -21,7 +21,7 @@ namespace IERSystem.Areas.Administrator.Models
         public DateTime NgayTraMau { get; set; }
         public int MaHDPhanTich { get; set; }
         //TODO: nthoang DB Field needed to be worked on
-        public String MaChiTieuPhanTich { get; set; }
+        //public String MaChiTieuPhanTich { get; set; }
         public int NamLayMau { get; set; }
         
         public virtual PhieuYeuCau PhieuYeuCau { get; set; }
