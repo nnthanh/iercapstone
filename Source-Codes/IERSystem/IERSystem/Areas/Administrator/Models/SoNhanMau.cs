@@ -16,7 +16,7 @@ namespace IERSystem.Areas.Administrator.Models
         public DateTime NgayNhan { get; set; }
         public DateTime NgayTraKetQua { get; set; }
 
-        public String KyHieuMau { get; set; }
+        //public String KyHieuMau { get; set; }
         public Boolean KHKyNhanTraTien { get; set; }
         public Boolean KHKyNhanTraKQ { get; set; }
 

@@ -23,7 +23,8 @@ namespace IERSystem.Areas.Administrator.Models
         public DbSet<FormKQ> FormKQs { get; set; }
         public DbSet<CacSoNhanMau> CacSoNhanMaus { get; set; }
         public DbSet<CacSoChuyenMau> CacSoChuyenMaus { get; set; }
-
+        public DbSet<ChiTieuPhanTich> ChiTieuPhanTichs { get; set; }
+        
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             // khai báo Id sẽ là khóa chính
@@ -72,6 +73,34 @@ namespace IERSystem.Areas.Administrator.Models
             modelBuilder.Entity<CacSoChuyenMau>().HasKey(b => b.Id);
             // khai báo Id sẽ tự động tăng
             modelBuilder.Entity<CacSoChuyenMau>().Property(b => b.Id)
+                        .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            base.OnModelCreating(modelBuilder);
+
+            // khai báo Id sẽ là khóa chính
+            modelBuilder.Entity<ChiTieuPhanTich>().HasKey(b => b.Id);
+            // khai báo Id sẽ tự động tăng
+            modelBuilder.Entity<ChiTieuPhanTich>().Property(b => b.Id)
+                        .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            base.OnModelCreating(modelBuilder);
+
+            // khai báo Id sẽ là khóa chính
+            modelBuilder.Entity<KetQuaPhanTichFormKQ>().HasKey(b => b.Id);
+            // khai báo Id sẽ tự động tăng
+            modelBuilder.Entity<KetQuaPhanTichFormKQ>().Property(b => b.Id)
+                        .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            base.OnModelCreating(modelBuilder);
+
+            // khai báo Id sẽ là khóa chính
+            modelBuilder.Entity<KQThuNghiemMau>().HasKey(b => b.Id);
+            // khai báo Id sẽ tự động tăng
+            modelBuilder.Entity<KQThuNghiemMau>().Property(b => b.Id)
+                        .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            base.OnModelCreating(modelBuilder);
+
+            // khai báo Id sẽ là khóa chính
+            modelBuilder.Entity<SoKQThuNghiem>().HasKey(b => b.Id);
+            // khai báo Id sẽ tự động tăng
+            modelBuilder.Entity<SoKQThuNghiem>().Property(b => b.Id)
                         .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
             base.OnModelCreating(modelBuilder);
 
