@@ -14,18 +14,22 @@
         <EntityTypeShape EntityType="IERSystemModel.CacSoNhanMau" Width="1.5" PointX="0.75" PointY="4.75" />
         <AssociationConnector Association="IERSystemModel.CacSoNhanMau_SoNhanMau" />
         <AssociationConnector Association="IERSystemModel.MauLayHienTruong_SoNhanMau" />
-        <EntityTypeShape EntityType="IERSystemModel.SoChuyenMau" Width="1.5" PointX="3" PointY="7.625" />
+        <EntityTypeShape EntityType="IERSystemModel.SoChuyenMau" Width="2" PointX="3" PointY="7.625" />
         <EntityTypeShape EntityType="IERSystemModel.CacSoChuyenMau" Width="1.5" PointX="0.625" PointY="8.125" />
         <AssociationConnector Association="IERSystemModel.CacSoChuyenMauSoChuyenMau" />
         <EntityTypeShape EntityType="IERSystemModel.KQThuNghiemMau" Width="2" PointX="9.5" PointY="7.125" />
-        <EntityTypeShape EntityType="IERSystemModel.SoKQThuNghiem" Width="1.875" PointX="9.625" PointY="4.625" />
+        <EntityTypeShape EntityType="IERSystemModel.SoKQThuNghiem" Width="1.875" PointX="10.5" PointY="4.625" />
         <AssociationConnector Association="IERSystemModel.SoKQThuNghiemKQThuNghiemMau" />
-        <EntityTypeShape EntityType="IERSystemModel.FormKQ" Width="1.5" PointX="12.25" PointY="7.25" />
+        <EntityTypeShape EntityType="IERSystemModel.FormKQ" Width="1.5" PointX="13.5" PointY="7.25" />
         <AssociationConnector Association="IERSystemModel.MauLayHienTruong_SoChuyenMau" />
-        <EntityTypeShape EntityType="IERSystemModel.PhuongPhapPhanTich" Width="1.75" PointX="12" PointY="1.25" />
+        <EntityTypeShape EntityType="IERSystemModel.PhuongPhapPhanTich" Width="1.75" PointX="13.25" PointY="1.25" />
         <AssociationConnector Association="IERSystemModel.ChiTieuPhanTich_PhuongPhapPhanTich" />
-        <EntityTypeShape EntityType="IERSystemModel.KQPhanTichFormKQ" Width="1.875" PointX="12" PointY="4.5" />
+        <EntityTypeShape EntityType="IERSystemModel.KQPhanTichFormKQ" Width="1.875" PointX="13.125" PointY="4.5" />
         <AssociationConnector Association="IERSystemModel.FormKQ_KQPhanTichFormKQ" />
+        <AssociationConnector Association="IERSystemModel.SoChuyenMau_ChiTieuPhanTich" />
+        <AssociationConnector Association="IERSystemModel.KQPhanTichFormKQPhuongPhapPhanTich" />
+        <AssociationConnector Association="IERSystemModel.KQThuNghiemMau_ChiTieuPhanTich" />
+        <AssociationConnector Association="IERSystemModel.SoKQThuNghiem_MauLayHienTruong" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

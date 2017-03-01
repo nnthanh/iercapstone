@@ -14,17 +14,22 @@ namespace IERSystem.Areas.Administrator.Models
     
     public partial class SoChuyenMau
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public SoChuyenMau()
+        {
+            this.ChiTieuPhanTiches = new HashSet<ChiTieuPhanTich>();
+        }
+    
         public long Id { get; set; }
-        public string ChiTieuThuNghiem { get; set; }
         public string DienTen { get; set; }
         public string GhiChu { get; set; }
-        public string MaKH { get; set; }
-        public string MaMau { get; set; }
         public System.DateTime NgayGiaoMau { get; set; }
         public System.DateTime NgayTraKQ { get; set; }
         public long CacSoChuyenMauId { get; set; }
     
         public virtual CacSoChuyenMau CacSoChuyenMau { get; set; }
         public virtual MauLayHienTruong MauLayHienTruong { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ChiTieuPhanTich> ChiTieuPhanTiches { get; set; }
     }
 }

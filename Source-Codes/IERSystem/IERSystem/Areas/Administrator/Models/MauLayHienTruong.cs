@@ -34,5 +34,6 @@ namespace IERSystem.Areas.Administrator.Models
         public virtual ICollection<ChiTieuPhanTich> ChiTieuPhanTiches { get; set; }
         public virtual SoNhanMau SoNhanMau { get; set; }
         public virtual SoChuyenMau SoChuyenMau { get; set; }
+        public virtual SoKQThuNghiem SoKQThuNghiem { get; set; }
     }
 }

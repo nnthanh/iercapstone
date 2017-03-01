@@ -14,13 +14,20 @@ namespace IERSystem.Areas.Administrator.Models
     
     public partial class KQThuNghiemMau
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public KQThuNghiemMau()
+        {
+            this.ChiTieuPhanTiches = new HashSet<ChiTieuPhanTich>();
+        }
+    
         public long Id { get; set; }
-        public string ChiTieu { get; set; }
         public string DonVi { get; set; }
         public string KetQua { get; set; }
         public string NguoiThucHien { get; set; }
         public long SoKQThuNghiemId { get; set; }
     
         public virtual SoKQThuNghiem SoKQThuNghiem { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ChiTieuPhanTich> ChiTieuPhanTiches { get; set; }
     }
 }

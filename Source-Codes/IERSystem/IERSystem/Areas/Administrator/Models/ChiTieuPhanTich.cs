@@ -19,6 +19,8 @@ namespace IERSystem.Areas.Administrator.Models
         {
             this.MauLayHienTruongs = new HashSet<MauLayHienTruong>();
             this.PhuongPhapPhanTiches = new HashSet<PhuongPhapPhanTich>();
+            this.SoChuyenMaus = new HashSet<SoChuyenMau>();
+            this.KQThuNghiemMaus = new HashSet<KQThuNghiemMau>();
         }
     
         public long Id { get; set; }
@@ -29,5 +31,9 @@ namespace IERSystem.Areas.Administrator.Models
         public virtual ICollection<MauLayHienTruong> MauLayHienTruongs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PhuongPhapPhanTich> PhuongPhapPhanTiches { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SoChuyenMau> SoChuyenMaus { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<KQThuNghiemMau> KQThuNghiemMaus { get; set; }
     }
 }

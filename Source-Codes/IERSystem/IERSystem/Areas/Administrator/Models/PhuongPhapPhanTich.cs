@@ -14,11 +14,19 @@ namespace IERSystem.Areas.Administrator.Models
     
     public partial class PhuongPhapPhanTich
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public PhuongPhapPhanTich()
+        {
+            this.KQPhanTichFormKQs = new HashSet<KQPhanTichFormKQ>();
+        }
+    
         public long Id { get; set; }
         public string TenPhuongPhap { get; set; }
         public long ChiTieuPhanTichId { get; set; }
         public decimal ChiPhi { get; set; }
     
         public virtual ChiTieuPhanTich ChiTieuPhanTich { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<KQPhanTichFormKQ> KQPhanTichFormKQs { get; set; }
     }
 }

@@ -17,12 +17,9 @@ namespace IERSystem.Areas.Administrator.Models
         public long Id { get; set; }
         public bool KHKiNhanTraKQ { get; set; }
         public bool KHKiNhanTraTien { get; set; }
-        public string MaMau { get; set; }
         public System.DateTime NgayNhan { get; set; }
         public System.DateTime NgayTraKQ { get; set; }
-        public string TenDiaChiKH { get; set; }
         public long CacSoNhanMauId { get; set; }
-        public string MaKH { get; set; }
     
         public virtual CacSoNhanMau CacSoNhanMau { get; set; }
         public virtual MauLayHienTruong MauLayHienTruong { get; set; }
