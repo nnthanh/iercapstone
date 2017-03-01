@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 03/01/2017 13:50:20
+-- Date Created: 03/01/2017 15:36:44
 -- Generated from EDMX file: E:\Capstone\iercapstone\Source-Codes\IERSystem\IERSystem\Areas\Administrator\Models\IERSystemModel.edmx
 -- --------------------------------------------------
 
@@ -47,6 +47,27 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_FormKQ_KQPhanTichFormKQ]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[KQPhanTichFormKQs] DROP CONSTRAINT [FK_FormKQ_KQPhanTichFormKQ];
 GO
+IF OBJECT_ID(N'[dbo].[FK_SoChuyenMau_ChiTieuPhanTich_SoChuyenMau]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[SoChuyenMau_ChiTieuPhanTich] DROP CONSTRAINT [FK_SoChuyenMau_ChiTieuPhanTich_SoChuyenMau];
+GO
+IF OBJECT_ID(N'[dbo].[FK_SoChuyenMau_ChiTieuPhanTich_ChiTieuPhanTich]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[SoChuyenMau_ChiTieuPhanTich] DROP CONSTRAINT [FK_SoChuyenMau_ChiTieuPhanTich_ChiTieuPhanTich];
+GO
+IF OBJECT_ID(N'[dbo].[FK_KQPhanTichFormKQPhuongPhapPhanTich_KQPhanTichFormKQ]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[KQPhanTichFormKQPhuongPhapPhanTich] DROP CONSTRAINT [FK_KQPhanTichFormKQPhuongPhapPhanTich_KQPhanTichFormKQ];
+GO
+IF OBJECT_ID(N'[dbo].[FK_KQPhanTichFormKQPhuongPhapPhanTich_PhuongPhapPhanTich]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[KQPhanTichFormKQPhuongPhapPhanTich] DROP CONSTRAINT [FK_KQPhanTichFormKQPhuongPhapPhanTich_PhuongPhapPhanTich];
+GO
+IF OBJECT_ID(N'[dbo].[FK_KQThuNghiemMau_ChiTieuPhanTich_KQThuNghiemMau]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[KQThuNghiemMau_ChiTieuPhanTich] DROP CONSTRAINT [FK_KQThuNghiemMau_ChiTieuPhanTich_KQThuNghiemMau];
+GO
+IF OBJECT_ID(N'[dbo].[FK_KQThuNghiemMau_ChiTieuPhanTich_ChiTieuPhanTich]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[KQThuNghiemMau_ChiTieuPhanTich] DROP CONSTRAINT [FK_KQThuNghiemMau_ChiTieuPhanTich_ChiTieuPhanTich];
+GO
+IF OBJECT_ID(N'[dbo].[FK_SoKQThuNghiem_MauLayHienTruong]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[SoKQThuNghiems] DROP CONSTRAINT [FK_SoKQThuNghiem_MauLayHienTruong];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
@@ -90,6 +111,15 @@ IF OBJECT_ID(N'[dbo].[KQPhanTichFormKQs]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[MauLayHienTruong_ChiTieuPhanTich]', 'U') IS NOT NULL
     DROP TABLE [dbo].[MauLayHienTruong_ChiTieuPhanTich];
+GO
+IF OBJECT_ID(N'[dbo].[SoChuyenMau_ChiTieuPhanTich]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[SoChuyenMau_ChiTieuPhanTich];
+GO
+IF OBJECT_ID(N'[dbo].[KQPhanTichFormKQPhuongPhapPhanTich]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[KQPhanTichFormKQPhuongPhapPhanTich];
+GO
+IF OBJECT_ID(N'[dbo].[KQThuNghiemMau_ChiTieuPhanTich]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[KQThuNghiemMau_ChiTieuPhanTich];
 GO
 
 -- --------------------------------------------------
@@ -145,6 +175,7 @@ CREATE TABLE [dbo].[SoNhanMaus] (
     [NgayNhan] datetime  NOT NULL,
     [NgayTraKQ] datetime  NOT NULL,
     [CacSoNhanMauId] bigint  NOT NULL,
+    [TinhTrang] tinyint  NOT NULL,
     [MauLayHienTruong_Id] bigint  NOT NULL
 );
 GO
@@ -165,6 +196,7 @@ CREATE TABLE [dbo].[SoChuyenMaus] (
     [NgayGiaoMau] datetime  NOT NULL,
     [NgayTraKQ] datetime  NOT NULL,
     [CacSoChuyenMauId] bigint  NOT NULL,
+    [TinhTrang] tinyint  NOT NULL,
     [MauLayHienTruong_Id] bigint  NOT NULL
 );
 GO

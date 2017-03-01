@@ -17,8 +17,8 @@
         <EntityTypeShape EntityType="IERSystemModel.SoChuyenMau" Width="2" PointX="3" PointY="7.625" />
         <EntityTypeShape EntityType="IERSystemModel.CacSoChuyenMau" Width="1.5" PointX="0.625" PointY="8.125" />
         <AssociationConnector Association="IERSystemModel.CacSoChuyenMauSoChuyenMau" />
-        <EntityTypeShape EntityType="IERSystemModel.KQThuNghiemMau" Width="2" PointX="9.5" PointY="7.125" />
-        <EntityTypeShape EntityType="IERSystemModel.SoKQThuNghiem" Width="1.875" PointX="10.5" PointY="4.625" />
+        <EntityTypeShape EntityType="IERSystemModel.KQThuNghiemMau" Width="2" PointX="9.5" PointY="8.75" />
+        <EntityTypeShape EntityType="IERSystemModel.SoKQThuNghiem" Width="1.875" PointX="10.875" PointY="4.5" />
         <AssociationConnector Association="IERSystemModel.SoKQThuNghiemKQThuNghiemMau" />
         <EntityTypeShape EntityType="IERSystemModel.FormKQ" Width="1.5" PointX="13.5" PointY="7.25" />
         <AssociationConnector Association="IERSystemModel.MauLayHienTruong_SoChuyenMau" />
