@@ -142,6 +142,7 @@
     <Property Name="NgayNhan" Type="datetime" Nullable="false" />
     <Property Name="NgayTraKQ" Type="datetime" Nullable="false" />
     <Property Name="CacSoNhanMauId" Type="bigint" Nullable="false" />
+    <Property Name="TinhTrang" Type="tinyint" Nullable="false" />
     <Property Name="MauLayHienTruong_Id" Type="bigint" Nullable="false" />
   </EntityType>
   <EntityType Name="CacSoNhanMaus">
@@ -162,6 +163,7 @@
     <Property Name="NgayGiaoMau" Type="datetime" Nullable="false" />
     <Property Name="NgayTraKQ" Type="datetime" Nullable="false" />
     <Property Name="CacSoChuyenMauId" Type="bigint" Nullable="false" />
+    <Property Name="TinhTrang" Type="tinyint" Nullable="false" />
     <Property Name="MauLayHienTruong_Id" Type="bigint" Nullable="false" />
   </EntityType>
   <EntityType Name="CacSoChuyenMaus">
@@ -608,6 +610,7 @@
           <NavigationProperty Name="CacSoNhanMau" Relationship="IERSystemModel.CacSoNhanMau_SoNhanMau" FromRole="SoNhanMau" ToRole="CacSoNhanMau" />
           <Property Name="CacSoNhanMauId" Type="Int64" Nullable="false" />
           <NavigationProperty Name="MauLayHienTruong" Relationship="IERSystemModel.MauLayHienTruong_SoNhanMau" FromRole="SoNhanMau" ToRole="MauLayHienTruong" />
+          <Property Name="TinhTrang" Type="Byte" Nullable="false" />
         </EntityType>
         <EntityType Name="CacSoNhanMau">
           <Key>
@@ -647,6 +650,7 @@
           <Property Name="CacSoChuyenMauId" Type="Int64" Nullable="false" />
           <NavigationProperty Name="MauLayHienTruong" Relationship="IERSystemModel.MauLayHienTruong_SoChuyenMau" FromRole="SoChuyenMau" ToRole="MauLayHienTruong" />
           <NavigationProperty Name="ChiTieuPhanTiches" Relationship="IERSystemModel.SoChuyenMau_ChiTieuPhanTich" FromRole="SoChuyenMau" ToRole="ChiTieuPhanTich" />
+          <Property Name="TinhTrang" Type="Byte" Nullable="false" />
         </EntityType>
         <EntityType Name="CacSoChuyenMau">
           <Key>
@@ -843,6 +847,7 @@
           <ScalarProperty Name="NgayNhan" ColumnName="NgayNhan" />
           <ScalarProperty Name="NgayTraKQ" ColumnName="NgayTraKQ" />
           <ScalarProperty Name="CacSoNhanMauId" ColumnName="CacSoNhanMauId" />
+          <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -864,6 +869,7 @@
           <ScalarProperty Name="NgayGiaoMau" ColumnName="NgayGiaoMau" />
           <ScalarProperty Name="NgayTraKQ" ColumnName="NgayTraKQ" />
           <ScalarProperty Name="CacSoChuyenMauId" ColumnName="CacSoChuyenMauId" />
+          <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
