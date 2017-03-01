@@ -33,7 +33,7 @@ namespace IERSystem.Areas.HopDongLayMau.Models
         /// Convert InputModel to Database Model
         /// </summary>
         /// <returns>The database model</returns>
-        public PhieuYeuCau ToModel() 
+        public PhieuYeuCau ToModel(DateTime today) 
         {
             var req = new PhieuYeuCau();
             //nthoang: here PhieuYeuCau should already been Encoded
@@ -49,7 +49,7 @@ namespace IERSystem.Areas.HopDongLayMau.Models
             req.NgayHenTraKQ = this.NgayHenTraKQ;
             req.NoiLayMau = this.DiaChiLayMau;
             req.NgayLayMau = this.NgayLayMau;
-            req.NgayTaoHD = DateTime.Now.Date;
+            req.NgayTaoHD = today;
             //req.NamLayHD = this.NgayTaoHD.Year;
             req.MauLayHienTruongs = this.MauLayHienTruongs.Select((elem) => {
                 var mapped = new MauLayHienTruong();
