@@ -24,7 +24,6 @@ namespace IERSystem.Areas.Administrator.Models
         public long CacSoNhanMauId { get; set; }
         public string MaKH { get; set; }
     
-        public virtual PhieuYeuCau PhieuYeuCau { get; set; }
         public virtual CacSoNhanMau CacSoNhanMau { get; set; }
         public virtual MauLayHienTruong MauLayHienTruong { get; set; }
     }

@@ -2,6 +2,7 @@
 using IERSystem.BusinessLogic.TableForms;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -22,6 +23,8 @@ namespace IERSystem.Areas.HopDongLayMau.Controllers
                 await db.SaveChangesAsync();
                 Console.WriteLine("OK");
             } catch (System.Data.Entity.Infrastructure.DbUpdateException e) {
+                Console.WriteLine(e.Message);
+            } catch (DbEntityValidationException e) {
                 Console.WriteLine(e.Message);
             }
             return "Hello World";

@@ -47,14 +47,14 @@ namespace IERSystem.BusinessLogic
         ) {
             if (db != null && request_inp != null && request_inp.MauLayHienTruongs != null) {
                 var result = request_inp;
-                var today_day = request_inp.NgayTaoHD.Day;
-                var this_month = request_inp.NgayTaoHD.Month;
-                var this_year = request_inp.NgayTaoHD.Year;
-                var today_day_str = stringifyNumberTo2Digit(today_day);
+                var today = DateTime.Now;
+                var this_month = today.Month;
+                var this_year = today.Year;
+                var today_day_str = stringifyNumberTo2Digit(today.Day);
                 var this_month_str = stringifyNumberTo2Digit(this_month);
                 //nthoang: Count the current number of today requests
                 //nthoang: this is the number of current request
-                string req_next_str = stringifyNumberTo2Digit(getRequestNextNumber(request_inp, db));
+                string req_next_str = stringifyNumberTo2Digit(getRequestNextNumber(request_inp, db, today));
 
                 //nthoang: retrieve samples for this month
                 //nthoang: And group them by their type (first 2 letter of their encoded MaMau)
@@ -97,9 +97,9 @@ namespace IERSystem.BusinessLogic
             }
         }
 
-        private static int getRequestNextNumber(YeuCauLayMauInputModel request_inp, IERSystemModelContainer db) {
+        private static int getRequestNextNumber(YeuCauLayMauInputModel request_inp, IERSystemModelContainer db, DateTime today) {
             return db.PhieuYeuCaus.Count((item) =>
-                item.NgayTaoHD.Equals(request_inp.NgayTaoHD)
+                item.NgayTaoHD.Equals(today)
             );
         }
 

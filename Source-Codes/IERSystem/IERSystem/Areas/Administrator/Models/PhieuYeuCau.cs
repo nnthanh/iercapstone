@@ -38,6 +38,5 @@ namespace IERSystem.Areas.Administrator.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MauLayHienTruong> MauLayHienTruongs { get; set; }
-        public virtual SoNhanMau SoNhanMau { get; set; }
     }
 }

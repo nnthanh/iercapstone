@@ -85,8 +85,8 @@
                                 Ngày gửi mẫu/lấy mẫu
                             </label>
                             <div class="form-group input-group-sm col-md-4 col-sm-4 col-xs-12">
-                                @Html.TextBoxFor(model => model.NgayTaoHD, new { @class = "date-picker form-control col-md-7 col-xs-12 active", placeholder = "Nhập ngày gửi/lấy mẫu vào đây", required = "required", type = "text",id="NgayTaoHD"})
-                                @Html.ValidationMessageFor(model => model.NgayTaoHD)
+                                @Html.TextBoxFor(model => model.NgayLayMau, new { @class = "date-picker form-control col-md-7 col-xs-12 active", placeholder = "Nhập ngày gửi/lấy mẫu vào đây", required = "required", type = "text",id= "NgayLayMau" })
+                                @Html.ValidationMessageFor(model => model.NgayLayMau)
                             </div>
                         </div>
                         <div class="form-group">
@@ -101,7 +101,7 @@
                                 Ngày dự kiến trả mẫu
                             </label>
                             <div class="form-group input-group-sm col-md-4 col-sm-4 col-xs-12">
-                                @Html.TextBoxFor(model => model.NgayHenTraKQ, new { @class = "form-control datepicker", placeholder = "Nhập ngày dự kiến trả mẫu vào đây",required = "required", type = "text",id="NgayDuKienTraMau" })
+                                @Html.TextBoxFor(model => model.NgayHenTraKQ, new { @class = "form-control datepicker", placeholder = "Nhập ngày dự kiến trả mẫu vào đây",required = "required", type = "text",id= "NgayHenTraKQ" })
                                 @Html.ValidationMessageFor(model => model.NgayHenTraKQ)
                             </div>
                         </div>
@@ -255,7 +255,7 @@
     
 <script>
     $(document).ready(function () {
-        $('#NgayTaoHD').daterangepicker({
+        $('#NgayLayMau').daterangepicker({
             singleDatePicker: true,
             calender_style: "picker_1"
         }, function (start, end, label) {
@@ -266,7 +266,7 @@
 
 <script>
     $(document).ready(function () {
-        $('#NgayDuKienTraMau').daterangepicker({
+        $('#NgayHenTraKQ').daterangepicker({
             singleDatePicker: true,
             calender_style: "picker_1"
         }, function (start, end, label) {
@@ -342,7 +342,7 @@
                     SoFax: $("#SoFax").val(),
                     DiaChiLayMau: $("#DiaChiLayMau").val(),
                     DiaChiKhachHang: $("#DiaChiKhachHang").val(),
-                    NgayTaoHD: $("#NgayTaoHD").val(),
+                    NgayLayMau: $("#NgayLayMau").val(),
                     NgayHenTraKQ: $("#NgayHenTraKQ").val(),
                     PhuongPhapLayMau: $("#PhuongPhapLayMau").val(),
                     TenTieuChuanDoiChieu: $("#TenTieuChuanDoiChieu").val(),

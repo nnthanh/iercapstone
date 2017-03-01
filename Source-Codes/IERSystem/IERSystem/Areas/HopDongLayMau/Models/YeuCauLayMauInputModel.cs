@@ -18,7 +18,7 @@ namespace IERSystem.Areas.HopDongLayMau.Models
         public String MaSoThue { get; set; }
         public String SoDienThoai { get; set; }
         public String SoFax { get; set; }
-        public DateTime NgayTaoHD { get; set; }
+        public DateTime NgayLayMau { get; set; }
         public DateTime NgayHenTraKQ { get; set; }
         public String PhuongPhapLayMau { get; set; }
         public String TenTieuChuanDoiChieu { get; set; }
@@ -46,8 +46,10 @@ namespace IERSystem.Areas.HopDongLayMau.Models
             req.MaSoThue = this.MaSoThue;
             req.SoFax = this.SoFax;
             req.SoDienThoai = this.SoDienThoai;
-            req.NgayTaoHD = this.NgayTaoHD;
             req.NgayHenTraKQ = this.NgayHenTraKQ;
+            req.NoiLayMau = this.DiaChiLayMau;
+            req.NgayLayMau = this.NgayLayMau;
+            req.NgayTaoHD = DateTime.Now;
             //req.NamLayHD = this.NgayTaoHD.Year;
             req.MauLayHienTruongs = this.MauLayHienTruongs.Select((elem) => {
                 var mapped = new MauLayHienTruong();
