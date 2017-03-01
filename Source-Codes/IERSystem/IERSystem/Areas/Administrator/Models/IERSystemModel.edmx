@@ -20,7 +20,7 @@
     <EntitySet Name="KQPhanTichFormKQs" EntityType="IERSystemModel.Store.KQPhanTichFormKQs" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="MauLayHienTruong_ChiTieuPhanTich" EntityType="IERSystemModel.Store.MauLayHienTruong_ChiTieuPhanTich" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="SoChuyenMau_ChiTieuPhanTich" EntityType="IERSystemModel.Store.SoChuyenMau_ChiTieuPhanTich" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="KQPhanTichFormKQPhuongPhapPhanTich" EntityType="IERSystemModel.Store.KQPhanTichFormKQPhuongPhapPhanTich" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="KQPhanTichFormKQ_PhuongPhapPhanTich" EntityType="IERSystemModel.Store.KQPhanTichFormKQPhuongPhapPhanTich" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="KQThuNghiemMau_ChiTieuPhanTich" EntityType="IERSystemModel.Store.KQThuNghiemMau_ChiTieuPhanTich" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="PhieuYeuCau_MauLayHienTruong" Association="IERSystemModel.Store.PhieuYeuCau_MauLayHienTruong">
       <End Role="PhieuYeuCau" EntitySet="PhieuYeuCaus" />
@@ -42,11 +42,11 @@
       <End Role="MauLayHienTruong" EntitySet="MauLayHienTruongs" />
       <End Role="SoNhanMau" EntitySet="SoNhanMaus" />
     </AssociationSet>
-    <AssociationSet Name="CacSoChuyenMauSoChuyenMau" Association="IERSystemModel.Store.CacSoChuyenMauSoChuyenMau">
+    <AssociationSet Name="CacSoChuyenMau_SoChuyenMau" Association="IERSystemModel.Store.CacSoChuyenMauSoChuyenMau">
       <End Role="CacSoChuyenMau" EntitySet="CacSoChuyenMaus" />
       <End Role="SoChuyenMau" EntitySet="SoChuyenMaus" />
     </AssociationSet>
-    <AssociationSet Name="SoKQThuNghiemKQThuNghiemMau" Association="IERSystemModel.Store.SoKQThuNghiemKQThuNghiemMau">
+    <AssociationSet Name="SoKQThuNghiem_KQThuNghiemMau" Association="IERSystemModel.Store.SoKQThuNghiemKQThuNghiemMau">
       <End Role="SoKQThuNghiem" EntitySet="SoKQThuNghiems" />
       <End Role="KQThuNghiemMau" EntitySet="KQThuNghiemMaus" />
     </AssociationSet>
@@ -70,13 +70,13 @@
       <End Role="ChiTieuPhanTich" EntitySet="ChiTieuPhanTiches" />
       <End Role="SoChuyenMau_ChiTieuPhanTich" EntitySet="SoChuyenMau_ChiTieuPhanTich" />
     </AssociationSet>
-    <AssociationSet Name="FK_KQPhanTichFormKQPhuongPhapPhanTich_KQPhanTichFormKQ" Association="IERSystemModel.Store.FK_KQPhanTichFormKQPhuongPhapPhanTich_KQPhanTichFormKQ">
+    <AssociationSet Name="FK_KQPhanTichFormKQ_PhuongPhapPhanTich_KQPhanTichFormKQ" Association="IERSystemModel.Store.FK_KQPhanTichFormKQPhuongPhapPhanTich_KQPhanTichFormKQ">
       <End Role="KQPhanTichFormKQ" EntitySet="KQPhanTichFormKQs" />
-      <End Role="KQPhanTichFormKQPhuongPhapPhanTich" EntitySet="KQPhanTichFormKQPhuongPhapPhanTich" />
+      <End Role="KQPhanTichFormKQPhuongPhapPhanTich" EntitySet="KQPhanTichFormKQ_PhuongPhapPhanTich" />
     </AssociationSet>
-    <AssociationSet Name="FK_KQPhanTichFormKQPhuongPhapPhanTich_PhuongPhapPhanTich" Association="IERSystemModel.Store.FK_KQPhanTichFormKQPhuongPhapPhanTich_PhuongPhapPhanTich">
+    <AssociationSet Name="FK_KQPhanTichFormKQ_PhuongPhapPhanTich_PhuongPhapPhanTich" Association="IERSystemModel.Store.FK_KQPhanTichFormKQPhuongPhapPhanTich_PhuongPhapPhanTich">
       <End Role="PhuongPhapPhanTich" EntitySet="PhuongPhapPhanTiches" />
-      <End Role="KQPhanTichFormKQPhuongPhapPhanTich" EntitySet="KQPhanTichFormKQPhuongPhapPhanTich" />
+      <End Role="KQPhanTichFormKQPhuongPhapPhanTich" EntitySet="KQPhanTichFormKQ_PhuongPhapPhanTich" />
     </AssociationSet>
     <AssociationSet Name="FK_KQThuNghiemMau_ChiTieuPhanTich_KQThuNghiemMau" Association="IERSystemModel.Store.FK_KQThuNghiemMau_ChiTieuPhanTich_KQThuNghiemMau">
       <End Role="KQThuNghiemMau" EntitySet="KQThuNghiemMaus" />
@@ -489,13 +489,13 @@
           </AssociationSet>
           <EntitySet Name="SoChuyenMaus" EntityType="IERSystemModel.SoChuyenMau" />
           <EntitySet Name="CacSoChuyenMaus" EntityType="IERSystemModel.CacSoChuyenMau" />
-          <AssociationSet Name="CacSoChuyenMauSoChuyenMau" Association="IERSystemModel.CacSoChuyenMauSoChuyenMau">
+          <AssociationSet Name="CacSoChuyenMau_SoChuyenMau" Association="IERSystemModel.CacSoChuyenMauSoChuyenMau">
             <End Role="CacSoChuyenMau" EntitySet="CacSoChuyenMaus" />
             <End Role="SoChuyenMau" EntitySet="SoChuyenMaus" />
           </AssociationSet>
           <EntitySet Name="KQThuNghiemMaus" EntityType="IERSystemModel.KQThuNghiemMau" />
           <EntitySet Name="SoKQThuNghiems" EntityType="IERSystemModel.SoKQThuNghiem" />
-          <AssociationSet Name="SoKQThuNghiemKQThuNghiemMau" Association="IERSystemModel.SoKQThuNghiemKQThuNghiemMau">
+          <AssociationSet Name="SoKQThuNghiem_KQThuNghiemMau" Association="IERSystemModel.SoKQThuNghiemKQThuNghiemMau">
             <End Role="SoKQThuNghiem" EntitySet="SoKQThuNghiems" />
             <End Role="KQThuNghiemMau" EntitySet="KQThuNghiemMaus" />
           </AssociationSet>
@@ -518,7 +518,7 @@
             <End Role="SoChuyenMau" EntitySet="SoChuyenMaus" />
             <End Role="ChiTieuPhanTich" EntitySet="ChiTieuPhanTiches" />
           </AssociationSet>
-          <AssociationSet Name="KQPhanTichFormKQPhuongPhapPhanTich" Association="IERSystemModel.KQPhanTichFormKQPhuongPhapPhanTich">
+          <AssociationSet Name="KQPhanTichFormKQ_PhuongPhapPhanTich" Association="IERSystemModel.KQPhanTichFormKQPhuongPhapPhanTich">
             <End Role="KQPhanTichFormKQ" EntitySet="KQPhanTichFormKQs" />
             <End Role="PhuongPhapPhanTich" EntitySet="PhuongPhapPhanTiches" />
           </AssociationSet>
@@ -969,7 +969,7 @@
         <ScalarProperty Name="Id" ColumnName="ChiTieuPhanTiches_Id" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="KQPhanTichFormKQPhuongPhapPhanTich" TypeName="IERSystemModel.KQPhanTichFormKQPhuongPhapPhanTich" StoreEntitySet="KQPhanTichFormKQPhuongPhapPhanTich">
+    <AssociationSetMapping Name="KQPhanTichFormKQ_PhuongPhapPhanTich" TypeName="IERSystemModel.KQPhanTichFormKQPhuongPhapPhanTich" StoreEntitySet="KQPhanTichFormKQ_PhuongPhapPhanTich">
       <EndProperty Name="KQPhanTichFormKQ">
         <ScalarProperty Name="Id" ColumnName="KQPhanTichFormKQs_Id" />
       </EndProperty>
