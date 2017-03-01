@@ -28,34 +28,6 @@
     <!-- starrr -->
     <link href="~/Areas/Administrator/vendors/starrr/dist/starrr.css" rel="stylesheet">
 
-
-
-    <!-- jQuery autocomplete -->
-    <script src="~/Areas/Administrator/vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js"></script>
-    <!-- Select2 -->
-    <script src="~/Areas/Administrator/vendors/select2/dist/js/select2.full.min.js"></script>
-    <!-- bootstrap-wysiwyg -->
-    <script src="~/Areas/Administrator/vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js"></script>
-    <!-- Switchery -->
-    <script src="~/Areas/Administrator/vendors/switchery/dist/switchery.min.js"></script>
-    <!-- jQuery Tags Input -->
-    <script src="~/Areas/Administrator/vendors/jquery.tagsinput/src/jquery.tagsinput.js"></script>
-    <!-- Parsley -->
-    <script src="~/Areas/Administrator/vendors/parsleyjs/dist/parsley.min.js"></script>
-    <!-- Autosize -->
-    <script src="~/Areas/Administrator/vendors/autosize/dist/autosize.min.js"></script>
-    <!-- starrr -->
-    <script src="~/Areas/Administrator/vendors/starrr/dist/starrr.js"></script>
-    <!-- Custom Theme Scripts -->
-    <script src="~/Areas/Administrator/Content/js/custom.js"></script>
-
-    <!-- jQuery -->
-    <script src="~/Areas/Administrator/vendors/jquery/dist/jquery.min.js"></script>
-
-    <!-- iCheck -->
-    <script src="~/Areas/Administrator/vendors/iCheck/icheck.min.js"></script>
-
-
 </head>
 <body class="nav-md">
     <div class="container body">
@@ -249,7 +221,47 @@
         </div>
     </div>
 
-   
+    <!-- jQuery -->
+    <script src="~/Areas/Administrator/vendors/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="~/Areas/Administrator/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- FastClick -->
+    <script src="~/Areas/Administrator/vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="~/Areas/Administrator/vendors/nprogress/nprogress.js"></script>
+    <!-- bootstrap-progressbar -->
+    <script src="~/Areas/Administrator/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+    <!-- iCheck -->
+    <script src="~/Areas/Administrator/vendors/iCheck/icheck.min.js"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="~/Areas/Administrator/Content/js/moment/moment.min.js"></script>
+    <script src="~/Areas/Administrator/Content/js/datepicker/daterangepicker.js"></script>
+    <!-- bootstrap-wysiwyg -->
+    <script src="~/Areas/Administrator/vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js"></script>
+    <script src="~/Areas/Administrator/vendors/jquery.hotkeys/jquery.hotkeys.js"></script>
+    <script src="~/Areas/Administrator/vendors/google-code-prettify/src/prettify.js"></script>
+    <!-- jQuery Tags Input -->
+    <script src="~/Areas/Administrator/vendors/jquery.tagsinput/src/jquery.tagsinput.js"></script>
+    <!-- Switchery -->
+    <script src="~/Areas/Administrator/vendors/switchery/dist/switchery.min.js"></script>
+    <!-- Select2 -->
+    <script src="~/Areas/Administrator/vendors/select2/dist/js/select2.full.min.js"></script>
+    <!-- Parsley -->
+    <script src="~/Areas/Administrator/vendors/parsleyjs/dist/parsley.min.js"></script>
+    <!-- Autosize -->
+    <script src="~/Areas/Administrator/vendors/autosize/dist/autosize.min.js"></script>
+    <!-- jQuery autocomplete -->
+    <script src="~/Areas/Administrator/vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js"></script>
+    <!-- starrr -->
+    <script src="~/Areas/Administrator/vendors/starrr/dist/starrr.js"></script>
+
+    <!-- Custom Theme Scripts -->
+    <script src="~/Areas/Administrator/Content/js/custom.js"></script>
+    
+    <!-- Chart.js -->
+    <script src="~/Areas/Administrator/vendors/Chart.js/dist/Chart.min.js"></script>
+    <!-- gauge.js -->
+    <script src="~/Areas/Administrator/vendors/bernii/gauge.js/dist/gauge.min.js"></script>
     <!-- Skycons -->
     <script src="~/Areas/Administrator/vendors/skycons/skycons.js"></script>
     <!-- Flot -->
@@ -265,11 +277,23 @@
     <script src="~/Areas/Administrator/Content/js/flot/curvedLines.js"></script>
     <!-- jVectorMap -->
     <script src="~/Areas/Administrator/Content/js/maps/jquery-jvectormap-2.0.3.min.js"></script>
-    <!-- bootstrap-daterangepicker -->
-    <script src="~/Areas/Administrator/Content/js/moment/moment.min.js"></script>
-    <script src="~/Areas/Administrator/Content/js/datepicker/daterangepicker.js"></script>
     <!-- Custom Theme Scripts -->
     <script src="~/Areas/Administrator/Content/js/custom.js"></script>
+    <!-- Select 2-->
+    <script>
+        $(document).ready(function () {
+            $(".select2_single").select2({
+                placeholder: "Select a state",
+                allowClear: true
+            });
+            $(".select2_group").select2({});
+            $(".select2_multiple").select2({
+                maximumSelectionLength: 4,
+                placeholder: "With Max Selection limit 4",
+                allowClear: true
+            });
+        });
+    </script>
     <!-- Flot -->
     <script>
         $(document).ready(function () {
@@ -505,8 +529,6 @@
     </script>
     <!-- /bootstrap-daterangepicker -->
 
-
-
     <!-- gauge.js -->
     <script>
         var opts = {
@@ -533,19 +555,6 @@
         gauge.setTextField(document.getElementById("gauge-text"));
     </script>
     <!-- /gauge.js -->
-
-    <!-- Bootstrap -->
-    <script src="~/Areas/Administrator/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-    <!-- FastClick -->
-    <script src="~/Areas/Administrator/vendors/fastclick/lib/fastclick.js"></script>
-    <!-- NProgress -->
-    <script src="~/Areas/Administrator/vendors/nprogress/nprogress.js"></script>
-    <!-- Chart.js -->
-    <script src="~/Areas/Administrator/vendors/Chart.js/dist/Chart.min.js"></script>
-    <!-- gauge.js -->
-    <script src="~/Areas/Administrator/vendors/bernii/gauge.js/dist/gauge.min.js"></script>
-    <!-- bootstrap-progressbar -->
-    <script src="~/Areas/Administrator/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
 
     @RenderSection("scripts", required: false)
 </body>
