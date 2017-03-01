@@ -49,7 +49,7 @@ namespace IERSystem.Areas.HopDongLayMau.Models
             req.NgayHenTraKQ = this.NgayHenTraKQ;
             req.NoiLayMau = this.DiaChiLayMau;
             req.NgayLayMau = this.NgayLayMau;
-            req.NgayTaoHD = DateTime.Now;
+            req.NgayTaoHD = DateTime.Now.Date;
             //req.NamLayHD = this.NgayTaoHD.Year;
             req.MauLayHienTruongs = this.MauLayHienTruongs.Select((elem) => {
                 var mapped = new MauLayHienTruong();

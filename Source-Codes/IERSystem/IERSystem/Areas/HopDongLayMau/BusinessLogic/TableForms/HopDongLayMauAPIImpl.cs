@@ -25,7 +25,7 @@ namespace IERSystem.BusinessLogic.TableForms
         }
 
         private static void upsertHopDongLayMau(YeuCauLayMauInputModel input_request, IERSystemModelContainer db) {
-            var encoded_inp_req = HopDongLayMauEncoding.Encode(input_request, db);
+            var encoded_inp_req = HopDongLayMauEncoding.Encode(input_request, db, DateTime.Now.Date);
             var yeucaulaymau_model = encoded_inp_req.ToModel();
             db.PhieuYeuCaus.Add(yeucaulaymau_model);
         }

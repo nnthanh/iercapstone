@@ -43,11 +43,10 @@ namespace IERSystem.BusinessLogic
         /// <param name="db">DB Dependency</param>
         /// <returns>The encoded request_inp</returns>
         public static YeuCauLayMauInputModel Encode(
-            YeuCauLayMauInputModel request_inp, IERSystemModelContainer db
+            YeuCauLayMauInputModel request_inp, IERSystemModelContainer db, DateTime today
         ) {
             if (db != null && request_inp != null && request_inp.MauLayHienTruongs != null) {
                 var result = request_inp;
-                var today = DateTime.Now;
                 var this_month = today.Month;
                 var this_year = today.Year;
                 var today_day_str = stringifyNumberTo2Digit(today.Day);
