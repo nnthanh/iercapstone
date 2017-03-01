@@ -100,9 +100,14 @@
                                             @Html.DisplayFor(modelItem => item.NguoiThucHien)
                                         </td>*@
                                     <td>
-                                        @Html.ActionLink("Chỉnh", "Edit", new { id = item.Id }) |
+                                        @*@Html.ActionLink("Chỉnh", "Edit", new { id = item.Id }) |
                                         @Html.ActionLink("Chi tiết", "Details", new { id = item.Id }) |
-                                        @Html.ActionLink("Xóa", "Delete", new { id = item.Id })
+                                        @Html.ActionLink("Xóa", "Delete", new { id = item.Id })*@
+
+                                        <input type="button" class="btn btn-warning" value="Chỉnh sửa" onclick="location.href='@Url.Action("Edit", "SoKQThuNghiem", new { id = item.Id })'">
+                                        <input type="button" class="btn btn-info" value="Chi tiết" onclick="location.href='@Url.Action("Details", "SoKQThuNghiem", new { id = item.Id })'" />
+                                        <input type="button" class="btn btn-danger" value="Xóa" onclick="location.href='@Url.Action("Delete", "SoKQThuNghiem", new { id = item.Id })'" />
+
                                     </td>
                                 </tr>
                             }

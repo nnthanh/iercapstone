@@ -8,6 +8,89 @@
 <h2>FORM KẾT QUẢ</h2>
 
 <input type="button" class="btn btn-info" value="Tạo form kết quả mới" onclick="location.href='@Url.Action("Create", "FormKQ")'" />
+
+<button id="btnThemMau" type="button"
+        data-toggle="modal" data-target="#themMauModal"
+        class="btn btn-warning">
+    Thêm kết quả
+</button>
+
+<!-- Modal -->
+<div id="themMauModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Thêm mẫu</h4>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <table class="table table-striped jambo_table bulk_action">
+                        <thead>
+                            <tr class="headings">
+                                <th>
+                                    <input type="checkbox" id="check-all" class="flat">
+                                </th>
+                                <th class="column-title">Phiếu yêu cầu </th>
+                                <th class="column-title">Tên khách hàng/địa chỉ </th>
+                                <th class="column-title">Mã số </th>
+                                <th class="column-title">Chỉ tiêu thử nghiệm </th>
+                                <th class="column-title">Ngày nhận </th>
+                                <th class="column-title">Ngày trả kết quả </th>
+                                <th class="column-title no-link last">
+                                    <span class="nobr">Hành động</span>
+                                </th>
+                                <th class="bulk-actions" colspan="7">
+                                    <a class="antoo" style="color:#fff; font-weight:500;">Chọn nhiều ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
+                                </th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr class="even pointer">
+                                <td class="a-center ">
+                                    <input type="checkbox" class="flat" name="table_records">
+                                </td>
+                                <td class=" ">0002002</td>
+                                <td class=" ">Nguyen Ngoc Thanh </td>
+                                <td class=" ">HCMUS</td>
+                                <td class=" ">Tân Bình</td>
+                                <td class=" ">20 Jan, 2017</td>
+                                <td class=" ">22 Jan, 2017</td>
+                                <td class=" last">
+                                    <a href="#">Xem</a>
+                                </td>
+                            </tr>
+                            <tr class="odd pointer">
+                                <td class="a-center ">
+                                    <input type="checkbox" class="flat" name="table_records">
+                                </td>
+                                <td class=" ">0002002</td>
+                                <td class=" ">Nguyen Ngoc Thanh </td>
+                                <td class=" ">HCMUS</td>
+                                <td class=" ">Tân Bình</td>
+                                <td class=" ">20 Jan, 2017</td>
+                                <td class=" ">22 Jan, 2017</td>
+                                <td class=" last">
+                                    <a href="#">Xem</a>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="saveMauBtn" type="button" class="btn btn-success" data-dismiss="modal">Thêm Mẫu</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
 <input type="button" class="btn btn-success" value="In" onclick="location.href='@Url.Action("Create", "FormKQ")'" />
 
 <div class>
@@ -72,11 +155,6 @@
                                 <th>Địa chỉ</th>
                                 <th>Loại mẫu</th>
                                 <th>Vị trí lấy mẫu</th>
-                                @*<th>STT</th>
-                                <th>Chỉ tiêu</th>
-                                <th>Đơn vị</th>
-                                <th>Giá trị</th>
-                                <th>Phương pháp phân tích</th>*@
                             </tr>
                         </thead>
                         <tbody>
@@ -103,26 +181,11 @@
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.ViTriLayMau)
-                                    </td>
-                                    @*<td>
-                                        @Html.DisplayFor(modelItem => item.STT)
-                                    </td>
+                                    </td>          
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.ChiTieu)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.DonVi)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.GiaTri)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.PhuongPhapPhanTich)
-                                    </td>*@
-                                    <td>
-                                        @Html.ActionLink("Chỉnh", "Edit", new { id = item.Id }) |
-                                        @Html.ActionLink("Chi tiết", "Details", new { id = item.Id }) |
-                                        @Html.ActionLink("Xóa", "Delete", new { id = item.Id })
+                                        <input type="button" class="btn btn-warning" value="Chỉnh sửa" onclick="location.href='@Url.Action("Edit", "FormKQ", new { id = item.Id })'">
+                                        <input type="button" class="btn btn-info" value="Chi tiết" onclick="location.href='@Url.Action("Details", "FormKQ", new { id = item.Id })'" />
+                                        <input type="button" class="btn btn-danger" value="Xóa" onclick="location.href='@Url.Action("Delete", "FormKQ", new { id = item.Id })'" />
                                     </td>
                                 </tr>
                             }
@@ -133,63 +196,3 @@
         </div>
     </div>
 </div>
-
-@*<table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.KyHieuMau)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NgayNhanMau)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NgayTraMau)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ChiTieuThuNghiem)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DonVi)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.KetQua)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NguoiThucHien)
-            </th>
-            <th></th>
-        </tr>
-
-    @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.KyHieuMau)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NgayNhanMau)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NgayTraMau)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ChiTieuThuNghiem)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DonVi)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.KetQua)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NguoiThucHien)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-            </td>
-        </tr>
-    }
-
-    </table>
-*@
