@@ -20,13 +20,42 @@
     <!-- Custom Theme Style -->
     <link href="~/Areas/Administrator/Content/css/custom.css" rel="stylesheet">
     <!-- Select2 -->
-    <link href="../vendors/select2/dist/css/select2.min.css" rel="stylesheet">
+    <link href="~/Areas/Administrator/vendors/select2/dist/css/select2.min.css" rel="stylesheet">
     <!-- Switchery -->
-    <link href="../vendors/switchery/dist/switchery.min.css" rel="stylesheet">
+    <link href="~/Areas/Administrator/vendors/switchery/dist/switchery.min.css" rel="stylesheet">
     <!-- bootstrap-wysiwyg -->
-    <link href="../vendors/google-code-prettify/bin/prettify.min.css" rel="stylesheet">
+    <link href="~/Areas/Administrator/vendors/google-code-prettify/bin/prettify.min.css" rel="stylesheet">
     <!-- starrr -->
-    <link href="../vendors/starrr/dist/starrr.css" rel="stylesheet">
+    <link href="~/Areas/Administrator/vendors/starrr/dist/starrr.css" rel="stylesheet">
+
+
+
+    <!-- jQuery autocomplete -->
+    <script src="~/Areas/Administrator/vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js"></script>
+    <!-- Select2 -->
+    <script src="~/Areas/Administrator/vendors/select2/dist/js/select2.full.min.js"></script>
+    <!-- bootstrap-wysiwyg -->
+    <script src="~/Areas/Administrator/vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js"></script>
+    <!-- Switchery -->
+    <script src="~/Areas/Administrator/vendors/switchery/dist/switchery.min.js"></script>
+    <!-- jQuery Tags Input -->
+    <script src="~/Areas/Administrator/vendors/jquery.tagsinput/src/jquery.tagsinput.js"></script>
+    <!-- Parsley -->
+    <script src="~/Areas/Administrator/vendors/parsleyjs/dist/parsley.min.js"></script>
+    <!-- Autosize -->
+    <script src="~/Areas/Administrator/vendors/autosize/dist/autosize.min.js"></script>
+    <!-- starrr -->
+    <script src="~/Areas/Administrator/vendors/starrr/dist/starrr.js"></script>
+    <!-- Custom Theme Scripts -->
+    <script src="~/Areas/Administrator/Content/js/custom.js"></script>
+
+    <!-- jQuery -->
+    <script src="~/Areas/Administrator/vendors/jquery/dist/jquery.min.js"></script>
+
+    <!-- iCheck -->
+    <script src="~/Areas/Administrator/vendors/iCheck/icheck.min.js"></script>
+
+
 </head>
 <body class="nav-md">
     <div class="container body">
@@ -67,11 +96,11 @@
                                             <a href="~/Administrator/User/Index">Thiết bị</a>
                                         </li>
                                     </ul>
-                                    <a href="~/HopDongLayMau/YeuCauLayMau/Index"><i class="fa fa-home"></i> Hợp đồng lấy mẫu</a>
-                                    <a href="~/Administrator/FormKQ/Index"><i class="fa fa-home"></i> Form kết quả</a>
+                                    <a href="~/HopDongLayMau/YeuCauLayMau/Index"><i class="fa fa-home"></i> Hợp đồng lấy mẫu</a>                                  
                                     <a href="~/Administrator/SoNhanMau/Index"><i class="fa fa-home"></i> Sổ nhận mẫu</a>
                                     <a href="~/Administrator/SoChuyenMau/Index"><i class="fa fa-home"></i> Sổ chuyển mẫu</a>
                                     <a href="~/Administrator/SoKQThuNghiem/Index"><i class="fa fa-home"></i> Sổ kết quả thử nghiệm</a>
+                                    <a href="~/Administrator/FormKQ/Index"><i class="fa fa-home"></i> Form kết quả</a>
                                 </li>
                             </ul>
                         </div>
@@ -219,30 +248,16 @@
             <!-- /footer content -->
         </div>
     </div>
-    <!-- jQuery -->
-    <script src="~/Areas/Administrator//vendors/jquery/dist/jquery.min.js"></script>
-    <!-- Bootstrap -->
-    <script src="~/Areas/Administrator//vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-    <!-- FastClick -->
-    <script src="~/Areas/Administrator//vendors/fastclick/lib/fastclick.js"></script>
-    <!-- NProgress -->
-    <script src="~/Areas/Administrator//vendors/nprogress/nprogress.js"></script>
-    <!-- Chart.js -->
-    <script src="~/Areas/Administrator//vendors/Chart.js/dist/Chart.min.js"></script>
-    <!-- gauge.js -->
-    <script src="~/Areas/Administrator//vendors/bernii/gauge.js/dist/gauge.min.js"></script>
-    <!-- bootstrap-progressbar -->
-    <script src="~/Areas/Administrator//vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
-    <!-- iCheck -->
-    <script src="~/Areas/Administrator//vendors/iCheck/icheck.min.js"></script>
+
+   
     <!-- Skycons -->
-    <script src="~/Areas/Administrator//vendors/skycons/skycons.js"></script>
+    <script src="~/Areas/Administrator/vendors/skycons/skycons.js"></script>
     <!-- Flot -->
-    <script src="~/Areas/Administrator//vendors/Flot/jquery.flot.js"></script>
-    <script src="~/Areas/Administrator//vendors/Flot/jquery.flot.pie.js"></script>
-    <script src="~/Areas/Administrator//vendors/Flot/jquery.flot.time.js"></script>
-    <script src="~/Areas/Administrator//vendors/Flot/jquery.flot.stack.js"></script>
-    <script src="~/Areas/Administrator//vendors/Flot/jquery.flot.resize.js"></script>
+    <script src="~/Areas/Administrator/vendors/Flot/jquery.flot.js"></script>
+    <script src="~/Areas/Administrator/vendors/Flot/jquery.flot.pie.js"></script>
+    <script src="~/Areas/Administrator/vendors/Flot/jquery.flot.time.js"></script>
+    <script src="~/Areas/Administrator/vendors/Flot/jquery.flot.stack.js"></script>
+    <script src="~/Areas/Administrator/vendors/Flot/jquery.flot.resize.js"></script>
     <!-- Flot plugins -->
     <script src="~/Areas/Administrator/Content/js/flot/jquery.flot.orderBars.js"></script>
     <script src="~/Areas/Administrator/Content/js/flot/date.js"></script>
@@ -335,24 +350,24 @@
     <script src="~/Areas/Administrator/Content/js/maps/jquery-jvectormap-us-aea-en.js"></script>
     <script src="~/Areas/Administrator/Content/js/maps/gdp-data.js"></script>
     @*<script>
-        $(document).ready(function () {
-            $('#world-map-gdp').vectorMap({
-                map: 'world_mill_en',
-                backgroundColor: 'transparent',
-                zoomOnScroll: false,
-                series: {
-                    regions: [{
-                        values: gdpData,
-                        scale: ['#E6F2F0', '#149B7E'],
-                        normalizeFunction: 'polynomial'
-                    }]
-                },
-                onRegionTipShow: function (e, el, code) {
-                    el.html(el.html() + ' (GDP - ' + gdpData[code] + ')');
-                }
+            $(document).ready(function () {
+                $('#world-map-gdp').vectorMap({
+                    map: 'world_mill_en',
+                    backgroundColor: 'transparent',
+                    zoomOnScroll: false,
+                    series: {
+                        regions: [{
+                            values: gdpData,
+                            scale: ['#E6F2F0', '#149B7E'],
+                            normalizeFunction: 'polynomial'
+                        }]
+                    },
+                    onRegionTipShow: function (e, el, code) {
+                        el.html(el.html() + ' (GDP - ' + gdpData[code] + ')');
+                    }
+                });
             });
-        });
-    </script>*@
+        </script>*@
     <!-- /jVectorMap -->
     <!-- Skycons -->
     <script>
@@ -376,45 +391,45 @@
     <!-- /Skycons -->
     <!-- Doughnut Chart -->
     @*<script>
-        $(document).ready(function () {
-            var options = {
-                legend: false,
-                responsive: false
-            };
+            $(document).ready(function () {
+                var options = {
+                    legend: false,
+                    responsive: false
+                };
 
-            new Chart(document.getElementById("canvas1"), {
-                type: 'doughnut',
-                tooltipFillColor: "rgba(51, 51, 51, 0.55)",
-                data: {
-                    labels: [
-                      "Symbian",
-                      "Blackberry",
-                      "Other",
-                      "Android",
-                      "IOS"
-                    ],
-                    datasets: [{
-                        data: [15, 20, 30, 10, 30],
-                        backgroundColor: [
-                          "#BDC3C7",
-                          "#9B59B6",
-                          "#E74C3C",
-                          "#26B99A",
-                          "#3498DB"
+                new Chart(document.getElementById("canvas1"), {
+                    type: 'doughnut',
+                    tooltipFillColor: "rgba(51, 51, 51, 0.55)",
+                    data: {
+                        labels: [
+                          "Symbian",
+                          "Blackberry",
+                          "Other",
+                          "Android",
+                          "IOS"
                         ],
-                        hoverBackgroundColor: [
-                          "#CFD4D8",
-                          "#B370CF",
-                          "#E95E4F",
-                          "#36CAAB",
-                          "#49A9EA"
-                        ]
-                    }]
-                },
-                options: options
+                        datasets: [{
+                            data: [15, 20, 30, 10, 30],
+                            backgroundColor: [
+                              "#BDC3C7",
+                              "#9B59B6",
+                              "#E74C3C",
+                              "#26B99A",
+                              "#3498DB"
+                            ],
+                            hoverBackgroundColor: [
+                              "#CFD4D8",
+                              "#B370CF",
+                              "#E95E4F",
+                              "#36CAAB",
+                              "#49A9EA"
+                            ]
+                        }]
+                    },
+                    options: options
+                });
             });
-        });
-    </script>*@
+        </script>*@
     <!-- /Doughnut Chart -->
     <!-- bootstrap-daterangepicker -->
     <script>
@@ -489,6 +504,9 @@
         });
     </script>
     <!-- /bootstrap-daterangepicker -->
+
+
+
     <!-- gauge.js -->
     <script>
         var opts = {
@@ -515,27 +533,20 @@
         gauge.setTextField(document.getElementById("gauge-text"));
     </script>
     <!-- /gauge.js -->
-    <!-- bootstrap-daterangepicker -->
-    <script src="js/moment/moment.min.js"></script>
-    <script src="js/datepicker/daterangepicker.js"></script>
-     <!-- jQuery autocomplete -->
-    <script src="../vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js"></script>
-    <!-- Select2 -->
-    <script src="../vendors/select2/dist/js/select2.full.min.js"></script>
-    <!-- bootstrap-wysiwyg -->
-    <script src="../vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js"></script>
-    <!-- Switchery -->
-    <script src="../vendors/switchery/dist/switchery.min.js"></script>
-    <!-- jQuery Tags Input -->
-    <script src="../vendors/jquery.tagsinput/src/jquery.tagsinput.js"></script>
-    <!-- Parsley -->
-    <script src="../vendors/parsleyjs/dist/parsley.min.js"></script>
-    <!-- Autosize -->
-    <script src="../vendors/autosize/dist/autosize.min.js"></script>
-    <!-- starrr -->
-    <script src="../vendors/starrr/dist/starrr.js"></script>
-    <!-- Custom Theme Scripts -->
-    <script src="js/custom.js"></script>
+
+    <!-- Bootstrap -->
+    <script src="~/Areas/Administrator/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- FastClick -->
+    <script src="~/Areas/Administrator/vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="~/Areas/Administrator/vendors/nprogress/nprogress.js"></script>
+    <!-- Chart.js -->
+    <script src="~/Areas/Administrator/vendors/Chart.js/dist/Chart.min.js"></script>
+    <!-- gauge.js -->
+    <script src="~/Areas/Administrator/vendors/bernii/gauge.js/dist/gauge.min.js"></script>
+    <!-- bootstrap-progressbar -->
+    <script src="~/Areas/Administrator/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+
     @RenderSection("scripts", required: false)
 </body>
 </html>

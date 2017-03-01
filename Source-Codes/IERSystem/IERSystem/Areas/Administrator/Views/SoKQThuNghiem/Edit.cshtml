@@ -99,9 +99,34 @@
                                 </div>
                             </div>*@
 
+                        <div class="x_content" style="display:block;">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th rowspan="4">Chỉ tiêu thử nghiệm</th>
+                                        <th rowspan="4">Đơn vị</th>
+                                        <th rowspan="4">Kết quả</th>
+                                        <th rowspan="4">Người thực hiện</th>       
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @*@foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <input type="button" class="btn btn-primary" value="Chỉnh sửa" onclick="location.href='@Url.Action("Edit", "SoNhanMau", new { id = item.Id })'">
+                                                <input type="button" class="btn btn-info" value="Chi tiết" onclick="location.href='@Url.Action("Details", "SoNhanMau", new { id = item.Id })'" />
+                                                <input type="button" class="btn btn-danger" value="Xóa" onclick="location.href='@Url.Action("Delete", "SoNhanMau", new { id = item.Id })'" />
+                                            </td>
+                                        </tr>
+                                    }*@
+                                </tbody>
+                            </table>
+                        </div>
+
                         <div class="form-group">
                             <div class="col-md-offset-2 col-md-10">
-                                <input type="submit" value="Tạo" class="btn btn-success" />
+                                <input type="submit" value="Lưu" class="btn btn-success" />
                                 <input type="button" class="btn btn-danger" value="Quay lại" onclick="location.href='@Url.Action("Index", "SoKQThuNghiem")'" />
                             </div>
                         </div>
@@ -119,7 +144,7 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 
-    <script>
+    @*<script>
         $(document).ready(function () {
             $('#NgayNhanMau').daterangepicker({
                 singleDatePicker: true,
@@ -139,5 +164,5 @@
                 console.log(start.toISOString(), end.toISOString(), label);
             });
         });
-    </script>
+    </script>*@
 }

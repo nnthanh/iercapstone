@@ -4,22 +4,25 @@
     ViewBag.Title = "Details";
     Layout = "~/Areas/Administrator/Views/Shared/_Layout.cshtml";}
 
-<h2>Details</h2>
+<h2>Chi tiết hợp đồng</h2>
 
 <div>
-    <h4>Request</h4>
 	<hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.MaDon)
+            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                Mã đơn
+            </label>           
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.MaDon)
+                @Html.DisplayFor(model => model.MaDon)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.TenKhachHang)
+            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                Tên khách hàng
+            </label>
         </dt>
 
         <dd>
@@ -27,7 +30,9 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.TenDaiDien)
+            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                Người đại diện
+            </label>
         </dt>
 
         <dd>
@@ -35,7 +40,9 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.DiaChiLayMau)
+            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                Nơi lấy mẫu
+            </label>
         </dt>
 
         <dd>
@@ -43,7 +50,9 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.DiaChiKhachHang)
+            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                Địa chỉ
+            </label>
         </dt>
 
         <dd>
@@ -51,7 +60,9 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.MaSoThue)
+            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                Mã số thuế
+            </label>
         </dt>
 
         <dd>
@@ -59,7 +70,9 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.SoDienThoai)
+            <label class="control-label col-md-1 col-sm-1 col-xs-12" for="first-name">
+                SĐT 
+            </label>
         </dt>
 
         <dd>
@@ -67,7 +80,9 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.SoFax)
+            <label class="control-label col-md-1 col-sm-1 col-xs-12" for="first-name">
+                Fax
+            </label>
         </dt>
 
         <dd>
@@ -75,7 +90,9 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.NgayTaoHD)
+            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                Ngày gửi mẫu/lấy mẫu
+            </label>
         </dt>
 
         <dd>
@@ -83,56 +100,74 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.NgayDuKienTraMau)
+            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                Ngày dự kiến trả mẫu 
+            </label>
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.NgayDuKienTraMau)
         </dd>
-
-        @*<dt>
-            @Html.DisplayNameFor(model => model.PhuongPhapLayMau)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PhuongPhapLayMau)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TenTieuChuanDoiChieu)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TenTieuChuanDoiChieu)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PhiThiNghiemTamTinh)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PhiThiNghiemTamTinh)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TienKhachHangTraTruoc)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TienKhachHangTraTruoc)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DaGuiMau)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DaGuiMau)
-        </dd>*@
-
     </dl>
 </div>
+
+<div>
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>
+                        Thông tin các mẫu
+                    </h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li>
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                <i class="fa fa-wrench"></i>
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>
+                                    <a href="#">Settings 1</a>
+                                </li>
+                                <li>
+                                    <a href="#">Settings 2</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="close-link">
+                                <i class="fa fa-close"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content" style="display:block;">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Mã mẫu</th>
+                                <th>Ký hiệu mẫu</th>
+                                <th>Vị Trí Lấy Mẫu</th>
+                                <th>Số Lượng</th>
+                                <th>Mô Tả Mẫu</th>
+                                <th>Chỉ Tiêu Yêu Cầu</th>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    <input type="submit" class="btn btn-warning" value="Chỉnh sửa" onclick="location.href='@Url.Action("Edit", "YeuCauLayMau",new { id = Model.Id })'" />
+    <input type="submit" class="btn btn-danger" value="Quay lại" onclick="location.href='@Url.Action("Index", "YeuCauLayMau")'" />
 </p>
