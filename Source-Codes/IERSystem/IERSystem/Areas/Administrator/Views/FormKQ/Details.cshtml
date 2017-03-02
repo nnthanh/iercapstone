@@ -1,15 +1,13 @@
 ﻿@model IERSystem.Areas.Administrator.Models.FormKQ
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Chi tiết";
     Layout = "~/Areas/Administrator/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Chi tiết</h2>
+<h2>Chi tiết kết phiếu kết quả</h2>
 
 <div>
-    <h4>Xem chi tiết form kết quả</h4>
-	<hr />
     <dl class="dl-horizontal">
         <dt>
             <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
@@ -81,49 +79,62 @@
             @Html.DisplayFor(model => model.ViTriLayMau)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.STT)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.STT)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ChiTieu)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ChiTieu)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DonVi)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DonVi)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.GiaTri)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.GiaTri)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PhuongPhapPhanTich)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PhuongPhapPhanTich)
-        </dd>
-
     </dl>
 </div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>
+                        Phiếu kết quả
+                    </h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li>
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                        </li>
+                        @*<li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                <i class="fa fa-wrench"></i>
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>
+                                    <a href="#">Settings 1</a>
+                                </li>
+                                <li>
+                                    <a href="#">Settings 2</a>
+                                </li>
+                            </ul>
+                        </li>*@
+                        <li>
+                            <a class="close-link">
+                                <i class="fa fa-close"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content" style="display:block;">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Số thứ tự</th>
+                                <th>Chỉ tiêu</th>
+                                <th>Đơn vị</th>
+                                <th>Giá trị</th>
+                                <th>Phương pháp phân tích</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    <input type="submit" class="btn btn-warning" value="Chỉnh sửa" onclick="location.href='@Url.Action("Edit", "FormKQ",new { id = Model.Id })'" />
+    <input type="submit" class="btn btn-danger" value="Quay lại" onclick="location.href='@Url.Action("Index", "FormKQ")'" />
 </p>
