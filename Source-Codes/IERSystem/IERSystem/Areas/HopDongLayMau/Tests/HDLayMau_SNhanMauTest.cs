@@ -18,8 +18,8 @@ namespace IERSystem.Areas.HopDongLayMau.Tests
                     SoFax = "32fwe1",
                     DiaChiLayMau = "absfsd",
                     DiaChiKhachHang = "bqwqwc",
-                    NgayTaoHD = new DateTime(2011,3,4),
-                    NgayDuKienTraMau = new DateTime(2013,3,4),
+                    NgayLayMau = new DateTime(2011,3,4),
+                    NgayHenTraKQ = new DateTime(2013,3,4),
                     MauLayHienTruongs = new List<MauPTInputModel>() {
                         new MauPTInputModel() {
                             MaMauKH = "m2011",

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Net;
@@ -11,13 +10,14 @@ using IERSystem.Areas.Administrator.Models;
 using System.IO;
 using Newtonsoft.Json;
 using IERSystem.Areas.HopDongLayMau.Models;
+using System.Data.Entity;
 
 namespace IERSystem.Areas.HopDongLayMau.Controllers
 {
   
     public class YeuCauLayMauController : Controller
     {
-        private IERSystemDBContext db = new IERSystemDBContext();
+        private IERSystemModelContainer db = new IERSystemModelContainer();
 
         // GET: /HopDongLayMau/YeuCauLayMau/
         public async Task<ActionResult> Index()
@@ -85,7 +85,7 @@ namespace IERSystem.Areas.HopDongLayMau.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(request).State = EntityState.Modified;
+                db.Entry(request).State = System.Data.Entity.EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }

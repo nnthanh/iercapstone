@@ -33,19 +33,27 @@ namespace IERSystem.BusinessLogic
 
         //nthoang Mã khách hàng: XXDDMM
         //nthoang Mã mẫu: AAZZZ/MM
+        
+        /// <summary>
+        /// Encode All MauPTInputModels in YeuCauLayMauInputModel
+        /// This means YeuCauLayMauInputModel.MaDon and all MauPTInputModel.MaMau
+        /// will be generated here
+        /// </summary>
+        /// <param name="request_inp">The request that will be encoded</param>
+        /// <param name="db">DB Dependency</param>
+        /// <returns>The encoded request_inp</returns>
         public static YeuCauLayMauInputModel Encode(
-            YeuCauLayMauInputModel request_inp, IERSystemDBContext db
+            YeuCauLayMauInputModel request_inp, IERSystemModelContainer db, DateTime today
         ) {
-            if (db != null && request_inp != null) {
+            if (db != null && request_inp != null && request_inp.MauLayHienTruongs != null) {
                 var result = request_inp;
-                var today_day = request_inp.NgayTaoHD.Day;
-                var this_month = request_inp.NgayTaoHD.Month;
-                var this_year = request_inp.NgayTaoHD.Year;
-                var today_day_str = stringifyNumberTo2Digit(today_day);
+                var this_month = today.Month;
+                var this_year = today.Year;
+                var today_day_str = stringifyNumberTo2Digit(today.Day);
                 var this_month_str = stringifyNumberTo2Digit(this_month);
                 //nthoang: Count the current number of today requests
                 //nthoang: this is the number of current request
-                string req_next_str = stringifyNumberTo2Digit(getRequestNext(request_inp, db));
+                string req_next_str = stringifyNumberTo2Digit(getRequestNextNumber(request_inp, db, today));
 
                 //nthoang: retrieve samples for this month
                 //nthoang: And group them by their type (first 2 letter of their encoded MaMau)
@@ -84,13 +92,13 @@ namespace IERSystem.BusinessLogic
                 result.MaDon = req_next_str + today_day_str + this_month_str;
                 return result;
             } else {
-                throw new ArgumentException("request and db must not be null");
+                throw new ArgumentException("request and request.MauLayHienTruongs and db must not be null");
             }
         }
 
-        private static int getRequestNext(YeuCauLayMauInputModel request_inp, IERSystemDBContext db) {
+        private static int getRequestNextNumber(YeuCauLayMauInputModel request_inp, IERSystemModelContainer db, DateTime today) {
             return db.PhieuYeuCaus.Count((item) =>
-                item.NgayTaoHD.Equals(request_inp.NgayTaoHD)
+                item.NgayTaoHD.Equals(today)
             );
         }
 
@@ -99,7 +107,7 @@ namespace IERSystem.BusinessLogic
             public int Count { get; set; }
         }
 
-        private static IQueryable<SampleCounter> getSamplesOfThisMonth(IERSystemDBContext db, int this_month, int this_year) {
+        private static IQueryable<SampleCounter> getSamplesOfThisMonth(IERSystemModelContainer db, int this_month, int this_year) {
             return
                 (from sample in db.MauLayHienTruongs
                  join request in db.PhieuYeuCaus on sample.PhieuYeuCau.Id equals request.Id

@@ -88,8 +88,8 @@
                                 Ngày gửi/lấy mẫu <span class="required">*</span>
                             </label>
                             <div class="form-group input-group-sm col-md-4 col-sm-4 col-xs-12">
-                                @Html.TextBoxFor(model => model.NgayTaoHD, new { @class = "date-picker form-control col-md-7 col-xs-12 active", placeholder = "Nhập ngày gửi/lấy mẫu vào đây", required = "required", type = "text",id="NgayTaoHD"})
-                                @Html.ValidationMessageFor(model => model.NgayTaoHD)
+                                @Html.TextBoxFor(model => model.NgayLayMau, new { @class = "date-picker form-control col-md-7 col-xs-12 active", placeholder = "Nhập ngày gửi/lấy mẫu vào đây", required = "required", type = "text",id= "NgayLayMau" })
+                                @Html.ValidationMessageFor(model => model.NgayLayMau)
                             </div>
                         </div>
                         <div class="form-group">
@@ -104,13 +104,13 @@
                                 Ngày dự kiến trả mẫu <span class="required">*</span>
                             </label>
                             <div class="form-group input-group-sm col-md-4 col-sm-4 col-xs-12">
-                                <select class="form-control col-md-4 col-xs-12" required="required" id="ngayTraMau">
+                                <select class="form-control col-md-4 col-xs-12" required="required" id="NgayHenTraKQ">
                                     <option>Chọn ngày trả mẫu</option>
                                     <option>2 ngày</option>
                                     <option>7 ngày</option>
                                     <option>10 ngày</option>
                                 </select>
-                                @Html.ValidationMessageFor(model => model.NgayDuKienTraMau)
+                                @Html.ValidationMessageFor(model => model.NgayHenTraKQ)
                             </div>
                         </div>
 
@@ -165,7 +165,7 @@
                                 <div class="modal-dialog">
 
                                     <!-- Modal content-->
-                                   
+
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -279,7 +279,7 @@
     
 <script>
     $(document).ready(function () {
-        $('#NgayTaoHD').daterangepicker({
+        $('#NgayLayMau').daterangepicker({
             singleDatePicker: true,
             calender_style: "picker_1"
         }, function (start, end, label) {
@@ -287,7 +287,6 @@
         });
     });
 </script>
-
 
 
 <script>
@@ -369,8 +368,8 @@
                     SoFax: $("#SoFax").val(),
                     DiaChiLayMau: $("#DiaChiLayMau").val(),
                     DiaChiKhachHang: $("#DiaChiKhachHang").val(),
-                    NgayTaoHD: $("#NgayTaoHD").val(),
-                    NgayDuKienTraMau: $("#NgayTaoHD").val()+$("#NgayDuKienTraMau").val(),
+                    NgayLayMau: $("#NgayLayMau").val(),
+                    NgayHenTraKQ: $("#NgayHenTraKQ").val().split(" ")[0],
                     PhuongPhapLayMau: $("#PhuongPhapLayMau").val(),
                     TenTieuChuanDoiChieu: $("#TenTieuChuanDoiChieu").val(),
                     PhiThiNghiemTamTinh: $("#PhiThiNghiemTamTinh").val(),
@@ -381,8 +380,8 @@
                     //alert(rowdata);
                     return {
                         MaMauKH: rowdata[0],
-                        //Get the first 2 characters of Kí Hiệu Mẫu
-                        KiHieuMau: rowdata[1].slice(0, 2),
+                        //nthoang: Get the first token of the string splitted by ':' character of Kí Hiệu Mẫu
+                        KiHieuMau: rowdata[1].split(":")[0],
                         ViTriLayMau: rowdata[2],
                         SoLuong:  $Global[i].SoLuong,
                         DonVi:  $Global[i].DonVi,

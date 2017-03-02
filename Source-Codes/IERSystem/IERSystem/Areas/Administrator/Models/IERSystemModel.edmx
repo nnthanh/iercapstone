@@ -1,0 +1,1018 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="IERSystemModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="IERSystemModelStoreContainer">
+    <EntitySet Name="PhieuYeuCaus" EntityType="IERSystemModel.Store.PhieuYeuCaus" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MauLayHienTruongs" EntityType="IERSystemModel.Store.MauLayHienTruongs" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ChiTieuPhanTiches" EntityType="IERSystemModel.Store.ChiTieuPhanTiches" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SoNhanMaus" EntityType="IERSystemModel.Store.SoNhanMaus" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CacSoNhanMaus" EntityType="IERSystemModel.Store.CacSoNhanMaus" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SoChuyenMaus" EntityType="IERSystemModel.Store.SoChuyenMaus" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CacSoChuyenMaus" EntityType="IERSystemModel.Store.CacSoChuyenMaus" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="KQThuNghiemMaus" EntityType="IERSystemModel.Store.KQThuNghiemMaus" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SoKQThuNghiems" EntityType="IERSystemModel.Store.SoKQThuNghiems" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="FormKQs" EntityType="IERSystemModel.Store.FormKQs" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PhuongPhapPhanTiches" EntityType="IERSystemModel.Store.PhuongPhapPhanTiches" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="KQPhanTichFormKQs" EntityType="IERSystemModel.Store.KQPhanTichFormKQs" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MauLayHienTruong_ChiTieuPhanTich" EntityType="IERSystemModel.Store.MauLayHienTruong_ChiTieuPhanTich" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SoChuyenMau_ChiTieuPhanTich" EntityType="IERSystemModel.Store.SoChuyenMau_ChiTieuPhanTich" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="KQPhanTichFormKQ_PhuongPhapPhanTich" EntityType="IERSystemModel.Store.KQPhanTichFormKQPhuongPhapPhanTich" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="KQThuNghiemMau_ChiTieuPhanTich" EntityType="IERSystemModel.Store.KQThuNghiemMau_ChiTieuPhanTich" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="PhieuYeuCau_MauLayHienTruong" Association="IERSystemModel.Store.PhieuYeuCau_MauLayHienTruong">
+      <End Role="PhieuYeuCau" EntitySet="PhieuYeuCaus" />
+      <End Role="MauLayHienTruong" EntitySet="MauLayHienTruongs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MauLayHienTruong_ChiTieuPhanTich_MauLayHienTruong" Association="IERSystemModel.Store.FK_MauLayHienTruong_ChiTieuPhanTich_MauLayHienTruong">
+      <End Role="MauLayHienTruong" EntitySet="MauLayHienTruongs" />
+      <End Role="MauLayHienTruong_ChiTieuPhanTich" EntitySet="MauLayHienTruong_ChiTieuPhanTich" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MauLayHienTruong_ChiTieuPhanTich_ChiTieuPhanTich" Association="IERSystemModel.Store.FK_MauLayHienTruong_ChiTieuPhanTich_ChiTieuPhanTich">
+      <End Role="ChiTieuPhanTich" EntitySet="ChiTieuPhanTiches" />
+      <End Role="MauLayHienTruong_ChiTieuPhanTich" EntitySet="MauLayHienTruong_ChiTieuPhanTich" />
+    </AssociationSet>
+    <AssociationSet Name="CacSoNhanMau_SoNhanMau" Association="IERSystemModel.Store.CacSoNhanMau_SoNhanMau">
+      <End Role="CacSoNhanMau" EntitySet="CacSoNhanMaus" />
+      <End Role="SoNhanMau" EntitySet="SoNhanMaus" />
+    </AssociationSet>
+    <AssociationSet Name="MauLayHienTruong_SoNhanMau" Association="IERSystemModel.Store.MauLayHienTruong_SoNhanMau">
+      <End Role="MauLayHienTruong" EntitySet="MauLayHienTruongs" />
+      <End Role="SoNhanMau" EntitySet="SoNhanMaus" />
+    </AssociationSet>
+    <AssociationSet Name="CacSoChuyenMau_SoChuyenMau" Association="IERSystemModel.Store.CacSoChuyenMauSoChuyenMau">
+      <End Role="CacSoChuyenMau" EntitySet="CacSoChuyenMaus" />
+      <End Role="SoChuyenMau" EntitySet="SoChuyenMaus" />
+    </AssociationSet>
+    <AssociationSet Name="SoKQThuNghiem_KQThuNghiemMau" Association="IERSystemModel.Store.SoKQThuNghiemKQThuNghiemMau">
+      <End Role="SoKQThuNghiem" EntitySet="SoKQThuNghiems" />
+      <End Role="KQThuNghiemMau" EntitySet="KQThuNghiemMaus" />
+    </AssociationSet>
+    <AssociationSet Name="MauLayHienTruong_SoChuyenMau" Association="IERSystemModel.Store.MauLayHienTruong_SoChuyenMau">
+      <End Role="MauLayHienTruong" EntitySet="MauLayHienTruongs" />
+      <End Role="SoChuyenMau" EntitySet="SoChuyenMaus" />
+    </AssociationSet>
+    <AssociationSet Name="ChiTieuPhanTich_PhuongPhapPhanTich" Association="IERSystemModel.Store.ChiTieuPhanTich_PhuongPhapPhanTich">
+      <End Role="ChiTieuPhanTich" EntitySet="ChiTieuPhanTiches" />
+      <End Role="PhuongPhapPhanTich" EntitySet="PhuongPhapPhanTiches" />
+    </AssociationSet>
+    <AssociationSet Name="FormKQ_KQPhanTichFormKQ" Association="IERSystemModel.Store.FormKQ_KQPhanTichFormKQ">
+      <End Role="FormKQ" EntitySet="FormKQs" />
+      <End Role="KQPhanTichFormKQ" EntitySet="KQPhanTichFormKQs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SoChuyenMau_ChiTieuPhanTich_SoChuyenMau" Association="IERSystemModel.Store.FK_SoChuyenMau_ChiTieuPhanTich_SoChuyenMau">
+      <End Role="SoChuyenMau" EntitySet="SoChuyenMaus" />
+      <End Role="SoChuyenMau_ChiTieuPhanTich" EntitySet="SoChuyenMau_ChiTieuPhanTich" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SoChuyenMau_ChiTieuPhanTich_ChiTieuPhanTich" Association="IERSystemModel.Store.FK_SoChuyenMau_ChiTieuPhanTich_ChiTieuPhanTich">
+      <End Role="ChiTieuPhanTich" EntitySet="ChiTieuPhanTiches" />
+      <End Role="SoChuyenMau_ChiTieuPhanTich" EntitySet="SoChuyenMau_ChiTieuPhanTich" />
+    </AssociationSet>
+    <AssociationSet Name="FK_KQPhanTichFormKQ_PhuongPhapPhanTich_KQPhanTichFormKQ" Association="IERSystemModel.Store.FK_KQPhanTichFormKQPhuongPhapPhanTich_KQPhanTichFormKQ">
+      <End Role="KQPhanTichFormKQ" EntitySet="KQPhanTichFormKQs" />
+      <End Role="KQPhanTichFormKQPhuongPhapPhanTich" EntitySet="KQPhanTichFormKQ_PhuongPhapPhanTich" />
+    </AssociationSet>
+    <AssociationSet Name="FK_KQPhanTichFormKQ_PhuongPhapPhanTich_PhuongPhapPhanTich" Association="IERSystemModel.Store.FK_KQPhanTichFormKQPhuongPhapPhanTich_PhuongPhapPhanTich">
+      <End Role="PhuongPhapPhanTich" EntitySet="PhuongPhapPhanTiches" />
+      <End Role="KQPhanTichFormKQPhuongPhapPhanTich" EntitySet="KQPhanTichFormKQ_PhuongPhapPhanTich" />
+    </AssociationSet>
+    <AssociationSet Name="FK_KQThuNghiemMau_ChiTieuPhanTich_KQThuNghiemMau" Association="IERSystemModel.Store.FK_KQThuNghiemMau_ChiTieuPhanTich_KQThuNghiemMau">
+      <End Role="KQThuNghiemMau" EntitySet="KQThuNghiemMaus" />
+      <End Role="KQThuNghiemMau_ChiTieuPhanTich" EntitySet="KQThuNghiemMau_ChiTieuPhanTich" />
+    </AssociationSet>
+    <AssociationSet Name="FK_KQThuNghiemMau_ChiTieuPhanTich_ChiTieuPhanTich" Association="IERSystemModel.Store.FK_KQThuNghiemMau_ChiTieuPhanTich_ChiTieuPhanTich">
+      <End Role="ChiTieuPhanTich" EntitySet="ChiTieuPhanTiches" />
+      <End Role="KQThuNghiemMau_ChiTieuPhanTich" EntitySet="KQThuNghiemMau_ChiTieuPhanTich" />
+    </AssociationSet>
+    <AssociationSet Name="SoKQThuNghiem_MauLayHienTruong" Association="IERSystemModel.Store.SoKQThuNghiem_MauLayHienTruong">
+      <End Role="SoKQThuNghiem" EntitySet="SoKQThuNghiems" />
+      <End Role="MauLayHienTruong" EntitySet="MauLayHienTruongs" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="PhieuYeuCaus">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DiaChiKhachHang" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="DiaChiLayMau" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="KhachHangTraTruoc" Type="decimal" Nullable="false" />
+    <Property Name="MaDon" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="MaSoThue" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="NgayTaoHD" Type="datetime" Nullable="false" />
+    <Property Name="NoiLayMau" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PhiThiNghiemTamTinh" Type="decimal" Nullable="false" />
+    <Property Name="SoDienThoai" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="SoFax" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="TenDaiDien" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="TenKhachHang" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="NgayLayMau" Type="datetime" Nullable="false" />
+    <Property Name="NgayHenTraKQ" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MauLayHienTruongs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MaMau" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="MaMauKH" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="DonVi" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="MoTaMau" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SoLuong" Type="int" Nullable="false" />
+    <Property Name="ViTriLayMau" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PhieuYeuCauId" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ChiTieuPhanTiches">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenChiTieu" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="NhomChiTieu" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SoNhanMaus">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KHKiNhanTraKQ" Type="bit" Nullable="false" />
+    <Property Name="KHKiNhanTraTien" Type="bit" Nullable="false" />
+    <Property Name="NgayNhan" Type="datetime" Nullable="false" />
+    <Property Name="NgayTraKQ" Type="datetime" Nullable="false" />
+    <Property Name="CacSoNhanMauId" Type="bigint" Nullable="false" />
+    <Property Name="TinhTrang" Type="tinyint" Nullable="false" />
+    <Property Name="MauLayHienTruong_Id" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CacSoNhanMaus">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nam" Type="int" Nullable="false" />
+    <Property Name="Quy" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SoChuyenMaus">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DienTen" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="GhiChu" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="NgayGiaoMau" Type="datetime" Nullable="false" />
+    <Property Name="NgayTraKQ" Type="datetime" Nullable="false" />
+    <Property Name="CacSoChuyenMauId" Type="bigint" Nullable="false" />
+    <Property Name="TinhTrang" Type="tinyint" Nullable="false" />
+    <Property Name="MauLayHienTruong_Id" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CacSoChuyenMaus">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nam" Type="int" Nullable="false" />
+    <Property Name="Quy" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="KQThuNghiemMaus">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DonVi" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="KetQua" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="NguoiThucHien" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SoKQThuNghiemId" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SoKQThuNghiems">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MaMau" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="NgayNhanMau" Type="datetime" Nullable="false" />
+    <Property Name="NgayTraMau" Type="datetime" Nullable="false" />
+    <Property Name="MauLayHienTruong_Id" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FormKQs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NoiLayMau" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DiaChi" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ViTriLayMau" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="NgayGuiMau" Type="datetime" Nullable="false" />
+    <Property Name="LoaiMau" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="MaDon" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="MaMau" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PhuongPhapPhanTiches">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenPhuongPhap" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ChiTieuPhanTichId" Type="bigint" Nullable="false" />
+    <Property Name="ChiPhi" Type="decimal" Nullable="false" />
+  </EntityType>
+  <EntityType Name="KQPhanTichFormKQs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DonVi" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="GiaTri" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="FormKQId" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MauLayHienTruong_ChiTieuPhanTich">
+    <Key>
+      <PropertyRef Name="MauLayHienTruongs_Id" />
+      <PropertyRef Name="ChiTieuPhanTiches_Id" />
+    </Key>
+    <Property Name="MauLayHienTruongs_Id" Type="bigint" Nullable="false" />
+    <Property Name="ChiTieuPhanTiches_Id" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SoChuyenMau_ChiTieuPhanTich">
+    <Key>
+      <PropertyRef Name="SoChuyenMaus_Id" />
+      <PropertyRef Name="ChiTieuPhanTiches_Id" />
+    </Key>
+    <Property Name="SoChuyenMaus_Id" Type="bigint" Nullable="false" />
+    <Property Name="ChiTieuPhanTiches_Id" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="KQPhanTichFormKQPhuongPhapPhanTich">
+    <Key>
+      <PropertyRef Name="KQPhanTichFormKQs_Id" />
+      <PropertyRef Name="PhuongPhapPhanTiches_Id" />
+    </Key>
+    <Property Name="KQPhanTichFormKQs_Id" Type="bigint" Nullable="false" />
+    <Property Name="PhuongPhapPhanTiches_Id" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="KQThuNghiemMau_ChiTieuPhanTich">
+    <Key>
+      <PropertyRef Name="KQThuNghiemMaus_Id" />
+      <PropertyRef Name="ChiTieuPhanTiches_Id" />
+    </Key>
+    <Property Name="KQThuNghiemMaus_Id" Type="bigint" Nullable="false" />
+    <Property Name="ChiTieuPhanTiches_Id" Type="bigint" Nullable="false" />
+  </EntityType>
+  <Association Name="PhieuYeuCau_MauLayHienTruong">
+    <End Role="PhieuYeuCau" Type="IERSystemModel.Store.PhieuYeuCaus" Multiplicity="1" />
+    <End Role="MauLayHienTruong" Type="IERSystemModel.Store.MauLayHienTruongs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PhieuYeuCau">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MauLayHienTruong">
+        <PropertyRef Name="PhieuYeuCauId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CacSoNhanMau_SoNhanMau">
+    <End Role="CacSoNhanMau" Type="IERSystemModel.Store.CacSoNhanMaus" Multiplicity="1" />
+    <End Role="SoNhanMau" Type="IERSystemModel.Store.SoNhanMaus" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CacSoNhanMau">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SoNhanMau">
+        <PropertyRef Name="CacSoNhanMauId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MauLayHienTruong_SoNhanMau">
+    <End Role="MauLayHienTruong" Type="IERSystemModel.Store.MauLayHienTruongs" Multiplicity="1" />
+    <End Role="SoNhanMau" Type="IERSystemModel.Store.SoNhanMaus" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MauLayHienTruong">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SoNhanMau">
+        <PropertyRef Name="MauLayHienTruong_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CacSoChuyenMauSoChuyenMau">
+    <End Role="CacSoChuyenMau" Type="IERSystemModel.Store.CacSoChuyenMaus" Multiplicity="1" />
+    <End Role="SoChuyenMau" Type="IERSystemModel.Store.SoChuyenMaus" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CacSoChuyenMau">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SoChuyenMau">
+        <PropertyRef Name="CacSoChuyenMauId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SoKQThuNghiemKQThuNghiemMau">
+    <End Role="SoKQThuNghiem" Type="IERSystemModel.Store.SoKQThuNghiems" Multiplicity="1" />
+    <End Role="KQThuNghiemMau" Type="IERSystemModel.Store.KQThuNghiemMaus" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SoKQThuNghiem">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="KQThuNghiemMau">
+        <PropertyRef Name="SoKQThuNghiemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MauLayHienTruong_SoChuyenMau">
+    <End Role="MauLayHienTruong" Type="IERSystemModel.Store.MauLayHienTruongs" Multiplicity="1" />
+    <End Role="SoChuyenMau" Type="IERSystemModel.Store.SoChuyenMaus" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MauLayHienTruong">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SoChuyenMau">
+        <PropertyRef Name="MauLayHienTruong_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ChiTieuPhanTich_PhuongPhapPhanTich">
+    <End Role="ChiTieuPhanTich" Type="IERSystemModel.Store.ChiTieuPhanTiches" Multiplicity="1" />
+    <End Role="PhuongPhapPhanTich" Type="IERSystemModel.Store.PhuongPhapPhanTiches" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ChiTieuPhanTich">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PhuongPhapPhanTich">
+        <PropertyRef Name="ChiTieuPhanTichId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FormKQ_KQPhanTichFormKQ">
+    <End Role="FormKQ" Type="IERSystemModel.Store.FormKQs" Multiplicity="1" />
+    <End Role="KQPhanTichFormKQ" Type="IERSystemModel.Store.KQPhanTichFormKQs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FormKQ">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="KQPhanTichFormKQ">
+        <PropertyRef Name="FormKQId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SoKQThuNghiem_MauLayHienTruong">
+    <End Role="SoKQThuNghiem" Type="IERSystemModel.Store.SoKQThuNghiems" Multiplicity="*" />
+    <End Role="MauLayHienTruong" Type="IERSystemModel.Store.MauLayHienTruongs" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="MauLayHienTruong">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SoKQThuNghiem">
+        <PropertyRef Name="MauLayHienTruong_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MauLayHienTruong_ChiTieuPhanTich_MauLayHienTruong">
+    <End Role="MauLayHienTruong" Type="IERSystemModel.Store.MauLayHienTruongs" Multiplicity="1" />
+    <End Role="MauLayHienTruong_ChiTieuPhanTich" Type="IERSystemModel.Store.MauLayHienTruong_ChiTieuPhanTich" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MauLayHienTruong">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MauLayHienTruong_ChiTieuPhanTich">
+        <PropertyRef Name="MauLayHienTruongs_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MauLayHienTruong_ChiTieuPhanTich_ChiTieuPhanTich">
+    <End Role="MauLayHienTruong_ChiTieuPhanTich" Type="IERSystemModel.Store.MauLayHienTruong_ChiTieuPhanTich" Multiplicity="*" />
+    <End Role="ChiTieuPhanTich" Type="IERSystemModel.Store.ChiTieuPhanTiches" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="ChiTieuPhanTich">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MauLayHienTruong_ChiTieuPhanTich">
+        <PropertyRef Name="ChiTieuPhanTiches_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SoChuyenMau_ChiTieuPhanTich_SoChuyenMau">
+    <End Role="SoChuyenMau" Type="IERSystemModel.Store.SoChuyenMaus" Multiplicity="1" />
+    <End Role="SoChuyenMau_ChiTieuPhanTich" Type="IERSystemModel.Store.SoChuyenMau_ChiTieuPhanTich" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SoChuyenMau">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SoChuyenMau_ChiTieuPhanTich">
+        <PropertyRef Name="SoChuyenMaus_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SoChuyenMau_ChiTieuPhanTich_ChiTieuPhanTich">
+    <End Role="SoChuyenMau_ChiTieuPhanTich" Type="IERSystemModel.Store.SoChuyenMau_ChiTieuPhanTich" Multiplicity="*" />
+    <End Role="ChiTieuPhanTich" Type="IERSystemModel.Store.ChiTieuPhanTiches" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="ChiTieuPhanTich">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SoChuyenMau_ChiTieuPhanTich">
+        <PropertyRef Name="ChiTieuPhanTiches_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_KQPhanTichFormKQPhuongPhapPhanTich_KQPhanTichFormKQ">
+    <End Role="KQPhanTichFormKQ" Type="IERSystemModel.Store.KQPhanTichFormKQs" Multiplicity="1" />
+    <End Role="KQPhanTichFormKQPhuongPhapPhanTich" Type="IERSystemModel.Store.KQPhanTichFormKQPhuongPhapPhanTich" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KQPhanTichFormKQ">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="KQPhanTichFormKQPhuongPhapPhanTich">
+        <PropertyRef Name="KQPhanTichFormKQs_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_KQPhanTichFormKQPhuongPhapPhanTich_PhuongPhapPhanTich">
+    <End Role="KQPhanTichFormKQPhuongPhapPhanTich" Type="IERSystemModel.Store.KQPhanTichFormKQPhuongPhapPhanTich" Multiplicity="*" />
+    <End Role="PhuongPhapPhanTich" Type="IERSystemModel.Store.PhuongPhapPhanTiches" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="PhuongPhapPhanTich">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="KQPhanTichFormKQPhuongPhapPhanTich">
+        <PropertyRef Name="PhuongPhapPhanTiches_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_KQThuNghiemMau_ChiTieuPhanTich_KQThuNghiemMau">
+    <End Role="KQThuNghiemMau" Type="IERSystemModel.Store.KQThuNghiemMaus" Multiplicity="1" />
+    <End Role="KQThuNghiemMau_ChiTieuPhanTich" Type="IERSystemModel.Store.KQThuNghiemMau_ChiTieuPhanTich" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KQThuNghiemMau">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="KQThuNghiemMau_ChiTieuPhanTich">
+        <PropertyRef Name="KQThuNghiemMaus_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_KQThuNghiemMau_ChiTieuPhanTich_ChiTieuPhanTich">
+    <End Role="KQThuNghiemMau_ChiTieuPhanTich" Type="IERSystemModel.Store.KQThuNghiemMau_ChiTieuPhanTich" Multiplicity="*" />
+    <End Role="ChiTieuPhanTich" Type="IERSystemModel.Store.ChiTieuPhanTiches" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="ChiTieuPhanTich">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="KQThuNghiemMau_ChiTieuPhanTich">
+        <PropertyRef Name="ChiTieuPhanTiches_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="IERSystemModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="IERSystemModelContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="PhieuYeuCaus" EntityType="IERSystemModel.PhieuYeuCau" />
+          <EntitySet Name="MauLayHienTruongs" EntityType="IERSystemModel.MauLayHienTruong" />
+          <AssociationSet Name="PhieuYeuCau_MauLayHienTruong" Association="IERSystemModel.PhieuYeuCau_MauLayHienTruong">
+            <End Role="PhieuYeuCau" EntitySet="PhieuYeuCaus" />
+            <End Role="MauLayHienTruong" EntitySet="MauLayHienTruongs" />
+          </AssociationSet>
+          <EntitySet Name="ChiTieuPhanTiches" EntityType="IERSystemModel.ChiTieuPhanTich" />
+          <AssociationSet Name="MauLayHienTruong_ChiTieuPhanTich" Association="IERSystemModel.MauLayHienTruong_ChiTieuPhanTich">
+            <End Role="MauLayHienTruong" EntitySet="MauLayHienTruongs" />
+            <End Role="ChiTieuPhanTich" EntitySet="ChiTieuPhanTiches" />
+          </AssociationSet>
+          <EntitySet Name="SoNhanMaus" EntityType="IERSystemModel.SoNhanMau" />
+          <EntitySet Name="CacSoNhanMaus" EntityType="IERSystemModel.CacSoNhanMau" />
+          <AssociationSet Name="CacSoNhanMau_SoNhanMau" Association="IERSystemModel.CacSoNhanMau_SoNhanMau">
+            <End Role="CacSoNhanMau" EntitySet="CacSoNhanMaus" />
+            <End Role="SoNhanMau" EntitySet="SoNhanMaus" />
+          </AssociationSet>
+          <AssociationSet Name="MauLayHienTruong_SoNhanMau" Association="IERSystemModel.MauLayHienTruong_SoNhanMau">
+            <End Role="MauLayHienTruong" EntitySet="MauLayHienTruongs" />
+            <End Role="SoNhanMau" EntitySet="SoNhanMaus" />
+          </AssociationSet>
+          <EntitySet Name="SoChuyenMaus" EntityType="IERSystemModel.SoChuyenMau" />
+          <EntitySet Name="CacSoChuyenMaus" EntityType="IERSystemModel.CacSoChuyenMau" />
+          <AssociationSet Name="CacSoChuyenMau_SoChuyenMau" Association="IERSystemModel.CacSoChuyenMauSoChuyenMau">
+            <End Role="CacSoChuyenMau" EntitySet="CacSoChuyenMaus" />
+            <End Role="SoChuyenMau" EntitySet="SoChuyenMaus" />
+          </AssociationSet>
+          <EntitySet Name="KQThuNghiemMaus" EntityType="IERSystemModel.KQThuNghiemMau" />
+          <EntitySet Name="SoKQThuNghiems" EntityType="IERSystemModel.SoKQThuNghiem" />
+          <AssociationSet Name="SoKQThuNghiem_KQThuNghiemMau" Association="IERSystemModel.SoKQThuNghiemKQThuNghiemMau">
+            <End Role="SoKQThuNghiem" EntitySet="SoKQThuNghiems" />
+            <End Role="KQThuNghiemMau" EntitySet="KQThuNghiemMaus" />
+          </AssociationSet>
+          <EntitySet Name="FormKQs" EntityType="IERSystemModel.FormKQ" />
+          <AssociationSet Name="MauLayHienTruong_SoChuyenMau" Association="IERSystemModel.MauLayHienTruong_SoChuyenMau">
+            <End Role="MauLayHienTruong" EntitySet="MauLayHienTruongs" />
+            <End Role="SoChuyenMau" EntitySet="SoChuyenMaus" />
+          </AssociationSet>
+          <EntitySet Name="PhuongPhapPhanTiches" EntityType="IERSystemModel.PhuongPhapPhanTich" />
+          <AssociationSet Name="ChiTieuPhanTich_PhuongPhapPhanTich" Association="IERSystemModel.ChiTieuPhanTich_PhuongPhapPhanTich">
+            <End Role="ChiTieuPhanTich" EntitySet="ChiTieuPhanTiches" />
+            <End Role="PhuongPhapPhanTich" EntitySet="PhuongPhapPhanTiches" />
+          </AssociationSet>
+          <EntitySet Name="KQPhanTichFormKQs" EntityType="IERSystemModel.KQPhanTichFormKQ" />
+          <AssociationSet Name="FormKQ_KQPhanTichFormKQ" Association="IERSystemModel.FormKQ_KQPhanTichFormKQ">
+            <End Role="FormKQ" EntitySet="FormKQs" />
+            <End Role="KQPhanTichFormKQ" EntitySet="KQPhanTichFormKQs" />
+          </AssociationSet>
+          <AssociationSet Name="SoChuyenMau_ChiTieuPhanTich" Association="IERSystemModel.SoChuyenMau_ChiTieuPhanTich">
+            <End Role="SoChuyenMau" EntitySet="SoChuyenMaus" />
+            <End Role="ChiTieuPhanTich" EntitySet="ChiTieuPhanTiches" />
+          </AssociationSet>
+          <AssociationSet Name="KQPhanTichFormKQ_PhuongPhapPhanTich" Association="IERSystemModel.KQPhanTichFormKQPhuongPhapPhanTich">
+            <End Role="KQPhanTichFormKQ" EntitySet="KQPhanTichFormKQs" />
+            <End Role="PhuongPhapPhanTich" EntitySet="PhuongPhapPhanTiches" />
+          </AssociationSet>
+          <AssociationSet Name="KQThuNghiemMau_ChiTieuPhanTich" Association="IERSystemModel.KQThuNghiemMau_ChiTieuPhanTich">
+            <End Role="KQThuNghiemMau" EntitySet="KQThuNghiemMaus" />
+            <End Role="ChiTieuPhanTich" EntitySet="ChiTieuPhanTiches" />
+          </AssociationSet>
+          <AssociationSet Name="SoKQThuNghiem_MauLayHienTruong" Association="IERSystemModel.SoKQThuNghiem_MauLayHienTruong">
+            <End Role="SoKQThuNghiem" EntitySet="SoKQThuNghiems" />
+            <End Role="MauLayHienTruong" EntitySet="MauLayHienTruongs" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="PhieuYeuCau">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DiaChiKhachHang" Type="String" Nullable="true" />
+          <Property Name="DiaChiLayMau" Type="String" Nullable="false" />
+          <Property Name="KhachHangTraTruoc" Type="Decimal" Nullable="false" />
+          <Property Name="MaDon" Type="String" Nullable="false" />
+          <Property Name="MaSoThue" Type="String" Nullable="true" />
+          <Property Name="NgayTaoHD" Type="DateTime" Nullable="false" />
+          <Property Name="NoiLayMau" Type="String" Nullable="false" />
+          <Property Name="PhiThiNghiemTamTinh" Type="Decimal" Nullable="false" />
+          <Property Name="SoDienThoai" Type="String" Nullable="true" />
+          <Property Name="SoFax" Type="String" Nullable="true" />
+          <Property Name="TenDaiDien" Type="String" Nullable="true" />
+          <Property Name="TenKhachHang" Type="String" Nullable="true" />
+          <NavigationProperty Name="MauLayHienTruongs" Relationship="IERSystemModel.PhieuYeuCau_MauLayHienTruong" FromRole="PhieuYeuCau" ToRole="MauLayHienTruong" />
+          <Property Name="NgayLayMau" Type="DateTime" Nullable="false" />
+          <Property Name="NgayHenTraKQ" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MauLayHienTruong">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaMau" Type="String" Nullable="true" />
+          <Property Name="MaMauKH" Type="String" Nullable="true" />
+          <Property Name="DonVi" Type="String" Nullable="false" />
+          <Property Name="MoTaMau" Type="String" Nullable="false" />
+          <Property Name="SoLuong" Type="Int32" Nullable="false" />
+          <Property Name="ViTriLayMau" Type="String" Nullable="false" />
+          <NavigationProperty Name="PhieuYeuCau" Relationship="IERSystemModel.PhieuYeuCau_MauLayHienTruong" FromRole="MauLayHienTruong" ToRole="PhieuYeuCau" />
+          <Property Name="PhieuYeuCauId" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="ChiTieuPhanTiches" Relationship="IERSystemModel.MauLayHienTruong_ChiTieuPhanTich" FromRole="MauLayHienTruong" ToRole="ChiTieuPhanTich" />
+          <NavigationProperty Name="SoNhanMau" Relationship="IERSystemModel.MauLayHienTruong_SoNhanMau" FromRole="MauLayHienTruong" ToRole="SoNhanMau" />
+          <NavigationProperty Name="SoChuyenMau" Relationship="IERSystemModel.MauLayHienTruong_SoChuyenMau" FromRole="MauLayHienTruong" ToRole="SoChuyenMau" />
+          <NavigationProperty Name="SoKQThuNghiem" Relationship="IERSystemModel.SoKQThuNghiem_MauLayHienTruong" FromRole="MauLayHienTruong" ToRole="SoKQThuNghiem" />
+        </EntityType>
+        <Association Name="PhieuYeuCau_MauLayHienTruong">
+          <End Type="IERSystemModel.PhieuYeuCau" Role="PhieuYeuCau" Multiplicity="1" />
+          <End Type="IERSystemModel.MauLayHienTruong" Role="MauLayHienTruong" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PhieuYeuCau">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MauLayHienTruong">
+              <PropertyRef Name="PhieuYeuCauId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ChiTieuPhanTich">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenChiTieu" Type="String" Nullable="false" />
+          <Property Name="NhomChiTieu" Type="String" Nullable="false" />
+          <NavigationProperty Name="MauLayHienTruongs" Relationship="IERSystemModel.MauLayHienTruong_ChiTieuPhanTich" FromRole="ChiTieuPhanTich" ToRole="MauLayHienTruong" />
+          <NavigationProperty Name="PhuongPhapPhanTiches" Relationship="IERSystemModel.ChiTieuPhanTich_PhuongPhapPhanTich" FromRole="ChiTieuPhanTich" ToRole="PhuongPhapPhanTich" />
+          <NavigationProperty Name="SoChuyenMaus" Relationship="IERSystemModel.SoChuyenMau_ChiTieuPhanTich" FromRole="ChiTieuPhanTich" ToRole="SoChuyenMau" />
+          <NavigationProperty Name="KQThuNghiemMaus" Relationship="IERSystemModel.KQThuNghiemMau_ChiTieuPhanTich" FromRole="ChiTieuPhanTich" ToRole="KQThuNghiemMau" />
+        </EntityType>
+        <Association Name="MauLayHienTruong_ChiTieuPhanTich">
+          <End Type="IERSystemModel.MauLayHienTruong" Role="MauLayHienTruong" Multiplicity="*" />
+          <End Type="IERSystemModel.ChiTieuPhanTich" Role="ChiTieuPhanTich" Multiplicity="*" />
+        </Association>
+        <EntityType Name="SoNhanMau">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KHKiNhanTraKQ" Type="Boolean" Nullable="false" />
+          <Property Name="KHKiNhanTraTien" Type="Boolean" Nullable="false" />
+          <Property Name="NgayNhan" Type="DateTime" Nullable="false" />
+          <Property Name="NgayTraKQ" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="CacSoNhanMau" Relationship="IERSystemModel.CacSoNhanMau_SoNhanMau" FromRole="SoNhanMau" ToRole="CacSoNhanMau" />
+          <Property Name="CacSoNhanMauId" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="MauLayHienTruong" Relationship="IERSystemModel.MauLayHienTruong_SoNhanMau" FromRole="SoNhanMau" ToRole="MauLayHienTruong" />
+          <Property Name="TinhTrang" Type="Byte" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CacSoNhanMau">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nam" Type="Int32" Nullable="false" />
+          <Property Name="Quy" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="SoNhanMaus" Relationship="IERSystemModel.CacSoNhanMau_SoNhanMau" FromRole="CacSoNhanMau" ToRole="SoNhanMau" />
+        </EntityType>
+        <Association Name="CacSoNhanMau_SoNhanMau">
+          <End Type="IERSystemModel.CacSoNhanMau" Role="CacSoNhanMau" Multiplicity="1" />
+          <End Type="IERSystemModel.SoNhanMau" Role="SoNhanMau" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CacSoNhanMau">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SoNhanMau">
+              <PropertyRef Name="CacSoNhanMauId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MauLayHienTruong_SoNhanMau">
+          <End Type="IERSystemModel.MauLayHienTruong" Role="MauLayHienTruong" Multiplicity="1" />
+          <End Type="IERSystemModel.SoNhanMau" Role="SoNhanMau" Multiplicity="0..1" />
+        </Association>
+        <EntityType Name="SoChuyenMau">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DienTen" Type="String" Nullable="true" />
+          <Property Name="GhiChu" Type="String" Nullable="true" />
+          <Property Name="NgayGiaoMau" Type="DateTime" Nullable="false" />
+          <Property Name="NgayTraKQ" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="CacSoChuyenMau" Relationship="IERSystemModel.CacSoChuyenMauSoChuyenMau" FromRole="SoChuyenMau" ToRole="CacSoChuyenMau" />
+          <Property Name="CacSoChuyenMauId" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="MauLayHienTruong" Relationship="IERSystemModel.MauLayHienTruong_SoChuyenMau" FromRole="SoChuyenMau" ToRole="MauLayHienTruong" />
+          <NavigationProperty Name="ChiTieuPhanTiches" Relationship="IERSystemModel.SoChuyenMau_ChiTieuPhanTich" FromRole="SoChuyenMau" ToRole="ChiTieuPhanTich" />
+          <Property Name="TinhTrang" Type="Byte" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CacSoChuyenMau">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nam" Type="Int32" Nullable="false" />
+          <Property Name="Quy" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="SoChuyenMaus" Relationship="IERSystemModel.CacSoChuyenMauSoChuyenMau" FromRole="CacSoChuyenMau" ToRole="SoChuyenMau" />
+        </EntityType>
+        <Association Name="CacSoChuyenMauSoChuyenMau">
+          <End Type="IERSystemModel.CacSoChuyenMau" Role="CacSoChuyenMau" Multiplicity="1" />
+          <End Type="IERSystemModel.SoChuyenMau" Role="SoChuyenMau" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CacSoChuyenMau">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SoChuyenMau">
+              <PropertyRef Name="CacSoChuyenMauId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="KQThuNghiemMau">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DonVi" Type="String" Nullable="false" />
+          <Property Name="KetQua" Type="String" Nullable="false" />
+          <Property Name="NguoiThucHien" Type="String" Nullable="false" />
+          <NavigationProperty Name="SoKQThuNghiem" Relationship="IERSystemModel.SoKQThuNghiemKQThuNghiemMau" FromRole="KQThuNghiemMau" ToRole="SoKQThuNghiem" />
+          <Property Name="SoKQThuNghiemId" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="ChiTieuPhanTiches" Relationship="IERSystemModel.KQThuNghiemMau_ChiTieuPhanTich" FromRole="KQThuNghiemMau" ToRole="ChiTieuPhanTich" />
+        </EntityType>
+        <EntityType Name="SoKQThuNghiem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaMau" Type="String" Nullable="false" />
+          <Property Name="NgayNhanMau" Type="DateTime" Nullable="false" />
+          <Property Name="NgayTraMau" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="KQThuNghiemMaus" Relationship="IERSystemModel.SoKQThuNghiemKQThuNghiemMau" FromRole="SoKQThuNghiem" ToRole="KQThuNghiemMau" />
+          <NavigationProperty Name="MauLayHienTruong" Relationship="IERSystemModel.SoKQThuNghiem_MauLayHienTruong" FromRole="SoKQThuNghiem" ToRole="MauLayHienTruong" />
+        </EntityType>
+        <Association Name="SoKQThuNghiemKQThuNghiemMau">
+          <End Type="IERSystemModel.SoKQThuNghiem" Role="SoKQThuNghiem" Multiplicity="1" />
+          <End Type="IERSystemModel.KQThuNghiemMau" Role="KQThuNghiemMau" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SoKQThuNghiem">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="KQThuNghiemMau">
+              <PropertyRef Name="SoKQThuNghiemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="FormKQ">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NoiLayMau" Type="String" Nullable="false" />
+          <Property Name="DiaChi" Type="String" Nullable="false" />
+          <Property Name="ViTriLayMau" Type="String" Nullable="false" />
+          <Property Name="NgayGuiMau" Type="DateTime" Nullable="false" />
+          <Property Name="LoaiMau" Type="String" Nullable="false" />
+          <Property Name="MaDon" Type="String" Nullable="false" />
+          <Property Name="MaMau" Type="String" Nullable="false" />
+          <NavigationProperty Name="KQPhanTichFormKQs" Relationship="IERSystemModel.FormKQ_KQPhanTichFormKQ" FromRole="FormKQ" ToRole="KQPhanTichFormKQ" />
+        </EntityType>
+        <Association Name="MauLayHienTruong_SoChuyenMau">
+          <End Type="IERSystemModel.MauLayHienTruong" Role="MauLayHienTruong" Multiplicity="1" />
+          <End Type="IERSystemModel.SoChuyenMau" Role="SoChuyenMau" Multiplicity="0..1" />
+        </Association>
+        <EntityType Name="PhuongPhapPhanTich">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenPhuongPhap" Type="String" Nullable="false" />
+          <NavigationProperty Name="ChiTieuPhanTich" Relationship="IERSystemModel.ChiTieuPhanTich_PhuongPhapPhanTich" FromRole="PhuongPhapPhanTich" ToRole="ChiTieuPhanTich" />
+          <Property Name="ChiTieuPhanTichId" Type="Int64" Nullable="false" />
+          <Property Name="ChiPhi" Type="Decimal" Nullable="false" />
+          <NavigationProperty Name="KQPhanTichFormKQs" Relationship="IERSystemModel.KQPhanTichFormKQPhuongPhapPhanTich" FromRole="PhuongPhapPhanTich" ToRole="KQPhanTichFormKQ" />
+        </EntityType>
+        <Association Name="ChiTieuPhanTich_PhuongPhapPhanTich">
+          <End Type="IERSystemModel.ChiTieuPhanTich" Role="ChiTieuPhanTich" Multiplicity="1" />
+          <End Type="IERSystemModel.PhuongPhapPhanTich" Role="PhuongPhapPhanTich" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ChiTieuPhanTich">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PhuongPhapPhanTich">
+              <PropertyRef Name="ChiTieuPhanTichId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="KQPhanTichFormKQ">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DonVi" Type="String" Nullable="false" />
+          <Property Name="GiaTri" Type="String" Nullable="false" />
+          <NavigationProperty Name="FormKQ" Relationship="IERSystemModel.FormKQ_KQPhanTichFormKQ" FromRole="KQPhanTichFormKQ" ToRole="FormKQ" />
+          <Property Name="FormKQId" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="PhuongPhapPhanTiches" Relationship="IERSystemModel.KQPhanTichFormKQPhuongPhapPhanTich" FromRole="KQPhanTichFormKQ" ToRole="PhuongPhapPhanTich" />
+        </EntityType>
+        <Association Name="FormKQ_KQPhanTichFormKQ">
+          <End Type="IERSystemModel.FormKQ" Role="FormKQ" Multiplicity="1" />
+          <End Type="IERSystemModel.KQPhanTichFormKQ" Role="KQPhanTichFormKQ" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FormKQ">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="KQPhanTichFormKQ">
+              <PropertyRef Name="FormKQId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SoChuyenMau_ChiTieuPhanTich">
+          <End Type="IERSystemModel.SoChuyenMau" Role="SoChuyenMau" Multiplicity="*" />
+          <End Type="IERSystemModel.ChiTieuPhanTich" Role="ChiTieuPhanTich" Multiplicity="*" />
+        </Association>
+        <Association Name="KQPhanTichFormKQPhuongPhapPhanTich">
+          <End Type="IERSystemModel.KQPhanTichFormKQ" Role="KQPhanTichFormKQ" Multiplicity="*" />
+          <End Type="IERSystemModel.PhuongPhapPhanTich" Role="PhuongPhapPhanTich" Multiplicity="*" />
+        </Association>
+        <Association Name="KQThuNghiemMau_ChiTieuPhanTich">
+          <End Type="IERSystemModel.KQThuNghiemMau" Role="KQThuNghiemMau" Multiplicity="*" />
+          <End Type="IERSystemModel.ChiTieuPhanTich" Role="ChiTieuPhanTich" Multiplicity="*" />
+        </Association>
+        <Association Name="SoKQThuNghiem_MauLayHienTruong">
+          <End Type="IERSystemModel.SoKQThuNghiem" Role="SoKQThuNghiem" Multiplicity="0..1" />
+          <End Type="IERSystemModel.MauLayHienTruong" Role="MauLayHienTruong" Multiplicity="1" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="IERSystemModelStoreContainer" CdmEntityContainer="IERSystemModelContainer">
+    <EntitySetMapping Name="PhieuYeuCaus">
+      <EntityTypeMapping TypeName="IsTypeOf(IERSystemModel.PhieuYeuCau)">
+        <MappingFragment StoreEntitySet="PhieuYeuCaus">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DiaChiKhachHang" ColumnName="DiaChiKhachHang" />
+          <ScalarProperty Name="DiaChiLayMau" ColumnName="DiaChiLayMau" />
+          <ScalarProperty Name="KhachHangTraTruoc" ColumnName="KhachHangTraTruoc" />
+          <ScalarProperty Name="MaDon" ColumnName="MaDon" />
+          <ScalarProperty Name="MaSoThue" ColumnName="MaSoThue" />
+          <ScalarProperty Name="NgayTaoHD" ColumnName="NgayTaoHD" />
+          <ScalarProperty Name="NoiLayMau" ColumnName="NoiLayMau" />
+          <ScalarProperty Name="PhiThiNghiemTamTinh" ColumnName="PhiThiNghiemTamTinh" />
+          <ScalarProperty Name="SoDienThoai" ColumnName="SoDienThoai" />
+          <ScalarProperty Name="SoFax" ColumnName="SoFax" />
+          <ScalarProperty Name="TenDaiDien" ColumnName="TenDaiDien" />
+          <ScalarProperty Name="TenKhachHang" ColumnName="TenKhachHang" />
+          <ScalarProperty Name="NgayLayMau" ColumnName="NgayLayMau" />
+          <ScalarProperty Name="NgayHenTraKQ" ColumnName="NgayHenTraKQ" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MauLayHienTruongs">
+      <EntityTypeMapping TypeName="IsTypeOf(IERSystemModel.MauLayHienTruong)">
+        <MappingFragment StoreEntitySet="MauLayHienTruongs">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="MaMau" ColumnName="MaMau" />
+          <ScalarProperty Name="MaMauKH" ColumnName="MaMauKH" />
+          <ScalarProperty Name="DonVi" ColumnName="DonVi" />
+          <ScalarProperty Name="MoTaMau" ColumnName="MoTaMau" />
+          <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+          <ScalarProperty Name="ViTriLayMau" ColumnName="ViTriLayMau" />
+          <ScalarProperty Name="PhieuYeuCauId" ColumnName="PhieuYeuCauId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ChiTieuPhanTiches">
+      <EntityTypeMapping TypeName="IsTypeOf(IERSystemModel.ChiTieuPhanTich)">
+        <MappingFragment StoreEntitySet="ChiTieuPhanTiches">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TenChiTieu" ColumnName="TenChiTieu" />
+          <ScalarProperty Name="NhomChiTieu" ColumnName="NhomChiTieu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SoNhanMaus">
+      <EntityTypeMapping TypeName="IsTypeOf(IERSystemModel.SoNhanMau)">
+        <MappingFragment StoreEntitySet="SoNhanMaus">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="KHKiNhanTraKQ" ColumnName="KHKiNhanTraKQ" />
+          <ScalarProperty Name="KHKiNhanTraTien" ColumnName="KHKiNhanTraTien" />
+          <ScalarProperty Name="NgayNhan" ColumnName="NgayNhan" />
+          <ScalarProperty Name="NgayTraKQ" ColumnName="NgayTraKQ" />
+          <ScalarProperty Name="CacSoNhanMauId" ColumnName="CacSoNhanMauId" />
+          <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CacSoNhanMaus">
+      <EntityTypeMapping TypeName="IsTypeOf(IERSystemModel.CacSoNhanMau)">
+        <MappingFragment StoreEntitySet="CacSoNhanMaus">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nam" ColumnName="Nam" />
+          <ScalarProperty Name="Quy" ColumnName="Quy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SoChuyenMaus">
+      <EntityTypeMapping TypeName="IsTypeOf(IERSystemModel.SoChuyenMau)">
+        <MappingFragment StoreEntitySet="SoChuyenMaus">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DienTen" ColumnName="DienTen" />
+          <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
+          <ScalarProperty Name="NgayGiaoMau" ColumnName="NgayGiaoMau" />
+          <ScalarProperty Name="NgayTraKQ" ColumnName="NgayTraKQ" />
+          <ScalarProperty Name="CacSoChuyenMauId" ColumnName="CacSoChuyenMauId" />
+          <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CacSoChuyenMaus">
+      <EntityTypeMapping TypeName="IsTypeOf(IERSystemModel.CacSoChuyenMau)">
+        <MappingFragment StoreEntitySet="CacSoChuyenMaus">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nam" ColumnName="Nam" />
+          <ScalarProperty Name="Quy" ColumnName="Quy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KQThuNghiemMaus">
+      <EntityTypeMapping TypeName="IsTypeOf(IERSystemModel.KQThuNghiemMau)">
+        <MappingFragment StoreEntitySet="KQThuNghiemMaus">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DonVi" ColumnName="DonVi" />
+          <ScalarProperty Name="KetQua" ColumnName="KetQua" />
+          <ScalarProperty Name="NguoiThucHien" ColumnName="NguoiThucHien" />
+          <ScalarProperty Name="SoKQThuNghiemId" ColumnName="SoKQThuNghiemId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SoKQThuNghiems">
+      <EntityTypeMapping TypeName="IsTypeOf(IERSystemModel.SoKQThuNghiem)">
+        <MappingFragment StoreEntitySet="SoKQThuNghiems">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="MaMau" ColumnName="MaMau" />
+          <ScalarProperty Name="NgayNhanMau" ColumnName="NgayNhanMau" />
+          <ScalarProperty Name="NgayTraMau" ColumnName="NgayTraMau" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FormKQs">
+      <EntityTypeMapping TypeName="IsTypeOf(IERSystemModel.FormKQ)">
+        <MappingFragment StoreEntitySet="FormKQs">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="NoiLayMau" ColumnName="NoiLayMau" />
+          <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+          <ScalarProperty Name="ViTriLayMau" ColumnName="ViTriLayMau" />
+          <ScalarProperty Name="NgayGuiMau" ColumnName="NgayGuiMau" />
+          <ScalarProperty Name="LoaiMau" ColumnName="LoaiMau" />
+          <ScalarProperty Name="MaDon" ColumnName="MaDon" />
+          <ScalarProperty Name="MaMau" ColumnName="MaMau" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PhuongPhapPhanTiches">
+      <EntityTypeMapping TypeName="IsTypeOf(IERSystemModel.PhuongPhapPhanTich)">
+        <MappingFragment StoreEntitySet="PhuongPhapPhanTiches">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TenPhuongPhap" ColumnName="TenPhuongPhap" />
+          <ScalarProperty Name="ChiTieuPhanTichId" ColumnName="ChiTieuPhanTichId" />
+          <ScalarProperty Name="ChiPhi" ColumnName="ChiPhi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KQPhanTichFormKQs">
+      <EntityTypeMapping TypeName="IsTypeOf(IERSystemModel.KQPhanTichFormKQ)">
+        <MappingFragment StoreEntitySet="KQPhanTichFormKQs">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DonVi" ColumnName="DonVi" />
+          <ScalarProperty Name="GiaTri" ColumnName="GiaTri" />
+          <ScalarProperty Name="FormKQId" ColumnName="FormKQId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="MauLayHienTruong_ChiTieuPhanTich" TypeName="IERSystemModel.MauLayHienTruong_ChiTieuPhanTich" StoreEntitySet="MauLayHienTruong_ChiTieuPhanTich">
+      <EndProperty Name="MauLayHienTruong">
+        <ScalarProperty Name="Id" ColumnName="MauLayHienTruongs_Id" />
+      </EndProperty>
+      <EndProperty Name="ChiTieuPhanTich">
+        <ScalarProperty Name="Id" ColumnName="ChiTieuPhanTiches_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="MauLayHienTruong_SoNhanMau" TypeName="IERSystemModel.MauLayHienTruong_SoNhanMau" StoreEntitySet="SoNhanMaus">
+      <EndProperty Name="MauLayHienTruong">
+        <ScalarProperty Name="Id" ColumnName="MauLayHienTruong_Id" />
+      </EndProperty>
+      <EndProperty Name="SoNhanMau">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="MauLayHienTruong_SoChuyenMau" TypeName="IERSystemModel.MauLayHienTruong_SoChuyenMau" StoreEntitySet="SoChuyenMaus">
+      <EndProperty Name="MauLayHienTruong">
+        <ScalarProperty Name="Id" ColumnName="MauLayHienTruong_Id" />
+      </EndProperty>
+      <EndProperty Name="SoChuyenMau">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="SoChuyenMau_ChiTieuPhanTich" TypeName="IERSystemModel.SoChuyenMau_ChiTieuPhanTich" StoreEntitySet="SoChuyenMau_ChiTieuPhanTich">
+      <EndProperty Name="SoChuyenMau">
+        <ScalarProperty Name="Id" ColumnName="SoChuyenMaus_Id" />
+      </EndProperty>
+      <EndProperty Name="ChiTieuPhanTich">
+        <ScalarProperty Name="Id" ColumnName="ChiTieuPhanTiches_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="KQPhanTichFormKQ_PhuongPhapPhanTich" TypeName="IERSystemModel.KQPhanTichFormKQPhuongPhapPhanTich" StoreEntitySet="KQPhanTichFormKQ_PhuongPhapPhanTich">
+      <EndProperty Name="KQPhanTichFormKQ">
+        <ScalarProperty Name="Id" ColumnName="KQPhanTichFormKQs_Id" />
+      </EndProperty>
+      <EndProperty Name="PhuongPhapPhanTich">
+        <ScalarProperty Name="Id" ColumnName="PhuongPhapPhanTiches_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="KQThuNghiemMau_ChiTieuPhanTich" TypeName="IERSystemModel.KQThuNghiemMau_ChiTieuPhanTich" StoreEntitySet="KQThuNghiemMau_ChiTieuPhanTich">
+      <EndProperty Name="KQThuNghiemMau">
+        <ScalarProperty Name="Id" ColumnName="KQThuNghiemMaus_Id" />
+      </EndProperty>
+      <EndProperty Name="ChiTieuPhanTich">
+        <ScalarProperty Name="Id" ColumnName="ChiTieuPhanTiches_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="SoKQThuNghiem_MauLayHienTruong" TypeName="IERSystemModel.SoKQThuNghiem_MauLayHienTruong" StoreEntitySet="SoKQThuNghiems">
+      <EndProperty Name="MauLayHienTruong">
+        <ScalarProperty Name="Id" ColumnName="MauLayHienTruong_Id" />
+      </EndProperty>
+      <EndProperty Name="SoKQThuNghiem">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -50,7 +50,27 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="NPOI, Version=2.2.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.2.1\lib\net40\NPOI.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NPOI.OOXML, Version=2.2.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.2.1\lib\net40\NPOI.OOXML.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net, Version=2.2.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.2.1\lib\net40\NPOI.OpenXml4Net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats, Version=2.2.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.2.1\lib\net40\NPOI.OpenXmlFormats.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Rotativa, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Rotativa.1.6.4\lib\net40\Rotativa.dll</HintPath>
       <Private>True</Private>
@@ -58,7 +78,10 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -162,8 +185,56 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Areas\Administrator\Models\RoleMaster.cs" />
-    <Compile Include="Areas\HopDongLayMau\BusinessLogic\HopDongLayMauEncoding.cs" />
+    <Compile Include="Areas\Administrator\Models\CacSoChuyenMau.cs">
+      <DependentUpon>IERSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Administrator\Models\CacSoNhanMau.cs">
+      <DependentUpon>IERSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Administrator\Models\ChiTieuPhanTich.cs">
+      <DependentUpon>IERSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Administrator\Models\FormKQ.cs">
+      <DependentUpon>IERSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Administrator\Models\IERSystemModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IERSystemModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Administrator\Models\IERSystemModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IERSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Administrator\Models\KQPhanTichFormKQ.cs">
+      <DependentUpon>IERSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Administrator\Models\KQThuNghiemMau.cs">
+      <DependentUpon>IERSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Administrator\Models\MauLayHienTruong.cs">
+      <DependentUpon>IERSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Administrator\Models\PhieuYeuCau.cs">
+      <DependentUpon>IERSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Administrator\Models\PhuongPhapPhanTich.cs">
+      <DependentUpon>IERSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Administrator\Models\SoChuyenMau.cs">
+      <DependentUpon>IERSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Administrator\Models\SoKQThuNghiem.cs">
+      <DependentUpon>IERSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Administrator\Models\SoNhanMau.cs">
+      <DependentUpon>IERSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\BaoGiaChiTieu\BaoGiaChiTieuAreaRegistration.cs" />
+    <Compile Include="Areas\BaoGiaChiTieu\BusinessLogic\BaoGiaChiTieuSheetParser.cs" />
+    <Compile Include="Areas\BaoGiaChiTieu\Controllers\MauBaoGiaController.cs" />
+    <Compile Include="Areas\BaoGiaChiTieu\Models\MauBaoGiaInputModel.cs" />
     <Compile Include="Areas\HopDongLayMau\BusinessLogic\TableForms\FormKQAPIImpl.cs" />
     <Compile Include="Areas\HopDongLayMau\BusinessLogic\TableForms\HopDongLayMauAPIImpl.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -183,22 +254,14 @@
     <Compile Include="Areas\Administrator\Controllers\UserController.cs" />
     <Compile Include="Areas\Administrator\HomeController.cs" />
     <Compile Include="Areas\Administrator\Models\AccountModel.cs" />
-    <Compile Include="Areas\Administrator\Models\CacSoChuyenMau.cs" />
-    <Compile Include="Areas\Administrator\Models\CacSoNhanMau.cs" />
-    <Compile Include="Areas\Administrator\Models\FormKQ.cs" />
-    <Compile Include="Areas\Administrator\Models\IERSystemDBContext.cs" />
-    <Compile Include="Areas\Administrator\Models\KQThuNghiemMau.cs" />
-    <Compile Include="Areas\Administrator\Models\MauLayHienTruong.cs" />
     <Compile Include="Areas\HopDongLayMau\BusinessLogic\TableForms\CacSoChuyenMauAPIImpl.cs" />
     <Compile Include="Areas\HopDongLayMau\BusinessLogic\TableForms\CacSoNhanMauAPIImpl.cs" />
+    <Compile Include="Areas\HopDongLayMau\BusinessLogic\Utils\DateTimeUtils.cs" />
+    <Compile Include="Areas\HopDongLayMau\BusinessLogic\YeuCauLayMauEncoding.cs" />
     <Compile Include="Areas\HopDongLayMau\Controllers\APIController.cs" />
     <Compile Include="Areas\HopDongLayMau\Controllers\DefaultController.cs" />
     <Compile Include="Areas\HopDongLayMau\Models\MauPTInputModel.cs" />
-    <Compile Include="Areas\Administrator\Models\PhieuYeuCau.cs" />
     <Compile Include="Areas\HopDongLayMau\Models\YeuCauLayMauInputModel.cs" />
-    <Compile Include="Areas\Administrator\Models\SoChuyenMau.cs" />
-    <Compile Include="Areas\Administrator\Models\SoKQThuNghiem.cs" />
-    <Compile Include="Areas\Administrator\Models\SoNhanMau.cs" />
     <Compile Include="Areas\Administrator\Models\User.cs" />
     <Compile Include="Areas\HopDongLayMau\Controllers\YeuCauLayMauController.cs" />
     <Compile Include="Areas\HopDongLayMau\HopDongLayMauAreaRegistration.cs" />
@@ -210,6 +273,11 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Areas\Administrator\Models\IERSystemModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IERSystemModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -263,6 +331,17 @@
     <Content Include="Areas\Administrator\Content\js\maps\jquery-jvectormap-world-mill-en.js" />
     <Content Include="Areas\Administrator\Content\js\moment\moment.min.js" />
     <Content Include="Areas\Administrator\Content\less\custom.css" />
+    <Content Include="Areas\Administrator\Models\IERSystemModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>IERSystemModel.Context.cs</LastGenOutput>
+      <DependentUpon>IERSystemModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Areas\Administrator\Models\IERSystemModel.edmx.sql" />
+    <Content Include="Areas\Administrator\Models\IERSystemModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>IERSystemModel.cs</LastGenOutput>
+      <DependentUpon>IERSystemModel.edmx</DependentUpon>
+    </Content>
     <Content Include="Areas\Administrator\vendors\autosize\.gitignore" />
     <Content Include="Areas\Administrator\vendors\autosize\build.js" />
     <Content Include="Areas\Administrator\vendors\autosize\dist\autosize.js" />
@@ -3830,6 +3909,15 @@
     <Content Include="Areas\HopDongLayMau\Views\YeuCauLayMau\ExportToExcel.cshtml" />
     <Content Include="Areas\HopDongLayMau\Views\YeuCauLayMau\_danhsachmau.cshtml" />
     <Content Include="App_Browsers\qt.browser" />
+    <Content Include="Areas\BaoGiaChiTieu\Views\web.config" />
+    <Content Include="Areas\BaoGiaChiTieu\Views\MauBaoGia\Index.cshtml" />
+    <EntityDeploy Include="Areas\Administrator\Models\IERSystemModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>IERSystemModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Areas\Administrator\Models\IERSystemModel.edmx.diagram">
+      <DependentUpon>IERSystemModel.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -3842,7 +3930,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -3873,6 +3963,7 @@
     <Folder Include="App_Code\" />
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Administrator\Views\Account\" />
+    <Folder Include="Areas\BaoGiaChiTieu\Views\Shared\" />
     <Folder Include="Areas\HopDongLayMau\Views\API\" />
     <Folder Include="Areas\HopDongLayMau\Views\Default\" />
     <Folder Include="Areas\HopDongLayMau\Views\Shared\" />
@@ -3883,6 +3974,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
