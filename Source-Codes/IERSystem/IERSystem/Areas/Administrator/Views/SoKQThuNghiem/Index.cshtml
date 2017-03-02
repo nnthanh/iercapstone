@@ -1,14 +1,13 @@
 ﻿@model IEnumerable<IERSystem.Areas.Administrator.Models.SoKQThuNghiem>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Sổ kết quả thử nghiệm";
     Layout = "~/Areas/Administrator/Views/Shared/_Layout.cshtml";
 }
 
-<h2>SỔ KẾT QUẢ THỬ NGHIỆM</h2>
+<h2>MỤC LỤC</h2>
 
 <input type="button" class="btn btn-info" value="Tạo kết quả thử nghiệm mới" onclick="location.href='@Url.Action("Create", "SoKQThuNghiem")'" />
-<input type="button" class="btn btn-success" value="In" onclick="location.href='@Url.Action("Create", "FormKQ")'" />
 
 <div class>
     <div class="page-title">
@@ -32,7 +31,7 @@
             <div class="x_panel">
                 <div class="x_title">
                     <h2>
-                        SỔ KẾT QUẢ THỬ NGHIỆM
+                        DANH SÁCH KẾT QUẢ
                     </h2>
                     <ul class="nav navbar-right panel_toolbox">
                         <li>
@@ -40,7 +39,7 @@
                                 <i class="fa fa-chevron-up"></i>
                             </a>
                         </li>
-                        <li class="dropdown">
+                        @*<li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                 <i class="fa fa-wrench"></i>
                             </a>
@@ -52,7 +51,7 @@
                                     <a href="#">Settings 2</a>
                                 </li>
                             </ul>
-                        </li>
+                        </li>*@
                         <li>
                             <a class="close-link">
                                 <i class="fa fa-close"></i>
@@ -104,9 +103,10 @@
                                         @Html.ActionLink("Chi tiết", "Details", new { id = item.Id }) |
                                         @Html.ActionLink("Xóa", "Delete", new { id = item.Id })*@
 
-                                        <input type="button" class="btn btn-warning" value="Chỉnh sửa" onclick="location.href='@Url.Action("Edit", "SoKQThuNghiem", new { id = item.Id })'">
-                                        <input type="button" class="btn btn-info" value="Chi tiết" onclick="location.href='@Url.Action("Details", "SoKQThuNghiem", new { id = item.Id })'" />
-                                        <input type="button" class="btn btn-danger" value="Xóa" onclick="location.href='@Url.Action("Delete", "SoKQThuNghiem", new { id = item.Id })'" />
+                                        <button data-toggle="tooltip" title="Chỉnh sửa" onclick="location.href='@Url.Action("Edit", "SoKQThuNghiem", new { id = item.Id })'"><span class="fa fa-edit"></span></button>
+                                        <button data-toggle="tooltip" title="Xem chi tiết" onclick="location.href='@Url.Action("Details", "SoKQThuNghiem", new { id = item.Id })'"><span class="fa fa-info"></span></button>
+                                        <button data-toggle="tooltip" title="In" onclick="location.href='@Url.Action("", "")'"><span class="fa fa-print"></span></button>
+                                        <button data-toggle="tooltip" title="Xóa" onclick="location.href='@Url.Action("Delete", "SoKQThuNghiem", new { id = item.Id })'"><span class="fa fa-trash"></span></button>
 
                                     </td>
                                 </tr>
@@ -118,3 +118,12 @@
         </div>
     </div>
 </div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+}

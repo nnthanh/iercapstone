@@ -1,18 +1,19 @@
 ﻿@model IERSystem.Areas.Administrator.Models.SoNhanMau
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Chi tiết";
     Layout = "~/Areas/Administrator/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<h2>Chi tiết mẫu nhận</h2>
 
 <div>
-    <h4>SoNhanMau</h4>
-    <hr />
+
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.PhieuYeuCau)
+            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                Phiếu yêu cầu
+            </label>  
         </dt>
 
         <dd>
@@ -20,7 +21,9 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.TenDiaChiKhachHang)
+            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                Tên/Địa chỉ khách hàng
+            </label>
         </dt>
 
         <dd>
@@ -28,7 +31,9 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.MaSo)
+            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                Mã số
+            </label>
         </dt>
 
         <dd>
@@ -36,7 +41,9 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ChiTieuThuNghiem)
+            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                Chỉ tiêu thử nghiệm
+            </label>
         </dt>
 
         <dd>
@@ -44,7 +51,9 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.NgayNhan)
+            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                Ngày nhận
+            </label>
         </dt>
 
         <dd>
@@ -52,7 +61,9 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.NgayTraKetQua)
+            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                Ngày trả kết quả
+            </label>
         </dt>
 
         <dd>
@@ -60,7 +71,9 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.KyHieuMau)
+            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                Ký hiệu mẫu
+            </label>
         </dt>
 
         <dd>
@@ -68,7 +81,9 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.KHKyNhanTraTien)
+            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                KH ký nhận trả tiền
+            </label>
         </dt>
 
         <dd>
@@ -76,14 +91,18 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.KHKyNhanTraKQ)
+            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                KH ký nhận trả kết quả
+            </label>
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.KHKyNhanTraKQ)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.MaMauKH)
+            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                Mã mẫu khách hàng
+            </label>
         </dt>
 
         <dd>
@@ -93,6 +112,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    <input type="submit" class="btn btn-warning" value="Chỉnh sửa" onclick="location.href='@Url.Action("Edit", "SoNhanMau",new { id = Model.Id })'" />
+    <input type="submit" class="btn btn-danger" value="Quay lại" onclick="location.href='@Url.Action("Index", "SoNhanMau")'" />
 </p>
