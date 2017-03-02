@@ -162,6 +162,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Areas\Administrator\Controllers\CacSoChuyenMauController.cs" />
+    <Compile Include="Areas\Administrator\Controllers\CacSoNhanMauController.cs" />
     <Compile Include="Areas\Administrator\Models\RoleMaster.cs" />
     <Compile Include="Areas\HopDongLayMau\BusinessLogic\HopDongLayMauEncoding.cs" />
     <Compile Include="Areas\HopDongLayMau\BusinessLogic\TableForms\FormKQAPIImpl.cs" />
@@ -173,8 +175,6 @@
     <Compile Include="Areas\Administrator\AccountController.cs" />
     <Compile Include="Areas\Administrator\AdministratorAreaRegistration.cs" />
     <Compile Include="Areas\Administrator\Controllers\AccountController.cs" />
-    <Compile Include="Areas\Administrator\Controllers\CacSoChuyenMauController.cs" />
-    <Compile Include="Areas\Administrator\Controllers\CacSoNhanMauController.cs" />
     <Compile Include="Areas\Administrator\Controllers\FormKQController.cs" />
     <Compile Include="Areas\Administrator\Controllers\MauLayHienTruongController.cs" />
     <Compile Include="Areas\Administrator\Controllers\SoChuyenMauController.cs" />
@@ -3806,16 +3806,6 @@
     <Content Include="Areas\Administrator\Views\FormKQ\Details.cshtml" />
     <Content Include="Areas\Administrator\Views\FormKQ\Edit.cshtml" />
     <Content Include="Areas\Administrator\Views\FormKQ\Index.cshtml" />
-    <Content Include="Areas\Administrator\Views\CacSoNhanMau\Create.cshtml" />
-    <Content Include="Areas\Administrator\Views\CacSoNhanMau\Delete.cshtml" />
-    <Content Include="Areas\Administrator\Views\CacSoNhanMau\Details.cshtml" />
-    <Content Include="Areas\Administrator\Views\CacSoNhanMau\Edit.cshtml" />
-    <Content Include="Areas\Administrator\Views\CacSoNhanMau\Index.cshtml" />
-    <Content Include="Areas\Administrator\Views\CacSoChuyenMau\Create.cshtml" />
-    <Content Include="Areas\Administrator\Views\CacSoChuyenMau\Delete.cshtml" />
-    <Content Include="Areas\Administrator\Views\CacSoChuyenMau\Details.cshtml" />
-    <Content Include="Areas\Administrator\Views\CacSoChuyenMau\Edit.cshtml" />
-    <Content Include="Areas\Administrator\Views\CacSoChuyenMau\Index.cshtml" />
     <Content Include="Areas\Administrator\Views\SoNhanMau\Create.cshtml" />
     <Content Include="Areas\Administrator\Views\SoNhanMau\Delete.cshtml" />
     <Content Include="Areas\Administrator\Views\SoNhanMau\Details.cshtml" />
@@ -3830,6 +3820,16 @@
     <Content Include="Areas\HopDongLayMau\Views\YeuCauLayMau\ExportToExcel.cshtml" />
     <Content Include="Areas\HopDongLayMau\Views\YeuCauLayMau\_danhsachmau.cshtml" />
     <Content Include="App_Browsers\qt.browser" />
+    <Content Include="Areas\Administrator\Views\CacSoNhanMau\Create.cshtml" />
+    <Content Include="Areas\Administrator\Views\CacSoNhanMau\Delete.cshtml" />
+    <Content Include="Areas\Administrator\Views\CacSoNhanMau\Details.cshtml" />
+    <Content Include="Areas\Administrator\Views\CacSoNhanMau\Edit.cshtml" />
+    <Content Include="Areas\Administrator\Views\CacSoNhanMau\Index.cshtml" />
+    <Content Include="Areas\Administrator\Views\CacSoChuyenMau\Create.cshtml" />
+    <Content Include="Areas\Administrator\Views\CacSoChuyenMau\Delete.cshtml" />
+    <Content Include="Areas\Administrator\Views\CacSoChuyenMau\Details.cshtml" />
+    <Content Include="Areas\Administrator\Views\CacSoChuyenMau\Edit.cshtml" />
+    <Content Include="Areas\Administrator\Views\CacSoChuyenMau\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

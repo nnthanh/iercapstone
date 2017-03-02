@@ -6,13 +6,12 @@
 }
 
 <br />
-<h2>DANH SÁCH PHIẾU YÊU CẦU</h2>
+<h2>MỤC LỤC</h2>
 <input type="button" class="btn btn-info" value="Tạo phiếu yêu cầu mới" onclick="location.href='@Url.Action("Create", "YeuCauLayMau")'" />
-<input type="button" class="btn btn-success" value="In" onclick="location.href='@Url.Action("Create", "FormKQ")'" />
 <div>
     <div class="page-title">
         <div class="title-left">
-            <h3>Danh sách phiếu yêu cầu</h3>
+            <h3>Hợp đồng lấy mẫu</h3>
         </div>
         <div class="title-right">
             <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
@@ -31,7 +30,7 @@
             <div class="x_panel">
                 <div class="x_title">
                     <h2>
-                        PHIẾU YÊU CẦU
+                        DANH SÁCH PHIẾU YÊU CẦU
                     </h2>
                     <ul class="nav navbar-right panel_toolbox">
                         <li>
@@ -39,7 +38,7 @@
                                 <i class="fa fa-chevron-up"></i>
                             </a>
                         </li>
-                        <li class="dropdown">
+                        @*<li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                 <i class="fa fa-wrench"></i>
                             </a>
@@ -51,7 +50,7 @@
                                     <a href="#">Settings 2</a>
                                 </li>
                             </ul>
-                        </li>
+                        </li>*@
                         <li>
                             <a class="close-link">
                                 <i class="fa fa-close"></i>
@@ -126,9 +125,10 @@
                                         @Html.DisplayFor(modelItem => item.DaGuiMau)
                                     </td>*@
                                     <td>
-                                        <input type="button" class="btn btn-warning" value="Chỉnh sửa" onclick="location.href='@Url.Action("Edit", "YeuCauLayMau", new { id = item.Id })'" />
-                                        <input type="button" class="btn btn-info" value="Chi tiết" onclick="location.href='@Url.Action("Details", "YeuCauLayMau", new { id = item.Id })'" />
-                                        <input type="button" class="btn btn-danger" value="Xóa" onclick="location.href='@Url.Action("Delete", "YeuCauLayMau", new { id = item.Id })'" />                                    
+                                        <button data-toggle="tooltip" title="Chỉnh sửa" onclick="location.href='@Url.Action("Edit", "YeuCauLayMau", new { id = item.Id })'"><span class="fa fa-edit"></span></button>                             
+                                        <button data-toggle="tooltip" title="Xem chi tiết" onclick="location.href='@Url.Action("Details", "YeuCauLayMau", new { id = item.Id })'"><span class="fa fa-info"></span></button>
+                                        <button data-toggle="tooltip" title="In" onclick="location.href='@Url.Action("", "")'"><span class="fa fa-print"></span></button> 
+                                        <button data-toggle="tooltip" title="Xóa" onclick="location.href='@Url.Action("Delete", "YeuCauLayMau", new { id = item.Id })'"><span class="fa fa-trash"></span></button>                                                                                                                                      
                                     </td>
                                 </tr>
                             }
@@ -139,3 +139,12 @@
         </div>
     </div>
 </div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+<script>
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
+}

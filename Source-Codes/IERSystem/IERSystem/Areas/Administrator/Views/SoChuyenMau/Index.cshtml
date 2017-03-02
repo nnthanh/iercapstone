@@ -1,95 +1,13 @@
 ﻿@model IEnumerable<IERSystem.Areas.Administrator.Models.SoChuyenMau>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Sổ chuyển mẫu";
     Layout = "~/Areas/Administrator/Views/Shared/_Layout.cshtml";
 }
 
-<h2>SỔ CHUYỂN MẪU</h2>
+<h2>MỤC LỤC</h2>
 
 <input type="button" class="btn btn-info" value="Tạo sổ chuyển mẫu mới" onclick="location.href='@Url.Action("Create", "CacSoChuyenMau")'" />
-<button id="btnThemMau" type="button"
-        data-toggle="modal" data-target="#themMauModal"
-        class="btn btn-warning">
-    Thêm Mẫu
-</button>
-
-<!-- Modal -->
-<div id="themMauModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Thêm mẫu</h4>
-            </div>
-            <div class="modal-body">
-                <div class="table-responsive">
-                    <table class="table table-striped jambo_table bulk_action">
-                        <thead>
-                            <tr class="headings">
-                                <th>
-                                    <input type="checkbox" id="check-all" class="flat">
-                                </th>
-                                <th class="column-title">Phiếu yêu cầu </th>
-                                <th class="column-title">Tên khách hàng/địa chỉ </th>
-                                <th class="column-title">Mã số </th>
-                                <th class="column-title">Chỉ tiêu thử nghiệm </th>
-                                <th class="column-title">Ngày nhận </th>
-                                <th class="column-title">Ngày trả kết quả </th>
-                                <th class="column-title no-link last">
-                                    <span class="nobr">Hành động</span>
-                                </th>
-                                <th class="bulk-actions" colspan="7">
-                                    <a class="antoo" style="color:#fff; font-weight:500;">Chọn nhiều ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
-                                </th>
-                            </tr>
-                        </thead>
-
-                        <tbody>
-                            <tr class="even pointer">
-                                <td class="a-center ">
-                                    <input type="checkbox" class="flat" name="table_records">
-                                </td>
-                                <td class=" ">0002002</td>
-                                <td class=" ">Nguyen Ngoc Thanh </td>
-                                <td class=" ">HCMUS</td>
-                                <td class=" ">Tân Bình</td>
-                                <td class=" ">20 Jan, 2017</td>
-                                <td class=" ">22 Jan, 2017</td>
-                                <td class=" last">
-                                    <a href="#">Xem</a>
-                                </td>
-                            </tr>
-                            <tr class="odd pointer">
-                                <td class="a-center ">
-                                    <input type="checkbox" class="flat" name="table_records">
-                                </td>
-                                <td class=" ">0002002</td>
-                                <td class=" ">Nguyen Ngoc Thanh </td>
-                                <td class=" ">HCMUS</td>
-                                <td class=" ">Tân Bình</td>
-                                <td class=" ">20 Jan, 2017</td>
-                                <td class=" ">22 Jan, 2017</td>
-                                <td class=" last">
-                                    <a href="#">Xem</a>
-                                </td>
-                            </tr>
-                            
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button id="saveMauBtn" type="button" class="btn btn-success" data-dismiss="modal">Thêm Mẫu</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-            </div>
-        </div>
-
-    </div>
-</div>
-<input type="button" class="btn btn-success" value="In" onclick="location.href='@Url.Action("Create", "FormKQ")'" />
 
 <div class>
     <div class="page-title">
@@ -113,7 +31,7 @@
             <div class="x_panel">
                 <div class="x_title">
                     <h2>
-                        SỔ CHUYỂN MẪU - Quý I/2017
+                        SỔ CHUYỂN MẪU - Quyển số 1
                     </h2>
                     <ul class="nav navbar-right panel_toolbox">
                         <li>
@@ -121,18 +39,91 @@
                                 <i class="fa fa-chevron-up"></i>
                             </a>
                         </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                        <li data-toggle="tooltip" title="Thêm mẫu">
+                            <a data-toggle="modal" data-target="#themMauModal" id="btnThemMau" role="button" aria-expanded="false">
                                 <i class="fa fa-plus"></i>
                             </a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li>
-                                    <a href="@Url.Action("Create", "SoChuyenMau")">Tạo mẫu chuyển mới</a>
-                                </li>
-                                <li>
-                                    <a href="#">Settings 2</a>
-                                </li>
-                            </ul>
+                            <!-- Modal -->
+                            <div id="themMauModal" class="modal fade" role="dialog">
+                                <div class="modal-dialog">
+
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">Thêm mẫu</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="table-responsive">
+                                                <table class="table table-striped jambo_table bulk_action">
+                                                    <thead>
+                                                        <tr class="headings">
+                                                            <th>
+                                                                <input type="checkbox" id="check-all" class="flat">
+                                                            </th>
+                                                            <th class="column-title">Mã đơn </th>
+                                                            <th class="column-title">Tên khách hàng </th>
+                                                            <th class="column-title">Tên đại diện </th>
+                                                            <th class="column-title">Địa chỉ KH </th>
+                                                            <th class="column-title">Ngày tạo hợp đồng </th>
+                                                            <th class="column-title">Ngày trả mẫu </th>
+                                                            <th class="column-title no-link last">
+                                                                <span class="nobr">Hành động</span>
+                                                            </th>
+                                                            <th class="bulk-actions" colspan="7">
+                                                                <a class="antoo" style="color:#fff; font-weight:500;">Chọn nhiều ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+
+                                                    <tbody>
+                                                        <tr class="even pointer">
+                                                            <td class="a-center ">
+                                                                <input type="checkbox" class="flat" name="table_records">
+                                                            </td>
+                                                            <td class=" ">121000040</td>
+                                                            <td class=" ">May 23, 2014 11:47:56 PM </td>
+                                                            <td class=" ">121000210 <i class="success fa fa-long-arrow-up"></i></td>
+                                                            <td class=" ">John Blank L</td>
+                                                            <td class=" ">Paid</td>
+                                                            <td class="a-right a-right ">$7.45</td>
+                                                            <td class=" last">
+                                                                <a href="#">Xem</a>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="odd pointer">
+                                                            <td class="a-center ">
+                                                                <input type="checkbox" class="flat" name="table_records">
+                                                            </td>
+                                                            <td class=" ">121000039</td>
+                                                            <td class=" ">May 23, 2014 11:30:12 PM</td>
+                                                            <td class=" ">
+                                                                121000208 <i class="success fa fa-long-arrow-up"></i>
+                                                            </td>
+                                                            <td class=" ">John Blank L</td>
+                                                            <td class=" ">Paid</td>
+                                                            <td class="a-right a-right ">$741.20</td>
+                                                            <td class=" last">
+                                                                <a href="#">Xem</a>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button id="saveMauBtn" type="button" class="btn btn-success" data-dismiss="modal">Thêm Mẫu</button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>                         
+                        </li>
+                        <li data-toggle="tooltip" title="In">
+                            <a onclick="location.href='@Url.Action("", "")'">
+                                <i class="fa fa-print"></i>
+                            </a>
                         </li>
                         <li>
                             <a class="close-link">
@@ -193,9 +184,9 @@
                                         @Html.ActionLink("Chi tiết", "Details", new { id = item.Id }) |
                                         @Html.ActionLink("Xóa", "Delete", new { id = item.Id })*@
 
-                                        <input type="button" class="btn btn-warning" value="Chỉnh sửa" onclick="location.href='@Url.Action("Edit", "SoChuyenMau", new { id = item.Id })'">
-                                        <input type="button" class="btn btn-info" value="Chi tiết" onclick="location.href='@Url.Action("Details", "SoChuyenMau", new { id = item.Id })'" />
-                                        <input type="button" class="btn btn-danger" value="Xóa" onclick="location.href='@Url.Action("Delete", "SoChuyenMau", new { id = item.Id })'" />
+                                        <button data-toggle="tooltip" title="Chỉnh sửa" onclick="location.href='@Url.Action("Edit", "SoChuyenMau", new { id = item.Id })'"><span class="fa fa-edit"></span></button>
+                                        <button data-toggle="tooltip" title="Xem chi tiết" onclick="location.href='@Url.Action("Details", "SoChuyenMau", new { id = item.Id })'"><span class="fa fa-info"></span></button>
+                                        <button data-toggle="tooltip" title="Xóa" onclick="location.href='@Url.Action("Delete", "SoChuyenMau", new { id = item.Id })'"><span class="fa fa-trash"></span></button>
 
                                     </td>
                                 </tr>
@@ -207,3 +198,11 @@
         </div>
     </div>
 </div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+}

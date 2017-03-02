@@ -6,7 +6,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+
+    <title>@ViewBag.Title - IER System Management</title>
+
     <!-- Bootstrap -->
     <link href="~/Areas/Administrator/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
@@ -24,12 +26,53 @@
     <!-- Switchery -->
     <link href="~/Areas/Administrator/vendors/switchery/dist/switchery.min.css" rel="stylesheet">
     <!-- bootstrap-wysiwyg -->
-    <link href="~/Areas/Administrator/vendors/google-code-prettify/bin/prettify.min.css" rel="stylesheet">
+    @*<link href="~/Areas/Administrator/vendors/google-code-prettify/bin/prettify.min.css" rel="stylesheet">*@
     <!-- starrr -->
     <link href="~/Areas/Administrator/vendors/starrr/dist/starrr.css" rel="stylesheet">
 
 
-
+    <!-- jQuery -->
+    <script src="~/Areas/Administrator/vendors/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="~/Areas/Administrator/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- FastClick -->
+    <script src="~/Areas/Administrator/vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="~/Areas/Administrator/vendors/nprogress/nprogress.js"></script>
+    <!-- Chart.js -->
+    <script src="~/Areas/Administrator/vendors/Chart.js/dist/Chart.min.js"></script>
+    <!-- gauge.js -->
+    <script src="~/Areas/Administrator/vendors/bernii/gauge.js/dist/gauge.min.js"></script>
+    <!-- bootstrap-progressbar -->
+    <script src="~/Areas/Administrator/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+    <!-- iCheck -->
+    <script src="~/Areas/Administrator/vendors/iCheck/icheck.min.js"></script>
+    <!-- Skycons -->
+    <script src="~/Areas/Administrator/vendors/skycons/skycons.js"></script>
+    <!-- Flot -->
+    <script src="~/Areas/Administrator/vendors/Flot/jquery.flot.js"></script>
+    <script src="~/Areas/Administrator/vendors/Flot/jquery.flot.pie.js"></script>
+    <script src="~/Areas/Administrator/vendors/Flot/jquery.flot.time.js"></script>
+    <script src="~/Areas/Administrator/vendors/Flot/jquery.flot.stack.js"></script>
+    <script src="~/Areas/Administrator/vendors/Flot/jquery.flot.resize.js"></script>
+    <!-- Flot plugins -->
+    <script src="~/Areas/Administrator/Content/js/flot/jquery.flot.orderBars.js"></script>
+    <script src="~/Areas/Administrator/Content/js/flot/date.js"></script>
+    <script src="~/Areas/Administrator/Content/js/flot/jquery.flot.spline.js"></script>
+    <script src="~/Areas/Administrator/Content/js/flot/curvedLines.js"></script>
+    <!-- jVectorMap -->
+    <script src="~/Areas/Administrator/Content/js/maps/jquery-jvectormap-2.0.3.min.js"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="~/Areas/Administrator/Content/js/moment/moment.min.js"></script>
+    <script src="~/Areas/Administrator/Content/js/datepicker/daterangepicker.js"></script>
+    
+    <!-- jVectorMap -->
+    <script src="~/Areas/Administrator/Content/js/maps/jquery-jvectormap-world-mill-en.js"></script>
+    <script src="~/Areas/Administrator/Content/js/maps/jquery-jvectormap-us-aea-en.js"></script>
+    <script src="~/Areas/Administrator/Content/js/maps/gdp-data.js"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="~/Areas/Administrator/Content/js/moment/moment.min.js"></script>
+    <script src="~/Areas/Administrator/Content/js/datepicker/daterangepicker.js"></script>
     <!-- jQuery autocomplete -->
     <script src="~/Areas/Administrator/vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js"></script>
     <!-- Select2 -->
@@ -46,16 +89,7 @@
     <script src="~/Areas/Administrator/vendors/autosize/dist/autosize.min.js"></script>
     <!-- starrr -->
     <script src="~/Areas/Administrator/vendors/starrr/dist/starrr.js"></script>
-    <!-- Custom Theme Scripts -->
-    <script src="~/Areas/Administrator/Content/js/custom.js"></script>
-
-    <!-- jQuery -->
-    <script src="~/Areas/Administrator/vendors/jquery/dist/jquery.min.js"></script>
-
-    <!-- iCheck -->
-    <script src="~/Areas/Administrator/vendors/iCheck/icheck.min.js"></script>
-
-
+    <script src="~/Areas/Administrator/vendors/validator/validator.js"></script>
 </head>
 <body class="nav-md">
     <div class="container body">
@@ -72,8 +106,8 @@
                             <img src="~/Areas/Administrator/Content/images/img.jpg" alt="..." class="img-circle profile_img">
                         </div>
                         <div class="profile_info">
-                            <span>Welcome,</span>
-                            <h2>John Doe</h2>
+                            <span>Xin chào,</span>
+                            <h2>Thanh</h2>
                         </div>
                     </div>
                     <!-- /menu profile quick info -->
@@ -96,11 +130,11 @@
                                             <a href="~/Administrator/User/Index">Thiết bị</a>
                                         </li>
                                     </ul>
-                                    <a href="~/HopDongLayMau/YeuCauLayMau/Index"><i class="fa fa-home"></i> Hợp đồng lấy mẫu</a>                                  
+                                    <a href="~/HopDongLayMau/YeuCauLayMau/Index"><i class="fa fa-home"></i> Hợp đồng lấy mẫu</a>                                   
                                     <a href="~/Administrator/SoNhanMau/Index"><i class="fa fa-home"></i> Sổ nhận mẫu</a>
                                     <a href="~/Administrator/SoChuyenMau/Index"><i class="fa fa-home"></i> Sổ chuyển mẫu</a>
                                     <a href="~/Administrator/SoKQThuNghiem/Index"><i class="fa fa-home"></i> Sổ kết quả thử nghiệm</a>
-                                    <a href="~/Administrator/FormKQ/Index"><i class="fa fa-home"></i> Form kết quả</a>
+                                    <a href="~/Administrator/FormKQ/Index"><i class="fa fa-home"></i> Phiếu kết quả</a>
                                 </li>
                             </ul>
                         </div>
@@ -249,27 +283,9 @@
         </div>
     </div>
 
-   
-    <!-- Skycons -->
-    <script src="~/Areas/Administrator/vendors/skycons/skycons.js"></script>
-    <!-- Flot -->
-    <script src="~/Areas/Administrator/vendors/Flot/jquery.flot.js"></script>
-    <script src="~/Areas/Administrator/vendors/Flot/jquery.flot.pie.js"></script>
-    <script src="~/Areas/Administrator/vendors/Flot/jquery.flot.time.js"></script>
-    <script src="~/Areas/Administrator/vendors/Flot/jquery.flot.stack.js"></script>
-    <script src="~/Areas/Administrator/vendors/Flot/jquery.flot.resize.js"></script>
-    <!-- Flot plugins -->
-    <script src="~/Areas/Administrator/Content/js/flot/jquery.flot.orderBars.js"></script>
-    <script src="~/Areas/Administrator/Content/js/flot/date.js"></script>
-    <script src="~/Areas/Administrator/Content/js/flot/jquery.flot.spline.js"></script>
-    <script src="~/Areas/Administrator/Content/js/flot/curvedLines.js"></script>
-    <!-- jVectorMap -->
-    <script src="~/Areas/Administrator/Content/js/maps/jquery-jvectormap-2.0.3.min.js"></script>
-    <!-- bootstrap-daterangepicker -->
-    <script src="~/Areas/Administrator/Content/js/moment/moment.min.js"></script>
-    <script src="~/Areas/Administrator/Content/js/datepicker/daterangepicker.js"></script>
     <!-- Custom Theme Scripts -->
     <script src="~/Areas/Administrator/Content/js/custom.js"></script>
+
     <!-- Flot -->
     <script>
         $(document).ready(function () {
@@ -345,30 +361,6 @@
         });
     </script>
     <!-- /Flot -->
-    <!-- jVectorMap -->
-    <script src="~/Areas/Administrator/Content/js/maps/jquery-jvectormap-world-mill-en.js"></script>
-    <script src="~/Areas/Administrator/Content/js/maps/jquery-jvectormap-us-aea-en.js"></script>
-    <script src="~/Areas/Administrator/Content/js/maps/gdp-data.js"></script>
-    @*<script>
-            $(document).ready(function () {
-                $('#world-map-gdp').vectorMap({
-                    map: 'world_mill_en',
-                    backgroundColor: 'transparent',
-                    zoomOnScroll: false,
-                    series: {
-                        regions: [{
-                            values: gdpData,
-                            scale: ['#E6F2F0', '#149B7E'],
-                            normalizeFunction: 'polynomial'
-                        }]
-                    },
-                    onRegionTipShow: function (e, el, code) {
-                        el.html(el.html() + ' (GDP - ' + gdpData[code] + ')');
-                    }
-                });
-            });
-        </script>*@
-    <!-- /jVectorMap -->
     <!-- Skycons -->
     <script>
         $(document).ready(function () {
@@ -389,48 +381,6 @@
         });
     </script>
     <!-- /Skycons -->
-    <!-- Doughnut Chart -->
-    @*<script>
-            $(document).ready(function () {
-                var options = {
-                    legend: false,
-                    responsive: false
-                };
-
-                new Chart(document.getElementById("canvas1"), {
-                    type: 'doughnut',
-                    tooltipFillColor: "rgba(51, 51, 51, 0.55)",
-                    data: {
-                        labels: [
-                          "Symbian",
-                          "Blackberry",
-                          "Other",
-                          "Android",
-                          "IOS"
-                        ],
-                        datasets: [{
-                            data: [15, 20, 30, 10, 30],
-                            backgroundColor: [
-                              "#BDC3C7",
-                              "#9B59B6",
-                              "#E74C3C",
-                              "#26B99A",
-                              "#3498DB"
-                            ],
-                            hoverBackgroundColor: [
-                              "#CFD4D8",
-                              "#B370CF",
-                              "#E95E4F",
-                              "#36CAAB",
-                              "#49A9EA"
-                            ]
-                        }]
-                    },
-                    options: options
-                });
-            });
-        </script>*@
-    <!-- /Doughnut Chart -->
     <!-- bootstrap-daterangepicker -->
     <script>
         $(document).ready(function () {
@@ -504,9 +454,6 @@
         });
     </script>
     <!-- /bootstrap-daterangepicker -->
-
-
-
     <!-- gauge.js -->
     <script>
         var opts = {
@@ -533,20 +480,42 @@
         gauge.setTextField(document.getElementById("gauge-text"));
     </script>
     <!-- /gauge.js -->
+    <!-- Select2 -->
+    <script>
+        $(document).ready(function () {
+            $(".select2_single").select2({
+                placeholder: "Select a state",
+                allowClear: true
+            });
+            $(".select2_group").select2({});
+            $(".select2_multiple").select2({
+                //maximumSelectionLength: 100,
+                //placeholder: "Tối đa 100 chỉ tiêu",
+                allowClear: true
+            });
+        });
+    </script>
+    <!-- /Select2 -->
+    <!-- jQuery autocomplete -->
+    <script>
+        $(document).ready(function () {
+            var countries = { AD: "Andorra", A2: "Andorra Test", AE: "United Arab Emirates", AF: "Afghanistan", AG: "Antigua and Barbuda", AI: "Anguilla", AL: "Albania", AM: "Armenia", AN: "Netherlands Antilles", AO: "Angola", AQ: "Antarctica", AR: "Argentina", AS: "American Samoa", AT: "Austria", AU: "Australia", AW: "Aruba", AX: "Åland Islands", AZ: "Azerbaijan", BA: "Bosnia and Herzegovina", BB: "Barbados", BD: "Bangladesh", BE: "Belgium", BF: "Burkina Faso", BG: "Bulgaria", BH: "Bahrain", BI: "Burundi", BJ: "Benin", BL: "Saint Barthélemy", BM: "Bermuda", BN: "Brunei", BO: "Bolivia", BQ: "British Antarctic Territory", BR: "Brazil", BS: "Bahamas", BT: "Bhutan", BV: "Bouvet Island", BW: "Botswana", BY: "Belarus", BZ: "Belize", CA: "Canada", CC: "Cocos [Keeling] Islands", CD: "Congo - Kinshasa", CF: "Central African Republic", CG: "Congo - Brazzaville", CH: "Switzerland", CI: "Côte d’Ivoire", CK: "Cook Islands", CL: "Chile", CM: "Cameroon", CN: "China", CO: "Colombia", CR: "Costa Rica", CS: "Serbia and Montenegro", CT: "Canton and Enderbury Islands", CU: "Cuba", CV: "Cape Verde", CX: "Christmas Island", CY: "Cyprus", CZ: "Czech Republic", DD: "East Germany", DE: "Germany", DJ: "Djibouti", DK: "Denmark", DM: "Dominica", DO: "Dominican Republic", DZ: "Algeria", EC: "Ecuador", EE: "Estonia", EG: "Egypt", EH: "Western Sahara", ER: "Eritrea", ES: "Spain", ET: "Ethiopia", FI: "Finland", FJ: "Fiji", FK: "Falkland Islands", FM: "Micronesia", FO: "Faroe Islands", FQ: "French Southern and Antarctic Territories", FR: "France", FX: "Metropolitan France", GA: "Gabon", GB: "United Kingdom", GD: "Grenada", GE: "Georgia", GF: "French Guiana", GG: "Guernsey", GH: "Ghana", GI: "Gibraltar", GL: "Greenland", GM: "Gambia", GN: "Guinea", GP: "Guadeloupe", GQ: "Equatorial Guinea", GR: "Greece", GS: "South Georgia and the South Sandwich Islands", GT: "Guatemala", GU: "Guam", GW: "Guinea-Bissau", GY: "Guyana", HK: "Hong Kong SAR China", HM: "Heard Island and McDonald Islands", HN: "Honduras", HR: "Croatia", HT: "Haiti", HU: "Hungary", ID: "Indonesia", IE: "Ireland", IL: "Israel", IM: "Isle of Man", IN: "India", IO: "British Indian Ocean Territory", IQ: "Iraq", IR: "Iran", IS: "Iceland", IT: "Italy", JE: "Jersey", JM: "Jamaica", JO: "Jordan", JP: "Japan", JT: "Johnston Island", KE: "Kenya", KG: "Kyrgyzstan", KH: "Cambodia", KI: "Kiribati", KM: "Comoros", KN: "Saint Kitts and Nevis", KP: "North Korea", KR: "South Korea", KW: "Kuwait", KY: "Cayman Islands", KZ: "Kazakhstan", LA: "Laos", LB: "Lebanon", LC: "Saint Lucia", LI: "Liechtenstein", LK: "Sri Lanka", LR: "Liberia", LS: "Lesotho", LT: "Lithuania", LU: "Luxembourg", LV: "Latvia", LY: "Libya", MA: "Morocco", MC: "Monaco", MD: "Moldova", ME: "Montenegro", MF: "Saint Martin", MG: "Madagascar", MH: "Marshall Islands", MI: "Midway Islands", MK: "Macedonia", ML: "Mali", MM: "Myanmar [Burma]", MN: "Mongolia", MO: "Macau SAR China", MP: "Northern Mariana Islands", MQ: "Martinique", MR: "Mauritania", MS: "Montserrat", MT: "Malta", MU: "Mauritius", MV: "Maldives", MW: "Malawi", MX: "Mexico", MY: "Malaysia", MZ: "Mozambique", NA: "Namibia", NC: "New Caledonia", NE: "Niger", NF: "Norfolk Island", NG: "Nigeria", NI: "Nicaragua", NL: "Netherlands", NO: "Norway", NP: "Nepal", NQ: "Dronning Maud Land", NR: "Nauru", NT: "Neutral Zone", NU: "Niue", NZ: "New Zealand", OM: "Oman", PA: "Panama", PC: "Pacific Islands Trust Territory", PE: "Peru", PF: "French Polynesia", PG: "Papua New Guinea", PH: "Philippines", PK: "Pakistan", PL: "Poland", PM: "Saint Pierre and Miquelon", PN: "Pitcairn Islands", PR: "Puerto Rico", PS: "Palestinian Territories", PT: "Portugal", PU: "U.S. Miscellaneous Pacific Islands", PW: "Palau", PY: "Paraguay", PZ: "Panama Canal Zone", QA: "Qatar", RE: "Réunion", RO: "Romania", RS: "Serbia", RU: "Russia", RW: "Rwanda", SA: "Saudi Arabia", SB: "Solomon Islands", SC: "Seychelles", SD: "Sudan", SE: "Sweden", SG: "Singapore", SH: "Saint Helena", SI: "Slovenia", SJ: "Svalbard and Jan Mayen", SK: "Slovakia", SL: "Sierra Leone", SM: "San Marino", SN: "Senegal", SO: "Somalia", SR: "Suriname", ST: "São Tomé and Príncipe", SU: "Union of Soviet Socialist Republics", SV: "El Salvador", SY: "Syria", SZ: "Swaziland", TC: "Turks and Caicos Islands", TD: "Chad", TF: "French Southern Territories", TG: "Togo", TH: "Thailand", TJ: "Tajikistan", TK: "Tokelau", TL: "Timor-Leste", TM: "Turkmenistan", TN: "Tunisia", TO: "Tonga", TR: "Turkey", TT: "Trinidad and Tobago", TV: "Tuvalu", TW: "Taiwan", TZ: "Tanzania", UA: "Ukraine", UG: "Uganda", UM: "U.S. Minor Outlying Islands", US: "United States", UY: "Uruguay", UZ: "Uzbekistan", VA: "Vatican City", VC: "Saint Vincent and the Grenadines", VD: "North Vietnam", VE: "Venezuela", VG: "British Virgin Islands", VI: "U.S. Virgin Islands", VN: "Vietnam", VU: "Vanuatu", WF: "Wallis and Futuna", WK: "Wake Island", WS: "Samoa", YD: "People's Democratic Republic of Yemen", YE: "Yemen", YT: "Mayotte", ZA: "South Africa", ZM: "Zambia", ZW: "Zimbabwe", ZZ: "Unknown or Invalid Region" };
 
-    <!-- Bootstrap -->
-    <script src="~/Areas/Administrator/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-    <!-- FastClick -->
-    <script src="~/Areas/Administrator/vendors/fastclick/lib/fastclick.js"></script>
-    <!-- NProgress -->
-    <script src="~/Areas/Administrator/vendors/nprogress/nprogress.js"></script>
-    <!-- Chart.js -->
-    <script src="~/Areas/Administrator/vendors/Chart.js/dist/Chart.min.js"></script>
-    <!-- gauge.js -->
-    <script src="~/Areas/Administrator/vendors/bernii/gauge.js/dist/gauge.min.js"></script>
-    <!-- bootstrap-progressbar -->
-    <script src="~/Areas/Administrator/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+            var countriesArray = $.map(countries, function (value, key) {
+                return {
+                    value: value,
+                    data: key
+                };
+            });
 
+            // initialize autocomplete with custom appendTo
+            $('#autocomplete-custom-append').autocomplete({
+                lookup: countriesArray,
+                appendTo: '#autocomplete-container'
+            });
+        });
+    </script>
+    <!-- /jQuery autocomplete -->
     @RenderSection("scripts", required: false)
 </body>
 </html>

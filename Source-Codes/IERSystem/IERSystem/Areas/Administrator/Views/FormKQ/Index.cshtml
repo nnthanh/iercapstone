@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<IERSystem.Areas.Administrator.Models.FormKQ>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Phiếu kết quả";
     Layout = "~/Areas/Administrator/Views/Shared/_Layout.cshtml";
 }
 
-<h2>FORM KẾT QUẢ</h2>
+<h2>MỤC LỤC</h2>
 
-<input type="button" class="btn btn-info" value="Tạo form kết quả mới" onclick="location.href='@Url.Action("Create", "FormKQ")'" />
+<input type="button" class="btn btn-info" value="Tạo phiếu kết quả mới" onclick="location.href='@Url.Action("Create", "FormKQ")'" />
 
 <button id="btnThemMau" type="button"
         data-toggle="modal" data-target="#themMauModal"
@@ -91,12 +91,10 @@
     </div>
 </div>
 
-<input type="button" class="btn btn-success" value="In" onclick="location.href='@Url.Action("Create", "FormKQ")'" />
-
 <div class>
     <div class="page-title">
         <div class="title-left">
-            <h3>Form kết quả</h3>
+            <h3>Phiếu kết quả</h3>
         </div>
         <div class="title-right">
             <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
@@ -115,7 +113,7 @@
             <div class="x_panel">
                 <div class="x_title">
                     <h2>
-                        FORM KẾT QUẢ
+                        DANH SÁCH PHIẾU
                     </h2>
                     <ul class="nav navbar-right panel_toolbox">
                         <li>
@@ -123,7 +121,7 @@
                                 <i class="fa fa-chevron-up"></i>
                             </a>
                         </li>
-                        <li class="dropdown">
+                        @*<li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                 <i class="fa fa-wrench"></i>
                             </a>
@@ -135,7 +133,7 @@
                                     <a href="#">Settings 2</a>
                                 </li>
                             </ul>
-                        </li>
+                        </li>*@
                         <li>
                             <a class="close-link">
                                 <i class="fa fa-close"></i>
@@ -183,9 +181,10 @@
                                         @Html.DisplayFor(modelItem => item.ViTriLayMau)
                                     </td>          
                                     <td>
-                                        <input type="button" class="btn btn-warning" value="Chỉnh sửa" onclick="location.href='@Url.Action("Edit", "FormKQ", new { id = item.Id })'">
-                                        <input type="button" class="btn btn-info" value="Chi tiết" onclick="location.href='@Url.Action("Details", "FormKQ", new { id = item.Id })'" />
-                                        <input type="button" class="btn btn-danger" value="Xóa" onclick="location.href='@Url.Action("Delete", "FormKQ", new { id = item.Id })'" />
+                                        <button data-toggle="tooltip" title="Chỉnh sửa" onclick="location.href='@Url.Action("Edit", "FormKQ", new { id = item.Id })'"><span class="fa fa-edit"></span></button>
+                                        <button data-toggle="tooltip" title="Xem chi tiết" onclick="location.href='@Url.Action("Details", "FormKQ", new { id = item.Id })'"><span class="fa fa-info"></span></button>
+                                        <button data-toggle="tooltip" title="In" onclick="location.href='@Url.Action("", "")'"><span class="fa fa-print"></span></button>
+                                        <button data-toggle="tooltip" title="Xóa" onclick="location.href='@Url.Action("Delete", "FormKQ", new { id = item.Id })'"><span class="fa fa-trash"></span></button>
                                     </td>
                                 </tr>
                             }
@@ -196,3 +195,12 @@
         </div>
     </div>
 </div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+}
