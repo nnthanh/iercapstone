@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 03/01/2017 16:21:06
+-- Date Created: 03/05/2017 14:14:01
 -- Generated from EDMX file: E:\Capstone\iercapstone\Source-Codes\IERSystem\IERSystem\Areas\Administrator\Models\IERSystemModel.edmx
 -- --------------------------------------------------
 
