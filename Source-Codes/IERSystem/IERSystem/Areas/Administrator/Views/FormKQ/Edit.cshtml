@@ -29,7 +29,7 @@
                                 Số
                             </label>
                             <div class="col-md-4 col-sm-4 col-xs-12">
-                                @Html.TextBoxFor(model => model.So, new { @class = "form-control col-md-4 col-xs-12" })
+                                @Html.TextBoxFor(model => model.So, new { @class = "form-control col-md-4 col-xs-12", @readonly="readonly" })
                                 @Html.ValidationMessageFor(model => model.So)
                             </div>
                         </div>
@@ -39,7 +39,7 @@
                                 Ký hiệu mẫu
                             </label>
                             <div class="col-md-4 col-sm-4 col-xs-12">
-                                @Html.TextBoxFor(model => model.KyHieuMau, new { @class = "form-control col-md-4 col-xs-12" })
+                                @Html.TextBoxFor(model => model.KyHieuMau, new { @class = "form-control col-md-4 col-xs-12", @readonly = "readonly" })
                                 @Html.ValidationMessageFor(model => model.KyHieuMau)
                             </div>
                         </div>
@@ -49,7 +49,7 @@
                                 Nơi lấy mẫu
                             </label>
                             <div class="col-md-4 col-sm-4 col-xs-12">
-                                @Html.TextBoxFor(model => model.NoiLayMau, new { @class = "form-control col-md-4 col-xs-12" })
+                                @Html.TextBoxFor(model => model.NoiLayMau, new { @class = "form-control col-md-4 col-xs-12", @readonly = "readonly" })
                                 @Html.ValidationMessageFor(model => model.NoiLayMau)
                             </div>
                         </div>
@@ -59,7 +59,7 @@
                                 Ngày gửi mẫu
                             </label>
                             <div class="form-group input-group-sm col-md-4 col-sm-4 col-xs-12">
-                                @Html.TextBoxFor(model => model.NgayGuiMau, new { @class = "date-picker form-control col-md-7 col-xs-12 active", placeholder = "Nhập ngày gửi mẫu vào đây", required = "required", type = "text", id = "NgayGuiMau" })
+                                @Html.TextBoxFor(model => model.NgayGuiMau, new { @class = "date-picker form-control col-md-7 col-xs-12 active", placeholder = "Nhập ngày gửi mẫu vào đây", required = "required", type = "text", id = "NgayGuiMau", @readonly = "readonly" })
                                 @Html.ValidationMessageFor(model => model.NgayGuiMau)
                             </div>
                         </div>
@@ -69,7 +69,7 @@
                                 Địa chỉ
                             </label>
                             <div class="col-md-4 col-sm-4 col-xs-12">
-                                @Html.TextBoxFor(model => model.DiaChi, new { @class = "form-control col-md-4 col-xs-12" })
+                                @Html.TextBoxFor(model => model.DiaChi, new { @class = "form-control col-md-4 col-xs-12", @readonly = "readonly" })
                                 @Html.ValidationMessageFor(model => model.DiaChi)
                             </div>
                         </div>
@@ -79,13 +79,8 @@
                                 Loại mẫu
                             </label>
                             <div class="col-md-4 col-sm-4 col-xs-12">
-                                <select class="form-control col-md-4 col-xs-12">
-                                    <option>Chọn một mẫu</option>
-                                    <option>NT</option>
-                                    <option>NC</option>
-                                    <option>KK</option>
-                                    <option>CTR</option>
-                                </select>
+                               @Html.TextBoxFor(model => model.LoaiMau, new { @class = "form-control col-md-4 col-xs-12", @readonly = "readonly" })
+@Html.ValidationMessageFor(model => model.LoaiMau)
                                 @Html.ValidationMessageFor(model => model.LoaiMau)
                             </div>
                         </div>
@@ -95,158 +90,199 @@
                                 Vị trí lấy mẫu
                             </label>
                             <div class="col-md-4 col-sm-4 col-xs-12">
-                                @Html.TextBoxFor(model => model.ViTriLayMau, new { @class = "form-control col-md-4 col-xs-12" })
+                                @Html.TextBoxFor(model => model.ViTriLayMau, new { @class = "form-control col-md-4 col-xs-12", @readonly="readonly" })
                                 @Html.ValidationMessageFor(model => model.ViTriLayMau)
                             </div>
                         </div>
 
                         @*<div class="form-group">
-                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
-                                STT
-                            </label>
-                            <div class="col-md-4 col-sm-4 col-xs-12">
-                                @Html.TextBoxFor(model => model.STT, new { @class = "form-control col-md-4 col-xs-12" })
-                                @Html.ValidationMessageFor(model => model.STT)
+                <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                    STT
+                </label>
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    @Html.TextBoxFor(model => model.STT, new { @class = "form-control col-md-4 col-xs-12" })
+                    @Html.ValidationMessageFor(model => model.STT)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                    Chỉ tiêu
+                </label>
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    @Html.TextBoxFor(model => model.ChiTieu, new { @class = "form-control col-md-4 col-xs-12" })
+                    @Html.ValidationMessageFor(model => model.ChiTieu)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                    Đơn vị
+                </label>
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    @Html.TextBoxFor(model => model.DonVi, new { @class = "form-control col-md-4 col-xs-12" })
+                    @Html.ValidationMessageFor(model => model.DonVi)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                    Giá trị
+                </label>
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    @Html.TextBoxFor(model => model.GiaTri, new { @class = "form-control col-md-4 col-xs-12" })
+                    @Html.ValidationMessageFor(model => model.GiaTri)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                    Phương pháp phân tích
+                </label>
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    <select class="form-control col-md-4 col-xs-12">
+                        <option>Chọn phương pháp</option>
+                        <option>Hóa nghiệm</option>
+                        <option>Lý nghiệm</option>
+                        <option>Sinh chất</option>
+                        <option>Ống nghiệm</option>
+                    </select>
+                    @Html.ValidationMessageFor(model => model.PhuongPhapPhanTich)
+                </div>
+            </div>*@
+
+                        @*<h2 class="StepTitle">Thông tin kết quả</h2>
+            <div class="row">
+                <div class="col-md-2 col-sm-2 col-xs-2">
+                    <button id="btnThemMau" type="button"
+                            data-toggle="modal" data-target="#themMauModal"
+                            class="btn btn-success">
+                        Thêm Kết Quả
+                    </button>
+                </div>
+                <!-- Modal -->
+                <div id="themMauModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Modal Header</h4>
                             </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
-                                Chỉ tiêu
-                            </label>
-                            <div class="col-md-4 col-sm-4 col-xs-12">
-                                @Html.TextBoxFor(model => model.ChiTieu, new { @class = "form-control col-md-4 col-xs-12" })
-                                @Html.ValidationMessageFor(model => model.ChiTieu)
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
-                                Đơn vị
-                            </label>
-                            <div class="col-md-4 col-sm-4 col-xs-12">
-                                @Html.TextBoxFor(model => model.DonVi, new { @class = "form-control col-md-4 col-xs-12" })
-                                @Html.ValidationMessageFor(model => model.DonVi)
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
-                                Giá trị
-                            </label>
-                            <div class="col-md-4 col-sm-4 col-xs-12">
-                                @Html.TextBoxFor(model => model.GiaTri, new { @class = "form-control col-md-4 col-xs-12" })
-                                @Html.ValidationMessageFor(model => model.GiaTri)
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
-                                Phương pháp phân tích
-                            </label>
-                            <div class="col-md-4 col-sm-4 col-xs-12">
-                                <select class="form-control col-md-4 col-xs-12">
-                                    <option>Chọn phương pháp</option>
-                                    <option>Hóa nghiệm</option>
-                                    <option>Lý nghiệm</option>
-                                    <option>Sinh chất</option>
-                                    <option>Ống nghiệm</option>
-                                </select>
-                                @Html.ValidationMessageFor(model => model.PhuongPhapPhanTich)
-                            </div>
-                        </div>*@
-
-                        <h2 class="StepTitle">Thông tin kết quả</h2>
-                        <div class="row">
-                            <div class="col-md-2 col-sm-2 col-xs-2">
-                                <button id="btnThemMau" type="button"
-                                        data-toggle="modal" data-target="#themMauModal"
-                                        class="btn btn-success">
-                                    Thêm Kết Quả
-                                </button>
-                            </div>
-                            <!-- Modal -->
-                            <div id="themMauModal" class="modal fade" role="dialog">
-                                <div class="modal-dialog">
-
-                                    <!-- Modal content-->
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                            <h4 class="modal-title">Modal Header</h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="form-group">
-                                                <label for="email">Số thứ tự</label>
-                                                <input type="email" class="form-control" id="stt">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="email">Chỉ tiêu</label>
-                                                <input type="email" class="form-control" id="chi-tieu">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="email">Đơn vị</label>
-                                                <input type="email" class="form-control" id="don-vi">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="email">Giá trị</label>
-                                                <input type="email" class="form-control" id="gia-tri">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="email">Phương pháp phân tích</label>
-                                                <input type="email" class="form-control" id="phuongphap-phantich">
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button id="saveMauBtn" type="button" class="btn btn-success" data-dismiss="modal">Thêm Kết Quả</button>
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                                        </div>
-                                    </div>
-
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="email">Số thứ tự</label>
+                                    <input type="email" class="form-control" id="stt">
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Chỉ tiêu</label>
+                                    <input type="email" class="form-control" id="chi-tieu">
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Đơn vị</label>
+                                    <input type="email" class="form-control" id="don-vi">
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Giá trị</label>
+                                    <input type="email" class="form-control" id="gia-tri">
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Phương pháp phân tích</label>
+                                    <input type="email" class="form-control" id="phuongphap-phantich">
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-
-                            <div class="col-md-12 col-sm-12 col-xs-12">
-                                <table id="sampledata-table"
-                                       class="table table-striped table-bordered dataTable no-footer"
-                                       role="grid">
-                                    <thead>
-                                        <tr role="row">
-                                            <th class="column-title">STT</th>
-                                            <th class="column-title">Chỉ tiêu</th>
-                                            <th class="column-title">Đơn vị</th>
-                                            <th class="column-title">Giá trị</th>
-                                            <th class="column-title">Phương pháp phân tích</th>
-                                            <th class="column-title"></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody></tbody>
-                                </table>
+                            <div class="modal-footer">
+                                <button id="saveMauBtn" type="button" class="btn btn-success" data-dismiss="modal">Thêm Kết Quả</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <div class="col-md-offset-2 col-md-10">
-                                <input type="submit" value="Tạo" class="btn btn-success" />
-                                <input type="button" class="btn btn-danger" value="Quay lại" onclick="location.href='@Url.Action("Index", "FormKQ")'" />
-                            </div>
-                        </div>
-                    </form>
+                    </div>
                 </div>
+            </div>
+            <div class="row">
+
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <table id="sampledata-table"
+                           class="table table-striped table-bordered dataTable no-footer"
+                           role="grid">
+                        <thead>
+                            <tr role="row">
+                                <th class="column-title">STT</th>
+                                <th class="column-title">Chỉ tiêu</th>
+                                <th class="column-title">Đơn vị</th>
+                                <th class="column-title">Giá trị</th>
+                                <th class="column-title">Phương pháp phân tích</th>
+                                <th class="column-title"></th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>*@
+                        <div class="clearfix"></div>
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="x_panel">
+                                    <div class="x_title">
+                                        <h2>
+                                            DANH SÁCH KẾT QUẢ
+                                        </h2>
+                                        <ul class="nav navbar-right panel_toolbox">
+                                            <li>
+                                                <a class="collapse-link">
+                                                    <i class="fa fa-chevron-up"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="x_content" style="display:block;">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>STT</th>
+                                                    <th>Chỉ tiêu</th>
+                                                    <th>Đơn vị</th>
+                                                    <th>Giá trị</th>
+                                                    <th>Phương pháp phân tích</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>Thử nước</td>
+                                                    <td>ml</td>
+                                                    <td id="tboxKQ"><input type="email" class="form-control" id="ket-qua"></td>
+                                                    <td>Ống nghiệm</td>
+                                                    <td><button id="btnSaveKQ" type="button" data-toggle="tooltip" title="Lưu"><span class="fa fa-save"></span></button></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    
+                        </form>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Lưu" class="btn btn-success" />
+                <input type="button" class="btn btn-danger" value="Quay lại" onclick="location.href='@Url.Action("Index", "FormKQ")'" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Trở về", "Index")
 </div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-    <script>
+    @*<script>
         $(document).ready(function () {
             $('#NgayGuiMau').daterangepicker({
                 singleDatePicker: true,
@@ -339,5 +375,5 @@
             });
         });
     });
-</script>
+</script>*@
 }
