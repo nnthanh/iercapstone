@@ -29,7 +29,12 @@
     @*<link href="~/Areas/Administrator/vendors/google-code-prettify/bin/prettify.min.css" rel="stylesheet">*@
     <!-- starrr -->
     <link href="~/Areas/Administrator/vendors/starrr/dist/starrr.css" rel="stylesheet">
-
+    <!-- Datatables -->
+    <link href="~/Areas/Administrator/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+    <link href="~/Areas/Administrator/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
+    <link href="~/Areas/Administrator/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
+    <link href="~/Areas/Administrator/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
+    <link href="~/Areas/Administrator/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
 
     <!-- jQuery -->
     <script src="~/Areas/Administrator/vendors/jquery/dist/jquery.min.js"></script>
@@ -90,6 +95,24 @@
     <!-- starrr -->
     <script src="~/Areas/Administrator/vendors/starrr/dist/starrr.js"></script>
     <script src="~/Areas/Administrator/vendors/validator/validator.js"></script>
+    <!-- Datatables -->
+    <script src="~/Areas/Administrator/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="~/Areas/Administrator/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script src="~/Areas/Administrator/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="~/Areas/Administrator/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+    <script src="~/Areas/Administrator/vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+    <script src="~/Areas/Administrator/vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="~/Areas/Administrator/vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="~/Areas/Administrator/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+    <script src="~/Areas/Administrator/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+    <script src="~/Areas/Administrator/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="~/Areas/Administrator/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+    <script src="~/Areas/Administrator/vendors/datatables.net-scroller/js/datatables.scroller.min.js"></script>
+    <script src="~/Areas/Administrator/vendors/jszip/dist/jszip.min.js"></script>
+    <script src="~/Areas/Administrator/vendors/pdfmake/build/pdfmake.min.js"></script>
+    <script src="~/Areas/Administrator/vendors/pdfmake/build/vfs_fonts.js"></script>
+    <!-- validator -->
+    <script src="~/Areas/Administrator/vendors/validator/validator.min.js"></script>
 </head>
 <body class="nav-md">
     <div class="container body">
@@ -516,6 +539,103 @@
         });
     </script>
     <!-- /jQuery autocomplete -->
+    <!-- Datatables -->
+    <script>
+        $(document).ready(function () {
+            var handleDataTableButtons = function () {
+                if ($("#datatable-buttons").length) {
+                    $("#datatable-buttons").DataTable({
+                        dom: "Bfrtip",
+                        buttons: [
+                          {
+                              extend: "copy",
+                              className: "btn-sm"
+                          },
+                          //{
+                          //    extend: "csv",
+                          //    className: "btn-sm"
+                          //},
+                          //{
+                          //    extend: "excel",
+                          //    className: "btn-sm"
+                          //},
+                          {
+                              extend: "pdfHtml5",
+                              className: "btn-sm"
+                          },
+                          {
+                              extend: "print",
+                              className: "btn-sm"
+                          },
+                        ],
+                        responsive: true
+                    });
+                }
+            };
+
+            TableManageButtons = function () {
+                "use strict";
+                return {
+                    init: function () {
+                        handleDataTableButtons();
+                    }
+                };
+            }();
+
+            $('#datatable').dataTable();
+            $('#datatable-keytable').DataTable({
+                keys: true
+            });
+
+            $('#datatable-responsive').DataTable();
+
+            $('#datatable-scroller').DataTable({
+                ajax: "js/datatables/json/scroller-demo.json",
+                deferRender: true,
+                scrollY: 380,
+                scrollCollapse: true,
+                scroller: true
+            });
+
+            var table = $('#datatable-fixed-header').DataTable({
+                fixedHeader: true
+            });
+
+            TableManageButtons.init();
+        });
+    </script>
+    <!-- /Datatables -->
+    <!-- validator -->
+    <script>
+        // initialize the validator function
+        validator.message.date = 'Không phải ngày thật';
+
+        // validate a field on "blur" event, a 'select' on 'change' event & a '.reuired' classed multifield on 'keyup':
+        $('form')
+          .on('blur', 'input[required], input.optional, select.required', validator.checkField)
+          .on('change', 'select.required', validator.checkField)
+          .on('keypress', 'input[required][pattern]', validator.keypress);
+
+        $('.multi.required').on('keyup blur', 'input', function () {
+            validator.checkField.apply($(this).siblings().last()[0]);
+        });
+
+        $('form').submit(function (e) {
+            e.preventDefault();
+            var submit = true;
+
+            // evaluate the form using generic validaing
+            if (!validator.checkAll($(this))) {
+                submit = false;
+            }
+
+            if (submit)
+                this.submit();
+
+            return false;
+        });
+    </script>
+    <!-- /validator -->
     @RenderSection("scripts", required: false)
 </body>
 </html>

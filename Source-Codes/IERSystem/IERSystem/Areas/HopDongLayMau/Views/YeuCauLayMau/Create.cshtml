@@ -37,7 +37,7 @@
 
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                 @*@Html.TextBoxFor(model => model.TenKhachHang, new { @class = "form-control col-md-4 col-xs-12", required="required" })*@                                
-                                <input type="text" name="country" id="autocomplete-custom-append" class="form-control col-md-10" />
+                                <input type="text" name="country" id="autocomplete-custom-append" class="form-control col-md-10" data-validate-length-range="6" data-validate-words="2" />
                                 <div id="autocomplete-container">
                                     <div class="autocomplete-suggestions">
                                     </div>
