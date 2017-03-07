@@ -22,7 +22,7 @@ public partial class KQPhanTichFormKQ
     public KQPhanTichFormKQ()
     {
 
-        this.PhuongPhapPhanTiches = new HashSet<PhuongPhapPhanTich>();
+        this.ChiTieuPhanTiches = new HashSet<ChiTieuPhanTich>();
 
     }
 
@@ -41,7 +41,7 @@ public partial class KQPhanTichFormKQ
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
-    public virtual ICollection<PhuongPhapPhanTich> PhuongPhapPhanTiches { get; set; }
+    public virtual ICollection<ChiTieuPhanTich> ChiTieuPhanTiches { get; set; }
 
 }
 
