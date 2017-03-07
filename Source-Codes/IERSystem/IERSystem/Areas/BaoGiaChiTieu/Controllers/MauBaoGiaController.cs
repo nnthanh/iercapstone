@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using IERSystem.BusinessLogic;
 using IERSystem.Areas.Administrator.Models;
+using IERSystem.BusinessLogic.TableForms;
 
 namespace IERSystem.Areas.BaoGiaChiTieu.Controllers
 {
@@ -12,17 +13,24 @@ namespace IERSystem.Areas.BaoGiaChiTieu.Controllers
     {
         private IERSystemModelContainer db = new IERSystemModelContainer();
 
-        // GET: BaoGiaChiTieu/MauBaoGia/Upload
-        //nthoang: TODO: WIP
+        // GET: BaoGiaChiTieu/BaoGiaChiTieu/Upload
         public ActionResult Upload(FormCollection form_collection)
         {
             if (Request != null) {
                 HttpPostedFileBase file = Request.Files["UploadedFile"];
-                var data = BaoGiaChiTieuSheetParser.ParseUploadSheetData(file);
-                Console.WriteLine(data);
-                
+                ChiTieuPhanTichAPIImpl.Create(file, db);
+                db.SaveChanges();
             }
-            return View("Index");
+            return View("Upload");
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
         }
     }
 }

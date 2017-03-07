@@ -173,6 +173,7 @@
                                                 <div class="form-group">
                                                     <label for="email">Kí Hiệu Mẫu</label>
                                                     <select id="kh-mau" class="form-control">
+                                                        <option></option>
                                                         <option>NT: Nước Thải</option>
                                                         <option>NC: Nước Cấp</option>
                                                         <option>NM: Nước Mặt</option>
@@ -201,22 +202,15 @@
                                                     <input type="email" class="form-control" id="mota-mau" required="required">
                                                 </div>
                                                 <div class="form-group">
+                                                    <label for="email">Loại Mẫu Theo Nhóm Chỉ Tiêu</label>
+                                                    <select id="loai-chitieu" class="form-control"></select>
+                                                </div>
+                                                <div class="form-group">
                                                     <label for="email">Chỉ Tiêu Yêu Cầu <span class="required">*</span></label>                                                                               
                                                     <div class="col-md-12 col-sm-12 col-xs-12">
                                                         <select class="select2_multiple form-control " multiple="multiple" required="required" id="chitieu-yeucau" style="width: 100%;">
-                                                            <option>Chỉ tiêu nước</option>
-                                                            <option>Chỉ tiêu đất</option>
-                                                            <option>Chỉ tiêu bùn</option>
-                                                            <option>Chỉ tiêu nước thải</option>
-                                                            <option>Chỉ tiêu NCR</option>
-                                                            <option>Chỉ tiêu 5</option>
-                                                            <option>Chỉ tiêu 6</option>
                                                         </select>
                                                     </div>
-                                                @*<div class="form-group">
-                                                    <label for="email">Chỉ Tiêu Yêu Cầu <span class="required">*</span></label>
-                                                    <input type="email" class="form-control" id="chitieu-yeucau" required="required">
-                                                </div>*@
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
@@ -282,15 +276,59 @@
     });
 </script>
 
-
 <script>
     $(document).ready(function () {
+        var $Global = [];
+        var $CacheChiTieu = {};
+        var $SelectedCT_Id = [];
+        var chitieu_selectbox = $("#chitieu-yeucau");
+        
+        $.ajax({
+            type: 'POST',
+            url: ' @Url.Action("GetNhomChiTieu", "API", new { area = "BaoGiaChiTieu" })',
+            success: function (res) {
+                var loaimau_selectbox = $("#loai-chitieu");
+                loaimau_selectbox.append("<option></option>");
+                res.forEach(function (item) {
+                    loaimau_selectbox.append("<option>" + item.TenNhom + "</option>");
+                });
+            },
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8'
+        });
 
-        const $Global = [];
+        $('#loai-chitieu').change(function () {
+            //nthoang: AJAX call ChiTieuMau suggestion list
+            var formData2 = {
+                TenNhom: $("#loai-chitieu").val()
+            };
+            if (!(formData2.TenNhom in $CacheChiTieu)) {
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("FindChiTieu", "API", new { area = "BaoGiaChiTieu" })',
+                    data: JSON.stringify(formData2),
+                    success: function (res) {
+                        chitieu_selectbox.empty();
+                        $CacheChiTieu[formData2.TenNhom] = res;
+                        res.forEach(function (item) {
+                            chitieu_selectbox.append("<option>" + item.TenChiTieu + "</option>");
+                        });
+                    },
+                    dataType: 'json',
+                    contentType: 'application/json; charset=utf-8'
+                });
+            } else {
+                chitieu_selectbox.empty();
+                var cached_ct = $CacheChiTieu[formData2.TenNhom];
+                cached_ct.forEach(function (item) {
+                    chitieu_selectbox.append("<option>" + item.TenChiTieu + "</option>");
+                });
+            }
+        });
 
         $('#themMauModal').on('hidden.bs.modal', function () {
             $(this).find("input,textarea,select").val('').end();
-
+            $(this).find(".select2-selection__rendered").empty();
         });
 
         function Delete() {
@@ -312,11 +350,16 @@
             var tabledata = $("#sampledata-table tbody");
             var soluong = $("#so-luong").val();
             var donvi = $("#don-vi").val();
-            var chitieuyeucaus = $(".select2-selection__choice").toArray().map(function (e) { return e.innerText.substr(1); });
+            var chitieuyeucaus = $(".select2-selection__choice").toArray().map(function (e) {
+                return {
+                    TenChiTieu: e.innerText.substr(1),
+                    NhomChiTieu: $("#loai-chitieu").val()
+                };
+            });
             $Global.push({
                 SoLuong: soluong,
                 DonVi: donvi,
-                ChiTieuYeuCaus: chitieuyeucaus  
+                ChiTieuYeuCaus: chitieuyeucaus
             });
 
             tabledata.append(
@@ -327,7 +370,7 @@
                 "<td>" + $("#vitri-laymau").val() + "</td>" +
                 "<td>" + soluong + " " +  donvi + "</td>" +
                 "<td>" + $("#mota-mau").val() + "</td>" +
-                "<td>" + chitieuyeucaus.join(", ") + "</td>" +
+                "<td>" + chitieuyeucaus.map(function (e) { return e.TenChiTieu }).join(", ") + "</td>" +
                 "<td></td>" +
                 "</tr>");
 
@@ -394,12 +437,12 @@
                 url: ' @Url.Action("Create", "API")',
                 data: JSON.stringify(formData),
                 success: function (res) {
-                   if (res.isOk) {
-                      console.log(formData);
-                   } else {
-                      console.log(res.errMsg);
-                   }
-                   location.href = '@Url.Action("Index", "YeuCauLayMau")'
+                    if (res.isOk) {
+                        console.log(formData);
+                    } else {
+                        console.log(res.errMsg);
+                    }
+                    location.href = '@Url.Action("Index", "YeuCauLayMau")'
                 },
                 dataType: 'json',
                 contentType: 'application/json; charset=utf-8'

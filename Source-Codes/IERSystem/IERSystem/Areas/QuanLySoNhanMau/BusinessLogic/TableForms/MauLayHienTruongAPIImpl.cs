@@ -18,16 +18,14 @@ namespace IERSystem.BusinessLogic.TableForms
                 && today.Date.CompareTo(inp_model.DenNgay) < 1)
             {
                 //nthoang if today is the date between SoNhanMau FromDate and ToDate
+                //Query all available MayLayHienTruongs
                 var tinhtrang_khoitao = TinhTrangMauConverter.ToByte(TinhTrangMau.KhoiTao);
                 return (from mauht in db.MauLayHienTruongs
                         join phieuyc in db.PhieuYeuCaus on mauht.PhieuYeuCauId equals phieuyc.Id
                         where mauht.TinhTrang == tinhtrang_khoitao//[1]
                               && mauht.SoNhanMau == null //[2]
-                        //TODO: nthoang: filter the MauPTToBeAdded candids by date? (by which criteria?)
                         //&& phieuyc.NgayTaoHD.CompareTo(inp_model.TuNgay) > -1
                         //&& phieuyc.NgayTaoHD.CompareTo(inp_model.DenNgay) < 1
-                        //Currently the criteria is: from_date <= today <= to_date
-                        //(today should be the date ngay nhan mau is chosen)
                         select new { Mau = mauht, Phieu = phieuyc }).ToList()
                                .Select((rowitem) => new MauPTToBeAddedOutputModel()
                         {

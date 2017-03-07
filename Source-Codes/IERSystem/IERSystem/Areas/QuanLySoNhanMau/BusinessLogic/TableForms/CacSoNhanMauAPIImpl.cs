@@ -42,7 +42,8 @@ namespace IERSystem.BusinessLogic.TableForms
                             NgayTraKQ = sonhanmau_model.NgayTraKQ.ToShortDateString(),
                             TenDiaChiKH =
                                 maulayhientruong_mapped.PhieuYeuCau.TenKhachHang + " / " +
-                                maulayhientruong_mapped.PhieuYeuCau.DiaChiKhachHang
+                                maulayhientruong_mapped.PhieuYeuCau.DiaChiKhachHang,
+                            ChiTieuThuNghiem = String.Join(", ", maulayhientruong_mapped.ChiTieuPhanTiches.Select((item) => item.TenChiTieu))
                         };
                     })
                 };

@@ -127,9 +127,9 @@ namespace IERSystem.BusinessLogic
                         && request.NgayTaoHD.Year.Equals(this_year))
                  select new { Sample = sample }
                 ).ToList();
-             return result.GroupBy((item) => extractKiHieuMauFromMaMau(item.Sample.MaMau))
-                          .Select((item) => new SampleCounter() { SampleType = item.Key, Count = item.Count() })
-                          .ToDictionary((item) => item.SampleType, (item) => item.Count);
+            return result.GroupBy((item) => extractKiHieuMauFromMaMau(item.Sample.MaMau))
+                         .Select((item) => new SampleCounter() { SampleType = item.Key, Count = item.Count() })
+                         .ToDictionary((item) => item.SampleType, (item) => item.Count);
         }
     }
 }

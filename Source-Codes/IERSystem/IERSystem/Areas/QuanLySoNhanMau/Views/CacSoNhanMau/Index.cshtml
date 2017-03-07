@@ -159,7 +159,7 @@
                                 <th>Chỉ tiêu thử nghiệm</th>
                                 <th>Ngày nhận</th>
                                 <th>Ngày trả kết quả</th>
-                                <th>Ký hiệu mẫu</th>
+                                @*<th>Ký hiệu mẫu</th>*@
                                 <th>KH ký nhận trả tiền</th>
                                 <th>KH ký nhận trả kết quả</th>
                                 <th>Mã mẫu khách hàng</th>
@@ -181,7 +181,7 @@
                                     @Html.DisplayFor(modelItem => sonhanmau.MaMau)
                                 </td>
                                 <td>
-                                    N/A
+                                    @Html.DisplayFor(modelItem => sonhanmau.ChiTieuThuNghiem)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => sonhanmau.NgayNhan)
@@ -189,9 +189,9 @@
                                 <td>
                                     @Html.DisplayFor(modelItem => sonhanmau.NgayTraKQ)
                                 </td>
-                                <td>
+                                @*<td>
                                     N/A
-                                </td>
+                                </td>*@
                                 <td>
                                     <div class="checkbox">
                                         <label class="">

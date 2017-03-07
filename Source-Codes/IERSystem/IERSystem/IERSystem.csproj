@@ -211,10 +211,10 @@
     <Compile Include="Areas\Administrator\Models\MauLayHienTruong.cs">
       <DependentUpon>IERSystemModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Areas\Administrator\Models\PhieuYeuCau.cs">
+    <Compile Include="Areas\Administrator\Models\NhomChiTieu.cs">
       <DependentUpon>IERSystemModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Areas\Administrator\Models\PhuongPhapPhanTich.cs">
+    <Compile Include="Areas\Administrator\Models\PhieuYeuCau.cs">
       <DependentUpon>IERSystemModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Areas\Administrator\Models\SoChuyenMau.cs">
@@ -228,11 +228,15 @@
     </Compile>
     <Compile Include="Areas\BaoGiaChiTieu\BaoGiaChiTieuAreaRegistration.cs" />
     <Compile Include="Areas\BaoGiaChiTieu\BusinessLogic\BaoGiaChiTieuSheetParser.cs" />
+    <Compile Include="Areas\BaoGiaChiTieu\BusinessLogic\TableForms\ChiTieuPhanTichAPIImpl.cs" />
     <Compile Include="Areas\BaoGiaChiTieu\Controllers\APIController.cs" />
     <Compile Include="Areas\BaoGiaChiTieu\Controllers\MauBaoGiaController.cs" />
+    <Compile Include="Areas\BaoGiaChiTieu\Models\ChiTieuPTInputModel.cs" />
+    <Compile Include="Areas\BaoGiaChiTieu\Models\ChiTieuPTOutputModel.cs" />
     <Compile Include="Areas\BaoGiaChiTieu\Models\MauBaoGiaInputModel.cs" />
     <Compile Include="Areas\Administrator\Controllers\CacSoChuyenMauController.cs" />
     <Compile Include="Areas\Administrator\Controllers\CacSoNhanMauController.cs" />
+    <Compile Include="Areas\BaoGiaChiTieu\Models\NhomChiTieuOutputModel.cs" />
     <Compile Include="Areas\HopDongLayMau\BusinessLogic\TableForms\FormKQAPIImpl.cs" />
     <Compile Include="Areas\HopDongLayMau\BusinessLogic\TableForms\HopDongLayMauAPIImpl.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -261,6 +265,7 @@
     <Compile Include="Areas\HopDongLayMau\Controllers\YeuCauLayMauController.cs" />
     <Compile Include="Areas\HopDongLayMau\HopDongLayMauAreaRegistration.cs" />
     <Compile Include="Areas\HopDongLayMau\Tests\HDLayMau_SNhanMauTest.cs" />
+    <Compile Include="Areas\QuanLySoChuyenMau\QuanLySoChuyenMauAreaRegistration.cs" />
     <Compile Include="Areas\QuanLySoNhanMau\BusinessLogic\TableForms\CacSoNhanMauAPIImpl.cs" />
     <Compile Include="Areas\QuanLySoNhanMau\BusinessLogic\TableForms\MauLayHienTruongAPIImpl.cs" />
     <Compile Include="Areas\QuanLySoNhanMau\BusinessLogic\TableForms\SoNhanMauAPIImpl.cs" />
@@ -3908,7 +3913,6 @@
     <Content Include="Areas\HopDongLayMau\Views\YeuCauLayMau\_danhsachmau.cshtml" />
     <Content Include="App_Browsers\qt.browser" />
     <Content Include="Areas\BaoGiaChiTieu\Views\web.config" />
-    <Content Include="Areas\BaoGiaChiTieu\Views\MauBaoGia\Index.cshtml" />
     <EntityDeploy Include="Areas\Administrator\Models\IERSystemModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>IERSystemModel.Designer.cs</LastGenOutput>
@@ -3929,6 +3933,8 @@
     <Content Include="Areas\QuanLySoNhanMau\Views\web.config" />
     <Content Include="Areas\QuanLySoNhanMau\Views\CacSoNhanMau\Index.cshtml" />
     <Content Include="Areas\QuanLySoNhanMau\Views\CacSoNhanMau\Create.cshtml" />
+    <Content Include="Areas\BaoGiaChiTieu\Views\MauBaoGia\Upload.cshtml" />
+    <Content Include="Areas\QuanLySoChuyenMau\Views\web.config" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -3974,11 +3980,15 @@
     <Folder Include="App_Code\" />
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Administrator\Views\Account\" />
+    <Folder Include="Areas\BaoGiaChiTieu\BusinessLogic\Utils\" />
     <Folder Include="Areas\BaoGiaChiTieu\Views\Api\" />
     <Folder Include="Areas\BaoGiaChiTieu\Views\Shared\" />
     <Folder Include="Areas\HopDongLayMau\Views\API\" />
     <Folder Include="Areas\HopDongLayMau\Views\Default\" />
     <Folder Include="Areas\HopDongLayMau\Views\Shared\" />
+    <Folder Include="Areas\QuanLySoChuyenMau\Controllers\" />
+    <Folder Include="Areas\QuanLySoChuyenMau\Models\" />
+    <Folder Include="Areas\QuanLySoChuyenMau\Views\Shared\" />
     <Folder Include="Areas\QuanLySoNhanMau\Views\API\" />
   </ItemGroup>
   <ItemGroup>
