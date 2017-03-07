@@ -4,7 +4,6 @@ using IERSystem.BusinessLogic.TableForms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -30,12 +29,12 @@ namespace IERSystem.Areas.HopDongLayMau.Controllers
             if (ModelState.IsValid) {
                 try {
                     lock (_api_create_lock) {
-                        HopDongLayMauAPIImpl.Create(input_request, db);
+                        HopDongLayMauAPIImpl.CreateModel(input_request, db);
                         db.SaveChanges();
                     }
                     Console.WriteLine("OK");
                     return Json(new UpsertDBResponse { IsOK = true, ErrMsg = "" });
-                } catch (System.Data.Entity.Infrastructure.DbUpdateException e) {
+                } catch (Exception e) {
                     Console.WriteLine(e.Message);
                     return Json(new UpsertDBResponse { IsOK = false, ErrMsg = "" });
                 }

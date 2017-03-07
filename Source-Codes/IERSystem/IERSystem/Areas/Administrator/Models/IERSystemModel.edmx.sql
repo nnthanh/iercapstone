@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 03/05/2017 14:14:01
+-- Date Created: 03/06/2017 22:12:09
 -- Generated from EDMX file: E:\Capstone\iercapstone\Source-Codes\IERSystem\IERSystem\Areas\Administrator\Models\IERSystemModel.edmx
 -- --------------------------------------------------
 
@@ -131,12 +131,12 @@ CREATE TABLE [dbo].[PhieuYeuCaus] (
     [Id] bigint IDENTITY(1,1) NOT NULL,
     [DiaChiKhachHang] nvarchar(max)  NULL,
     [DiaChiLayMau] nvarchar(max)  NOT NULL,
-    [KhachHangTraTruoc] decimal(18,0)  NOT NULL,
+    [KhachHangTraTruoc] decimal(18,0)  NULL,
     [MaDon] nvarchar(max)  NOT NULL,
     [MaSoThue] nvarchar(max)  NULL,
     [NgayTaoHD] datetime  NOT NULL,
     [NoiLayMau] nvarchar(max)  NOT NULL,
-    [PhiThiNghiemTamTinh] decimal(18,0)  NOT NULL,
+    [PhiThiNghiemTamTinh] decimal(18,0)  NULL,
     [SoDienThoai] nvarchar(max)  NULL,
     [SoFax] nvarchar(max)  NULL,
     [TenDaiDien] nvarchar(max)  NULL,
@@ -155,7 +155,8 @@ CREATE TABLE [dbo].[MauLayHienTruongs] (
     [MoTaMau] nvarchar(max)  NOT NULL,
     [SoLuong] int  NOT NULL,
     [ViTriLayMau] nvarchar(max)  NOT NULL,
-    [PhieuYeuCauId] bigint  NOT NULL
+    [PhieuYeuCauId] bigint  NOT NULL,
+    [TinhTrang] tinyint  NOT NULL
 );
 GO
 
@@ -163,7 +164,8 @@ GO
 CREATE TABLE [dbo].[ChiTieuPhanTiches] (
     [Id] bigint IDENTITY(1,1) NOT NULL,
     [TenChiTieu] nvarchar(max)  NOT NULL,
-    [NhomChiTieu] nvarchar(max)  NOT NULL
+    [NhomChiTieu] nvarchar(max)  NOT NULL,
+    [ChiPhi] decimal(18,0)  NOT NULL
 );
 GO
 
@@ -175,7 +177,6 @@ CREATE TABLE [dbo].[SoNhanMaus] (
     [NgayNhan] datetime  NOT NULL,
     [NgayTraKQ] datetime  NOT NULL,
     [CacSoNhanMauId] bigint  NOT NULL,
-    [TinhTrang] tinyint  NOT NULL,
     [MauLayHienTruong_Id] bigint  NOT NULL
 );
 GO
@@ -183,8 +184,8 @@ GO
 -- Creating table 'CacSoNhanMaus'
 CREATE TABLE [dbo].[CacSoNhanMaus] (
     [Id] bigint IDENTITY(1,1) NOT NULL,
-    [Nam] int  NOT NULL,
-    [Quy] int  NOT NULL
+    [TuNgay] datetime  NOT NULL,
+    [DenNgay] datetime  NOT NULL
 );
 GO
 
@@ -196,7 +197,6 @@ CREATE TABLE [dbo].[SoChuyenMaus] (
     [NgayGiaoMau] datetime  NOT NULL,
     [NgayTraKQ] datetime  NOT NULL,
     [CacSoChuyenMauId] bigint  NOT NULL,
-    [TinhTrang] tinyint  NOT NULL,
     [MauLayHienTruong_Id] bigint  NOT NULL
 );
 GO
@@ -204,8 +204,8 @@ GO
 -- Creating table 'CacSoChuyenMaus'
 CREATE TABLE [dbo].[CacSoChuyenMaus] (
     [Id] bigint IDENTITY(1,1) NOT NULL,
-    [Nam] int  NOT NULL,
-    [Quy] int  NOT NULL
+    [TuNgay] datetime  NOT NULL,
+    [DenNgay] datetime  NOT NULL
 );
 GO
 
@@ -246,8 +246,7 @@ GO
 CREATE TABLE [dbo].[PhuongPhapPhanTiches] (
     [Id] bigint IDENTITY(1,1) NOT NULL,
     [TenPhuongPhap] nvarchar(max)  NOT NULL,
-    [ChiTieuPhanTichId] bigint  NOT NULL,
-    [ChiPhi] decimal(18,0)  NOT NULL
+    [ChiTieuPhanTichId] bigint  NOT NULL
 );
 GO
 

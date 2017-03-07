@@ -21,7 +21,7 @@ namespace IERSystem.Areas.HopDongLayMau.Models
         //public DateTime NgayTraMau { get; set; }
         
         //public int MaHDPhanTich { get; set; }
-        public String ChiTieuPhanTich { get; set; }
+        public IEnumerable<string> ChiTieuPhanTiches { get; set; }
         //public uint NamLayMau { get; set; }
     }
 }

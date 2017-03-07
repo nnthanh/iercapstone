@@ -19,7 +19,7 @@ namespace IERSystem.Areas.HopDongLayMau.Controllers
         {
             try {
                 var test = Tests.HDLayMau_SNhanMauTest.CreateTest();
-                HopDongLayMauAPIImpl.Create(test[0], db);
+                HopDongLayMauAPIImpl.CreateModel(test[0], db);
                 await db.SaveChangesAsync();
                 Console.WriteLine("OK");
             } catch (System.Data.Entity.Infrastructure.DbUpdateException e) {

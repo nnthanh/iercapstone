@@ -1,4 +1,5 @@
 ﻿using IERSystem.Areas.Administrator.Models;
+using IERSystem.BusinessLogic.Utils;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -19,7 +20,7 @@ namespace IERSystem.Areas.HopDongLayMau.Models
         public String SoDienThoai { get; set; }
         public String SoFax { get; set; }
         public DateTime NgayLayMau { get; set; }
-        public DateTime NgayHenTraKQ { get; set; }
+        public int NgayHenTraKQ { get; set; }
         public String PhuongPhapLayMau { get; set; }
         public String TenTieuChuanDoiChieu { get; set; }
         public double? PhiThiNghiemTamTinh { get; set; }
@@ -27,7 +28,7 @@ namespace IERSystem.Areas.HopDongLayMau.Models
         //public Boolean DaGuiMau { get; set; }
         //public uint NamLayHD { get; set; }
 
-        public List<MauPTInputModel> MauLayHienTruongs { get; set; }
+        public IEnumerable<MauPTInputModel> MauLayHienTruongs { get; set; }
         
         /// <summary>
         /// Convert InputModel to Database Model
@@ -46,24 +47,22 @@ namespace IERSystem.Areas.HopDongLayMau.Models
             req.MaSoThue = this.MaSoThue;
             req.SoFax = this.SoFax;
             req.SoDienThoai = this.SoDienThoai;
-            req.NgayHenTraKQ = this.NgayHenTraKQ;
+            req.NgayHenTraKQ = this.NgayLayMau.AddDays(this.NgayHenTraKQ);
             req.NoiLayMau = this.DiaChiLayMau;
             req.NgayLayMau = this.NgayLayMau;
             req.NgayTaoHD = today;
-            //req.NamLayHD = this.NgayTaoHD.Year;
             req.MauLayHienTruongs = this.MauLayHienTruongs.Select((elem) => {
                 var mapped = new MauLayHienTruong();
                 mapped.MoTaMau = elem.MoTaMau;
                 mapped.SoLuong = elem.SoLuong;
                 mapped.DonVi = elem.DonVi;
                 mapped.ViTriLayMau = elem.ViTriLayMau;
-                //mapped.NamLayMau = req.NamLayHD;
-                //mapped.NgayNhanMau = req.NgayTaoHD;
-                //mapped.NgayTraMau = req.NgayDuKienTraMau;
                 mapped.MaMauKH = elem.MaMauKH;
                 //nthoang: here MauLayHienTruong should already been Encoded
                 Debug.Assert(elem.MaMau != null);
                 mapped.MaMau = elem.MaMau;
+                //nthoang: MauLayHienTruong.TinhTrang is KhoiTao
+                mapped.TinhTrang = TinhTrangMauConverter.ToByte(TinhTrangMau.KhoiTao);
                 return mapped;
             }).ToArray();
             return req;

@@ -193,9 +193,9 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.NgayTaoHD)
                             </td>
-                            <td>
+                            @*<td>
                                 @Html.DisplayFor(modelItem => item.NgayDuKienTraMau)
-                            </td>
+                            </td>*@
                             <td>
                                 <button data-toggle="tooltip" title="Chỉnh sửa" onclick="location.href='@Url.Action("Edit", "YeuCauLayMau", new { id = item.Id })'"><span class="fa fa-edit"></span></button>
                                 <button data-toggle="tooltip" title="Xem chi tiết" onclick="location.href='@Url.Action("Details", "YeuCauLayMau", new { id = item.Id })'"><span class="fa fa-info"></span></button>

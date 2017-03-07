@@ -13,6 +13,7 @@ namespace IERSystem.Areas.BaoGiaChiTieu.Controllers
         private IERSystemModelContainer db = new IERSystemModelContainer();
 
         // GET: BaoGiaChiTieu/MauBaoGia/Upload
+        //nthoang: TODO: WIP
         public ActionResult Upload(FormCollection form_collection)
         {
             if (Request != null) {

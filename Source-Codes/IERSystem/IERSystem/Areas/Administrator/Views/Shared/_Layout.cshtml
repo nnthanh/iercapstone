@@ -155,7 +155,7 @@
                                     </ul>
                                     <a href="~/HopDongLayMau/YeuCauLayMau/Index"><i class="fa fa-home"></i> Hợp đồng lấy mẫu</a>
                                     <a href="~/Administrator/FormKQ/Index"><i class="fa fa-home"></i> Form kết quả</a>
-                                    <a href="~/Administrator/SoNhanMau/Index"><i class="fa fa-home"></i> Sổ nhận mẫu</a>
+                                    <a href="~/QuanLySoNhanMau/CacSoNhanMau/Index"><i class="fa fa-home"></i> Sổ nhận mẫu</a>
                                     <a href="~/Administrator/SoChuyenMau/Index"><i class="fa fa-home"></i> Sổ chuyển mẫu</a>
                                     <a href="~/Administrator/SoKQThuNghiem/Index"><i class="fa fa-home"></i> Sổ kết quả thử nghiệm</a>
                                     <a href="~/Administrator/FormKQ/Index"><i class="fa fa-home"></i> Phiếu kết quả</a>
@@ -544,8 +544,9 @@
     <script>
         $(document).ready(function () {
             var handleDataTableButtons = function () {
-                if ($("#datatable-buttons").length) {
-                    $("#datatable-buttons").DataTable({
+                //nthoang: Apply this setting on all datatable-buttons (convert id to class)
+                if ($(".datatable-buttons").length) {
+                    $(".datatable-buttons").DataTable({
                         dom: "Bfrtip",
                         buttons: [
                           {

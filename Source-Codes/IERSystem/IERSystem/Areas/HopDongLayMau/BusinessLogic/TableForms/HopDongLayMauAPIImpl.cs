@@ -17,18 +17,13 @@ namespace IERSystem.BusinessLogic.TableForms
 
     public static partial class HopDongLayMauAPIImpl
     {
-        //nthoang: Table Parsing using YeuCauLayMau Input here
-        public static void Create(YeuCauLayMauInputModel input_request, IERSystemModelContainer db) {
-            upsertHopDongLayMau(input_request, db);
-            //TableForms.CacSoNhanMauAPIImpl.Create(input_request, db);
-            //TableForms.CacSoChuyenMauAPIImpl.Create(input_request, db);
-        }
-
-        private static void upsertHopDongLayMau(YeuCauLayMauInputModel input_request, IERSystemModelContainer db) {
+        public static void CreateModel(YeuCauLayMauInputModel input_request, IERSystemModelContainer db)
+        {
             var today_dep = DateTime.Now.Date;
             var encoded_inp_req = HopDongLayMauEncoding.Encode(input_request, db, today_dep);
             var yeucaulaymau_model = encoded_inp_req.ToModel(today_dep);
             db.PhieuYeuCaus.Add(yeucaulaymau_model);
         }
+
     }
 }

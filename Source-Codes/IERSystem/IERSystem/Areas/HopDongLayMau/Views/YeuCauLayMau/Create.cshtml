@@ -36,14 +36,8 @@
                             </label>
 
                             <div class="col-md-4 col-sm-4 col-xs-12">
-                                @*@Html.TextBoxFor(model => model.TenKhachHang, new { @class = "form-control col-md-4 col-xs-12", required="required" })*@                                
-                                <input type="text" name="country" id="autocomplete-custom-append" class="form-control col-md-10" data-validate-length-range="6" data-validate-words="2" />
-                                <div id="autocomplete-container">
-                                    <div class="autocomplete-suggestions">
-                                    </div>
-                                </div>
+                                @Html.TextBoxFor(model => model.TenKhachHang, new { @class = "form-control col-md-4 col-xs-12", required="required" })                              
                                 @Html.ValidationMessageFor(model => model.TenKhachHang)
-                                
                             </div>                                                                                     
                             <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
                                 Mã số thuế
@@ -259,7 +253,7 @@
                         <div class="ln_solid"></div>
                         <div class="form-group">
                             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                                <input type="submit" id="submitBtn" value="Tạo" class="btn btn-success" />
+                                <input id="submitBtn" value="Tạo" class="btn btn-success" />
                                 @*<button id="submitBtn" type="submit" class="btn btn-success"> Tạo</button>*@
                                 <input type="submit" class="btn btn-danger" value="Quay lại" onclick="location.href='@Url.Action("Index", "YeuCauLayMau")'" />
                             </div>
@@ -318,10 +312,11 @@
             var tabledata = $("#sampledata-table tbody");
             var soluong = $("#so-luong").val();
             var donvi = $("#don-vi").val();
-
+            var chitieuyeucaus = $(".select2-selection__choice").toArray().map(function (e) { return e.innerText.substr(1); });
             $Global.push({
                 SoLuong: soluong,
-                DonVi: donvi
+                DonVi: donvi,
+                ChiTieuYeuCaus: chitieuyeucaus  
             });
 
             tabledata.append(
@@ -332,7 +327,7 @@
                 "<td>" + $("#vitri-laymau").val() + "</td>" +
                 "<td>" + soluong + " " +  donvi + "</td>" +
                 "<td>" + $("#mota-mau").val() + "</td>" +
-                "<td>" + $("#chitieu-yeucau").val() + "</td>" +
+                "<td>" + chitieuyeucaus.join(", ") + "</td>" +
                 "<td></td>" +
                 "</tr>");
 
@@ -386,7 +381,7 @@
                         SoLuong:  $Global[i].SoLuong,
                         DonVi:  $Global[i].DonVi,
                         MoTaMau: rowdata[4],
-                        ChiTieuPhanTich: rowdata[5]
+                        ChiTieuPhanTiches: $Global[i].ChiTieuYeuCaus
                     }
                 }).get();
                 res.MauLayHienTruongs = sampledata;
