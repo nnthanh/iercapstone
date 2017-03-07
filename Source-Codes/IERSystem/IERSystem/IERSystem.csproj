@@ -265,13 +265,23 @@
     <Compile Include="Areas\HopDongLayMau\Controllers\YeuCauLayMauController.cs" />
     <Compile Include="Areas\HopDongLayMau\HopDongLayMauAreaRegistration.cs" />
     <Compile Include="Areas\HopDongLayMau\Tests\HDLayMau_SNhanMauTest.cs" />
+    <Compile Include="Areas\QuanLySoChuyenMau\BusinessLogic\TableForms\CacSoChuyenMauAPIImpl.cs" />
+    <Compile Include="Areas\QuanLySoChuyenMau\BusinessLogic\TableForms\MauLayHienTruongAPIImpl.cs" />
+    <Compile Include="Areas\QuanLySoChuyenMau\BusinessLogic\TableForms\SoChuyenMauAPIImpl.cs" />
+    <Compile Include="Areas\QuanLySoChuyenMau\Controllers\APIController.cs" />
+    <Compile Include="Areas\QuanLySoChuyenMau\Models\MauPTAdderInputModel.cs" />
+    <Compile Include="Areas\QuanLySoChuyenMau\Models\MauPTToBeAddedInputModel.cs" />
+    <Compile Include="Areas\QuanLySoChuyenMau\Models\MauPTToBeAddedOutputModel.cs" />
+    <Compile Include="Areas\QuanLySoChuyenMau\Models\SoChuyenMauInputModel.cs" />
+    <Compile Include="Areas\QuanLySoChuyenMau\Models\CacSoChuyenMauOutputModel.cs" />
+    <Compile Include="Areas\QuanLySoChuyenMau\Controllers\CacSoChuyenMauController.cs" />
+    <Compile Include="Areas\QuanLySoChuyenMau\Models\SoChuyenMauOutputModel.cs" />
     <Compile Include="Areas\QuanLySoChuyenMau\QuanLySoChuyenMauAreaRegistration.cs" />
     <Compile Include="Areas\QuanLySoNhanMau\BusinessLogic\TableForms\CacSoNhanMauAPIImpl.cs" />
     <Compile Include="Areas\QuanLySoNhanMau\BusinessLogic\TableForms\MauLayHienTruongAPIImpl.cs" />
     <Compile Include="Areas\QuanLySoNhanMau\BusinessLogic\TableForms\SoNhanMauAPIImpl.cs" />
     <Compile Include="Areas\QuanLySoNhanMau\Controllers\APIController.cs" />
     <Compile Include="Areas\QuanLySoNhanMau\Controllers\CacSoNhanMauController.cs" />
-    <Compile Include="Areas\QuanLySoNhanMau\Controllers\SoNhanMauController.cs" />
     <Compile Include="Areas\QuanLySoNhanMau\Models\CacSoNhanMauOutputModel.cs" />
     <Compile Include="Areas\QuanLySoNhanMau\Models\MauPTAdderInputModel.cs" />
     <Compile Include="Areas\QuanLySoNhanMau\Models\MauPTToBeAddedInputModel.cs" />
@@ -3935,6 +3945,8 @@
     <Content Include="Areas\QuanLySoNhanMau\Views\CacSoNhanMau\Create.cshtml" />
     <Content Include="Areas\BaoGiaChiTieu\Views\MauBaoGia\Upload.cshtml" />
     <Content Include="Areas\QuanLySoChuyenMau\Views\web.config" />
+    <Content Include="Areas\QuanLySoChuyenMau\Views\CacSoChuyenMau\Index.cshtml" />
+    <Content Include="Areas\QuanLySoChuyenMau\Views\CacSoChuyenMau\Create.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -3986,8 +3998,7 @@
     <Folder Include="Areas\HopDongLayMau\Views\API\" />
     <Folder Include="Areas\HopDongLayMau\Views\Default\" />
     <Folder Include="Areas\HopDongLayMau\Views\Shared\" />
-    <Folder Include="Areas\QuanLySoChuyenMau\Controllers\" />
-    <Folder Include="Areas\QuanLySoChuyenMau\Models\" />
+    <Folder Include="Areas\QuanLySoChuyenMau\Views\API\" />
     <Folder Include="Areas\QuanLySoChuyenMau\Views\Shared\" />
     <Folder Include="Areas\QuanLySoNhanMau\Views\API\" />
   </ItemGroup>

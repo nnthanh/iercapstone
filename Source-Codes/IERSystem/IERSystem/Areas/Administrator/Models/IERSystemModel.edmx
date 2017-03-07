@@ -142,7 +142,7 @@
     <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="KHKiNhanTraKQ" Type="bit" Nullable="false" />
     <Property Name="KHKiNhanTraTien" Type="bit" Nullable="false" />
-    <Property Name="NgayNhan" Type="datetime" Nullable="false" />
+    <Property Name="NgayNhanMau" Type="datetime" Nullable="false" />
     <Property Name="NgayTraKQ" Type="datetime" Nullable="false" />
     <Property Name="CacSoNhanMauId" Type="bigint" Nullable="false" />
     <Property Name="MauLayHienTruong_Id" Type="bigint" Nullable="false" />
@@ -608,7 +608,7 @@
           <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="KHKiNhanTraKQ" Type="Boolean" Nullable="false" />
           <Property Name="KHKiNhanTraTien" Type="Boolean" Nullable="false" />
-          <Property Name="NgayNhan" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="NgayNhanMau" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="NgayTraKQ" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="CacSoNhanMau" Relationship="IERSystemModel.CacSoNhanMau_SoNhanMau" FromRole="SoNhanMau" ToRole="CacSoNhanMau" />
           <Property Name="CacSoNhanMauId" Type="Int64" Nullable="false" />
@@ -845,7 +845,7 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="KHKiNhanTraKQ" ColumnName="KHKiNhanTraKQ" />
           <ScalarProperty Name="KHKiNhanTraTien" ColumnName="KHKiNhanTraTien" />
-          <ScalarProperty Name="NgayNhan" ColumnName="NgayNhan" />
+          <ScalarProperty Name="NgayNhanMau" ColumnName="NgayNhanMau" />
           <ScalarProperty Name="NgayTraKQ" ColumnName="NgayTraKQ" />
           <ScalarProperty Name="CacSoNhanMauId" ColumnName="CacSoNhanMauId" />
         </MappingFragment>

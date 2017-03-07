@@ -22,7 +22,8 @@ namespace IERSystem.Areas.QuanLySoNhanMau.Controllers
             return View(await CacSoNhanMauAPIImpl.CreateView(db));
         }
 
-        // GET: /QuanLyCacSoNhanMau/CacSoNhanMau/Create
+        // POST: /QuanLyCacSoNhanMau/CacSoNhanMau/Create
+        [HttpPost]
         public ActionResult Create([Bind(Include = "Name,TuThang,DenThang")]SoNhanMauInputModel cacsonhanmau_inp)
         {
             if (ModelState.IsValid)

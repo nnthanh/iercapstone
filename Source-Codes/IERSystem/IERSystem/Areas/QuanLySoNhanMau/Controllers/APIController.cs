@@ -13,7 +13,7 @@ namespace IERSystem.Areas.QuanLySoNhanMau.Controllers
     {
         private IERSystemModelContainer db = new IERSystemModelContainer();
 
-        // POST: /QuanLyCacSoNhanMau/CacSoNhanMau/Create
+        // POST: /QuanLyCacSoNhanMau/API/Create
         [HttpPost]
         public JsonResult Create(SoNhanMauInputModel cacsonhanmau_inp)
         {
@@ -38,7 +38,7 @@ namespace IERSystem.Areas.QuanLySoNhanMau.Controllers
             }
         }
 
-        // POST: /QuanLyCacSoNhanMau/CacSoNhanMau/GetMauPTCandids
+        // POST: /QuanLyCacSoNhanMau/API/GetMauPTCandids
         [HttpPost]
         public JsonResult GetMauPTCandids(MauPTToBeAddedInputModel maupttobeadded_inp)
         {
@@ -54,7 +54,7 @@ namespace IERSystem.Areas.QuanLySoNhanMau.Controllers
             }
         }
 
-        // POST: /QuanLyCacSoNhanMau/CacSoNhanMau/ReceiveMauPTs
+        // POST: /QuanLyCacSoNhanMau/API/ReceiveMauPTs
         [HttpPost]
         public JsonResult ReceiveMauPTs(MauPTAdderInputModel mauptadd_inp)
         {

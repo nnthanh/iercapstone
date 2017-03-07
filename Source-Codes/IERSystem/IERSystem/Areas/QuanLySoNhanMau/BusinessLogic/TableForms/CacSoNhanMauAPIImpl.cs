@@ -13,8 +13,12 @@ namespace IERSystem.BusinessLogic.TableForms
     {
         public static void CreateModel(SoNhanMauInputModel input_request, IERSystemModelContainer db)
         {
-            var cacsonhanmau_model = input_request.ToModel();
-            db.CacSoNhanMaus.Add(cacsonhanmau_model);
+            db.CacSoNhanMaus.Add(new CacSoNhanMau()
+            {
+                TuNgay = new DateTime(input_request.Nam, input_request.TuThang, 1),
+                DenNgay = new DateTime(input_request.Nam, input_request.DenThang, 
+                    DateTime.DaysInMonth(input_request.Nam, input_request.DenThang))
+            });
         }
 
         public static async Task<IEnumerable<CacSoNhanMauOutputModel>> CreateView(IERSystemModelContainer db)
@@ -38,7 +42,7 @@ namespace IERSystem.BusinessLogic.TableForms
                             MaMau = sonhanmau_model.MauLayHienTruong.MaMau,
                             MaMauKH = maulayhientruong_mapped.MaMauKH,
                             MaPhieuYeuCau = maulayhientruong_mapped.PhieuYeuCau.MaDon,
-                            NgayNhan = sonhanmau_model.NgayNhan.ToShortDateString(),
+                            NgayNhan = sonhanmau_model.NgayNhanMau.ToShortDateString(),
                             NgayTraKQ = sonhanmau_model.NgayTraKQ.ToShortDateString(),
                             TenDiaChiKH =
                                 maulayhientruong_mapped.PhieuYeuCau.TenKhachHang + " / " +

@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 03/07/2017 18:19:08
+-- Date Created: 03/07/2017 23:57:32
 -- Generated from EDMX file: E:\Capstone\iercapstone\Source-Codes\IERSystem\IERSystem\Areas\Administrator\Models\IERSystemModel.edmx
 -- --------------------------------------------------
 
@@ -59,6 +59,15 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_SoKQThuNghiem_MauLayHienTruong]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[SoKQThuNghiems] DROP CONSTRAINT [FK_SoKQThuNghiem_MauLayHienTruong];
 GO
+IF OBJECT_ID(N'[dbo].[FK_KQPhanTichFormKQ_ChiTieuPhanTich_KQPhanTichFormKQ]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[KQPhanTichFormKQ_ChiTieuPhanTich] DROP CONSTRAINT [FK_KQPhanTichFormKQ_ChiTieuPhanTich_KQPhanTichFormKQ];
+GO
+IF OBJECT_ID(N'[dbo].[FK_KQPhanTichFormKQ_ChiTieuPhanTich_ChiTieuPhanTich]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[KQPhanTichFormKQ_ChiTieuPhanTich] DROP CONSTRAINT [FK_KQPhanTichFormKQ_ChiTieuPhanTich_ChiTieuPhanTich];
+GO
+IF OBJECT_ID(N'[dbo].[FK_NhomChiTieu_ChiTieuPhanTich]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ChiTieuPhanTiches] DROP CONSTRAINT [FK_NhomChiTieu_ChiTieuPhanTich];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
@@ -97,6 +106,9 @@ GO
 IF OBJECT_ID(N'[dbo].[KQPhanTichFormKQs]', 'U') IS NOT NULL
     DROP TABLE [dbo].[KQPhanTichFormKQs];
 GO
+IF OBJECT_ID(N'[dbo].[NhomChiTieux]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[NhomChiTieux];
+GO
 IF OBJECT_ID(N'[dbo].[MauLayHienTruong_ChiTieuPhanTich]', 'U') IS NOT NULL
     DROP TABLE [dbo].[MauLayHienTruong_ChiTieuPhanTich];
 GO
@@ -105,6 +117,9 @@ IF OBJECT_ID(N'[dbo].[SoChuyenMau_ChiTieuPhanTich]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[KQThuNghiemMau_ChiTieuPhanTich]', 'U') IS NOT NULL
     DROP TABLE [dbo].[KQThuNghiemMau_ChiTieuPhanTich];
+GO
+IF OBJECT_ID(N'[dbo].[KQPhanTichFormKQ_ChiTieuPhanTich]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[KQPhanTichFormKQ_ChiTieuPhanTich];
 GO
 
 -- --------------------------------------------------
@@ -160,7 +175,7 @@ CREATE TABLE [dbo].[SoNhanMaus] (
     [Id] bigint IDENTITY(1,1) NOT NULL,
     [KHKiNhanTraKQ] bit  NOT NULL,
     [KHKiNhanTraTien] bit  NOT NULL,
-    [NgayNhan] datetime  NOT NULL,
+    [NgayNhanMau] datetime  NOT NULL,
     [NgayTraKQ] datetime  NOT NULL,
     [CacSoNhanMauId] bigint  NOT NULL,
     [MauLayHienTruong_Id] bigint  NOT NULL

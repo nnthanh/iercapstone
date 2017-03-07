@@ -24,7 +24,7 @@ public partial class SoNhanMau
 
     public bool KHKiNhanTraTien { get; set; }
 
-    public System.DateTime NgayNhan { get; set; }
+    public System.DateTime NgayNhanMau { get; set; }
 
     public System.DateTime NgayTraKQ { get; set; }
 

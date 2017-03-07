@@ -37,7 +37,7 @@ namespace IERSystem.BusinessLogic.TableForms
                     target.SoNhanMaus.Add(new SoNhanMau()
                     {
                         MauLayHienTruong = mau_tobeadded,
-                        NgayNhan = today,
+                        NgayNhanMau = today,
                         NgayTraKQ = mau_tobeadded.PhieuYeuCau.NgayHenTraKQ
                     });
                 }

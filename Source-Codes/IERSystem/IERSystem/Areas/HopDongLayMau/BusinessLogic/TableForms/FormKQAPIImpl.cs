@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace IERSystem.Areas.HopDongLayMau.BusinessLogic.TableForms
+namespace IERSystem.BusinessLogic.TableForms
 {
     public static partial class FormKQAPIImpl
     {
