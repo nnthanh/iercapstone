@@ -7,105 +7,117 @@
 
 <h3>Bạn có chắn chắn muốn xóa mẫu chuyển?</h3>
 <div>
-    <dl class="dl-horizontal">
-        <dt>
-            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
-                Mã khách hàng
-            </label>
-        </dt>
+    <div class="clearfix">
+    </div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <dl class="dl-horizontal">
+                    <dt>
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                            Mã khách hàng
+                        </label>
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.MaKhachHang)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.MaKhachHang)
+                    </dd>
 
-        <dt>
-            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
-                Mã mẫu
-            </label>
-        </dt>
+                    <dt>
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                            Mã mẫu
+                        </label>
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.MaMau)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.MaMau)
+                    </dd>
 
-        <dt>
-            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
-                Chỉ tiêu thử nghiệm
-            </label>
-        </dt>
+                    <dt>
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                            Chỉ tiêu thử nghiệm
+                        </label>
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ChiTieuThuNghiem)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.ChiTieuThuNghiem)
+                    </dd>
 
-        <dt>
-            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
-                Người giao mẫu
-            </label>
-        </dt>
+                    <dt>
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                            Người giao mẫu
+                        </label>
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.NguoiGiaoMau)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.NguoiGiaoMau)
+                    </dd>
 
-        <dt>
-            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
-                Người nhận mẫu
-            </label>
-        </dt>
+                    <dt>
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                            Người nhận mẫu
+                        </label>
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.NguoiNhanMau)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.NguoiNhanMau)
+                    </dd>
 
-        <dt>
-            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
-                Ngày giao mẫu
-            </label>
-        </dt>
+                    <dt>
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                            Ngày giao mẫu
+                        </label>
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.NgayGiaoMau)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.NgayGiaoMau)
+                    </dd>
 
-        <dt>
-            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
-                Ngày trả kết quả
-            </label>
-        </dt>
+                    <dt>
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                            Ngày trả kết quả
+                        </label>
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.NgayTraKetQua)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.NgayTraKetQua)
+                    </dd>
 
-        <dt>
-            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
-                Điền tên
-            </label>
-        </dt>
+                    <dt>
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                            Điền tên
+                        </label>
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.DienTien)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.DienTien)
+                    </dd>
 
-        <dt>
-            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
-                Ghi chú
-            </label>
-        </dt>
+                    <dt>
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                            Ghi chú
+                        </label>
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.GhiChu)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.GhiChu)
+                    </dd>
 
-    </dl>
+                </dl>
 
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Xóa" class="btn btn-default" /> |
-            @Html.ActionLink("Trở về", "Index")
+                
+                
+            </div>
+            </div>
         </div>
-    }
-</div>
+    </div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color">
+        <input type="submit" value="Xóa" class="btn btn-default" /> |
+        @Html.ActionLink("Trở về", "Index")
+    </div>
+}
