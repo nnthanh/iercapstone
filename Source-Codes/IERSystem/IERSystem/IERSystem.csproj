@@ -50,7 +50,22 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="NPOI">
+      <HintPath>..\packages\NPOI.2.2.1\lib\net40\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OOXML">
+      <HintPath>..\packages\NPOI.2.2.1\lib\net40\NPOI.OOXML.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net">
+      <HintPath>..\packages\NPOI.2.2.1\lib\net40\NPOI.OpenXml4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats">
+      <HintPath>..\packages\NPOI.2.2.1\lib\net40\NPOI.OpenXmlFormats.dll</HintPath>
+    </Reference>
     <Reference Include="Rotativa, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Rotativa.1.6.4\lib\net40\Rotativa.dll</HintPath>
       <Private>True</Private>
@@ -58,7 +73,10 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -162,11 +180,60 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Areas\Administrator\Models\CacSoChuyenMau.cs">
+      <DependentUpon>IERSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Administrator\Models\CacSoNhanMau.cs">
+      <DependentUpon>IERSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Administrator\Models\ChiTieuPhanTich.cs">
+      <DependentUpon>IERSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Administrator\Models\FormKQ.cs">
+      <DependentUpon>IERSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Administrator\Models\IERSystemModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IERSystemModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Administrator\Models\IERSystemModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IERSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Administrator\Models\KQThuNghiemMau.cs">
+      <DependentUpon>IERSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Administrator\Models\MauLayHienTruong.cs">
+      <DependentUpon>IERSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Administrator\Models\NhomChiTieu.cs">
+      <DependentUpon>IERSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Administrator\Models\PhieuYeuCau.cs">
+      <DependentUpon>IERSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Administrator\Models\SoChuyenMau.cs">
+      <DependentUpon>IERSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Administrator\Models\SoKQThuNghiem.cs">
+      <DependentUpon>IERSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Administrator\Models\SoNhanMau.cs">
+      <DependentUpon>IERSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\BaoGiaChiTieu\BaoGiaChiTieuAreaRegistration.cs" />
+    <Compile Include="Areas\BaoGiaChiTieu\BusinessLogic\BaoGiaChiTieuSheetParser.cs" />
+    <Compile Include="Areas\BaoGiaChiTieu\BusinessLogic\TableForms\ChiTieuPhanTichAPIImpl.cs" />
+    <Compile Include="Areas\BaoGiaChiTieu\Controllers\APIController.cs" />
+    <Compile Include="Areas\BaoGiaChiTieu\Controllers\MauBaoGiaController.cs" />
+    <Compile Include="Areas\BaoGiaChiTieu\Models\ChiTieuPTInputModel.cs" />
+    <Compile Include="Areas\BaoGiaChiTieu\Models\ChiTieuPTOutputModel.cs" />
+    <Compile Include="Areas\BaoGiaChiTieu\Models\MauBaoGiaInputModel.cs" />
     <Compile Include="Areas\Administrator\Controllers\CacSoChuyenMauController.cs" />
     <Compile Include="Areas\Administrator\Controllers\CacSoNhanMauController.cs" />
-    <Compile Include="Areas\Administrator\Models\RoleMaster.cs" />
-    <Compile Include="Areas\HopDongLayMau\BusinessLogic\HopDongLayMauEncoding.cs" />
-    <Compile Include="Areas\HopDongLayMau\BusinessLogic\TableForms\FormKQAPIImpl.cs" />
+    <Compile Include="Areas\BaoGiaChiTieu\Models\NhomChiTieuOutputModel.cs" />
     <Compile Include="Areas\HopDongLayMau\BusinessLogic\TableForms\HopDongLayMauAPIImpl.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -183,26 +250,54 @@
     <Compile Include="Areas\Administrator\Controllers\UserController.cs" />
     <Compile Include="Areas\Administrator\HomeController.cs" />
     <Compile Include="Areas\Administrator\Models\AccountModel.cs" />
-    <Compile Include="Areas\Administrator\Models\CacSoChuyenMau.cs" />
-    <Compile Include="Areas\Administrator\Models\CacSoNhanMau.cs" />
-    <Compile Include="Areas\Administrator\Models\FormKQ.cs" />
-    <Compile Include="Areas\Administrator\Models\IERSystemDBContext.cs" />
-    <Compile Include="Areas\Administrator\Models\KQThuNghiemMau.cs" />
-    <Compile Include="Areas\Administrator\Models\MauLayHienTruong.cs" />
-    <Compile Include="Areas\HopDongLayMau\BusinessLogic\TableForms\CacSoChuyenMauAPIImpl.cs" />
-    <Compile Include="Areas\HopDongLayMau\BusinessLogic\TableForms\CacSoNhanMauAPIImpl.cs" />
+    <Compile Include="Areas\HopDongLayMau\BusinessLogic\Utils\LoaiMauConverter.cs" />
+    <Compile Include="Areas\HopDongLayMau\BusinessLogic\Utils\TinhTrangMauConverter.cs" />
+    <Compile Include="Areas\HopDongLayMau\BusinessLogic\Utils\DateTimeUtils.cs" />
+    <Compile Include="Areas\HopDongLayMau\BusinessLogic\YeuCauLayMauEncoding.cs" />
     <Compile Include="Areas\HopDongLayMau\Controllers\APIController.cs" />
     <Compile Include="Areas\HopDongLayMau\Controllers\DefaultController.cs" />
     <Compile Include="Areas\HopDongLayMau\Models\MauPTInputModel.cs" />
-    <Compile Include="Areas\Administrator\Models\PhieuYeuCau.cs" />
     <Compile Include="Areas\HopDongLayMau\Models\YeuCauLayMauInputModel.cs" />
-    <Compile Include="Areas\Administrator\Models\SoChuyenMau.cs" />
-    <Compile Include="Areas\Administrator\Models\SoKQThuNghiem.cs" />
-    <Compile Include="Areas\Administrator\Models\SoNhanMau.cs" />
     <Compile Include="Areas\Administrator\Models\User.cs" />
     <Compile Include="Areas\HopDongLayMau\Controllers\YeuCauLayMauController.cs" />
     <Compile Include="Areas\HopDongLayMau\HopDongLayMauAreaRegistration.cs" />
     <Compile Include="Areas\HopDongLayMau\Tests\HDLayMau_SNhanMauTest.cs" />
+    <Compile Include="Areas\QuanLyKetQuaPhanTich\BusinessLogic\TableForms\MauLayHienTruongAPIImpl.cs" />
+    <Compile Include="Areas\QuanLyKetQuaPhanTich\BusinessLogic\TableForms\FormKQAPIImpl.cs" />
+    <Compile Include="Areas\QuanLyKetQuaPhanTich\BusinessLogic\TableForms\SoKQThuNghiemAPIImpl.cs" />
+    <Compile Include="Areas\QuanLyKetQuaPhanTich\Controllers\APIController.cs" />
+    <Compile Include="Areas\QuanLyKetQuaPhanTich\Controllers\FormKQController.cs" />
+    <Compile Include="Areas\QuanLyKetQuaPhanTich\Controllers\SoKQThuNghiemController.cs" />
+    <Compile Include="Areas\QuanLyKetQuaPhanTich\Models\ChiTieuPTDetailsModel.cs" />
+    <Compile Include="Areas\QuanLyKetQuaPhanTich\Models\FormKQOutputModel.cs" />
+    <Compile Include="Areas\QuanLyKetQuaPhanTich\Models\KetQuaEditedInputModel.cs" />
+    <Compile Include="Areas\QuanLyKetQuaPhanTich\Models\MauLayHienTruongAPIImpl.cs" />
+    <Compile Include="Areas\QuanLyKetQuaPhanTich\Models\SoKQThuNghiemInputModel.cs" />
+    <Compile Include="Areas\QuanLyKetQuaPhanTich\QuanLyKetQuaPhanTichAreaRegistration.cs" />
+    <Compile Include="Areas\QuanLySoChuyenMau\BusinessLogic\TableForms\CacSoChuyenMauAPIImpl.cs" />
+    <Compile Include="Areas\QuanLySoChuyenMau\BusinessLogic\TableForms\MauLayHienTruongAPIImpl.cs" />
+    <Compile Include="Areas\QuanLySoChuyenMau\BusinessLogic\TableForms\SoChuyenMauAPIImpl.cs" />
+    <Compile Include="Areas\QuanLySoChuyenMau\Controllers\APIController.cs" />
+    <Compile Include="Areas\QuanLySoChuyenMau\Models\MauPTAdderInputModel.cs" />
+    <Compile Include="Areas\QuanLySoChuyenMau\Models\MauPTToBeAddedInputModel.cs" />
+    <Compile Include="Areas\QuanLySoChuyenMau\Models\MauPTToBeAddedOutputModel.cs" />
+    <Compile Include="Areas\QuanLySoChuyenMau\Models\SoChuyenMauInputModel.cs" />
+    <Compile Include="Areas\QuanLySoChuyenMau\Models\CacSoChuyenMauOutputModel.cs" />
+    <Compile Include="Areas\QuanLySoChuyenMau\Controllers\CacSoChuyenMauController.cs" />
+    <Compile Include="Areas\QuanLySoChuyenMau\Models\SoChuyenMauOutputModel.cs" />
+    <Compile Include="Areas\QuanLySoChuyenMau\QuanLySoChuyenMauAreaRegistration.cs" />
+    <Compile Include="Areas\QuanLySoNhanMau\BusinessLogic\TableForms\CacSoNhanMauAPIImpl.cs" />
+    <Compile Include="Areas\QuanLySoNhanMau\BusinessLogic\TableForms\MauLayHienTruongAPIImpl.cs" />
+    <Compile Include="Areas\QuanLySoNhanMau\BusinessLogic\TableForms\SoNhanMauAPIImpl.cs" />
+    <Compile Include="Areas\QuanLySoNhanMau\Controllers\APIController.cs" />
+    <Compile Include="Areas\QuanLySoNhanMau\Controllers\CacSoNhanMauController.cs" />
+    <Compile Include="Areas\QuanLySoNhanMau\Models\CacSoNhanMauOutputModel.cs" />
+    <Compile Include="Areas\QuanLySoNhanMau\Models\MauPTAdderInputModel.cs" />
+    <Compile Include="Areas\QuanLySoNhanMau\Models\MauPTToBeAddedInputModel.cs" />
+    <Compile Include="Areas\QuanLySoNhanMau\Models\MauPTToBeAddedOutputModel.cs" />
+    <Compile Include="Areas\QuanLySoNhanMau\Models\SoNhanMauInputModel.cs" />
+    <Compile Include="Areas\QuanLySoNhanMau\Models\SoNhanMauOutputModel.cs" />
+    <Compile Include="Areas\QuanLySoNhanMau\QuanLySoNhanMauAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -210,6 +305,11 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Areas\Administrator\Models\IERSystemModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IERSystemModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -263,6 +363,17 @@
     <Content Include="Areas\Administrator\Content\js\maps\jquery-jvectormap-world-mill-en.js" />
     <Content Include="Areas\Administrator\Content\js\moment\moment.min.js" />
     <Content Include="Areas\Administrator\Content\less\custom.css" />
+    <Content Include="Areas\Administrator\Models\IERSystemModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>IERSystemModel.Context.cs</LastGenOutput>
+      <DependentUpon>IERSystemModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Areas\Administrator\Models\IERSystemModel.edmx.sql" />
+    <Content Include="Areas\Administrator\Models\IERSystemModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>IERSystemModel.cs</LastGenOutput>
+      <DependentUpon>IERSystemModel.edmx</DependentUpon>
+    </Content>
     <Content Include="Areas\Administrator\vendors\autosize\.gitignore" />
     <Content Include="Areas\Administrator\vendors\autosize\build.js" />
     <Content Include="Areas\Administrator\vendors\autosize\dist\autosize.js" />
@@ -3820,6 +3931,14 @@
     <Content Include="Areas\HopDongLayMau\Views\YeuCauLayMau\ExportToExcel.cshtml" />
     <Content Include="Areas\HopDongLayMau\Views\YeuCauLayMau\_danhsachmau.cshtml" />
     <Content Include="App_Browsers\qt.browser" />
+    <Content Include="Areas\BaoGiaChiTieu\Views\web.config" />
+    <EntityDeploy Include="Areas\Administrator\Models\IERSystemModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>IERSystemModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Areas\Administrator\Models\IERSystemModel.edmx.diagram">
+      <DependentUpon>IERSystemModel.edmx</DependentUpon>
+    </Content>
     <Content Include="Areas\Administrator\Views\CacSoNhanMau\Create.cshtml" />
     <Content Include="Areas\Administrator\Views\CacSoNhanMau\Delete.cshtml" />
     <Content Include="Areas\Administrator\Views\CacSoNhanMau\Details.cshtml" />
@@ -3830,6 +3949,19 @@
     <Content Include="Areas\Administrator\Views\CacSoChuyenMau\Details.cshtml" />
     <Content Include="Areas\Administrator\Views\CacSoChuyenMau\Edit.cshtml" />
     <Content Include="Areas\Administrator\Views\CacSoChuyenMau\Index.cshtml" />
+    <Content Include="Areas\QuanLySoNhanMau\Views\web.config" />
+    <Content Include="Areas\QuanLySoNhanMau\Views\CacSoNhanMau\Index.cshtml" />
+    <Content Include="Areas\QuanLySoNhanMau\Views\CacSoNhanMau\Create.cshtml" />
+    <Content Include="Areas\BaoGiaChiTieu\Views\MauBaoGia\Upload.cshtml" />
+    <Content Include="Areas\QuanLySoChuyenMau\Views\web.config" />
+    <Content Include="Areas\QuanLySoChuyenMau\Views\CacSoChuyenMau\Index.cshtml" />
+    <Content Include="Areas\QuanLySoChuyenMau\Views\CacSoChuyenMau\Create.cshtml" />
+    <Content Include="Areas\QuanLyKetQuaPhanTich\Views\web.config" />
+    <Content Include="Areas\QuanLyKetQuaPhanTich\Views\SoKQThuNghiem\Index.cshtml" />
+    <Content Include="Areas\QuanLyKetQuaPhanTich\Views\SoKQThuNghiem\Create.cshtml" />
+    <Content Include="Areas\QuanLyKetQuaPhanTich\Views\SoKQThuNghiem\Edit.cshtml" />
+    <Content Include="Areas\QuanLyKetQuaPhanTich\Views\FormKQ\Index.cshtml" />
+    <Content Include="Areas\QuanLyKetQuaPhanTich\Views\SoKQThuNghiem\Details.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -3842,7 +3974,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -3873,9 +4007,17 @@
     <Folder Include="App_Code\" />
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Administrator\Views\Account\" />
+    <Folder Include="Areas\BaoGiaChiTieu\BusinessLogic\Utils\" />
+    <Folder Include="Areas\BaoGiaChiTieu\Views\Api\" />
+    <Folder Include="Areas\BaoGiaChiTieu\Views\Shared\" />
     <Folder Include="Areas\HopDongLayMau\Views\API\" />
     <Folder Include="Areas\HopDongLayMau\Views\Default\" />
     <Folder Include="Areas\HopDongLayMau\Views\Shared\" />
+    <Folder Include="Areas\QuanLyKetQuaPhanTich\Views\API\" />
+    <Folder Include="Areas\QuanLyKetQuaPhanTich\Views\Shared\" />
+    <Folder Include="Areas\QuanLySoChuyenMau\Views\API\" />
+    <Folder Include="Areas\QuanLySoChuyenMau\Views\Shared\" />
+    <Folder Include="Areas\QuanLySoNhanMau\Views\API\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -3883,6 +4025,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

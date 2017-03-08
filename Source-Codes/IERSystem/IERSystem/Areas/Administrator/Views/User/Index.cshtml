@@ -39,7 +39,7 @@
     </div>
 *@
 <h2>Quản lí người dùng</h2>
-<input type="button" class="btn btn-primary" value="Thêm người dùng" onclick="location.href='@Url.Action("Create", "User")'" />
+<input type="button" class="btn btn-success" value="Thêm người dùng" onclick="location.href='@Url.Action("Create", "User")'" />
 <div>
     <div class="page-title">
         <div class="title-left">
@@ -55,6 +55,31 @@
                     <h2>
                         Danh sách người dùng
                     </h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li>
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                        </li>
+                        @*<li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                    <i class="fa fa-wrench"></i>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                    <li>
+                        <a href="#">Settings 1</a>
+                    </li>
+                    <li>
+                        <a href="#">Settings 2</a>
+                    </li>
+                </ul>
+            </li>*@
+                        <li>
+                            <a class="close-link">
+                                <i class="fa fa-close"></i>
+                            </a>
+                        </li>
+                    </ul>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content" style="display:block;">
@@ -82,8 +107,9 @@
                                         @Html.DisplayFor(modelItem => item.fullname)
                                     </td>
                                     <td>
-                                        <input type="button" class="btn btn-primary" value="Chỉnh sửa" onclick="location.href='@Url.Action("Edit", "User", new { id = item.Id })'" />
-                                        <input type="button" class="btn btn-danger" value="Xóa" onclick="location.href='@Url.Action("Delete", "User", new { id = item.Id })'" />
+                                        <button data-toggle="tooltip" title="Chỉnh sửa" onclick="location.href='@Url.Action("Edit", "User", new { id = item.Id })'"><span class="fa fa-edit"></span></button>
+                                        <button data-toggle="tooltip" title="Xem chi tiết" onclick="location.href='@Url.Action("Details", "User", new { id = item.Id })'"><span class="fa fa-info"></span></button>               
+                                        <button data-toggle="tooltip" title="Xóa" onclick="location.href='@Url.Action("Delete", "User", new { id = item.Id })'"><span class="fa fa-trash"></span></button>
                                     </td>
                                 </tr>
                             }
@@ -94,4 +120,13 @@
         </div>
     </div>
 </div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+}
 

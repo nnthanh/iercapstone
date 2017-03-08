@@ -7,131 +7,140 @@
 
 <h3>Bạn có chắc muốn xóa phiếu kết quả này?</h3>
 <div>
-    <dl class="dl-horizontal">
-        <dt>
-            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
-                Số
-            </label>
-        </dt>
+    <div class="clearfix">
+    </div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <dl class="dl-horizontal">
+                    <dt>
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                            Số
+                        </label>
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.So)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.So)
+                    </dd>
 
-        <dt>
-            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
-                Ký hiệu mẫu
-            </label>
-        </dt>
+                    <dt>
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                            Ký hiệu mẫu
+                        </label>
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.KyHieuMau)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.KyHieuMau)
+                    </dd>
 
-        <dt>
-            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
-                Nơi lấy mẫu
-            </label>
-        </dt>
+                    <dt>
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                            Nơi lấy mẫu
+                        </label>
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.NoiLayMau)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.NoiLayMau)
+                    </dd>
 
-        <dt>
-            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
-                Ngày gửi mẫu
-            </label>
-        </dt>
+                    <dt>
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                            Ngày gửi mẫu
+                        </label>
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.NgayGuiMau)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.NgayGuiMau)
+                    </dd>
 
-        <dt>
-            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
-                Địa chỉ
-            </label>
-        </dt>
+                    <dt>
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                            Địa chỉ
+                        </label>
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.DiaChi)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.DiaChi)
+                    </dd>
 
-        <dt>
-            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
-                Loại mẫu
-            </label>
-        </dt>
+                    <dt>
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                            Loại mẫu
+                        </label>
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.LoaiMau)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.LoaiMau)
+                    </dd>
 
-        <dt>
-            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
-                Vị trí lấy mẫu
-            </label>
-        </dt>
+                    <dt>
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                            Vị trí lấy mẫu
+                        </label>
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ViTriLayMau)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.ViTriLayMau)
+                    </dd>
 
-    </dl>
-</div>
-<div class="row">
-    <div class="col-md-12 col-sm-12 col-xs-12">
-        <div class="x_panel">
-            <div class="x_title">
-                <h2>
-                    Phiếu kết quả
-                </h2>
-                <ul class="nav navbar-right panel_toolbox">
-                    <li>
-                        <a class="collapse-link">
-                            <i class="fa fa-chevron-up"></i>
-                        </a>
-                    </li>
-                    @*<li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                            <i class="fa fa-wrench"></i>
-                        </a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li>
-                                <a href="#">Settings 1</a>
-                            </li>
-                            <li>
-                                <a href="#">Settings 2</a>
-                            </li>
-                        </ul>
-                    </li>*@
-                    <li>
-                        <a class="close-link">
-                            <i class="fa fa-close"></i>
-                        </a>
-                    </li>
-                </ul>
-                <div class="clearfix"></div>
+                </dl>
             </div>
-            <div class="x_content" style="display:block;">
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>Số thứ tự</th>
-                            <th>Chỉ tiêu</th>
-                            <th>Đơn vị</th>
-                            <th>Giá trị</th>
-                            <th>Phương pháp phân tích</th>
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
-                </table>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>
+                                Phiếu kết quả
+                            </h2>
+                            <ul class="nav navbar-right panel_toolbox">
+                                <li>
+                                    <a class="collapse-link">
+                                        <i class="fa fa-chevron-up"></i>
+                                    </a>
+                                </li>
+                                @*<li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                            <i class="fa fa-wrench"></i>
+                                        </a>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li>
+                                                <a href="#">Settings 1</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Settings 2</a>
+                                            </li>
+                                        </ul>
+                                    </li>*@
+                                <li>
+                                    <a class="close-link">
+                                        <i class="fa fa-close"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content" style="display:block;">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Số thứ tự</th>
+                                        <th>Chỉ tiêu</th>
+                                        <th>Đơn vị</th>
+                                        <th>Giá trị</th>
+                                        <th>Phương pháp phân tích</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
+
+           
+        </div>
         </div>
     </div>
-</div>
-
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -141,4 +150,3 @@
         @Html.ActionLink("Trở về", "Index")
     </div>
 }
-</div>
