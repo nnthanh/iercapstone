@@ -262,6 +262,7 @@
     <Compile Include="Areas\HopDongLayMau\Controllers\YeuCauLayMauController.cs" />
     <Compile Include="Areas\HopDongLayMau\HopDongLayMauAreaRegistration.cs" />
     <Compile Include="Areas\HopDongLayMau\Tests\HDLayMau_SNhanMauTest.cs" />
+    <Compile Include="Areas\QuanLyKetQuaPhanTich\QuanLyKetQuaPhanTichAreaRegistration.cs" />
     <Compile Include="Areas\QuanLySoChuyenMau\BusinessLogic\TableForms\CacSoChuyenMauAPIImpl.cs" />
     <Compile Include="Areas\QuanLySoChuyenMau\BusinessLogic\TableForms\MauLayHienTruongAPIImpl.cs" />
     <Compile Include="Areas\QuanLySoChuyenMau\BusinessLogic\TableForms\SoChuyenMauAPIImpl.cs" />
@@ -3944,6 +3945,7 @@
     <Content Include="Areas\QuanLySoChuyenMau\Views\web.config" />
     <Content Include="Areas\QuanLySoChuyenMau\Views\CacSoChuyenMau\Index.cshtml" />
     <Content Include="Areas\QuanLySoChuyenMau\Views\CacSoChuyenMau\Create.cshtml" />
+    <Content Include="Areas\QuanLyKetQuaPhanTich\Views\web.config" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -3995,6 +3997,9 @@
     <Folder Include="Areas\HopDongLayMau\Views\API\" />
     <Folder Include="Areas\HopDongLayMau\Views\Default\" />
     <Folder Include="Areas\HopDongLayMau\Views\Shared\" />
+    <Folder Include="Areas\QuanLyKetQuaPhanTich\Controllers\" />
+    <Folder Include="Areas\QuanLyKetQuaPhanTich\Models\" />
+    <Folder Include="Areas\QuanLyKetQuaPhanTich\Views\Shared\" />
     <Folder Include="Areas\QuanLySoChuyenMau\Views\API\" />
     <Folder Include="Areas\QuanLySoChuyenMau\Views\Shared\" />
     <Folder Include="Areas\QuanLySoNhanMau\Views\API\" />
