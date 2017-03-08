@@ -1,5 +1,6 @@
 ﻿using IERSystem.Areas.Administrator.Models;
-using IERSystem.Areas.HopDongLayMau.Models;
+using IERSystem.Areas.QuanLyKetQuaPhanTich.Models;
+using IERSystem.BusinessLogic.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +10,6 @@ namespace IERSystem.BusinessLogic.TableForms
 {
     public static partial class FormKQAPIImpl
     {
-        public static void Create(YeuCauLayMauInputModel request, IERSystemModelContainer db) {
 
-        }
     }
 }

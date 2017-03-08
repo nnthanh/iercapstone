@@ -15,18 +15,12 @@ namespace IERSystem.Areas.HopDongLayMau.Controllers
 
         private static readonly object _api_create_lock = new object();
 
-        // GET: HopDongLayMau/API
-        public ActionResult Index()
-        {
-            return View();
-        }
-
         // POST: /HopDongLayMau/API/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         public JsonResult Create(YeuCauLayMauInputModel input_request) {
-            if (ModelState.IsValid) {
+            //if (ModelState.IsValid) {
                 try {
                     lock (_api_create_lock) {
                         HopDongLayMauAPIImpl.CreateModel(input_request, db);
@@ -38,9 +32,9 @@ namespace IERSystem.Areas.HopDongLayMau.Controllers
                     Console.WriteLine(e.Message);
                     return Json(new UpsertDBResponse { IsOK = false, ErrMsg = "" });
                 }
-            } else {
-                return Json(new UpsertDBResponse { IsOK = false, ErrMsg = "" }); 
-            }
+            //} else {
+            //    return Json(new UpsertDBResponse { IsOK = false, ErrMsg = "" }); 
+            //}
         }
 
         protected override void Dispose(bool disposing) {

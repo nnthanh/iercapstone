@@ -40,6 +40,14 @@ namespace IERSystem.BusinessLogic.TableForms
                         NgayGiaoMau = today,
                         NgayTraKQ = mau_tobeadded.PhieuYeuCau.NgayHenTraKQ
                     });
+                    //nthoang: TODO: (SHORTCUT) add into SoKQThiNghiem also
+                    SoKQThuNghiemAPIImpl.AddKetQuaPT(new Areas.QuanLyKetQuaPhanTich.Models.SoKQThuNghiemInputModel()
+                    {
+                        Id = mau_tobeadded.Id,
+                        KiHieuMau = mau_tobeadded.MaMau,
+                        //NgayNhanMau = mau_tobeadded.PhieuYeuCau.NgayLayMau.ToShortDateString(),
+                        //NgayTraMau = mau_tobeadded.PhieuYeuCau.NgayHenTraKQ.ToShortDateString()
+                    }, db, today);
                 }
             }
             catch (InvalidOperationException e)

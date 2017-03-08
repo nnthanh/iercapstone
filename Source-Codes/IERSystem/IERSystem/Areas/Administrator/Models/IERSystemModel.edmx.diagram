@@ -24,11 +24,11 @@
         <AssociationConnector Association="IERSystemModel.MauLayHienTruong_SoChuyenMau" />
         <AssociationConnector Association="IERSystemModel.SoChuyenMau_ChiTieuPhanTich" ManuallyRouted="false" >
         </AssociationConnector>
-        <AssociationConnector Association="IERSystemModel.KQThuNghiemMau_ChiTieuPhanTich" />
         <AssociationConnector Association="IERSystemModel.SoKQThuNghiem_MauLayHienTruong" />
         <EntityTypeShape EntityType="IERSystemModel.NhomChiTieu" Width="1.5" PointX="10" PointY="10" />
         <AssociationConnector Association="IERSystemModel.NhomChiTieu_ChiTieuPhanTich" />
-        <AssociationConnector Association="IERSystemModel.FormKQ_KQThuNghiemMau" />
+        <AssociationConnector Association="IERSystemModel.KQThuNghiemMau_ChiTieuPhanTich" />
+        <AssociationConnector Association="IERSystemModel.SoKQThuNghiem_FormKQ" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

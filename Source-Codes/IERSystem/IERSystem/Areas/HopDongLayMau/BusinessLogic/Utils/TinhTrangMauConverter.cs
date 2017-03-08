@@ -6,7 +6,7 @@ using System.Web;
 namespace IERSystem.BusinessLogic.Utils
 {
     public enum TinhTrangMau {
-        KhoiTao, DaNhan, DaChuyen, Unknown
+        KhoiTao, DaNhan, DaChuyen, DaCoKQ, Unknown
     }
 
     public static partial class TinhTrangMauConverter
@@ -18,6 +18,7 @@ namespace IERSystem.BusinessLogic.Utils
                 case 0: return TinhTrangMau.KhoiTao;
                 case 1: return TinhTrangMau.DaNhan;
                 case 2: return TinhTrangMau.DaChuyen;
+                case 3: return TinhTrangMau.DaCoKQ;
                 default: return TinhTrangMau.Unknown;
             }
         }
@@ -29,7 +30,8 @@ namespace IERSystem.BusinessLogic.Utils
                 case TinhTrangMau.KhoiTao: return 0;
                 case TinhTrangMau.DaNhan: return 1;
                 case TinhTrangMau.DaChuyen: return 2;
-                default: return 3;
+                case TinhTrangMau.DaCoKQ: return 3;
+                default: return 4;
             }
         }
     }
