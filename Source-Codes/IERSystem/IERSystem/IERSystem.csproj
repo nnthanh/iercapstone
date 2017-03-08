@@ -202,9 +202,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>IERSystemModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Areas\Administrator\Models\KQPhanTichFormKQ.cs">
-      <DependentUpon>IERSystemModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Areas\Administrator\Models\KQThuNghiemMau.cs">
       <DependentUpon>IERSystemModel.tt</DependentUpon>
     </Compile>

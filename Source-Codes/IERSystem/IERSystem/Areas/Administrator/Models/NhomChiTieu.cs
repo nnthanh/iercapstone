@@ -15,11 +15,11 @@ namespace IERSystem.Areas.Administrator.Models
 using System;
     using System.Collections.Generic;
     
-public partial class KQPhanTichFormKQ
+public partial class NhomChiTieu
 {
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-    public KQPhanTichFormKQ()
+    public NhomChiTieu()
     {
 
         this.ChiTieuPhanTiches = new HashSet<ChiTieuPhanTich>();
@@ -29,15 +29,9 @@ public partial class KQPhanTichFormKQ
 
     public long Id { get; set; }
 
-    public string DonVi { get; set; }
-
-    public string GiaTri { get; set; }
-
-    public long FormKQId { get; set; }
+    public string TenNhom { get; set; }
 
 
-
-    public virtual FormKQ FormKQ { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 

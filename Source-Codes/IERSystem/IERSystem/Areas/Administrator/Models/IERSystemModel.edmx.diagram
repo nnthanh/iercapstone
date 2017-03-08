@@ -22,15 +22,13 @@
         <AssociationConnector Association="IERSystemModel.SoKQThuNghiemKQThuNghiemMau" />
         <EntityTypeShape EntityType="IERSystemModel.FormKQ" Width="1.5" PointX="5" PointY="14.125" />
         <AssociationConnector Association="IERSystemModel.MauLayHienTruong_SoChuyenMau" />
-        <EntityTypeShape EntityType="IERSystemModel.KQPhanTichFormKQ" Width="1.875" PointX="7.625" PointY="14.375" />
-        <AssociationConnector Association="IERSystemModel.FormKQ_KQPhanTichFormKQ" />
         <AssociationConnector Association="IERSystemModel.SoChuyenMau_ChiTieuPhanTich" ManuallyRouted="false" >
         </AssociationConnector>
         <AssociationConnector Association="IERSystemModel.KQThuNghiemMau_ChiTieuPhanTich" />
         <AssociationConnector Association="IERSystemModel.SoKQThuNghiem_MauLayHienTruong" />
-        <AssociationConnector Association="IERSystemModel.KQPhanTichFormKQ_ChiTieuPhanTich" />
         <EntityTypeShape EntityType="IERSystemModel.NhomChiTieu" Width="1.5" PointX="10" PointY="10" />
         <AssociationConnector Association="IERSystemModel.NhomChiTieu_ChiTieuPhanTich" />
+        <AssociationConnector Association="IERSystemModel.FormKQ_KQThuNghiemMau" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

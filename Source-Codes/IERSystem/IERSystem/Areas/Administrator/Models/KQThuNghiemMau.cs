@@ -37,6 +37,8 @@ public partial class KQThuNghiemMau
 
     public long SoKQThuNghiemId { get; set; }
 
+    public long FormKQId { get; set; }
+
 
 
     public virtual SoKQThuNghiem SoKQThuNghiem { get; set; }
@@ -44,6 +46,8 @@ public partial class KQThuNghiemMau
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
     public virtual ICollection<ChiTieuPhanTich> ChiTieuPhanTiches { get; set; }
+
+    public virtual FormKQ FormKQ { get; set; }
 
 }
 

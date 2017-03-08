@@ -28,8 +28,6 @@ public partial class ChiTieuPhanTich
 
         this.KQThuNghiemMaus = new HashSet<KQThuNghiemMau>();
 
-        this.KQPhanTichFormKQs = new HashSet<KQPhanTichFormKQ>();
-
     }
 
 
@@ -56,10 +54,6 @@ public partial class ChiTieuPhanTich
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
     public virtual ICollection<KQThuNghiemMau> KQThuNghiemMaus { get; set; }
-
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-
-    public virtual ICollection<KQPhanTichFormKQ> KQPhanTichFormKQs { get; set; }
 
     public virtual NhomChiTieu NhomChiTieu { get; set; }
 

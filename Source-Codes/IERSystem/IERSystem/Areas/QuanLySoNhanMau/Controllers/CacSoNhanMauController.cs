@@ -23,7 +23,6 @@ namespace IERSystem.Areas.QuanLySoNhanMau.Controllers
         }
 
         // POST: /QuanLyCacSoNhanMau/CacSoNhanMau/Create
-        [HttpPost]
         public ActionResult Create([Bind(Include = "Name,TuThang,DenThang")]SoNhanMauInputModel cacsonhanmau_inp)
         {
             if (ModelState.IsValid)

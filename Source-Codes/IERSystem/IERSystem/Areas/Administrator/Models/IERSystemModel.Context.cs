@@ -52,8 +52,6 @@ public partial class IERSystemModelContainer : DbContext
 
     public virtual DbSet<FormKQ> FormKQs { get; set; }
 
-    public virtual DbSet<KQPhanTichFormKQ> KQPhanTichFormKQs { get; set; }
-
     public virtual DbSet<NhomChiTieu> NhomChiTieux { get; set; }
 
 }

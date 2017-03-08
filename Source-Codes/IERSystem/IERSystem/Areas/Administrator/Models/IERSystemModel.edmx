@@ -16,12 +16,10 @@
     <EntitySet Name="KQThuNghiemMaus" EntityType="IERSystemModel.Store.KQThuNghiemMaus" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="SoKQThuNghiems" EntityType="IERSystemModel.Store.SoKQThuNghiems" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="FormKQs" EntityType="IERSystemModel.Store.FormKQs" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="KQPhanTichFormKQs" EntityType="IERSystemModel.Store.KQPhanTichFormKQs" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="NhomChiTieux" EntityType="IERSystemModel.Store.NhomChiTieux" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="MauLayHienTruong_ChiTieuPhanTich" EntityType="IERSystemModel.Store.MauLayHienTruong_ChiTieuPhanTich" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="SoChuyenMau_ChiTieuPhanTich" EntityType="IERSystemModel.Store.SoChuyenMau_ChiTieuPhanTich" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="KQThuNghiemMau_ChiTieuPhanTich" EntityType="IERSystemModel.Store.KQThuNghiemMau_ChiTieuPhanTich" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="KQPhanTichFormKQ_ChiTieuPhanTich" EntityType="IERSystemModel.Store.KQPhanTichFormKQ_ChiTieuPhanTich" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="PhieuYeuCau_MauLayHienTruong" Association="IERSystemModel.Store.PhieuYeuCau_MauLayHienTruong">
       <End Role="PhieuYeuCau" EntitySet="PhieuYeuCaus" />
       <End Role="MauLayHienTruong" EntitySet="MauLayHienTruongs" />
@@ -54,10 +52,6 @@
       <End Role="MauLayHienTruong" EntitySet="MauLayHienTruongs" />
       <End Role="SoChuyenMau" EntitySet="SoChuyenMaus" />
     </AssociationSet>
-    <AssociationSet Name="FormKQ_KQPhanTichFormKQ" Association="IERSystemModel.Store.FormKQ_KQPhanTichFormKQ">
-      <End Role="FormKQ" EntitySet="FormKQs" />
-      <End Role="KQPhanTichFormKQ" EntitySet="KQPhanTichFormKQs" />
-    </AssociationSet>
     <AssociationSet Name="FK_SoChuyenMau_ChiTieuPhanTich_SoChuyenMau" Association="IERSystemModel.Store.FK_SoChuyenMau_ChiTieuPhanTich_SoChuyenMau">
       <End Role="SoChuyenMau" EntitySet="SoChuyenMaus" />
       <End Role="SoChuyenMau_ChiTieuPhanTich" EntitySet="SoChuyenMau_ChiTieuPhanTich" />
@@ -78,17 +72,13 @@
       <End Role="SoKQThuNghiem" EntitySet="SoKQThuNghiems" />
       <End Role="MauLayHienTruong" EntitySet="MauLayHienTruongs" />
     </AssociationSet>
-    <AssociationSet Name="FK_KQPhanTichFormKQ_ChiTieuPhanTich_KQPhanTichFormKQ" Association="IERSystemModel.Store.FK_KQPhanTichFormKQ_ChiTieuPhanTich_KQPhanTichFormKQ">
-      <End Role="KQPhanTichFormKQ" EntitySet="KQPhanTichFormKQs" />
-      <End Role="KQPhanTichFormKQ_ChiTieuPhanTich" EntitySet="KQPhanTichFormKQ_ChiTieuPhanTich" />
-    </AssociationSet>
-    <AssociationSet Name="FK_KQPhanTichFormKQ_ChiTieuPhanTich_ChiTieuPhanTich" Association="IERSystemModel.Store.FK_KQPhanTichFormKQ_ChiTieuPhanTich_ChiTieuPhanTich">
-      <End Role="ChiTieuPhanTich" EntitySet="ChiTieuPhanTiches" />
-      <End Role="KQPhanTichFormKQ_ChiTieuPhanTich" EntitySet="KQPhanTichFormKQ_ChiTieuPhanTich" />
-    </AssociationSet>
     <AssociationSet Name="NhomChiTieu_ChiTieuPhanTich" Association="IERSystemModel.Store.NhomChiTieu_ChiTieuPhanTich">
       <End Role="NhomChiTieu" EntitySet="NhomChiTieux" />
       <End Role="ChiTieuPhanTich" EntitySet="ChiTieuPhanTiches" />
+    </AssociationSet>
+    <AssociationSet Name="FormKQ_KQThuNghiemMau" Association="IERSystemModel.Store.FormKQ_KQThuNghiemMau">
+      <End Role="FormKQ" EntitySet="FormKQs" />
+      <End Role="KQThuNghiemMau" EntitySet="KQThuNghiemMaus" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="PhieuYeuCaus">
@@ -184,6 +174,7 @@
     <Property Name="KetQua" Type="nvarchar(max)" Nullable="false" />
     <Property Name="NguoiThucHien" Type="nvarchar(max)" Nullable="false" />
     <Property Name="SoKQThuNghiemId" Type="bigint" Nullable="false" />
+    <Property Name="FormKQId" Type="bigint" Nullable="false" />
   </EntityType>
   <EntityType Name="SoKQThuNghiems">
     <Key>
@@ -207,15 +198,6 @@
     <Property Name="LoaiMau" Type="nvarchar(max)" Nullable="false" />
     <Property Name="MaDon" Type="nvarchar(max)" Nullable="false" />
     <Property Name="MaMau" Type="nvarchar(max)" Nullable="false" />
-  </EntityType>
-  <EntityType Name="KQPhanTichFormKQs">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="DonVi" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="GiaTri" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="FormKQId" Type="bigint" Nullable="false" />
   </EntityType>
   <EntityType Name="NhomChiTieux">
     <Key>
@@ -246,14 +228,6 @@
       <PropertyRef Name="ChiTieuPhanTiches_Id" />
     </Key>
     <Property Name="KQThuNghiemMaus_Id" Type="bigint" Nullable="false" />
-    <Property Name="ChiTieuPhanTiches_Id" Type="bigint" Nullable="false" />
-  </EntityType>
-  <EntityType Name="KQPhanTichFormKQ_ChiTieuPhanTich">
-    <Key>
-      <PropertyRef Name="KQPhanTichFormKQs_Id" />
-      <PropertyRef Name="ChiTieuPhanTiches_Id" />
-    </Key>
-    <Property Name="KQPhanTichFormKQs_Id" Type="bigint" Nullable="false" />
     <Property Name="ChiTieuPhanTiches_Id" Type="bigint" Nullable="false" />
   </EntityType>
   <Association Name="PhieuYeuCau_MauLayHienTruong">
@@ -328,18 +302,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FormKQ_KQPhanTichFormKQ">
-    <End Role="FormKQ" Type="IERSystemModel.Store.FormKQs" Multiplicity="1" />
-    <End Role="KQPhanTichFormKQ" Type="IERSystemModel.Store.KQPhanTichFormKQs" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="FormKQ">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="KQPhanTichFormKQ">
-        <PropertyRef Name="FormKQId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="SoKQThuNghiem_MauLayHienTruong">
     <End Role="SoKQThuNghiem" Type="IERSystemModel.Store.SoKQThuNghiems" Multiplicity="*" />
     <End Role="MauLayHienTruong" Type="IERSystemModel.Store.MauLayHienTruongs" Multiplicity="1" />
@@ -361,6 +323,18 @@
       </Principal>
       <Dependent Role="ChiTieuPhanTich">
         <PropertyRef Name="NhomChiTieuId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FormKQ_KQThuNghiemMau">
+    <End Role="FormKQ" Type="IERSystemModel.Store.FormKQs" Multiplicity="1" />
+    <End Role="KQThuNghiemMau" Type="IERSystemModel.Store.KQThuNghiemMaus" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FormKQ">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="KQThuNghiemMau">
+        <PropertyRef Name="FormKQId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -436,30 +410,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_KQPhanTichFormKQ_ChiTieuPhanTich_KQPhanTichFormKQ">
-    <End Role="KQPhanTichFormKQ" Type="IERSystemModel.Store.KQPhanTichFormKQs" Multiplicity="1" />
-    <End Role="KQPhanTichFormKQ_ChiTieuPhanTich" Type="IERSystemModel.Store.KQPhanTichFormKQ_ChiTieuPhanTich" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="KQPhanTichFormKQ">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="KQPhanTichFormKQ_ChiTieuPhanTich">
-        <PropertyRef Name="KQPhanTichFormKQs_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_KQPhanTichFormKQ_ChiTieuPhanTich_ChiTieuPhanTich">
-    <End Role="KQPhanTichFormKQ_ChiTieuPhanTich" Type="IERSystemModel.Store.KQPhanTichFormKQ_ChiTieuPhanTich" Multiplicity="*" />
-    <End Role="ChiTieuPhanTich" Type="IERSystemModel.Store.ChiTieuPhanTiches" Multiplicity="1" />
-    <ReferentialConstraint>
-      <Principal Role="ChiTieuPhanTich">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="KQPhanTichFormKQ_ChiTieuPhanTich">
-        <PropertyRef Name="ChiTieuPhanTiches_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
 </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -503,11 +453,6 @@
             <End Role="MauLayHienTruong" EntitySet="MauLayHienTruongs" />
             <End Role="SoChuyenMau" EntitySet="SoChuyenMaus" />
           </AssociationSet>
-          <EntitySet Name="KQPhanTichFormKQs" EntityType="IERSystemModel.KQPhanTichFormKQ" />
-          <AssociationSet Name="FormKQ_KQPhanTichFormKQ" Association="IERSystemModel.FormKQ_KQPhanTichFormKQ">
-            <End Role="FormKQ" EntitySet="FormKQs" />
-            <End Role="KQPhanTichFormKQ" EntitySet="KQPhanTichFormKQs" />
-          </AssociationSet>
           <AssociationSet Name="SoChuyenMau_ChiTieuPhanTich" Association="IERSystemModel.SoChuyenMau_ChiTieuPhanTich">
             <End Role="SoChuyenMau" EntitySet="SoChuyenMaus" />
             <End Role="ChiTieuPhanTich" EntitySet="ChiTieuPhanTiches" />
@@ -520,14 +465,14 @@
             <End Role="SoKQThuNghiem" EntitySet="SoKQThuNghiems" />
             <End Role="MauLayHienTruong" EntitySet="MauLayHienTruongs" />
           </AssociationSet>
-          <AssociationSet Name="KQPhanTichFormKQ_ChiTieuPhanTich" Association="IERSystemModel.KQPhanTichFormKQ_ChiTieuPhanTich">
-            <End Role="KQPhanTichFormKQ" EntitySet="KQPhanTichFormKQs" />
-            <End Role="ChiTieuPhanTich" EntitySet="ChiTieuPhanTiches" />
-          </AssociationSet>
           <EntitySet Name="NhomChiTieux" EntityType="IERSystemModel.NhomChiTieu" />
           <AssociationSet Name="NhomChiTieu_ChiTieuPhanTich" Association="IERSystemModel.NhomChiTieu_ChiTieuPhanTich">
             <End Role="NhomChiTieu" EntitySet="NhomChiTieux" />
             <End Role="ChiTieuPhanTich" EntitySet="ChiTieuPhanTiches" />
+          </AssociationSet>
+          <AssociationSet Name="FormKQ_KQThuNghiemMau" Association="IERSystemModel.FormKQ_KQThuNghiemMau">
+            <End Role="FormKQ" EntitySet="FormKQs" />
+            <End Role="KQThuNghiemMau" EntitySet="KQThuNghiemMaus" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="PhieuYeuCau">
@@ -593,7 +538,6 @@
           <NavigationProperty Name="KQThuNghiemMaus" Relationship="IERSystemModel.KQThuNghiemMau_ChiTieuPhanTich" FromRole="ChiTieuPhanTich" ToRole="KQThuNghiemMau" />
           <Property Name="ChiPhi" Type="Decimal" Nullable="false" />
           <Property Name="TenPhuongPhap" Type="String" Nullable="false" />
-          <NavigationProperty Name="KQPhanTichFormKQs" Relationship="IERSystemModel.KQPhanTichFormKQ_ChiTieuPhanTich" FromRole="ChiTieuPhanTich" ToRole="KQPhanTichFormKQ" />
           <NavigationProperty Name="NhomChiTieu" Relationship="IERSystemModel.NhomChiTieu_ChiTieuPhanTich" FromRole="ChiTieuPhanTich" ToRole="NhomChiTieu" />
           <Property Name="NhomChiTieuId" Type="Int64" Nullable="false" />
         </EntityType>
@@ -685,6 +629,8 @@
           <NavigationProperty Name="SoKQThuNghiem" Relationship="IERSystemModel.SoKQThuNghiemKQThuNghiemMau" FromRole="KQThuNghiemMau" ToRole="SoKQThuNghiem" />
           <Property Name="SoKQThuNghiemId" Type="Int64" Nullable="false" />
           <NavigationProperty Name="ChiTieuPhanTiches" Relationship="IERSystemModel.KQThuNghiemMau_ChiTieuPhanTich" FromRole="KQThuNghiemMau" ToRole="ChiTieuPhanTich" />
+          <NavigationProperty Name="FormKQ" Relationship="IERSystemModel.FormKQ_KQThuNghiemMau" FromRole="KQThuNghiemMau" ToRole="FormKQ" />
+          <Property Name="FormKQId" Type="Int64" Nullable="false" />
         </EntityType>
         <EntityType Name="SoKQThuNghiem">
           <Key>
@@ -721,34 +667,11 @@
           <Property Name="LoaiMau" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="MaDon" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="MaMau" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="KQPhanTichFormKQs" Relationship="IERSystemModel.FormKQ_KQPhanTichFormKQ" FromRole="FormKQ" ToRole="KQPhanTichFormKQ" />
+          <NavigationProperty Name="KQThuNghiemMaus" Relationship="IERSystemModel.FormKQ_KQThuNghiemMau" FromRole="FormKQ" ToRole="KQThuNghiemMau" />
         </EntityType>
         <Association Name="MauLayHienTruong_SoChuyenMau">
           <End Type="IERSystemModel.MauLayHienTruong" Role="MauLayHienTruong" Multiplicity="1" />
           <End Type="IERSystemModel.SoChuyenMau" Role="SoChuyenMau" Multiplicity="0..1" />
-        </Association>
-        <EntityType Name="KQPhanTichFormKQ">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="DonVi" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="GiaTri" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="FormKQ" Relationship="IERSystemModel.FormKQ_KQPhanTichFormKQ" FromRole="KQPhanTichFormKQ" ToRole="FormKQ" />
-          <Property Name="FormKQId" Type="Int64" Nullable="false" />
-          <NavigationProperty Name="ChiTieuPhanTiches" Relationship="IERSystemModel.KQPhanTichFormKQ_ChiTieuPhanTich" FromRole="KQPhanTichFormKQ" ToRole="ChiTieuPhanTich" />
-        </EntityType>
-        <Association Name="FormKQ_KQPhanTichFormKQ">
-          <End Type="IERSystemModel.FormKQ" Role="FormKQ" Multiplicity="1" />
-          <End Type="IERSystemModel.KQPhanTichFormKQ" Role="KQPhanTichFormKQ" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="FormKQ">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="KQPhanTichFormKQ">
-              <PropertyRef Name="FormKQId" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
         <Association Name="SoChuyenMau_ChiTieuPhanTich">
           <End Type="IERSystemModel.SoChuyenMau" Role="SoChuyenMau" Multiplicity="*" />
@@ -761,10 +684,6 @@
         <Association Name="SoKQThuNghiem_MauLayHienTruong">
           <End Type="IERSystemModel.SoKQThuNghiem" Role="SoKQThuNghiem" Multiplicity="0..1" />
           <End Type="IERSystemModel.MauLayHienTruong" Role="MauLayHienTruong" Multiplicity="1" />
-        </Association>
-        <Association Name="KQPhanTichFormKQ_ChiTieuPhanTich">
-          <End Type="IERSystemModel.KQPhanTichFormKQ" Role="KQPhanTichFormKQ" Multiplicity="*" />
-          <End Type="IERSystemModel.ChiTieuPhanTich" Role="ChiTieuPhanTich" Multiplicity="*" />
         </Association>
         <EntityType Name="NhomChiTieu">
           <Key>
@@ -783,6 +702,18 @@
             </Principal>
             <Dependent Role="ChiTieuPhanTich">
               <PropertyRef Name="NhomChiTieuId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FormKQ_KQThuNghiemMau">
+          <End Type="IERSystemModel.FormKQ" Role="FormKQ" Multiplicity="1" />
+          <End Type="IERSystemModel.KQThuNghiemMau" Role="KQThuNghiemMau" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FormKQ">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="KQThuNghiemMau">
+              <PropertyRef Name="FormKQId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -889,6 +820,7 @@
           <ScalarProperty Name="KetQua" ColumnName="KetQua" />
           <ScalarProperty Name="NguoiThucHien" ColumnName="NguoiThucHien" />
           <ScalarProperty Name="SoKQThuNghiemId" ColumnName="SoKQThuNghiemId" />
+          <ScalarProperty Name="FormKQId" ColumnName="FormKQId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -913,16 +845,6 @@
           <ScalarProperty Name="LoaiMau" ColumnName="LoaiMau" />
           <ScalarProperty Name="MaDon" ColumnName="MaDon" />
           <ScalarProperty Name="MaMau" ColumnName="MaMau" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="KQPhanTichFormKQs">
-      <EntityTypeMapping TypeName="IsTypeOf(IERSystemModel.KQPhanTichFormKQ)">
-        <MappingFragment StoreEntitySet="KQPhanTichFormKQs">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="DonVi" ColumnName="DonVi" />
-          <ScalarProperty Name="GiaTri" ColumnName="GiaTri" />
-          <ScalarProperty Name="FormKQId" ColumnName="FormKQId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -980,14 +902,6 @@
       </EndProperty>
       <EndProperty Name="SoKQThuNghiem">
         <ScalarProperty Name="Id" ColumnName="Id" />
-      </EndProperty>
-    </AssociationSetMapping>
-    <AssociationSetMapping Name="KQPhanTichFormKQ_ChiTieuPhanTich" TypeName="IERSystemModel.KQPhanTichFormKQ_ChiTieuPhanTich" StoreEntitySet="KQPhanTichFormKQ_ChiTieuPhanTich">
-      <EndProperty Name="KQPhanTichFormKQ">
-        <ScalarProperty Name="Id" ColumnName="KQPhanTichFormKQs_Id" />
-      </EndProperty>
-      <EndProperty Name="ChiTieuPhanTich">
-        <ScalarProperty Name="Id" ColumnName="ChiTieuPhanTiches_Id" />
       </EndProperty>
     </AssociationSetMapping>
   </EntityContainerMapping>
