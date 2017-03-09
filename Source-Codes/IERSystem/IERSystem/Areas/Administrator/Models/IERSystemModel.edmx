@@ -17,6 +17,9 @@
     <EntitySet Name="SoKQThuNghiems" EntityType="IERSystemModel.Store.SoKQThuNghiems" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="FormKQs" EntityType="IERSystemModel.Store.FormKQs" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="NhomChiTieux" EntityType="IERSystemModel.Store.NhomChiTieux" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="RoleMasters" EntityType="IERSystemModel.Store.RoleMasters" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Users" EntityType="IERSystemModel.Store.Users" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="RoleMatrices" EntityType="IERSystemModel.Store.RoleMatrices" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="MauLayHienTruong_ChiTieuPhanTich" EntityType="IERSystemModel.Store.MauLayHienTruong_ChiTieuPhanTich" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="SoChuyenMau_ChiTieuPhanTich" EntityType="IERSystemModel.Store.SoChuyenMau_ChiTieuPhanTich" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="PhieuYeuCau_MauLayHienTruong" Association="IERSystemModel.Store.PhieuYeuCau_MauLayHienTruong">
@@ -74,6 +77,14 @@
     <AssociationSet Name="SoKQThuNghiem_FormKQ" Association="IERSystemModel.Store.SoKQThuNghiem_FormKQ">
       <End Role="SoKQThuNghiem" EntitySet="SoKQThuNghiems" />
       <End Role="FormKQ" EntitySet="FormKQs" />
+    </AssociationSet>
+    <AssociationSet Name="RoleMasterUser" Association="IERSystemModel.Store.RoleMasterUser">
+      <End Role="RoleMaster" EntitySet="RoleMasters" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="RoleMasterRoleMatrix" Association="IERSystemModel.Store.RoleMasterRoleMatrix">
+      <End Role="RoleMaster" EntitySet="RoleMasters" />
+      <End Role="RoleMatrix" EntitySet="RoleMatrices" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="PhieuYeuCaus">
@@ -202,6 +213,36 @@
     </Key>
     <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="TenNhom" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RoleMasters">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleName" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Username" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Phone" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Fullname" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="RoleMasterId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RoleMatrices">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HopDong" Type="smallint" Nullable="false" />
+    <Property Name="SoNhan" Type="smallint" Nullable="false" />
+    <Property Name="SoChuyen" Type="smallint" Nullable="false" />
+    <Property Name="SoKQ" Type="smallint" Nullable="false" />
+    <Property Name="FormKQ" Type="smallint" Nullable="false" />
+    <Property Name="RoleMasterId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="MauLayHienTruong_ChiTieuPhanTich">
     <Key>
@@ -339,6 +380,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="RoleMasterUser">
+    <End Role="RoleMaster" Type="IERSystemModel.Store.RoleMasters" Multiplicity="1" />
+    <End Role="User" Type="IERSystemModel.Store.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RoleMaster">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="RoleMasterId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RoleMasterRoleMatrix">
+    <End Role="RoleMaster" Type="IERSystemModel.Store.RoleMasters" Multiplicity="1" />
+    <End Role="RoleMatrix" Type="IERSystemModel.Store.RoleMatrices" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RoleMaster">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RoleMatrix">
+        <PropertyRef Name="RoleMasterId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_MauLayHienTruong_ChiTieuPhanTich_MauLayHienTruong">
     <End Role="MauLayHienTruong" Type="IERSystemModel.Store.MauLayHienTruongs" Multiplicity="1" />
     <End Role="MauLayHienTruong_ChiTieuPhanTich" Type="IERSystemModel.Store.MauLayHienTruong_ChiTieuPhanTich" Multiplicity="*" />
@@ -450,6 +515,17 @@
           <AssociationSet Name="SoKQThuNghiem_FormKQ" Association="IERSystemModel.SoKQThuNghiem_FormKQ">
             <End Role="SoKQThuNghiem" EntitySet="SoKQThuNghiems" />
             <End Role="FormKQ" EntitySet="FormKQs" />
+          </AssociationSet>
+          <EntitySet Name="RoleMasters" EntityType="IERSystemModel.RoleMaster" />
+          <EntitySet Name="Users" EntityType="IERSystemModel.User" />
+          <AssociationSet Name="RoleMasterUser" Association="IERSystemModel.RoleMasterUser">
+            <End Role="RoleMaster" EntitySet="RoleMasters" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <EntitySet Name="RoleMatrices" EntityType="IERSystemModel.RoleMatrix" />
+          <AssociationSet Name="RoleMasterRoleMatrix" Association="IERSystemModel.RoleMasterRoleMatrix">
+            <End EntitySet="RoleMasters" Role="RoleMaster" />
+            <End EntitySet="RoleMatrices" Role="RoleMatrix" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="PhieuYeuCau">
@@ -686,6 +762,64 @@
           <End Type="IERSystemModel.SoKQThuNghiem" Role="SoKQThuNghiem" Multiplicity="1" />
           <End Type="IERSystemModel.FormKQ" Role="FormKQ" Multiplicity="0..1" />
         </Association>
+        <EntityType Name="RoleMaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="IERSystemModel.RoleMasterUser" FromRole="RoleMaster" ToRole="User" />
+          <NavigationProperty Name="RoleMatrices" Relationship="IERSystemModel.RoleMasterRoleMatrix" FromRole="RoleMaster" ToRole="RoleMatrix" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" Nullable="false" />
+          <Property Name="Password" Type="String" Nullable="false" />
+          <Property Name="Phone" Type="String" Nullable="false" />
+          <Property Name="Fullname" Type="String" Nullable="false" />
+          <NavigationProperty Name="RoleMaster" Relationship="IERSystemModel.RoleMasterUser" FromRole="User" ToRole="RoleMaster" />
+          <Property Name="RoleMasterId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="RoleMasterUser">
+          <End Type="IERSystemModel.RoleMaster" Role="RoleMaster" Multiplicity="1" />
+          <End Type="IERSystemModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoleMaster">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="RoleMasterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="RoleMatrix">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="HopDong" Nullable="false" Type="Int16" />
+          <Property Name="SoNhan" Nullable="false" Type="Int16" />
+          <Property Name="SoChuyen" Nullable="false" Type="Int16" />
+          <Property Name="SoKQ" Nullable="false" Type="Int16" />
+          <Property Name="FormKQ" Nullable="false" Type="Int16" />
+          <NavigationProperty Name="RoleMaster" Relationship="IERSystemModel.RoleMasterRoleMatrix" FromRole="RoleMatrix" ToRole="RoleMaster" />
+          <Property Name="RoleMasterId" Nullable="false" Type="Int32" />
+        </EntityType>
+        <Association Name="RoleMasterRoleMatrix">
+          <End Type="IERSystemModel.RoleMaster" Multiplicity="1" Role="RoleMaster" />
+          <End Type="IERSystemModel.RoleMatrix" Multiplicity="*" Role="RoleMatrix" />
+          <ReferentialConstraint>
+            <Principal Role="RoleMaster">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RoleMatrix">
+              <PropertyRef Name="RoleMasterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -822,6 +956,39 @@
         <MappingFragment StoreEntitySet="NhomChiTieux">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="TenNhom" ColumnName="TenNhom" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RoleMasters">
+      <EntityTypeMapping TypeName="IsTypeOf(IERSystemModel.RoleMaster)">
+        <MappingFragment StoreEntitySet="RoleMasters">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="IsTypeOf(IERSystemModel.User)">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Fullname" ColumnName="Fullname" />
+          <ScalarProperty Name="RoleMasterId" ColumnName="RoleMasterId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RoleMatrices">
+      <EntityTypeMapping TypeName="IsTypeOf(IERSystemModel.RoleMatrix)">
+        <MappingFragment StoreEntitySet="RoleMatrices">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="HopDong" ColumnName="HopDong" />
+          <ScalarProperty Name="SoNhan" ColumnName="SoNhan" />
+          <ScalarProperty Name="SoChuyen" ColumnName="SoChuyen" />
+          <ScalarProperty Name="SoKQ" ColumnName="SoKQ" />
+          <ScalarProperty Name="FormKQ" ColumnName="FormKQ" />
+          <ScalarProperty Name="RoleMasterId" ColumnName="RoleMasterId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

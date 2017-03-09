@@ -67,8 +67,8 @@
       <HintPath>..\packages\NPOI.2.2.1\lib\net40\NPOI.OpenXmlFormats.dll</HintPath>
     </Reference>
     <Reference Include="Rotativa, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Rotativa.1.6.4\lib\net40\Rotativa.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -180,6 +180,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Areas\Administrator\Controllers\UserController.cs" />
     <Compile Include="Areas\Administrator\Models\CacSoChuyenMau.cs">
       <DependentUpon>IERSystemModel.tt</DependentUpon>
     </Compile>
@@ -214,6 +215,12 @@
     <Compile Include="Areas\Administrator\Models\PhieuYeuCau.cs">
       <DependentUpon>IERSystemModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Areas\Administrator\Models\RoleMaster.cs">
+      <DependentUpon>IERSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Administrator\Models\RoleMatrix.cs">
+      <DependentUpon>IERSystemModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Areas\Administrator\Models\SoChuyenMau.cs">
       <DependentUpon>IERSystemModel.tt</DependentUpon>
     </Compile>
@@ -241,15 +248,12 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Administrator\AccountController.cs" />
     <Compile Include="Areas\Administrator\AdministratorAreaRegistration.cs" />
-    <Compile Include="Areas\Administrator\Controllers\AccountController.cs" />
     <Compile Include="Areas\Administrator\Controllers\FormKQController.cs" />
     <Compile Include="Areas\Administrator\Controllers\MauLayHienTruongController.cs" />
     <Compile Include="Areas\Administrator\Controllers\SoChuyenMauController.cs" />
     <Compile Include="Areas\Administrator\Controllers\SoKQThuNghiemController.cs" />
     <Compile Include="Areas\Administrator\Controllers\SoNhanMauController.cs" />
-    <Compile Include="Areas\Administrator\Controllers\UserController.cs" />
     <Compile Include="Areas\Administrator\HomeController.cs" />
-    <Compile Include="Areas\Administrator\Models\AccountModel.cs" />
     <Compile Include="Areas\HopDongLayMau\BusinessLogic\Utils\LoaiMauConverter.cs" />
     <Compile Include="Areas\HopDongLayMau\BusinessLogic\Utils\TinhTrangMauConverter.cs" />
     <Compile Include="Areas\HopDongLayMau\BusinessLogic\Utils\DateTimeUtils.cs" />
@@ -258,7 +262,9 @@
     <Compile Include="Areas\HopDongLayMau\Controllers\DefaultController.cs" />
     <Compile Include="Areas\HopDongLayMau\Models\MauPTInputModel.cs" />
     <Compile Include="Areas\HopDongLayMau\Models\YeuCauLayMauInputModel.cs" />
-    <Compile Include="Areas\Administrator\Models\User.cs" />
+    <Compile Include="Areas\Administrator\Models\User.cs">
+      <DependentUpon>IERSystemModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Areas\HopDongLayMau\Controllers\YeuCauLayMauController.cs" />
     <Compile Include="Areas\HopDongLayMau\HopDongLayMauAreaRegistration.cs" />
     <Compile Include="Areas\HopDongLayMau\Tests\HDLayMau_SNhanMauTest.cs" />
@@ -3892,11 +3898,6 @@
     <Content Include="Areas\Administrator\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Administrator\Views\Home\Index.cshtml" />
     <Content Include="Areas\Administrator\Views\Shared\_LoginCommon.cshtml" />
-    <Content Include="Areas\Administrator\Views\User\Create.cshtml" />
-    <Content Include="Areas\Administrator\Views\User\Delete.cshtml" />
-    <Content Include="Areas\Administrator\Views\User\Details.cshtml" />
-    <Content Include="Areas\Administrator\Views\User\Edit.cshtml" />
-    <Content Include="Areas\Administrator\Views\User\Index.cshtml" />
     <Content Include="Areas\HopDongLayMau\Views\YeuCauLayMau\Create.cshtml" />
     <Content Include="Areas\HopDongLayMau\Views\YeuCauLayMau\Delete.cshtml" />
     <Content Include="Areas\HopDongLayMau\Views\YeuCauLayMau\Details.cshtml" />
@@ -3930,7 +3931,6 @@
     <Content Include="Areas\HopDongLayMau\Views\web.config" />
     <Content Include="Areas\HopDongLayMau\Views\YeuCauLayMau\ExportToExcel.cshtml" />
     <Content Include="Areas\HopDongLayMau\Views\YeuCauLayMau\_danhsachmau.cshtml" />
-    <Content Include="App_Browsers\qt.browser" />
     <Content Include="Areas\BaoGiaChiTieu\Views\web.config" />
     <EntityDeploy Include="Areas\Administrator\Models\IERSystemModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -3962,6 +3962,13 @@
     <Content Include="Areas\QuanLyKetQuaPhanTich\Views\SoKQThuNghiem\Edit.cshtml" />
     <Content Include="Areas\QuanLyKetQuaPhanTich\Views\FormKQ\Index.cshtml" />
     <Content Include="Areas\QuanLyKetQuaPhanTich\Views\SoKQThuNghiem\Details.cshtml" />
+    <Content Include="Areas\Administrator\Views\User\Create.cshtml" />
+    <Content Include="Areas\Administrator\Views\User\Delete.cshtml" />
+    <Content Include="Areas\Administrator\Views\User\Details.cshtml" />
+    <Content Include="Areas\Administrator\Views\User\Edit.cshtml" />
+    <Content Include="Areas\Administrator\Views\User\Index.cshtml" />
+    <Content Include="Areas\Administrator\Views\Shared\_SharedLogin.cshtml" />
+    <Content Include="App_Browsers\qt.browser" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -4002,11 +4009,11 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_DanhSauMau.cshtml" />
+    <Content Include="Views\Shared\_SharedLogin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Administrator\Views\Account\" />
     <Folder Include="Areas\BaoGiaChiTieu\BusinessLogic\Utils\" />
     <Folder Include="Areas\BaoGiaChiTieu\Views\Api\" />
     <Folder Include="Areas\BaoGiaChiTieu\Views\Shared\" />

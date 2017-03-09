@@ -36,5 +36,8 @@ namespace IERSystem.Areas.Administrator.Models
         public virtual DbSet<SoKQThuNghiem> SoKQThuNghiems { get; set; }
         public virtual DbSet<FormKQ> FormKQs { get; set; }
         public virtual DbSet<NhomChiTieu> NhomChiTieux { get; set; }
+        public virtual DbSet<RoleMaster> RoleMasters { get; set; }
+        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<RoleMatrix> RoleMatrices { get; set; }
     }
 }

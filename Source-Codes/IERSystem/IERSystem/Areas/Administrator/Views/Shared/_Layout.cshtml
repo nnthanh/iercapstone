@@ -130,7 +130,12 @@
                         </div>
                         <div class="profile_info">
                             <span>Xin chào,</span>
-                            <h2>Thanh</h2>
+                            @{
+                                if (Session["loggedUser"] != null)
+                                {
+                                    <h2>@Session["loggedUser"].ToString()</h2>
+                                }
+                            }
                         </div>
                     </div>
                     <!-- /menu profile quick info -->
@@ -140,25 +145,54 @@
                         <div class="menu_section">
                             <h3>General</h3>
                             <ul class="nav side-menu">
-                                <li>
-                                    <a><i class="fa fa-home"></i> Quản trị <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu">
-                                        <li>
-                                            <a href="~/Administrator/User/Index">Người dùng</a>
-                                        </li>
-                                        <li>
-                                            <a href="~/Administrator/User/Index">Phòng ban</a>
-                                        </li>
-                                        <li>
-                                            <a href="~/Administrator/User/Index">Thiết bị</a>
-                                        </li>
-                                    </ul>
-                                    <a href="~/HopDongLayMau/YeuCauLayMau/Index"><i class="fa fa-home"></i> Hợp đồng lấy mẫu</a>
-                                    <a href="~/Administrator/FormKQ/Index"><i class="fa fa-home"></i> Form kết quả</a>
-                                    <a href="~/QuanLySoNhanMau/CacSoNhanMau/Index"><i class="fa fa-home"></i> Sổ nhận mẫu</a>
-                                    <a href="~/QuanLySoChuyenMau/CacSoChuyenMau/Index"><i class="fa fa-home"></i> Sổ chuyển mẫu</a>
-                                    <a href="~/QuanLyKetQuaPhanTich/SoKQThuNghiem/Index"><i class="fa fa-home"></i> Sổ kết quả thử nghiệm</a>
-                                    <a href="~/QuanLyKetQuaPhanTich/FormKQ/Index"><i class="fa fa-home"></i> Phiếu kết quả</a>
+                            <li>
+                                @{
+                                    if ((Boolean)Session["isAdmin"] == true)
+                                    {
+                                        <a><i class="fa fa-home"></i> Quản trị <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li>
+                                                <a href="~/Administrator/User/Index">Người dùng</a>
+                                            </li>
+                                            <li>
+                                                <a href="~/Administrator/User/Index">Phòng ban</a>
+                                            </li>
+                                            <li>
+                                                <a href="~/Administrator/User/Index">Thiết bị</a>
+                                            </li>
+                                        </ul>
+                                    }
+                                    else
+                                    {
+                                        int role = (int)Session["role"];
+                                        if (role == 2)
+                                        {
+                                        <a href="~/HopDongLayMau/YeuCauLayMau/Index"><i class="fa fa-home"></i> Hợp đồng lấy mẫu</a>
+                                        <a href="~/Administrator/FormKQ/Index"><i class="fa fa-home"></i> Form kết quả</a>
+                                        <a href="~/QuanLySoNhanMau/CacSoNhanMau/Index"><i class="fa fa-home"></i> Sổ nhận mẫu</a>
+                                        <a href="~/QuanLySoChuyenMau/CacSoChuyenMau/Index"><i class="fa fa-home"></i> Sổ chuyển mẫu</a>
+                                        <a href="~/QuanLyKetQuaPhanTich/SoKQThuNghiem/Index"><i class="fa fa-home"></i> Sổ kết quả thử nghiệm</a>
+                                        <a href="~/QuanLyKetQuaPhanTich/FormKQ/Index"><i class="fa fa-home"></i> Phiếu kết quả</a>
+                                        }
+                                        if (role == 3)
+                                        {
+                                        <a href="~/HopDongLayMau/YeuCauLayMau/Index"><i class="fa fa-home"></i> Hợp đồng lấy mẫu</a>
+                                        <a href="~/Administrator/FormKQ/Index"><i class="fa fa-home"></i> Form kết quả</a>
+                                        <a href="~/QuanLySoNhanMau/CacSoNhanMau/Index"><i class="fa fa-home"></i> Sổ nhận mẫu</a>
+                                        <a href="~/QuanLySoChuyenMau/CacSoChuyenMau/Index"><i class="fa fa-home"></i> Sổ chuyển mẫu</a>
+                                        }
+                                        if (role == 4)
+                                        {
+                                        <a href="~/QuanLySoChuyenMau/CacSoChuyenMau/Index"><i class="fa fa-home"></i> Sổ chuyển mẫu</a>
+                                        <a href="~/QuanLyKetQuaPhanTich/SoKQThuNghiem/Index"><i class="fa fa-home"></i> Sổ kết quả thử nghiệm</a>
+                                        }
+                                        if (role == 5)
+                                        {
+                                        <a href="~/QuanLyKetQuaPhanTich/FormKQ/Index"><i class="fa fa-home"></i> Phiếu kết quả</a>
+                                        }
+                                    }
+
+                                    }
                                 </li>
                             </ul>
                         </div>
@@ -193,7 +227,8 @@
                         <ul class="nav navbar-nav navbar-right">
                             <li class="">
                                 <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                    <img src="~/Areas/Administrator/Content/images/img.jpg" alt="">Ngọc Thanh
+                                    <img src="~/Areas/Administrator/Content/images/img.jpg" alt="">@Session["loggedUser"].ToString()
+                                
                                     <span class=" fa fa-angle-down"></span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-usermenu pull-right">
