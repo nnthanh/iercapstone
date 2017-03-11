@@ -1,0 +1,131 @@
+﻿@model IERSystem.Areas.QuanLyKetQuaPhanTich.Models.FormKQOutputModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Administrator/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Chi tiết kết quả thử nghiệm</h2>
+
+<div>
+    <div class="clearfix">
+    </div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <dl class="dl-horizontal">
+                    <dt>
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                            Ký hiệu mẫu
+                        </label>
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.MaMau)
+                    </dd>
+
+                    <dt>
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                            Mã Khách Hàng
+                        </label>
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.MaKhachHang)
+                    </dd>
+
+                    <dt>
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                            Ngày gửi mẫu
+                        </label>
+                    </dt>
+
+
+                    <dd>
+                        @Html.DisplayFor(model => model.NgayGuiMau)
+                    </dd>
+
+                    <dt>
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                            Nơi Lấy Mẫu
+                        </label>
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.NoiLayMau)
+                    </dd>
+
+                    <dt>
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                            Địa Chỉ 
+                        </label>
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.DiaChi)
+                    </dd>
+
+                </dl>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>
+                                KẾT QUẢ THỬ NGHIỆM
+                            </h2>
+                            <ul class="nav navbar-right panel_toolbox">
+                                <li>
+                                    <a class="collapse-link">
+                                        <i class="fa fa-chevron-up"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="close-link">
+                                        <i class="fa fa-close"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content" style="display:block;">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th rowspan="4">Chỉ tiêu</th>
+                                        <th rowspan="4">Đơn vị</th>
+                                        <th rowspan="4">Giá trị</th>
+                                        <th rowspan="4">Phương pháp phân tích</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.ChiTieuPhanTichKQs)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.TenChiTieu)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.DonVi)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.GiaTri)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.PhuongPhap)
+                                                </td>
+                                            </tr>
+                                        }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<p>
+    <input type="submit" class="btn btn-danger" value="Quay lại" onclick="location.href='@Url.Action("Index", "SoKQThuNghiem")'" />
+</p>

@@ -4,10 +4,19 @@
     ViewBag.Title = "Danh sách phiếu yêu cầu";
     Layout = "~/Areas/Administrator/Views/Shared/_Layout.cshtml";
 }
-
+@{
+    int role = (int)Session["role"];
+}
 <br />
 <h2>MỤC LỤC</h2>
+@if (role == 2)
+{
+<input type="button" class="btn btn-info" value="Tạo phiếu yêu cầu mới" onclick="location.href='@Url.Action("Create", "YeuCauLayMau")'" disabled />
+
+}
+else { 
 <input type="button" class="btn btn-info" value="Tạo phiếu yêu cầu mới" onclick="location.href='@Url.Action("Create", "YeuCauLayMau")'" />
+}
 <div>
     <div class="page-title">
         <div class="title-left">
@@ -193,13 +202,13 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.NgayTaoHD)
                             </td>
-                            <td>
+                            @*<td>
                                 @Html.DisplayFor(modelItem => item.NgayDuKienTraMau)
-                            </td>
+                            </td>*@
                             <td>
                                 <button data-toggle="tooltip" title="Chỉnh sửa" onclick="location.href='@Url.Action("Edit", "YeuCauLayMau", new { id = item.Id })'"><span class="fa fa-edit"></span></button>
                                 <button data-toggle="tooltip" title="Xem chi tiết" onclick="location.href='@Url.Action("Details", "YeuCauLayMau", new { id = item.Id })'"><span class="fa fa-info"></span></button>
-                                <button data-toggle="tooltip" title="In" onclick="location.href='@Url.Action("", "")'"><span class="fa fa-print"></span></button>
+                                <button data-toggle="tooltip" title="In" onclick="location.href='@Url.Action("GeneratePDF", "YeuCauLayMau", new { RequestID = item.Id })'"><span class="fa fa-print"></span></button>
                                 <button data-toggle="tooltip" title="Xóa" onclick="location.href='@Url.Action("Delete", "YeuCauLayMau", new { id = item.Id })'"><span class="fa fa-trash"></span></button>
                             </td>
                         </tr>
