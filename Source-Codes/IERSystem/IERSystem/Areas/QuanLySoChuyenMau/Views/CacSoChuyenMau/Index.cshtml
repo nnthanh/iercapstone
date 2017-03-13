@@ -115,9 +115,8 @@ else
                                 <th class="column-title">Ngày nhận mẫu </th>
                                 <th class="column-title">Ngày trả mẫu </th>
                                 <th class="column-title">Mô tả mẫu </th>
-                                <th class="column-title no-link last">
-                                    <span class="nobr">Trạng thái</span>
-                                </th>
+                                <th class="column-title">Trạng thái</th>
+                                <th class="column-title">Chọn sổ</th>
                                 <th class="bulk-actions" colspan="7">
                                     <a class="antoo" style="color:#fff; font-weight:500;">Chọn nhiều ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
                                 </th>
@@ -131,7 +130,7 @@ else
                     <div class="form-group">
                         <div style="position:absolute; right:0; bottom:0;">
                             <button class="btn btn-warning" data-toggle="tooltip" title="Cập nhật mẫu"><span class="fa fa-cloud-download"></span></button>
-                            <button class="btn btn-success" data-toggle="tooltip" title="Thêm mẫu"><span class="fa fa-plus"></span></button>
+                            <button class="btn btn-success" data-toggle="tooltip" title="Thêm mẫu"><span class="fa fa-check"></span></button>
                         </div>
                     </div>
                 </div>
@@ -321,8 +320,14 @@ else
                                     "<td>" + item.NgayNhanMau + "</td>" +
                                     "<td>" + item.NgayTraMau + "</td>" +
                                     "<td>" + item.MoTaMau + "</td>" +
-                                    "<td class='last'>" +
-                                        "<a href='#'>Xem</a>" +
+                                    "<td>" + "tên trạng thái?" +
+                                    "</td>" +
+                                    "<td class='last'> <select class='form-control cd-md-4 col-xs-12' placeholder='Chọn sổ'>" +
+                                    "<option>Sổ 1</option>" +
+                                    "<option>Sổ 2</option>" +
+                                    "<option>Sổ 3</option>" +
+                                    "<option>Sổ 4</option>" +
+                                    "</select>" +
                                     "</td>" +
                                 "</tr>"
                             );
