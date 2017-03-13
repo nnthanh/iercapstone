@@ -35,6 +35,8 @@
     <link href="~/Areas/Administrator/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
     <link href="~/Areas/Administrator/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
     <link href="~/Areas/Administrator/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
+    <!-- JQVMap -->
+    <link href="~/Areas/Administrator/vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet" />
 
     <!-- jQuery -->
     <script src="~/Areas/Administrator/vendors/jquery/dist/jquery.min.js"></script>
@@ -62,7 +64,7 @@
     <script src="~/Areas/Administrator/vendors/Flot/jquery.flot.resize.js"></script>
     <!-- Flot plugins -->
     <script src="~/Areas/Administrator/Content/js/flot/jquery.flot.orderBars.js"></script>
-    <script src="~/Areas/Administrator/Content/js/flot/date.js"></script>
+    @*<script src="~/Areas/Administrator/Content/js/flot/date.js"></script>*@
     <script src="~/Areas/Administrator/Content/js/flot/jquery.flot.spline.js"></script>
     <script src="~/Areas/Administrator/Content/js/flot/curvedLines.js"></script>
     <!-- jVectorMap -->
@@ -113,6 +115,12 @@
     <script src="~/Areas/Administrator/vendors/pdfmake/build/vfs_fonts.js"></script>
     <!-- validator -->
     <script src="~/Areas/Administrator/vendors/validator/validator.min.js"></script>
+    <!-- DateJS -->
+    <script src="~/Areas/Administrator/vendors/DateJS/build/date.js"></script>
+    <!-- JQVMap -->
+    <script src="~/Areas/Administrator/vendors/jqvmap/dist/jquery.vmap.js"></script>
+    <script src="~/Areas/Administrator/vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+    <script src="~/Areas/Administrator/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
 </head>
 <body class="nav-md">
     <div class="container body">
@@ -167,19 +175,21 @@
                                         int role = (int)Session["role"];
                                         if (role == 2)
                                         {
-                                        <a href="~/HopDongLayMau/YeuCauLayMau/Index"><i class="fa fa-home"></i> Hợp đồng lấy mẫu</a>
-                                        <a href="~/Administrator/FormKQ/Index"><i class="fa fa-home"></i> Form kết quả</a>
+                                            <a href="~/Administrator/DashBoard/Index"><i class="fa fa-home"></i> Quản lý</a>
+                                        <a href="~/HopDongLayMau/YeuCauLayMau/Index"><i class="fa fa-home"></i> Hợp đồng lấy mẫu</a>                     
                                         <a href="~/QuanLySoNhanMau/CacSoNhanMau/Index"><i class="fa fa-home"></i> Sổ nhận mẫu</a>
                                         <a href="~/QuanLySoChuyenMau/CacSoChuyenMau/Index"><i class="fa fa-home"></i> Sổ chuyển mẫu</a>
                                         <a href="~/QuanLyKetQuaPhanTich/SoKQThuNghiem/Index"><i class="fa fa-home"></i> Sổ kết quả thử nghiệm</a>
                                         <a href="~/QuanLyKetQuaPhanTich/FormKQ/Index"><i class="fa fa-home"></i> Phiếu kết quả</a>
+                                        <a href="~/Administrator/FormKQ/Index"><i class="fa fa-home"></i> Form kết quả</a>
                                         }
                                         if (role == 3)
                                         {
                                         <a href="~/HopDongLayMau/YeuCauLayMau/Index"><i class="fa fa-home"></i> Hợp đồng lấy mẫu</a>
-                                        <a href="~/Administrator/FormKQ/Index"><i class="fa fa-home"></i> Form kết quả</a>
+                                        
                                         <a href="~/QuanLySoNhanMau/CacSoNhanMau/Index"><i class="fa fa-home"></i> Sổ nhận mẫu</a>
                                         <a href="~/QuanLySoChuyenMau/CacSoChuyenMau/Index"><i class="fa fa-home"></i> Sổ chuyển mẫu</a>
+                                        <a href="~/Administrator/FormKQ/Index"><i class="fa fa-home"></i> Form kết quả</a>
                                         }
                                         if (role == 4)
                                         {
@@ -673,6 +683,7 @@
         });
     </script>
     <!-- /validator -->
+
     @RenderSection("scripts", required: false)
 </body>
 </html>

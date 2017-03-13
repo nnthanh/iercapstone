@@ -19,121 +19,11 @@
             <h3>Sổ nhận mẫu</h3>
         </div>
         <div class="title-right">
-            <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for...">
-                    <span class="input-group-btn">
-                        <button class="btn btn-default" type="button">Go!</button>
-                    </span>
-                </div>
-            </div>
+            <h3>Thêm mẫu hợp đồng</h3>
+
         </div>
     </div>
     <div class="clearfix"></div>
-    @*<div class="row">
-        <div class="col-md-12 col-sm-12 col-xs-12">
-            <div class="x_panel">
-                <div class="x_title">
-                    <h2>
-                        SỔ NHẬN MẪU - Quyển số 1
-                    </h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                        <li>
-                            <a class="collapse-link">
-                                <i class="fa fa-chevron-up"></i>
-                            </a>
-                        </li>
-                        <li data-toggle="tooltip" title="Thêm mẫu">
-                            <a data-toggle="modal" data-target="#themMauModal" id="btnThemMau" role="button" aria-expanded="false">
-                                <i class="fa fa-plus"></i>
-                            </a>
-                            
-                        </li>
-                       
-                        <li data-toggle="tooltip" title="In">
-                            <a onclick="location.href='@Url.Action("", "")'">
-                                <i class="fa fa-print"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="close-link">
-                                <i class="fa fa-close"></i>
-                            </a>
-                        </li>
-                    </ul>
-                    <div class="clearfix"></div>
-                </div>
-                <div class="x_content" style="display:block;">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>Phiếu yêu cầu</th>
-                                <th>Tên/ Địa chỉ khách hàng</th>
-                                <th>Mã số</th>
-                                <th>Chỉ tiêu thử nghiệm</th>
-                                <th>Ngày nhận</th>
-                                <th>Ngày trả kết quả</th>
-                                <th>Ký hiệu mẫu</th>
-                                <th>KH ký nhận trả tiền</th>
-                                <th>KH ký nhận trả kết quả</th>
-                                <th>Mã mẫu khách hàng</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model)
-                            {
-                                <tr>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.PhieuYeuCau)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.TenDiaChiKhachHang)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.MaSo)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.ChiTieuThuNghiem)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.NgayNhan)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.NgayTraKetQua)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.KyHieuMau)
-                                    </td>
-                                    <td>
-                                        <div class="checkbox">
-                                            <label class="">
-                                                <input type="checkbox" class="flat">
-                                            </label>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="checkbox">
-                                            <label class="">
-                                                <input type="checkbox" class="flat">
-                                            </label>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.MaMauKH)
-                                    </td>
-                                    <td>
-                                        <button data-toggle="tooltip" title="Chỉnh sửa" onclick="location.href='@Url.Action("Edit", "SoNhanMau", new { id = item.Id })'"><span class="fa fa-edit"></span></button>
-                                        <button data-toggle="tooltip" title="Xem chi tiết" onclick="location.href='@Url.Action("Details", "SoNhanMau", new { id = item.Id })'"><span class="fa fa-info"></span></button>                                       
-                                        <button data-toggle="tooltip" title="Xóa" onclick="location.href='@Url.Action("Delete", "SoNhanMau", new { id = item.Id })'"><span class="fa fa-trash"></span></button>
-                                    </td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
-                    </div>
-                </div>
-            </div>
-        </div>*@
 
     <!-- Modal -->
     <div id="themMauModal" class="modal fade" role="dialog">
@@ -261,55 +151,6 @@
                     </thead>
 
                     <tbody>
-                        @foreach (var item in Model)
-                        {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.PhieuYeuCau)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.TenDiaChiKhachHang)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.MaSo)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.ChiTieuThuNghiem)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.NgayNhan)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.NgayTraKetQua)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.KyHieuMau)
-                                </td>
-                                <td>
-                                    <div class="checkbox">
-                                        <label class="">
-                                            <input type="checkbox" class="flat">
-                                        </label>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="checkbox">
-                                        <label class="">
-                                            <input type="checkbox" class="flat">
-                                        </label>
-                                    </div>
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.MaMauKH)
-                                </td>
-                                <td>
-                                    <button data-toggle="tooltip" title="Chỉnh sửa" onclick="location.href='@Url.Action("Edit", "SoNhanMau", new { id = item.Id })'"><span class="fa fa-edit"></span></button>
-                                    <button data-toggle="tooltip" title="Xem chi tiết" onclick="location.href='@Url.Action("Details", "SoNhanMau", new { id = item.Id })'"><span class="fa fa-info"></span></button>
-                                    <button data-toggle="tooltip" title="Xóa" onclick="location.href='@Url.Action("Delete", "SoNhanMau", new { id = item.Id })'"><span class="fa fa-trash"></span></button>
-                                </td>
-                            </tr>
-                        }
-
                     </tbody>
                 </table>
             </div>

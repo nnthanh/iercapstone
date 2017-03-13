@@ -2,11 +2,13 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 03/09/2017 06:01:55
--- Generated from EDMX file: D:\Code\iercapstone\Source-Codes\IERSystem\IERSystem\Areas\Administrator\Models\IERSystemModel.edmx
+-- Date Created: 03/13/2017 10:01:47
+-- Generated from EDMX file: E:\Things\Books\Year 4\Term 1\Capstone\IER PERSONAL WORK\iercapstone\Source-Codes\IERSystem\IERSystem\Areas\Administrator\Models\IERSystemModel.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
+GO
+USE [E:\THINGS\BOOKS\YEAR 4\TERM 1\CAPSTONE\IER PERSONAL WORK\IERCAPSTONE\SOURCE-CODES\IERSYSTEM\IERSYSTEM\APP_DATA\IERSYSTEM.MDF];
 GO
 IF SCHEMA_ID(N'dbo') IS NULL EXECUTE(N'CREATE SCHEMA [dbo]');
 GO
@@ -60,6 +62,9 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_RoleMasterUser]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Users] DROP CONSTRAINT [FK_RoleMasterUser];
 GO
+IF OBJECT_ID(N'[dbo].[FK_RoleMasterRoleMatrix]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[RoleMatrices] DROP CONSTRAINT [FK_RoleMasterRoleMatrix];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
@@ -103,6 +108,9 @@ IF OBJECT_ID(N'[dbo].[RoleMasters]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[Users]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Users];
+GO
+IF OBJECT_ID(N'[dbo].[RoleMatrices]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[RoleMatrices];
 GO
 IF OBJECT_ID(N'[dbo].[MauLayHienTruong_ChiTieuPhanTich]', 'U') IS NOT NULL
     DROP TABLE [dbo].[MauLayHienTruong_ChiTieuPhanTich];

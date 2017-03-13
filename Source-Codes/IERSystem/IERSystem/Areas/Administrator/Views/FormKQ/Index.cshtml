@@ -105,79 +105,6 @@
         </div>
     </div>
     <div class="clearfix"></div>
-    @*<div class="row">
-        <div class="col-md-12 col-sm-12 col-xs-12">
-            <div class="x_panel">
-                <div class="x_title">
-                    <h2>
-                        DANH SÁCH PHIẾU
-                    </h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                        <li>
-                            <a class="collapse-link">
-                                <i class="fa fa-chevron-up"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="close-link">
-                                <i class="fa fa-close"></i>
-                            </a>
-                        </li>
-                    </ul>
-                    <div class="clearfix"></div>
-                </div>
-                <div class="x_content" style="display:block;">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>Số</th>
-                                <th>Ký hiệu mẫu</th>
-                                <th>Nơi lấy mẫu</th>
-                                <th>Ngày gửi mẫu</th>
-                                <th>Địa chỉ</th>
-                                <th>Loại mẫu</th>
-                                <th>Vị trí lấy mẫu</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model)
-                            {
-                                <tr>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.So)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.KyHieuMau)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.NoiLayMau)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.NgayGuiMau)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.DiaChi)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.LoaiMau)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.ViTriLayMau)
-                                    </td>          
-                                    <td>
-                                        <button data-toggle="tooltip" title="Chỉnh sửa" onclick="location.href='@Url.Action("Edit", "FormKQ", new { id = item.Id })'"><span class="fa fa-edit"></span></button>
-                                        <button data-toggle="tooltip" title="Xem chi tiết" onclick="location.href='@Url.Action("Details", "FormKQ", new { id = item.Id })'"><span class="fa fa-info"></span></button>
-                                        <button data-toggle="tooltip" title="In" onclick="location.href='@Url.Action("", "")'"><span class="fa fa-print"></span></button>
-                                        <button data-toggle="tooltip" title="Xóa" onclick="location.href='@Url.Action("Delete", "FormKQ", new { id = item.Id })'"><span class="fa fa-trash"></span></button>
-                                    </td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>*@
 
     <!--Table dynamic-->
     <div class="col-md-12 col-sm-12 col-xs-12">
@@ -227,7 +154,7 @@
                     </thead>
 
                     <tbody>
-                        @foreach (var item in Model)
+                        @*@foreach (var item in Model)
                         {
                             <tr>
                                 <td>
@@ -258,7 +185,7 @@
                                     <button data-toggle="tooltip" title="Xóa" onclick="location.href='@Url.Action("Delete", "FormKQ", new { id = item.Id })'"><span class="fa fa-trash"></span></button>
                                 </td>
                             </tr>
-                        }
+                        }*@
                     </tbody>
                 </table>
             </div>

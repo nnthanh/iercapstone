@@ -1,8 +1,262 @@
-﻿
+﻿@model IEnumerable<IERSystem.Areas.Administrator.Models.FormKQ>
+
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Phiếu kết quả";
     Layout = "~/Areas/Administrator/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>MỤC LỤC</h2>
 
+<input type="button" class="btn btn-info" value="Tạo phiếu kết quả mới" onclick="location.href='@Url.Action("Create", "FormKQ")'" />
+
+<button id="btnThemMau" type="button"
+        data-toggle="modal" data-target="#themMauModal"
+        class="btn btn-warning">
+    Thêm kết quả
+</button>
+
+<!-- Modal -->
+<div id="themMauModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Thêm mẫu</h4>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <table class="table table-striped jambo_table bulk_action">
+                        <thead>
+                            <tr class="headings">
+                                <th>
+                                    <input type="checkbox" id="check-all" class="flat">
+                                </th>
+                                <th class="column-title">Phiếu yêu cầu </th>
+                                <th class="column-title">Tên khách hàng/địa chỉ </th>
+                                <th class="column-title">Ký hiệu mẫu </th>
+                                <th class="column-title">Ngày nhận mẫu</th>
+                                <th class="column-title">Ngày trả mẫu </th>
+                                <th class="column-title no-link last">
+                                    <span class="nobr">Hành động</span>
+                                </th>
+                                <th class="bulk-actions" colspan="7">
+                                    <a class="antoo" style="color:#fff; font-weight:500;">Chọn nhiều ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
+                                </th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr class="even pointer">
+                                <td class="a-center ">
+                                    <input type="checkbox" class="flat" name="table_records">
+                                </td>
+                                <td class=" ">0002002</td>
+                                <td class=" ">Nguyen Ngoc Thanh </td>
+                                <td class=" ">Tân Bình</td>
+                                <td class=" ">20 Jan, 2017</td>
+                                <td class=" ">22 Jan, 2017</td>
+                                <td class=" last">
+                                    <a href="#">Xem</a>
+                                </td>
+                            </tr>
+                            <tr class="odd pointer">
+                                <td class="a-center ">
+                                    <input type="checkbox" class="flat" name="table_records">
+                                </td>
+                                <td class=" ">0002002</td>
+                                <td class=" ">Nguyen Ngoc Thanh </td>
+                                <td class=" ">Tân Bình</td>
+                                <td class=" ">20 Jan, 2017</td>
+                                <td class=" ">22 Jan, 2017</td>
+                                <td class=" last">
+                                    <a href="#">Xem</a>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="saveMauBtn" type="button" class="btn btn-success" data-dismiss="modal">Thêm Mẫu</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class>
+    <div class="page-title">
+        <div class="title-left">
+            <h3>Phiếu kết quả</h3>
+        </div>
+        <div class="title-right">
+            <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search for...">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">Go!</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+
+
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Danh sách mẫu</h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li>
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="close-link">
+                            <i class="fa fa-close"></i>
+                        </a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <div class="table-responsive">
+                    <table id="mauThemTable" class="table table-striped jambo_table bulk_action">
+                        <thead>
+                            <tr class="headings">
+                                <th>
+                                    <input type="checkbox" id="check-all" class="flat">
+                                </th>
+                                <th class="column-title">Phiếu yêu cầu </th>
+                                <th class="column-title">Tên khách hàng/địa chỉ </th>
+                                <th class="column-title">Ký hiệu mẫu </th>
+                                <th class="column-title">Ngày nhận mẫu</th>
+                                <th class="column-title">Ngày trả mẫu </th>
+                                <th class="column-title no-link last">
+                                    <span class="nobr">Trạng thái</span>
+                                </th>
+                                <th class="bulk-actions" colspan="7">
+                                    <a class="antoo" style="color:#fff; font-weight:500;">Chọn nhiều ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
+                                </th>
+                            </tr>
+                        </thead>
+
+                        <tbody></tbody>
+
+                    </table>
+                    <br />
+                    <div class="form-group">
+                        <div style="position:absolute; right:0; bottom:0;">
+                            <button class="btn btn-warning" data-toggle="tooltip" title="Cập nhật mẫu"><span class="fa fa-cloud-download"></span></button>
+                            <button class="btn btn-success" data-toggle="tooltip" title="Thêm mẫu"><span class="fa fa-plus"></span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Table dynamic-->
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>DANH SÁCH PHIẾU KẾT QUẢ <small>Bảng phiếu</small></h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li>
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                    </li>
+ 
+                    <li>
+                        <a class="close-link">
+                            <i class="fa fa-close"></i>
+                        </a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <table id="" class="datatable-buttons table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Số</th>
+                            <th>Ký hiệu mẫu</th>
+                            <th>Nơi lấy mẫu</th>
+                            <th>Ngày gửi mẫu</th>
+                            <th>Địa chỉ</th>
+                            <th>Loại mẫu</th>
+                            <th>Vị trí lấy mẫu</th>
+                            <th>Hành động</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <!--Nho them nut tra ve (fa fa-reply)-->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!--Danh sach hop dong-->
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>BẢNG HỢP ĐỒNG <small>Bảng phiếu</small></h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li>
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="close-link">
+                            <i class="fa fa-close"></i>
+                        </a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <table id="" class="datatable-buttons table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Mã đơn</th>
+                            <th>Tên khách hàng</th>
+                            <th>Tên đại diện</th>
+                            <th>Địa chỉ lấy mẫu</th>
+                            <th>Địa chỉ KH</th>
+                            <th>Mã số thuế</th>
+                            <th>Số điện thoại</th>
+                            <th>Số Fax</th>
+                            <th>Ngày tạo HD</th>
+                            <th>Ngày trả mẫu</th>
+                            <th>Hành động</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <!--Nut hoan tat hop dong-->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+}

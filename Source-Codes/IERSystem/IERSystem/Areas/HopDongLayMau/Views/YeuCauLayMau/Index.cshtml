@@ -4,19 +4,10 @@
     ViewBag.Title = "Danh sách phiếu yêu cầu";
     Layout = "~/Areas/Administrator/Views/Shared/_Layout.cshtml";
 }
-@{
-    int role = (int)Session["role"];
-}
+
 <br />
 <h2>MỤC LỤC</h2>
-@if (role == 2)
-{
-<input type="button" class="btn btn-info" value="Tạo phiếu yêu cầu mới" onclick="location.href='@Url.Action("Create", "YeuCauLayMau")'" disabled />
-
-}
-else { 
 <input type="button" class="btn btn-info" value="Tạo phiếu yêu cầu mới" onclick="location.href='@Url.Action("Create", "YeuCauLayMau")'" />
-}
 <div>
     <div class="page-title">
         <div class="title-left">
@@ -34,92 +25,6 @@ else {
         </div>
     </div>
     <div class="clearfix"></div>
-    @*<div class="row">
-        <div class="col-md-12 col-sm-12 col-xs-12">
-            <div class="x_panel">
-                <div class="x_title">
-                    <h2>
-                        DANH SÁCH PHIẾU YÊU CẦU
-                    </h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                        <li>
-                            <a class="collapse-link">
-                                <i class="fa fa-chevron-up"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="close-link">
-                                <i class="fa fa-close"></i>
-                            </a>
-                        </li>
-                    </ul>
-                    <div class="clearfix"></div>
-                </div>
-                <div class="x_content" style="display:block;">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>Mã đơn</th>
-                                <th>Tên khách hàng</th>
-                                <th>Tên đại diện</th>
-                                <th>Địa chỉ lấy mẫu</th>
-                                <th>Địa chỉ KH</th>
-                                <th>Mã số thuế</th>
-                                <th>Số điện thoại</th>
-                                <th>Số Fax</th>
-                                <th>Ngày tạo HD</th>
-                                <th>Ngày trả mẫu</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model)
-                            {
-                                <tr>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.MaDon)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.TenKhachHang)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.TenDaiDien)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.DiaChiLayMau)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.DiaChiKhachHang)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.MaSoThue)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.SoDienThoai)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.SoFax)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.NgayTaoHD)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.NgayDuKienTraMau)
-                                    </td>
-                                    <td>
-                                        <button data-toggle="tooltip" title="Chỉnh sửa" onclick="location.href='@Url.Action("Edit", "YeuCauLayMau", new { id = item.Id })'"><span class="fa fa-edit"></span></button>
-                                        <button data-toggle="tooltip" title="Xem chi tiết" onclick="location.href='@Url.Action("Details", "YeuCauLayMau", new { id = item.Id })'"><span class="fa fa-info"></span></button>
-                                        <button data-toggle="tooltip" title="In" onclick="location.href='@Url.Action("", "")'"><span class="fa fa-print"></span></button>
-                                        <button data-toggle="tooltip" title="Xóa" onclick="location.href='@Url.Action("Delete", "YeuCauLayMau", new { id = item.Id })'"><span class="fa fa-trash"></span></button>
-                                    </td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>*@
-
 
     <!--Table dynamic-->
     <div class="col-md-12 col-sm-12 col-xs-12">
@@ -132,19 +37,6 @@ else {
                             <i class="fa fa-chevron-up"></i>
                         </a>
                     </li>
-                    @*<li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                <i class="fa fa-wrench"></i>
-            </a>
-            <ul class="dropdown-menu" role="menu">
-                <li>
-                    <a href="#">Settings 1</a>
-                </li>
-                <li>
-                    <a href="#">Settings 2</a>
-                </li>
-            </ul>
-        </li>*@
                     <li>
                         <a class="close-link">
                             <i class="fa fa-close"></i>
@@ -154,7 +46,7 @@ else {
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
-                <table id="datatable-buttons" class="table table-striped table-bordered">
+                <table id="" class="datatable-buttons table table-striped table-bordered">
                     <thead>
                         <tr>
                             <th>Mã đơn</th>
@@ -172,47 +64,48 @@ else {
                     </thead>
 
                     <tbody>
-                       @foreach (var item in Model)
+                        @foreach (var item in Model)
                         {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.MaDon)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.TenKhachHang)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.TenDaiDien)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.DiaChiLayMau)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.DiaChiKhachHang)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.MaSoThue)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.SoDienThoai)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.SoFax)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.NgayTaoHD)
-                            </td>
-                            @*<td>
-                                @Html.DisplayFor(modelItem => item.NgayDuKienTraMau)
-                            </td>*@
-                            <td>
-                                <button data-toggle="tooltip" title="Chỉnh sửa" onclick="location.href='@Url.Action("Edit", "YeuCauLayMau", new { id = item.Id })'"><span class="fa fa-edit"></span></button>
-                                <button data-toggle="tooltip" title="Xem chi tiết" onclick="location.href='@Url.Action("Details", "YeuCauLayMau", new { id = item.Id })'"><span class="fa fa-info"></span></button>
-                                <button data-toggle="tooltip" title="In" onclick="location.href='@Url.Action("GeneratePDF", "YeuCauLayMau", new { RequestID = item.Id })'"><span class="fa fa-print"></span></button>
-                                <button data-toggle="tooltip" title="Xóa" onclick="location.href='@Url.Action("Delete", "YeuCauLayMau", new { id = item.Id })'"><span class="fa fa-trash"></span></button>
-                            </td>
-                        </tr>
-                    }
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.MaDon)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TenKhachHang)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TenDaiDien)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DiaChiLayMau)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DiaChiKhachHang)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.MaSoThue)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.SoDienThoai)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.SoFax)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NgayTaoHD)
+                                </td>
+                                <td>
+                                    <!--Ngay tra mau = NgayTaoHD + so ngay-->
+                                    @Html.DisplayFor(modelItem => item.NgayTaoHD)
+                                </td>
+                                <td>
+                                    <button data-toggle="tooltip" title="Chỉnh sửa" onclick="location.href='@Url.Action("Edit", "YeuCauLayMau", new { id = item.Id })'"><span class="fa fa-edit"></span></button>
+                                    <button data-toggle="tooltip" title="Xem chi tiết" onclick="location.href='@Url.Action("Details", "YeuCauLayMau", new { id = item.Id })'"><span class="fa fa-info"></span></button>
+                                    <button data-toggle="tooltip" title="In" onclick="location.href='@Url.Action("", "")'"><span class="fa fa-print"></span></button>
+                                    <button data-toggle="tooltip" title="Xóa" onclick="location.href='@Url.Action("Delete", "YeuCauLayMau", new { id = item.Id })'"><span class="fa fa-trash"></span></button>
+                                </td>
+                            </tr>
+                        }
                     </tbody>
                 </table>
             </div>
@@ -223,9 +116,9 @@ else {
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-<script>
-    $(document).ready(function () {
-        $('[data-toggle="tooltip"]').tooltip();
-    });
-</script>
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
 }
