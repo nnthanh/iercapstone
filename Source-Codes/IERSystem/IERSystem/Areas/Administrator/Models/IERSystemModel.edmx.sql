@@ -2,13 +2,13 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 03/13/2017 10:01:47
--- Generated from EDMX file: E:\Things\Books\Year 4\Term 1\Capstone\IER PERSONAL WORK\iercapstone\Source-Codes\IERSystem\IERSystem\Areas\Administrator\Models\IERSystemModel.edmx
+-- Date Created: 03/17/2017 16:27:04
+-- Generated from EDMX file: E:\Capstone\iercapstone\Source-Codes\IERSystem\IERSystem\Areas\Administrator\Models\IERSystemModel.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
 GO
-USE [E:\THINGS\BOOKS\YEAR 4\TERM 1\CAPSTONE\IER PERSONAL WORK\IERCAPSTONE\SOURCE-CODES\IERSYSTEM\IERSYSTEM\APP_DATA\IERSYSTEM.MDF];
+USE [IERSystem];
 GO
 IF SCHEMA_ID(N'dbo') IS NULL EXECUTE(N'CREATE SCHEMA [dbo]');
 GO
@@ -405,6 +405,7 @@ ADD CONSTRAINT [FK_PhieuYeuCau_MauLayHienTruong]
     REFERENCES [dbo].[PhieuYeuCaus]
         ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_PhieuYeuCau_MauLayHienTruong'
 CREATE INDEX [IX_FK_PhieuYeuCau_MauLayHienTruong]
@@ -428,6 +429,7 @@ ADD CONSTRAINT [FK_MauLayHienTruong_ChiTieuPhanTich_ChiTieuPhanTich]
     REFERENCES [dbo].[ChiTieuPhanTiches]
         ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_MauLayHienTruong_ChiTieuPhanTich_ChiTieuPhanTich'
 CREATE INDEX [IX_FK_MauLayHienTruong_ChiTieuPhanTich_ChiTieuPhanTich]
@@ -442,6 +444,7 @@ ADD CONSTRAINT [FK_CacSoNhanMau_SoNhanMau]
     REFERENCES [dbo].[CacSoNhanMaus]
         ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_CacSoNhanMau_SoNhanMau'
 CREATE INDEX [IX_FK_CacSoNhanMau_SoNhanMau]
@@ -456,6 +459,7 @@ ADD CONSTRAINT [FK_MauLayHienTruong_SoNhanMau]
     REFERENCES [dbo].[MauLayHienTruongs]
         ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_MauLayHienTruong_SoNhanMau'
 CREATE INDEX [IX_FK_MauLayHienTruong_SoNhanMau]
@@ -470,6 +474,7 @@ ADD CONSTRAINT [FK_CacSoChuyenMauSoChuyenMau]
     REFERENCES [dbo].[CacSoChuyenMaus]
         ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_CacSoChuyenMauSoChuyenMau'
 CREATE INDEX [IX_FK_CacSoChuyenMauSoChuyenMau]
@@ -484,6 +489,7 @@ ADD CONSTRAINT [FK_SoKQThuNghiemKQThuNghiemMau]
     REFERENCES [dbo].[SoKQThuNghiems]
         ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_SoKQThuNghiemKQThuNghiemMau'
 CREATE INDEX [IX_FK_SoKQThuNghiemKQThuNghiemMau]
@@ -498,6 +504,7 @@ ADD CONSTRAINT [FK_MauLayHienTruong_SoChuyenMau]
     REFERENCES [dbo].[MauLayHienTruongs]
         ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_MauLayHienTruong_SoChuyenMau'
 CREATE INDEX [IX_FK_MauLayHienTruong_SoChuyenMau]
@@ -521,6 +528,7 @@ ADD CONSTRAINT [FK_SoChuyenMau_ChiTieuPhanTich_ChiTieuPhanTich]
     REFERENCES [dbo].[ChiTieuPhanTiches]
         ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_SoChuyenMau_ChiTieuPhanTich_ChiTieuPhanTich'
 CREATE INDEX [IX_FK_SoChuyenMau_ChiTieuPhanTich_ChiTieuPhanTich]
@@ -535,6 +543,7 @@ ADD CONSTRAINT [FK_SoKQThuNghiem_MauLayHienTruong]
     REFERENCES [dbo].[MauLayHienTruongs]
         ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_SoKQThuNghiem_MauLayHienTruong'
 CREATE INDEX [IX_FK_SoKQThuNghiem_MauLayHienTruong]
@@ -549,6 +558,7 @@ ADD CONSTRAINT [FK_NhomChiTieu_ChiTieuPhanTich]
     REFERENCES [dbo].[NhomChiTieux]
         ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_NhomChiTieu_ChiTieuPhanTich'
 CREATE INDEX [IX_FK_NhomChiTieu_ChiTieuPhanTich]
@@ -563,6 +573,7 @@ ADD CONSTRAINT [FK_KQThuNghiemMau_ChiTieuPhanTich]
     REFERENCES [dbo].[ChiTieuPhanTiches]
         ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_KQThuNghiemMau_ChiTieuPhanTich'
 CREATE INDEX [IX_FK_KQThuNghiemMau_ChiTieuPhanTich]
@@ -577,6 +588,7 @@ ADD CONSTRAINT [FK_SoKQThuNghiem_FormKQ]
     REFERENCES [dbo].[SoKQThuNghiems]
         ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_SoKQThuNghiem_FormKQ'
 CREATE INDEX [IX_FK_SoKQThuNghiem_FormKQ]
@@ -591,6 +603,7 @@ ADD CONSTRAINT [FK_RoleMasterUser]
     REFERENCES [dbo].[RoleMasters]
         ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_RoleMasterUser'
 CREATE INDEX [IX_FK_RoleMasterUser]
@@ -605,6 +618,7 @@ ADD CONSTRAINT [FK_RoleMasterRoleMatrix]
     REFERENCES [dbo].[RoleMasters]
         ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_RoleMasterRoleMatrix'
 CREATE INDEX [IX_FK_RoleMasterRoleMatrix]
