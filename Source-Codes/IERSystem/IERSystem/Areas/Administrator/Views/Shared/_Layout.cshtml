@@ -29,7 +29,14 @@
     @*<link href="~/Areas/Administrator/vendors/google-code-prettify/bin/prettify.min.css" rel="stylesheet">*@
     <!-- starrr -->
     <link href="~/Areas/Administrator/vendors/starrr/dist/starrr.css" rel="stylesheet">
-
+    <!-- Datatables -->
+    <link href="~/Areas/Administrator/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+    <link href="~/Areas/Administrator/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
+    <link href="~/Areas/Administrator/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
+    <link href="~/Areas/Administrator/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
+    <link href="~/Areas/Administrator/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
+    <!-- JQVMap -->
+    <link href="~/Areas/Administrator/vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet" />
 
     <!-- jQuery -->
     <script src="~/Areas/Administrator/vendors/jquery/dist/jquery.min.js"></script>
@@ -57,7 +64,7 @@
     <script src="~/Areas/Administrator/vendors/Flot/jquery.flot.resize.js"></script>
     <!-- Flot plugins -->
     <script src="~/Areas/Administrator/Content/js/flot/jquery.flot.orderBars.js"></script>
-    <script src="~/Areas/Administrator/Content/js/flot/date.js"></script>
+    @*<script src="~/Areas/Administrator/Content/js/flot/date.js"></script>*@
     <script src="~/Areas/Administrator/Content/js/flot/jquery.flot.spline.js"></script>
     <script src="~/Areas/Administrator/Content/js/flot/curvedLines.js"></script>
     <!-- jVectorMap -->
@@ -65,7 +72,7 @@
     <!-- bootstrap-daterangepicker -->
     <script src="~/Areas/Administrator/Content/js/moment/moment.min.js"></script>
     <script src="~/Areas/Administrator/Content/js/datepicker/daterangepicker.js"></script>
-    
+
     <!-- jVectorMap -->
     <script src="~/Areas/Administrator/Content/js/maps/jquery-jvectormap-world-mill-en.js"></script>
     <script src="~/Areas/Administrator/Content/js/maps/jquery-jvectormap-us-aea-en.js"></script>
@@ -90,6 +97,30 @@
     <!-- starrr -->
     <script src="~/Areas/Administrator/vendors/starrr/dist/starrr.js"></script>
     <script src="~/Areas/Administrator/vendors/validator/validator.js"></script>
+    <!-- Datatables -->
+    <script src="~/Areas/Administrator/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="~/Areas/Administrator/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script src="~/Areas/Administrator/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="~/Areas/Administrator/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+    <script src="~/Areas/Administrator/vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+    <script src="~/Areas/Administrator/vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="~/Areas/Administrator/vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="~/Areas/Administrator/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+    <script src="~/Areas/Administrator/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+    <script src="~/Areas/Administrator/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="~/Areas/Administrator/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+    <script src="~/Areas/Administrator/vendors/datatables.net-scroller/js/datatables.scroller.min.js"></script>
+    <script src="~/Areas/Administrator/vendors/jszip/dist/jszip.min.js"></script>
+    <script src="~/Areas/Administrator/vendors/pdfmake/build/pdfmake.min.js"></script>
+    <script src="~/Areas/Administrator/vendors/pdfmake/build/vfs_fonts.js"></script>
+    <!-- validator -->
+    <script src="~/Areas/Administrator/vendors/validator/validator.min.js"></script>
+    <!-- DateJS -->
+    <script src="~/Areas/Administrator/vendors/DateJS/build/date.js"></script>
+    <!-- JQVMap -->
+    <script src="~/Areas/Administrator/vendors/jqvmap/dist/jquery.vmap.js"></script>
+    <script src="~/Areas/Administrator/vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+    <script src="~/Areas/Administrator/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
 </head>
 <body class="nav-md">
     <div class="container body">
@@ -107,7 +138,12 @@
                         </div>
                         <div class="profile_info">
                             <span>Xin chào,</span>
-                            <h2>Thanh</h2>
+                            @{
+                                if (Session["loggedUser"] != null)
+                                {
+                                    <h2>@Session["loggedUser"].ToString()</h2>
+                                }
+                            }
                         </div>
                     </div>
                     <!-- /menu profile quick info -->
@@ -117,24 +153,56 @@
                         <div class="menu_section">
                             <h3>General</h3>
                             <ul class="nav side-menu">
-                                <li>
-                                    <a><i class="fa fa-home"></i> Quản trị <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu">
-                                        <li>
-                                            <a href="~/Administrator/User/Index">Người dùng</a>
-                                        </li>
-                                        <li>
-                                            <a href="~/Administrator/User/Index">Phòng ban</a>
-                                        </li>
-                                        <li>
-                                            <a href="~/Administrator/User/Index">Thiết bị</a>
-                                        </li>
-                                    </ul>
-                                    <a href="~/HopDongLayMau/YeuCauLayMau/Index"><i class="fa fa-home"></i> Hợp đồng lấy mẫu</a>                                   
-                                    <a href="~/Administrator/SoNhanMau/Index"><i class="fa fa-home"></i> Sổ nhận mẫu</a>
-                                    <a href="~/Administrator/SoChuyenMau/Index"><i class="fa fa-home"></i> Sổ chuyển mẫu</a>
-                                    <a href="~/Administrator/SoKQThuNghiem/Index"><i class="fa fa-home"></i> Sổ kết quả thử nghiệm</a>
-                                    <a href="~/Administrator/FormKQ/Index"><i class="fa fa-home"></i> Phiếu kết quả</a>
+                            <li>
+                                @{
+                                    if ((Boolean)Session["isAdmin"] == true)
+                                    {
+                                        <a><i class="fa fa-home"></i> Quản trị <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li>
+                                                <a href="~/Administrator/User/Index">Người dùng</a>
+                                            </li>
+                                            <li>
+                                                <a href="~/Administrator/User/Index">Phòng ban</a>
+                                            </li>
+                                            <li>
+                                                <a href="~/Administrator/User/Index">Thiết bị</a>
+                                            </li>
+                                        </ul>
+                                    }
+                                    else
+                                    {
+                                        int role = (int)Session["role"];
+                                        if (role == 2)
+                                        {
+                                            <a href="~/Administrator/DashBoard/Index"><i class="fa fa-home"></i> Quản lý</a>
+                                        <a href="~/HopDongLayMau/YeuCauLayMau/Index"><i class="fa fa-home"></i> Hợp đồng lấy mẫu</a>                     
+                                        <a href="~/QuanLySoNhanMau/CacSoNhanMau/Index"><i class="fa fa-home"></i> Sổ nhận mẫu</a>
+                                        <a href="~/QuanLySoChuyenMau/CacSoChuyenMau/Index"><i class="fa fa-home"></i> Sổ chuyển mẫu</a>
+                                        <a href="~/QuanLyKetQuaPhanTich/SoKQThuNghiem/Index"><i class="fa fa-home"></i> Sổ kết quả thử nghiệm</a>
+                                        <a href="~/QuanLyKetQuaPhanTich/FormKQ/Index"><i class="fa fa-home"></i> Phiếu kết quả</a>
+                                        <a href="~/Administrator/FormKQ/Index"><i class="fa fa-home"></i> Form kết quả</a>
+                                        }
+                                        if (role == 3)
+                                        {
+                                        <a href="~/HopDongLayMau/YeuCauLayMau/Index"><i class="fa fa-home"></i> Hợp đồng lấy mẫu</a>
+                                        
+                                        <a href="~/QuanLySoNhanMau/CacSoNhanMau/Index"><i class="fa fa-home"></i> Sổ nhận mẫu</a>
+                                        <a href="~/QuanLySoChuyenMau/CacSoChuyenMau/Index"><i class="fa fa-home"></i> Sổ chuyển mẫu</a>
+                                        <a href="~/Administrator/FormKQ/Index"><i class="fa fa-home"></i> Form kết quả</a>
+                                        }
+                                        if (role == 4)
+                                        {
+                                        <a href="~/QuanLySoChuyenMau/CacSoChuyenMau/Index"><i class="fa fa-home"></i> Sổ chuyển mẫu</a>
+                                        <a href="~/QuanLyKetQuaPhanTich/SoKQThuNghiem/Index"><i class="fa fa-home"></i> Sổ kết quả thử nghiệm</a>
+                                        }
+                                        if (role == 5)
+                                        {
+                                        <a href="~/QuanLyKetQuaPhanTich/FormKQ/Index"><i class="fa fa-home"></i> Phiếu kết quả</a>
+                                        }
+                                    }
+
+                                    }
                                 </li>
                             </ul>
                         </div>
@@ -143,16 +211,16 @@
                     <!-- /sidebar menu -->
                     <!-- /menu footer buttons -->
                     <div class="sidebar-footer hidden-small">
-                        <a data-toggle="tooltip" data-placement="top" title="Settings">
+                        <a data-toggle="tooltip" data-placement="top" title="Cài đặt">
                             <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
                         </a>
-                        <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+                        <a data-toggle="tooltip" data-placement="top" title="Toàn màn hình">
                             <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
                         </a>
-                        <a data-toggle="tooltip" data-placement="top" title="Lock">
+                        <a data-toggle="tooltip" data-placement="top" title="Khóa">
                             <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
                         </a>
-                        <a data-toggle="tooltip" data-placement="top" title="Logout">
+                        <a data-toggle="tooltip" data-placement="top" title="Đăng xuất">
                             <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
                         </a>
                     </div>
@@ -169,24 +237,25 @@
                         <ul class="nav navbar-nav navbar-right">
                             <li class="">
                                 <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                    <img src="~/Areas/Administrator/Content/images/img.jpg" alt="">John Doe
+                                    <img src="~/Areas/Administrator/Content/images/img.jpg" alt="">@Session["loggedUser"].ToString()
+                                
                                     <span class=" fa fa-angle-down"></span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-usermenu pull-right">
                                     <li>
-                                        <a href="javascript:;">  Profile</a>
+                                        <a href="javascript:;">  Thông tin cá nhân</a>
                                     </li>
                                     <li>
                                         <a href="javascript:;">
                                             <span class="badge bg-red pull-right">50%</span>
-                                            <span>Settings</span>
+                                            <span>Cài đặt</span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="javascript:;">Help</a>
+                                        <a href="javascript:;">Giúp đỡ</a>
                                     </li>
                                     <li>
-                                        <a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                                        <a href="login.html"><i class="fa fa-sign-out pull-right"></i> Đăng xuất</a>
                                     </li>
                                 </ul>
                             </li>
@@ -255,7 +324,7 @@
                                     <li>
                                         <div class="text-center">
                                             <a href="inbox.html">
-                                                <strong>See All Alerts</strong>
+                                                <strong>Xem toàn bộ thông báo</strong>
                                                 <i class="fa fa-angle-right"></i>
                                             </a>
                                         </div>
@@ -275,7 +344,7 @@
             <!-- footer content -->
             <footer>
                 <div class="pull-right">
-                    Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+                    Hệ thống quản lý IER System - Thực hiện bởi <code>52s</code>
                 </div>
                 <div class="clearfix"></div>
             </footer>
@@ -516,6 +585,105 @@
         });
     </script>
     <!-- /jQuery autocomplete -->
+    <!-- Datatables -->
+    <script>
+        $(document).ready(function () {
+            var handleDataTableButtons = function () {
+                //nthoang: Apply this setting on all datatable-buttons (convert id to class)
+                if ($(".datatable-buttons").length) {
+                    $(".datatable-buttons").DataTable({
+                        dom: "Bfrtip",
+                        buttons: [
+                          {
+                              extend: "copy",
+                              className: "btn-sm"
+                          },
+                          //{
+                          //    extend: "csv",
+                          //    className: "btn-sm"
+                          //},
+                          //{
+                          //    extend: "excel",
+                          //    className: "btn-sm"
+                          //},
+                          {
+                              extend: "pdfHtml5",
+                              className: "btn-sm"
+                          },
+                          {
+                              extend: "print",
+                              className: "btn-sm"
+                          },
+                        ],
+                        responsive: true
+                    });
+                }
+            };
+
+            TableManageButtons = function () {
+                "use strict";
+                return {
+                    init: function () {
+                        handleDataTableButtons();
+                    }
+                };
+            }();
+
+            $('#datatable').dataTable();
+            $('#datatable-keytable').DataTable({
+                keys: true
+            });
+
+            $('#datatable-responsive').DataTable();
+
+            $('#datatable-scroller').DataTable({
+                ajax: "js/datatables/json/scroller-demo.json",
+                deferRender: true,
+                scrollY: 380,
+                scrollCollapse: true,
+                scroller: true
+            });
+
+            var table = $('#datatable-fixed-header').DataTable({
+                fixedHeader: true
+            });
+
+            TableManageButtons.init();
+        });
+    </script>
+    <!-- /Datatables -->
+    <!-- validator -->
+    <script>
+        // initialize the validator function
+        validator.message.date = 'Không phải ngày thật';
+
+        // validate a field on "blur" event, a 'select' on 'change' event & a '.reuired' classed multifield on 'keyup':
+        $('form')
+          .on('blur', 'input[required], input.optional, select.required', validator.checkField)
+          .on('change', 'select.required', validator.checkField)
+          .on('keypress', 'input[required][pattern]', validator.keypress);
+
+        $('.multi.required').on('keyup blur', 'input', function () {
+            validator.checkField.apply($(this).siblings().last()[0]);
+        });
+
+        $('form').submit(function (e) {
+            e.preventDefault();
+            var submit = true;
+
+            // evaluate the form using generic validaing
+            if (!validator.checkAll($(this))) {
+                submit = false;
+            }
+
+            if (submit)
+                this.submit();
+
+            return false;
+        });
+    </script>
+    <!-- /validator -->
+
     @RenderSection("scripts", required: false)
 </body>
 </html>

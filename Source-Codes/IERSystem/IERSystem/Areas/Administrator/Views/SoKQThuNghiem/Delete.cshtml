@@ -7,134 +7,144 @@
 
 <h3>Bạn có chắc muốn xóa kết quả thử nghiệm?</h3>
 <div>
-    <dl class="dl-horizontal">
-        <dt>
-            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
-                Ký hiệu mẫu
-            </label>
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.KyHieuMau)
-        </dd>
-
-        <dt>
-            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
-                Ngày nhận mẫu
-            </label>
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NgayNhanMau)
-        </dd>
-
-        <dt>
-            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
-                Ngày trả mẫu
-            </label>
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NgayTraMau)
-        </dd>
-
-    </dl>
-
+    <div class="clearfix">
+    </div>
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
-                <div class="x_title">
-                    <h2>
-                        KẾT QUẢ THỬ NGHIỆM
-                    </h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                        <li>
-                            <a class="collapse-link">
-                                <i class="fa fa-chevron-up"></i>
-                            </a>
-                        </li>
-                        @*<li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    <i class="fa fa-plus"></i>
-                                </a>
-                                <ul class="dropdown-menu" role="menu">
+                <dl class="dl-horizontal">
+                    <dt>
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                            Ký hiệu mẫu
+                        </label>
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.KyHieuMau)
+                    </dd>
+
+                    <dt>
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                            Ngày nhận mẫu
+                        </label>
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.NgayNhanMau)
+                    </dd>
+
+                    <dt>
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                            Ngày trả mẫu
+                        </label>
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.NgayTraMau)
+                    </dd>
+
+                </dl>
+
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="x_panel">
+                            <div class="x_title">
+                                <h2>
+                                    KẾT QUẢ THỬ NGHIỆM
+                                </h2>
+                                <ul class="nav navbar-right panel_toolbox">
                                     <li>
-                                        <a href="@Url.Action("Create", "SoChuyenMau")">Tạo mẫu chuyển mới</a>
+                                        <a class="collapse-link">
+                                            <i class="fa fa-chevron-up"></i>
+                                        </a>
                                     </li>
+                                    @*<li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                                <i class="fa fa-plus"></i>
+                                            </a>
+                                            <ul class="dropdown-menu" role="menu">
+                                                <li>
+                                                    <a href="@Url.Action("Create", "SoChuyenMau")">Tạo mẫu chuyển mới</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">Settings 2</a>
+                                                </li>
+                                            </ul>
+                                        </li>*@
                                     <li>
-                                        <a href="#">Settings 2</a>
+                                        <a class="close-link">
+                                            <i class="fa fa-close"></i>
+                                        </a>
                                     </li>
                                 </ul>
-                            </li>*@
-                        <li>
-                            <a class="close-link">
-                                <i class="fa fa-close"></i>
-                            </a>
-                        </li>
-                    </ul>
-                    <div class="clearfix"></div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content" style="display:block;">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th rowspan="4">Mã khách hàng</th>
+                                            <th rowspan="4">Mã mẫu</th>
+                                            <th rowspan="4">Chỉ tiêu thử nghiệm</th>
+                                            <th rowspan="4">Người giao mẫu</th>
+                                            <th rowspan="4">Người nhận mẫu</th>
+                                            <th rowspan="4">Ngày giao mẫu</th>
+                                            <th rowspan="4">Ngày trả kết quả</th>
+                                            <th rowspan="4">Điền tên</th>
+                                            <th rowspan="4">Ghi chú</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @*@foreach (var item in Model)
+                                            {
+                                                <tr>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.MaKhachHang)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.MaMau)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.ChiTieuThuNghiem)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.NguoiGiaoMau)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.NguoiNhanMau)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.NgayGiaoMau)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.NgayTraKetQua)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.DienTien)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.GhiChu)
+                                                    </td>
+                                                </tr>
+                                            }*@
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="x_content" style="display:block;">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th rowspan="4">Mã khách hàng</th>
-                                <th rowspan="4">Mã mẫu</th>
-                                <th rowspan="4">Chỉ tiêu thử nghiệm</th>
-                                <th rowspan="4">Người giao mẫu</th>
-                                <th rowspan="4">Người nhận mẫu</th>
-                                <th rowspan="4">Ngày giao mẫu</th>
-                                <th rowspan="4">Ngày trả kết quả</th>
-                                <th rowspan="4">Điền tên</th>
-                                <th rowspan="4">Ghi chú</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @*@foreach (var item in Model)
-                                {
-                                    <tr>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.MaKhachHang)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.MaMau)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.ChiTieuThuNghiem)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.NguoiGiaoMau)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.NguoiNhanMau)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.NgayGiaoMau)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.NgayTraKetQua)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.DienTien)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.GhiChu)
-                                        </td>
-                                    </tr>
-                                }*@
-                        </tbody>
-                    </table>
-                </div>
+
+               
+            </div>
             </div>
         </div>
     </div>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
 
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Xóa" class="btn btn-default" /> |
-            @Html.ActionLink("Trở về", "Index")
-        </div>
-    }
-</div>
+    <div class="form-actions no-color">
+        <input type="submit" value="Xóa" class="btn btn-default" /> |
+        @Html.ActionLink("Trở về", "Index")
+    </div>
+}

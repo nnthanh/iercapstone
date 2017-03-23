@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
+//using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,7 +13,7 @@ namespace IERSystem.Areas.Administrator.Controllers
 {
     public class CacSoNhanMauController : Controller
     {
-        private IERSystemDBContext db = new IERSystemDBContext();
+        private IERSystemModelContainer db = new IERSystemModelContainer();
 
         // GET: /Administrator/CacSoNhanMau/
         public async Task<ActionResult> Index()

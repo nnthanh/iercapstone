@@ -12,12 +12,19 @@ namespace IERSystem
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-
+            /*
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "User", action = "Index", id = UrlParameter.Optional }
-            ).DataTokens.Add("area", "Administrator"); ;
+                defaults: new { controller = "Account", action = "Login", id = UrlParameter.Optional }
+            );//.DataTokens.Add("area", "Administrator"); ;
+             */
+            routes.MapRoute(
+                "Default",
+                "{controller}/{action}/{id}",
+                new { controller = "Account", action = "Login", id = UrlParameter.Optional },
+                new[] { "IERSystem.Controllers" }
+            );
         }
     }
 }

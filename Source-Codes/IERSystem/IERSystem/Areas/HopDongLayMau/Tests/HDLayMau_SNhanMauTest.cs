@@ -18,8 +18,8 @@ namespace IERSystem.Areas.HopDongLayMau.Tests
                     SoFax = "32fwe1",
                     DiaChiLayMau = "absfsd",
                     DiaChiKhachHang = "bqwqwc",
-                    NgayTaoHD = new DateTime(2011,3,4),
-                    NgayDuKienTraMau = new DateTime(2013,3,4),
+                    NgayLayMau = new DateTime(2011,3,4),
+                    NgayHenTraKQ = 2,
                     MauLayHienTruongs = new List<MauPTInputModel>() {
                         new MauPTInputModel() {
                             MaMauKH = "m2011",
@@ -28,7 +28,7 @@ namespace IERSystem.Areas.HopDongLayMau.Tests
                             SoLuong = 4,
                             DonVi = "lit",
                             MoTaMau = "desc",
-                            ChiTieuPhanTich = "pH"
+                            //ChiTieuPhanTich = "pH"
                         },new MauPTInputModel() {
                             MaMauKH = "m2011",
                             KiHieuMau = "NC",
@@ -36,7 +36,7 @@ namespace IERSystem.Areas.HopDongLayMau.Tests
                             SoLuong = 4,
                             DonVi = "liwt",
                             MoTaMau = "ddsesc",
-                            ChiTieuPhanTich = "pH CO2"
+                            //ChiTieuPhanTich = "pH CO2"
                         },new MauPTInputModel() {
                             MaMauKH = "m2011",
                             KiHieuMau = "KK",
@@ -44,7 +44,7 @@ namespace IERSystem.Areas.HopDongLayMau.Tests
                             SoLuong = 5,
                             DonVi = "lidfst",
                             MoTaMau = "dessc",
-                            ChiTieuPhanTich = "pH CO"
+                            //ChiTieuPhanTich = "pH CO"
                         },new MauPTInputModel() {
                             MaMauKH = "m2011",
                             KiHieuMau = "NT",
@@ -52,7 +52,7 @@ namespace IERSystem.Areas.HopDongLayMau.Tests
                             SoLuong = 5,
                             DonVi = "lit",
                             MoTaMau = "desc",
-                            ChiTieuPhanTich = "pH"
+                            //ChiTieuPhanTich = "pH"
                         },new MauPTInputModel() {
                             MaMauKH = "m2011",
                             KiHieuMau = "NT",
@@ -60,7 +60,7 @@ namespace IERSystem.Areas.HopDongLayMau.Tests
                             SoLuong = 6,
                             DonVi = "lit",
                             MoTaMau = "desc",
-                            ChiTieuPhanTich = "pH"
+                            //ChiTieuPhanTich = "pH"
                         },
                     }
                 }

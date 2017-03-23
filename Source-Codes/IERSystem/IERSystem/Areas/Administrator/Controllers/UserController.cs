@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
@@ -12,22 +12,23 @@ namespace IERSystem.Areas.Administrator.Controllers
 {
     public class UserController : Controller
     {
-        private IERSystemDBContext db = new IERSystemDBContext();
+        private IERSystemModelContainer db = new IERSystemModelContainer();
 
         // GET: /Administrator/User/
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            return View(db.Users.ToList());
+            var users = db.Users.Include(u => u.RoleMaster);
+            return View(await users.ToListAsync());
         }
 
         // GET: /Administrator/User/Details/5
-        public ActionResult Details(int? id)
+        public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = db.Users.Find(id);
+            User user = await db.Users.FindAsync(id);
             if (user == null)
             {
                 return HttpNotFound();
@@ -38,6 +39,7 @@ namespace IERSystem.Areas.Administrator.Controllers
         // GET: /Administrator/User/Create
         public ActionResult Create()
         {
+            ViewBag.RoleMasterId = new SelectList(db.RoleMasters, "Id", "RoleName");
             return View();
         }
 
@@ -46,30 +48,32 @@ namespace IERSystem.Areas.Administrator.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="Id,username,password,fullname")] User user)
+        public async Task<ActionResult> Create([Bind(Include="Id,Username,Password,Phone,Fullname,RoleMasterId")] User user)
         {
             if (ModelState.IsValid)
             {
                 db.Users.Add(user);
-                db.SaveChanges();
+                await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
+            ViewBag.RoleMasterId = new SelectList(db.RoleMasters, "Id", "RoleName", user.RoleMasterId);
             return View(user);
         }
 
         // GET: /Administrator/User/Edit/5
-        public ActionResult Edit(int? id)
+        public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = db.Users.Find(id);
+            User user = await db.Users.FindAsync(id);
             if (user == null)
             {
                 return HttpNotFound();
             }
+            ViewBag.RoleMasterId = new SelectList(db.RoleMasters, "Id", "RoleName", user.RoleMasterId);
             return View(user);
         }
 
@@ -78,25 +82,26 @@ namespace IERSystem.Areas.Administrator.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="Id,username,password,fullname")] User user)
+        public async Task<ActionResult> Edit([Bind(Include="Id,Username,Password,Phone,Fullname,RoleMasterId")] User user)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(user).State = EntityState.Modified;
-                db.SaveChanges();
+                await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
+            ViewBag.RoleMasterId = new SelectList(db.RoleMasters, "Id", "RoleName", user.RoleMasterId);
             return View(user);
         }
 
         // GET: /Administrator/User/Delete/5
-        public ActionResult Delete(int? id)
+        public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = db.Users.Find(id);
+            User user = await db.Users.FindAsync(id);
             if (user == null)
             {
                 return HttpNotFound();
@@ -107,11 +112,11 @@ namespace IERSystem.Areas.Administrator.Controllers
         // POST: /Administrator/User/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            User user = db.Users.Find(id);
+            User user = await db.Users.FindAsync(id);
             db.Users.Remove(user);
-            db.SaveChanges();
+            await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 

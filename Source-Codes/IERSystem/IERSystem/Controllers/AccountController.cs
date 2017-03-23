@@ -9,12 +9,16 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using IERSystem.Models;
+using IERSystem.Areas.Administrator.Models;
+
 
 namespace IERSystem.Controllers
 {
     [Authorize]
     public class AccountController : Controller
     {
+        private IERSystemModelContainer db = new IERSystemModelContainer();
+
         public AccountController()
             : this(new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext())))
         {
@@ -45,11 +49,24 @@ namespace IERSystem.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = await UserManager.FindAsync(model.UserName, model.Password);
+                //var user = await UserManager.FindAsync(model.UserName, model.Password);
+                var user = (from u in db.Users where u.Username == model.UserName select u).FirstOrDefault();
                 if (user != null)
                 {
-                    await SignInAsync(user, model.RememberMe);
-                    return RedirectToLocal(returnUrl);
+                    //await SignInAsync(user, model.RememberMe);
+                    //return RedirectToLocal(returnUrl);
+                    Session["loggedUser"] = user.Username;
+                    Session["role"] = user.RoleMasterId;
+                    if (IsAdmin(user.Id))
+                    {
+                        Session["isAdmin"] = true;
+                        return RedirectToAction("Index", "User", new { Area = "Administrator" });
+                    }
+                    else
+                    {
+                        Session["isAdmin"] = false;
+                        return RedirectToAction("Index", "YeuCauLayMau", new { Area = "HopDongLayMau" });
+                    }
                 }
                 else
                 {
@@ -60,7 +77,14 @@ namespace IERSystem.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
-
+        Boolean IsAdmin(int userId) {
+            var user = db.Users.Find(userId);
+            if (user != null) {
+                if (user.RoleMaster.Id == 1)
+                    return true;
+            }
+            return false;
+        }
         //
         // GET: /Account/Register
         [AllowAnonymous]
@@ -83,7 +107,7 @@ namespace IERSystem.Controllers
                 if (result.Succeeded)
                 {
                     await SignInAsync(user, isPersistent: false);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Home", new {Area = "Administator" });
                 }
                 else
                 {
