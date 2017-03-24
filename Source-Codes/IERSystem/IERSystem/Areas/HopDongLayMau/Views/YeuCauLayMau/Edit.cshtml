@@ -104,49 +104,11 @@
                                     <option>7 ngày</option>
                                     <option>10 ngày</option>
                                 </select>
-                                @Html.ValidationMessageFor(model => model.NgayDuKienTraMau)
+                                @*@Html.ValidationMessageFor(model => model.NgayDuKienTraMau)*@
                             </div>
                         </div>
 
-                        @*<div class="form-group" style="display:none">
-                    @Html.LabelFor(model => model.PhuongPhapLayMau, new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.PhuongPhapLayMau)
-                        @Html.ValidationMessageFor(model => model.PhuongPhapLayMau)
-                    </div>
-                </div>
-
-                <div class="form-group" style="display:none">
-                    @Html.LabelFor(model => model.TenTieuChuanDoiChieu, new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.TenTieuChuanDoiChieu)
-                        @Html.ValidationMessageFor(model => model.TenTieuChuanDoiChieu)
-                    </div>
-                </div>
-
-                <div class="form-group" style="display:none">
-                    @Html.LabelFor(model => model.PhiThiNghiemTamTinh, new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.PhiThiNghiemTamTinh, new {@value="0" })
-                        @Html.ValidationMessageFor(model => model.PhiThiNghiemTamTinh)
-                    </div>
-                </div>
-
-                <div class="form-group" style="display:none">
-                    @Html.LabelFor(model => model.TienKhachHangTraTruoc, new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.TienKhachHangTraTruoc, new { @value = "0" })
-                        @Html.ValidationMessageFor(model => model.TienKhachHangTraTruoc)
-                    </div>
-                </div>
-
-                <div class="form-group" style="display:none">
-                    @Html.LabelFor(model => model.DaGuiMau, new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.DaGuiMau)
-                        @Html.ValidationMessageFor(model => model.DaGuiMau)
-                    </div>
-                </div>*@
+                        
                     </form>
 
                     <h2 class="StepTitle">Thông Tin Các Mẫu</h2>
@@ -204,7 +166,15 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="email">Chỉ Tiêu Yêu Cầu <span class="required">*</span></label>
-                                            <input type="email" class="form-control" id="chitieu-yeucau" required="required">
+                                            <select class="select2_multiple form-control " multiple="multiple" required="required" id="chitieu-yeucau" style="width: 100%;">
+                                                <option>Chỉ tiêu nước</option>
+                                                <option>Chỉ tiêu đất</option>
+                                                <option>Chỉ tiêu bùn</option>
+                                                <option>Chỉ tiêu nước thải</option>
+                                                <option>Chỉ tiêu NCR</option>
+                                                <option>Chỉ tiêu 5</option>
+                                                <option>Chỉ tiêu 6</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="modal-footer">
@@ -239,18 +209,15 @@
                         </div>
                         <div class="ln_solid"></div>
                         <div class="form-group">
-                            <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                                <button id="submitBtn" type="submit" class="btn btn-success"> Lưu</button>
-                                <input type="button" class="btn btn-danger" value="Quay lại" onclick="location.href='@Url.Action("Index", "YeuCauLayMau")'" />
-                            </div>
+                            <p class="mid_center">
+                                <button id="submitBtn" type="submit" class="btn btn-success" data-toggle="tooltip" title="Lưu"><span class="fa fa-save"></span></button>
+                                <button class="btn btn-danger" data-toggle="tooltip" title="Quay lại" onclick="location.href='@Url.Action("Index", "YeuCauLayMau")'"><span class="fa fa-arrow-left" ></span></button>
+                            </p>                         
                         </div>                
                  </div>
             </div>
         </div>
- 
-    
 }
-
 
 
 @section Scripts {

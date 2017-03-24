@@ -15,7 +15,7 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Chỉnh quả thử nghiệm</h2>
+                    <h2>Chỉnh kết quả thử nghiệm</h2>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
@@ -54,126 +54,60 @@
                             </div>
                         </div>
 
-                        @*<div class="form-group">
-                    <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
-                        Chỉ tiêu thử nghiệm
-                    </label>
-
-                    <div class="col-md-4 col-sm-4 col-xs-12">
-                        @Html.TextBoxFor(model => model.ChiTieuThuNghiem, new { @class = "form-control col-md-4 col-xs-12", @readonly = "readonly" })
-                        @Html.ValidationMessageFor(model => model.ChiTieuThuNghiem)
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
-                        Đơn vị
-                    </label>
-
-                    <div class="col-md-4 col-sm-4 col-xs-12">
-                        @Html.TextBoxFor(model => model.DonVi, new { @class = "form-control col-md-4 col-xs-12", @readonly = "readonly" })
-                        @Html.ValidationMessageFor(model => model.DonVi)
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
-                        Kết quả
-                    </label>
-
-                    <div class="col-md-4 col-sm-4 col-xs-12">
-                        @Html.TextBoxFor(model => model.KetQua, new { @class = "form-control col-md-4 col-xs-12" })
-                        @Html.ValidationMessageFor(model => model.KetQua)
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
-                        Người thực hiện
-                    </label>
-
-                    <div class="col-md-4 col-sm-4 col-xs-12">
-                        @Html.TextBoxFor(model => model.NguoiThucHien, new { @class = "form-control col-md-4 col-xs-12", @readonly = "readonly" })
-                        @Html.ValidationMessageFor(model => model.NguoiThucHien)
-                    </div>
-                </div>*@                       
-
-                    </form>
-
-                    <h2 class="StepTitle">Thông Tin Các Mẫu</h2>
-                    <div class="row">
-                        <div class="col-md-2 col-sm-2 col-xs-2">
-                            <button id="btnThemMau" type="button"
-                                    data-toggle="modal" data-target="#themMauModal"
-                                    class="btn btn-success">
-                                Thêm Kết Quả
-                            </button>
-                        </div>
-                        <!-- Modal -->
-                        <div id="themMauModal" class="modal fade" role="dialog">
-                            <div class="modal-dialog">
-
-                                <!-- Modal content-->
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        <h4 class="modal-title">Modal Header</h4>
+                        <div class="clearfix"></div>
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="x_panel">
+                                    <div class="x_title">
+                                        <h2>
+                                            DANH SÁCH KẾT QUẢ
+                                        </h2>
+                                        <ul class="nav navbar-right panel_toolbox">
+                                            <li>
+                                                <a class="collapse-link">
+                                                    <i class="fa fa-chevron-up"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                        <div class="clearfix"></div>
                                     </div>
-                                    <div class="modal-body">
-                                        <div class="form-group">
-                                            <label for="email">Chỉ tiêu thử nghiệm</label>
-                                            <input type="email" class="form-control" id="chitieu-thunghiem">
-                                        </div>
-                                        <label for="email">Đơn vị</label>
-                                        <input type="email" class="form-control" id="don-vi">
+                                    <div class="x_content" style="display:block;">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>Chỉ tiêu thử nghiệm</th>
+                                                    <th>Đơn vị</th>
+                                                    <th>Kết quả</th>  
+                                                    <th>Người thực hiện</th>                                                    
+                                                </tr>
+                                            </thead>
+                                            <tbody>        
+                                                <tr>
+                                                    <td>Thử nước</td>
+                                                    <td>ml</td>
+                                                    <td id="tboxKQ"><input type="email" class="form-control" id="ket-qua" ></td>
+                                                    <td>Nguyễn Văn A</td>
+                                                    <td><button id="btnSaveKQ" type="button" data-toggle="tooltip" title="Lưu"><span class="fa fa-save"></span></button></td>                                         
+                                                </tr>                                                                                   
+                                            </tbody>
+                                        </table>
+                                    </div>
 
-                                        <div class="form-group">
-                                            <label for="email">Kết quả </label>
-                                            <input type="email" class="form-control" id="ket-qua" required="required">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="email">Người thực hiện</label>
-                                            <input type="email" class="form-control" id="nguoi-thuchien">                                       
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button id="saveMauBtn" type="button" class="btn btn-success" data-dismiss="modal">Thêm Mẫu</button>
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
+                        </div>                     
 
-                    <div class="col-md-12 col-sm-12 col-xs-12">
-                        <table id="sampledata-table"
-                               class="table table-striped table-bordered dataTable no-footer"
-                               role="grid">
-                            <thead>
-                                <tr role="row">
-                                    <th class="column-title">Chỉ tiêu thử nghiệm</th>
-                                    <th class="column-title">Đơn vị</th>
-                                    <th class="column-title">Kết quả</th>
-                                    <th class="column-title">Người thực hiện</th>
-                                    <th class="column-title"></th>
-                                </tr>
-                            </thead>
-                            <tbody></tbody>
-                        </table>
-                    </div>
+                    </form>
                 </div>
-
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" value="Lưu" class="btn btn-success" />
-                            <input type="button" class="btn btn-danger" value="Quay lại" onclick="location.href='@Url.Action("Index", "SoKQThuNghiem")'" />
-                        </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Lưu" class="btn btn-success" />
+                        <input type="button" class="btn btn-danger" value="Quay lại" onclick="location.href='@Url.Action("Index", "SoKQThuNghiem")'" />
                     </div>
                 </div>
             </div>
-        </div>  
         </div>
+</div>
 }
 
 <div>
@@ -188,7 +122,7 @@
 
         const $Global = [];
 
-        $('#themMauModal').on('hidden.bs.modal', function () {
+        $('#themKQModal').on('hidden.bs.modal', function () {
             $(this).find("input,textarea,select").val('').end();
 
         });
@@ -208,7 +142,7 @@
             $(this).children().last().html('');
         }
 
-        $("#saveMauBtn").bind("click", function () {
+        $("#saveKQBtn").bind("click", function () {
             var tabledata = $("#sampledata-table tbody");
 
             tabledata.append(

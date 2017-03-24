@@ -36,14 +36,8 @@
                             </label>
 
                             <div class="col-md-4 col-sm-4 col-xs-12">
-                                @*@Html.TextBoxFor(model => model.TenKhachHang, new { @class = "form-control col-md-4 col-xs-12", required="required" })*@                                
-                                <input type="text" name="country" id="autocomplete-custom-append" class="form-control col-md-10" />
-                                <div id="autocomplete-container">
-                                    <div class="autocomplete-suggestions">
-                                    </div>
-                                </div>
+                                @Html.TextBoxFor(model => model.TenKhachHang, new { @class = "form-control col-md-4 col-xs-12", required="required" })                              
                                 @Html.ValidationMessageFor(model => model.TenKhachHang)
-                                
                             </div>                                                                                     
                             <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
                                 Mã số thuế
@@ -88,8 +82,8 @@
                                 Ngày gửi/lấy mẫu <span class="required">*</span>
                             </label>
                             <div class="form-group input-group-sm col-md-4 col-sm-4 col-xs-12">
-                                @Html.TextBoxFor(model => model.NgayTaoHD, new { @class = "date-picker form-control col-md-7 col-xs-12 active", placeholder = "Nhập ngày gửi/lấy mẫu vào đây", required = "required", type = "text",id="NgayTaoHD"})
-                                @Html.ValidationMessageFor(model => model.NgayTaoHD)
+                                @Html.TextBoxFor(model => model.NgayLayMau, new { @class = "date-picker form-control col-md-7 col-xs-12 active", placeholder = "Nhập ngày gửi/lấy mẫu vào đây", required = "required", type = "text",id= "NgayLayMau" })
+                                @Html.ValidationMessageFor(model => model.NgayLayMau)
                             </div>
                         </div>
                         <div class="form-group">
@@ -104,13 +98,13 @@
                                 Ngày dự kiến trả mẫu <span class="required">*</span>
                             </label>
                             <div class="form-group input-group-sm col-md-4 col-sm-4 col-xs-12">
-                                <select class="form-control col-md-4 col-xs-12" required="required" id="ngayTraMau">
+                                <select class="form-control col-md-4 col-xs-12" required="required" id="NgayHenTraKQ">
                                     <option>Chọn ngày trả mẫu</option>
                                     <option>2 ngày</option>
                                     <option>7 ngày</option>
                                     <option>10 ngày</option>
                                 </select>
-                                @Html.ValidationMessageFor(model => model.NgayDuKienTraMau)
+                                @Html.ValidationMessageFor(model => model.NgayHenTraKQ)
                             </div>
                         </div>
 
@@ -165,7 +159,7 @@
                                 <div class="modal-dialog">
 
                                     <!-- Modal content-->
-                                   
+
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -179,6 +173,7 @@
                                                 <div class="form-group">
                                                     <label for="email">Kí Hiệu Mẫu</label>
                                                     <select id="kh-mau" class="form-control">
+                                                        <option></option>
                                                         <option>NT: Nước Thải</option>
                                                         <option>NC: Nước Cấp</option>
                                                         <option>NM: Nước Mặt</option>
@@ -207,22 +202,15 @@
                                                     <input type="email" class="form-control" id="mota-mau" required="required">
                                                 </div>
                                                 <div class="form-group">
+                                                    <label for="email">Loại Mẫu Theo Nhóm Chỉ Tiêu</label>
+                                                    <select id="loai-chitieu" class="form-control"></select>
+                                                </div>
+                                                <div class="form-group">
                                                     <label for="email">Chỉ Tiêu Yêu Cầu <span class="required">*</span></label>                                                                               
                                                     <div class="col-md-12 col-sm-12 col-xs-12">
                                                         <select class="select2_multiple form-control " multiple="multiple" required="required" id="chitieu-yeucau" style="width: 100%;">
-                                                            <option>Chỉ tiêu nước</option>
-                                                            <option>Chỉ tiêu đất</option>
-                                                            <option>Chỉ tiêu bùn</option>
-                                                            <option>Chỉ tiêu nước thải</option>
-                                                            <option>Chỉ tiêu NCR</option>
-                                                            <option>Chỉ tiêu 5</option>
-                                                            <option>Chỉ tiêu 6</option>
                                                         </select>
                                                     </div>
-                                                @*<div class="form-group">
-                                                    <label for="email">Chỉ Tiêu Yêu Cầu <span class="required">*</span></label>
-                                                    <input type="email" class="form-control" id="chitieu-yeucau" required="required">
-                                                </div>*@
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
@@ -258,9 +246,8 @@
                         </div>
                         <div class="ln_solid"></div>
                         <div class="form-group">
-                            <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                            <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-5">
                                 <input type="submit" id="submitBtn" value="Tạo" class="btn btn-success" />
-                                @*<button id="submitBtn" type="submit" class="btn btn-success"> Tạo</button>*@
                                 <input type="submit" class="btn btn-danger" value="Quay lại" onclick="location.href='@Url.Action("Index", "YeuCauLayMau")'" />
                             </div>
                         </div>
@@ -279,7 +266,7 @@
     
 <script>
     $(document).ready(function () {
-        $('#NgayTaoHD').daterangepicker({
+        $('#NgayLayMau').daterangepicker({
             singleDatePicker: true,
             calender_style: "picker_1"
         }, function (start, end, label) {
@@ -288,16 +275,59 @@
     });
 </script>
 
-
-
 <script>
     $(document).ready(function () {
+        var $Global = [];
+        var $CacheChiTieu = {};
+        var $SelectedCT_Id = [];
+        var chitieu_selectbox = $("#chitieu-yeucau");
+        
+        $.ajax({
+            type: 'POST',
+            url: ' @Url.Action("GetNhomChiTieu", "API", new { area = "BaoGiaChiTieu" })',
+            success: function (res) {
+                var loaimau_selectbox = $("#loai-chitieu");
+                loaimau_selectbox.append("<option></option>");
+                res.forEach(function (item) {
+                    loaimau_selectbox.append("<option>" + item.TenNhom + "</option>");
+                });
+            },
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8'
+        });
 
-        const $Global = [];
+        $('#loai-chitieu').change(function () {
+            //nthoang: AJAX call ChiTieuMau suggestion list
+            var formData2 = {
+                TenNhom: $("#loai-chitieu").val()
+            };
+            if (!(formData2.TenNhom in $CacheChiTieu)) {
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("FindChiTieu", "API", new { area = "BaoGiaChiTieu" })',
+                    data: JSON.stringify(formData2),
+                    success: function (res) {
+                        chitieu_selectbox.empty();
+                        $CacheChiTieu[formData2.TenNhom] = res;
+                        res.forEach(function (item) {
+                            chitieu_selectbox.append("<option>" + item.TenChiTieu + "</option>");
+                        });
+                    },
+                    dataType: 'json',
+                    contentType: 'application/json; charset=utf-8'
+                });
+            } else {
+                chitieu_selectbox.empty();
+                var cached_ct = $CacheChiTieu[formData2.TenNhom];
+                cached_ct.forEach(function (item) {
+                    chitieu_selectbox.append("<option>" + item.TenChiTieu + "</option>");
+                });
+            }
+        });
 
         $('#themMauModal').on('hidden.bs.modal', function () {
             $(this).find("input,textarea,select").val('').end();
-
+            $(this).find(".select2-selection__rendered").empty();
         });
 
         function Delete() {
@@ -319,10 +349,16 @@
             var tabledata = $("#sampledata-table tbody");
             var soluong = $("#so-luong").val();
             var donvi = $("#don-vi").val();
-
+            var chitieuyeucaus = $(".select2-selection__choice").toArray().map(function (e) {
+                return {
+                    TenChiTieu: e.innerText.substr(1),
+                    NhomChiTieu: $("#loai-chitieu").val()
+                };
+            });
             $Global.push({
                 SoLuong: soluong,
-                DonVi: donvi
+                DonVi: donvi,
+                ChiTieuYeuCaus: chitieuyeucaus
             });
 
             tabledata.append(
@@ -333,7 +369,7 @@
                 "<td>" + $("#vitri-laymau").val() + "</td>" +
                 "<td>" + soluong + " " +  donvi + "</td>" +
                 "<td>" + $("#mota-mau").val() + "</td>" +
-                "<td>" + $("#chitieu-yeucau").val() + "</td>" +
+                "<td>" + chitieuyeucaus.map(function (e) { return e.TenChiTieu }).join(", ") + "</td>" +
                 "<td></td>" +
                 "</tr>");
 
@@ -369,8 +405,8 @@
                     SoFax: $("#SoFax").val(),
                     DiaChiLayMau: $("#DiaChiLayMau").val(),
                     DiaChiKhachHang: $("#DiaChiKhachHang").val(),
-                    NgayTaoHD: $("#NgayTaoHD").val(),
-                    NgayDuKienTraMau: $("#NgayTaoHD").val()+$("#NgayDuKienTraMau").val(),
+                    NgayLayMau: $("#NgayLayMau").val(),
+                    NgayHenTraKQ: $("#NgayHenTraKQ").val().split(" ")[0],
                     PhuongPhapLayMau: $("#PhuongPhapLayMau").val(),
                     TenTieuChuanDoiChieu: $("#TenTieuChuanDoiChieu").val(),
                     PhiThiNghiemTamTinh: $("#PhiThiNghiemTamTinh").val(),
@@ -381,13 +417,13 @@
                     //alert(rowdata);
                     return {
                         MaMauKH: rowdata[0],
-                        //Get the first 2 characters of Kí Hiệu Mẫu
-                        KiHieuMau: rowdata[1].slice(0, 2),
+                        //nthoang: Get the first token of the string splitted by ':' character of Kí Hiệu Mẫu
+                        KiHieuMau: rowdata[1].split(":")[0],
                         ViTriLayMau: rowdata[2],
                         SoLuong:  $Global[i].SoLuong,
                         DonVi:  $Global[i].DonVi,
                         MoTaMau: rowdata[4],
-                        ChiTieuPhanTich: rowdata[5]
+                        ChiTieuPhanTiches: $Global[i].ChiTieuYeuCaus
                     }
                 }).get();
                 res.MauLayHienTruongs = sampledata;
@@ -400,12 +436,12 @@
                 url: ' @Url.Action("Create", "API")',
                 data: JSON.stringify(formData),
                 success: function (res) {
-                   if (res.isOk) {
-                      console.log(formData);
-                   } else {
-                      console.log(res.errMsg);
-                   }
-                   location.href = '@Url.Action("Index", "YeuCauLayMau")'
+                    if (res.isOk) {
+                        console.log(formData);
+                    } else {
+                        console.log(res.errMsg);
+                    }
+                    location.href = '@Url.Action("Index", "YeuCauLayMau")'
                 },
                 dataType: 'json',
                 contentType: 'application/json; charset=utf-8'

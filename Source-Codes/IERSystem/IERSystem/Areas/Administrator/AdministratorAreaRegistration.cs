@@ -17,7 +17,8 @@ namespace IERSystem.Areas.Administrator
             context.MapRoute(
                 "Administrator_default",
                 "Administrator/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
+                new { action = "Index", id = UrlParameter.Optional },
+                new[] { "IERSystem.Areas.Administrator.Controllers" }
             );
         }
     }
