@@ -2,13 +2,13 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 03/13/2017 10:01:47
--- Generated from EDMX file: E:\Things\Books\Year 4\Term 1\Capstone\IER PERSONAL WORK\iercapstone\Source-Codes\IERSystem\IERSystem\Areas\Administrator\Models\IERSystemModel.edmx
+-- Date Created: 03/25/2017 11:48:49
+-- Generated from EDMX file: D:\Code\iercapstone\Source-Codes\IERSystem\IERSystem\Areas\Administrator\Models\IERSystemModel.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
 GO
-USE [E:\THINGS\BOOKS\YEAR 4\TERM 1\CAPSTONE\IER PERSONAL WORK\IERCAPSTONE\SOURCE-CODES\IERSYSTEM\IERSYSTEM\APP_DATA\IERSYSTEM.MDF];
+USE [master];
 GO
 IF SCHEMA_ID(N'dbo') IS NULL EXECUTE(N'CREATE SCHEMA [dbo]');
 GO
