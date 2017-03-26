@@ -9,12 +9,6 @@
 
 <input type="button" class="btn btn-info" value="Tạo phiếu kết quả mới" onclick="location.href='@Url.Action("Create", "FormKQ")'" />
 
-<button id="btnThemMau" type="button"
-        data-toggle="modal" data-target="#themMauModal"
-        class="btn btn-warning">
-    Thêm kết quả
-</button>
-
 <!-- Modal -->
 <div id="themMauModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
@@ -214,165 +208,36 @@
                                 <button data-toggle="tooltip" title="Xem chi tiết"><span class="fa fa-info"></span></button>
                                 <button data-toggle="tooltip" title="In"><span class="fa fa-print"></span></button>
                                 <button data-toggle="tooltip" title="Trả về"><span class="fa fa-reply"></span></button>
-                                <button data-toggle="tooltip" title="Xóa"><span class="fa fa-trash"></span></button>
+                                <button data-toggle="modal" data-target="#xoaModal"><span class="fa fa-trash"></span></button>
                             </td>
-                        </tr>
-                        <tr class="danger">
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <!--Nho them nut tra ve (fa fa-reply)-->
-                            <td>
-                                <button data-toggle="tooltip" title="Chỉnh sửa"><span class="fa fa-edit"></span></button>
-                                <button data-toggle="tooltip" title="Xem chi tiết"><span class="fa fa-info"></span></button>
-                                <button data-toggle="tooltip" title="In"><span class="fa fa-print"></span></button>
-                                <button data-toggle="tooltip" title="Trả về"><span class="fa fa-reply"></span></button>
-                                <button data-toggle="tooltip" title="Xóa"><span class="fa fa-trash"></span></button>
-                            </td>
-                        </tr>   
-                        <tr class="info">
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <!--Nho them nut tra ve (fa fa-reply)-->
-                            <td>
-                                <button data-toggle="tooltip" title="Chỉnh sửa"><span class="fa fa-edit"></span></button>
-                                <button data-toggle="tooltip" title="Xem chi tiết"><span class="fa fa-info"></span></button>
-                                <button data-toggle="tooltip" title="In"><span class="fa fa-print"></span></button>
-                                <button data-toggle="tooltip" title="Trả về"><span class="fa fa-reply"></span></button>
-                                <button data-toggle="tooltip" title="Xóa"><span class="fa fa-trash"></span></button>
-                            </td>
-                        </tr>                           
+                        </tr>                          
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
 
-    <!--Danh sach hop dong-->
-    <div class="col-md-12 col-sm-12 col-xs-12">
-        <div class="x_panel">
-            <div class="x_title">
-                <h2>BẢNG HỢP ĐỒNG <small><i class="green">5 </i>mẫu mới </small></h2>
-                <ul class="nav navbar-right panel_toolbox">
-                    <li>
-                        <a class="collapse-link">
-                            <i class="fa fa-chevron-up"></i>
-                        </a>
-                    </li>
 
-                    <li>
-                        <a class="close-link">
-                            <i class="fa fa-close"></i>
-                        </a>
-                    </li>
-                </ul>
-                <div class="clearfix"></div>
-            </div>
-            <div class="x_content">
-                <table id="" class="datatable-buttons table table-striped table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Mã đơn</th>
-                            <th>Tên khách hàng</th>
-                            <th>Tên đại diện</th>
-                            <th>Địa chỉ lấy mẫu</th>
-                            <th>Địa chỉ KH</th>
-                            <th>Mã số thuế</th>
-                            <th>Số điện thoại</th>
-                            <th>Số Fax</th>
-                            <th>Ngày tạo HD</th>
-                            <th>Ngày trả mẫu</th>
-                            <th>Tình trạng hợp đồng</th>
-                            <th>Hành động</th>
-                        </tr>
-                    </thead>
+</div>
 
-                    <tbody>
-                        <tr class="success">
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <!--Nut hoan tat hop dong-->
-                            <td>
-                                <button data-toggle="tooltip" title="Hoành thành hợp đồng"><span class="fa fa-check-square-o"></span></button>
-                            </td>
-                        </tr>
-                        <tr class="info">
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <!--Nut hoan tat hop dong-->
-                            <td>
-                                <button data-toggle="tooltip" title="Hoành thành hợp đồng"><span class="fa fa-check-square-o"></span></button>
-                            </td>
-                        </tr>
-                        <tr class="danger">
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <!--Nut hoan tat hop dong-->
-                            <td>
-                                <button data-toggle="tooltip" title="Hoành thành hợp đồng"><span class="fa fa-check-square-o"></span></button>
-                            </td>
-                        </tr>
-                        <tr class="warning">
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <!--Nut hoan tat hop dong-->
-                            <td>
-                                <button data-toggle="tooltip" title="Hoành thành hợp đồng"><span class="fa fa-check-square-o"></span></button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+<!-- Modal -->
+<div id="xoaModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+                <h4>Bạn có chắc chắn muốn xóa mẫu này?</h4>
+                <h5>Bạn sẽ không để hoàn tác hành động này.</h5>
+                <div class="form-group" align="center">
+                    <button type="button" class="btn btn-success" data-dismiss="modal"><span class="fa fa-check"></span></button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="fa fa-close"></span></button>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

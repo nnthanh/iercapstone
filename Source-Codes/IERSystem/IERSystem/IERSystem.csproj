@@ -181,6 +181,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Areas\Administrator\Controllers\DashBoardController.cs" />
+    <Compile Include="Areas\Administrator\Controllers\QuanLyKhachHangController.cs" />
     <Compile Include="Areas\Administrator\Controllers\UserController.cs" />
     <Compile Include="Areas\Administrator\Models\CacSoChuyenMau.cs">
       <DependentUpon>IERSystemModel.tt</DependentUpon>
@@ -4926,6 +4927,8 @@
     <Content Include="Areas\Administrator\vendors\jqvmap\package.json" />
     <Content Include="Areas\Administrator\vendors\jqvmap\README.md" />
     <Content Include="Areas\Administrator\vendors\jqvmap\REGIONS.md" />
+    <Content Include="Areas\Administrator\Views\QuanLyKhachHang\Index.cshtml" />
+    <Content Include="Areas\QuanLyKetQuaPhanTich\Views\SoKQThuNghiem\AddResult.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
