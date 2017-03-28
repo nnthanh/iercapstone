@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 03/17/2017 16:27:04
+-- Date Created: 03/27/2017 17:17:30
 -- Generated from EDMX file: E:\Capstone\iercapstone\Source-Codes\IERSystem\IERSystem\Areas\Administrator\Models\IERSystemModel.edmx
 -- --------------------------------------------------
 
@@ -40,12 +40,6 @@ IF OBJECT_ID(N'[dbo].[FK_SoKQThuNghiemKQThuNghiemMau]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_MauLayHienTruong_SoChuyenMau]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[SoChuyenMaus] DROP CONSTRAINT [FK_MauLayHienTruong_SoChuyenMau];
-GO
-IF OBJECT_ID(N'[dbo].[FK_SoChuyenMau_ChiTieuPhanTich_SoChuyenMau]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[SoChuyenMau_ChiTieuPhanTich] DROP CONSTRAINT [FK_SoChuyenMau_ChiTieuPhanTich_SoChuyenMau];
-GO
-IF OBJECT_ID(N'[dbo].[FK_SoChuyenMau_ChiTieuPhanTich_ChiTieuPhanTich]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[SoChuyenMau_ChiTieuPhanTich] DROP CONSTRAINT [FK_SoChuyenMau_ChiTieuPhanTich_ChiTieuPhanTich];
 GO
 IF OBJECT_ID(N'[dbo].[FK_SoKQThuNghiem_MauLayHienTruong]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[SoKQThuNghiems] DROP CONSTRAINT [FK_SoKQThuNghiem_MauLayHienTruong];
@@ -114,9 +108,6 @@ IF OBJECT_ID(N'[dbo].[RoleMatrices]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[MauLayHienTruong_ChiTieuPhanTich]', 'U') IS NOT NULL
     DROP TABLE [dbo].[MauLayHienTruong_ChiTieuPhanTich];
-GO
-IF OBJECT_ID(N'[dbo].[SoChuyenMau_ChiTieuPhanTich]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[SoChuyenMau_ChiTieuPhanTich];
 GO
 
 -- --------------------------------------------------
@@ -287,13 +278,6 @@ CREATE TABLE [dbo].[MauLayHienTruong_ChiTieuPhanTich] (
 );
 GO
 
--- Creating table 'SoChuyenMau_ChiTieuPhanTich'
-CREATE TABLE [dbo].[SoChuyenMau_ChiTieuPhanTich] (
-    [SoChuyenMaus_Id] bigint  NOT NULL,
-    [ChiTieuPhanTiches_Id] bigint  NOT NULL
-);
-GO
-
 -- --------------------------------------------------
 -- Creating all PRIMARY KEY constraints
 -- --------------------------------------------------
@@ -386,12 +370,6 @@ GO
 ALTER TABLE [dbo].[MauLayHienTruong_ChiTieuPhanTich]
 ADD CONSTRAINT [PK_MauLayHienTruong_ChiTieuPhanTich]
     PRIMARY KEY CLUSTERED ([MauLayHienTruongs_Id], [ChiTieuPhanTiches_Id] ASC);
-GO
-
--- Creating primary key on [SoChuyenMaus_Id], [ChiTieuPhanTiches_Id] in table 'SoChuyenMau_ChiTieuPhanTich'
-ALTER TABLE [dbo].[SoChuyenMau_ChiTieuPhanTich]
-ADD CONSTRAINT [PK_SoChuyenMau_ChiTieuPhanTich]
-    PRIMARY KEY CLUSTERED ([SoChuyenMaus_Id], [ChiTieuPhanTiches_Id] ASC);
 GO
 
 -- --------------------------------------------------
@@ -512,30 +490,6 @@ ON [dbo].[SoChuyenMaus]
     ([MauLayHienTruong_Id]);
 GO
 
--- Creating foreign key on [SoChuyenMaus_Id] in table 'SoChuyenMau_ChiTieuPhanTich'
-ALTER TABLE [dbo].[SoChuyenMau_ChiTieuPhanTich]
-ADD CONSTRAINT [FK_SoChuyenMau_ChiTieuPhanTich_SoChuyenMau]
-    FOREIGN KEY ([SoChuyenMaus_Id])
-    REFERENCES [dbo].[SoChuyenMaus]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating foreign key on [ChiTieuPhanTiches_Id] in table 'SoChuyenMau_ChiTieuPhanTich'
-ALTER TABLE [dbo].[SoChuyenMau_ChiTieuPhanTich]
-ADD CONSTRAINT [FK_SoChuyenMau_ChiTieuPhanTich_ChiTieuPhanTich]
-    FOREIGN KEY ([ChiTieuPhanTiches_Id])
-    REFERENCES [dbo].[ChiTieuPhanTiches]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_SoChuyenMau_ChiTieuPhanTich_ChiTieuPhanTich'
-CREATE INDEX [IX_FK_SoChuyenMau_ChiTieuPhanTich_ChiTieuPhanTich]
-ON [dbo].[SoChuyenMau_ChiTieuPhanTich]
-    ([ChiTieuPhanTiches_Id]);
-GO
-
 -- Creating foreign key on [MauLayHienTruong_Id] in table 'SoKQThuNghiems'
 ALTER TABLE [dbo].[SoKQThuNghiems]
 ADD CONSTRAINT [FK_SoKQThuNghiem_MauLayHienTruong]
@@ -564,21 +518,6 @@ GO
 CREATE INDEX [IX_FK_NhomChiTieu_ChiTieuPhanTich]
 ON [dbo].[ChiTieuPhanTiches]
     ([NhomChiTieuId]);
-GO
-
--- Creating foreign key on [ChiTieuPhanTich_Id] in table 'KQThuNghiemMaus'
-ALTER TABLE [dbo].[KQThuNghiemMaus]
-ADD CONSTRAINT [FK_KQThuNghiemMau_ChiTieuPhanTich]
-    FOREIGN KEY ([ChiTieuPhanTich_Id])
-    REFERENCES [dbo].[ChiTieuPhanTiches]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_KQThuNghiemMau_ChiTieuPhanTich'
-CREATE INDEX [IX_FK_KQThuNghiemMau_ChiTieuPhanTich]
-ON [dbo].[KQThuNghiemMaus]
-    ([ChiTieuPhanTich_Id]);
 GO
 
 -- Creating foreign key on [SoKQThuNghiem_Id] in table 'FormKQs'
@@ -624,6 +563,21 @@ GO
 CREATE INDEX [IX_FK_RoleMasterRoleMatrix]
 ON [dbo].[RoleMatrices]
     ([RoleMasterId]);
+GO
+
+-- Creating foreign key on [ChiTieuPhanTich_Id] in table 'KQThuNghiemMaus'
+ALTER TABLE [dbo].[KQThuNghiemMaus]
+ADD CONSTRAINT [FK_KQThuNghiemMau_ChiTieuPhanTich]
+    FOREIGN KEY ([ChiTieuPhanTich_Id])
+    REFERENCES [dbo].[ChiTieuPhanTiches]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_KQThuNghiemMau_ChiTieuPhanTich'
+CREATE INDEX [IX_FK_KQThuNghiemMau_ChiTieuPhanTich]
+ON [dbo].[KQThuNghiemMaus]
+    ([ChiTieuPhanTich_Id]);
 GO
 
 -- --------------------------------------------------
