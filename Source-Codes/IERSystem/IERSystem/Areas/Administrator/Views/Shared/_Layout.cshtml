@@ -1,6 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
+
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- Meta, title, CSS, favicons, etc. -->
     <meta charset="utf-8">
@@ -37,8 +38,12 @@
     <link href="~/Areas/Administrator/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
     <!-- JQVMap -->
     <link href="~/Areas/Administrator/vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet" />
-
-    <!-- jQuery -->
+    <!-- Dropzone.js -->
+    <link href="~/Areas/Administrator/vendors/dropzone/dist/min/dropzone.min.css" rel="stylesheet">
+  
+    
+    
+      <!-- jQuery -->
     <script src="~/Areas/Administrator/vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
     <script src="~/Areas/Administrator/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -121,6 +126,11 @@
     <script src="~/Areas/Administrator/vendors/jqvmap/dist/jquery.vmap.js"></script>
     <script src="~/Areas/Administrator/vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
     <script src="~/Areas/Administrator/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
+    <!-- Dropzone.js -->
+    <script src="~/Areas/Administrator/vendors/dropzone/dist/min/dropzone.min.js"></script>
+    <!-- morris.js -->
+    <script src="~/Areas/Administrator/vendors/raphael/raphael.min.js"></script>
+    <script src="~/Areas/Administrator/vendors/morris.js/morris.min.js"></script>
 </head>
 <body class="nav-md">
     <div class="container body">
@@ -175,20 +185,33 @@
                                         int role = (int)Session["role"];
                                         if (role == 2)
                                         {
-                                            <a href="~/Administrator/DashBoard/Index"><i class="fa fa-home"></i> Quản lý</a>
-                                        <a href="~/HopDongLayMau/YeuCauLayMau/Index"><i class="fa fa-home"></i> Hợp đồng lấy mẫu</a>                     
-                                        <a href="~/QuanLySoNhanMau/CacSoNhanMau/Index"><i class="fa fa-home"></i> Sổ nhận mẫu</a>
-                                        <a href="~/QuanLySoChuyenMau/CacSoChuyenMau/Index"><i class="fa fa-home"></i> Sổ chuyển mẫu</a>
-                                        <a href="~/QuanLyKetQuaPhanTich/SoKQThuNghiem/Index"><i class="fa fa-home"></i> Sổ kết quả thử nghiệm</a>
-                                        <a href="~/QuanLyKetQuaPhanTich/FormKQ/Index"><i class="fa fa-home"></i> Phiếu kết quả</a>
-                                        <a href="~/Administrator/FormKQ/Index"><i class="fa fa-home"></i> Form kết quả</a>
+                                      
+                                        <li>
+                                            <a><i class="fa fa-leaf"></i> Quản lý <span class="fa fa-chevron-down"></span></a>                                           
+                                            <ul class="nav child_menu">
+                                                <li>
+                                                    <a href="">Khách hàng</a>
+                                                </li>
+                                                <li>
+                                                    <a href="~/Administrator/DashBoard/Index">Mẫu</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        
+                                        <li><a href="~/HopDongLayMau/YeuCauLayMau/Index"><i class="fa fa-briefcase"></i> Hợp đồng lấy mẫu</a></li>
+                                        <li><a href="~/QuanLySoNhanMau/CacSoNhanMau/Index"><i class="fa fa-book"></i> Sổ nhận mẫu</a></li>
+                                        <li><a href="~/QuanLySoChuyenMau/CacSoChuyenMau/Index"><i class="fa fa-book"></i> Sổ chuyển mẫu</a></li>
+                                        <li><a href="~/QuanLyKetQuaPhanTich/SoKQThuNghiem/Index"><i class="fa fa-book"></i> Sổ kết quả thử nghiệm</a></li>
+                                        <li><a href="~/QuanLyKetQuaPhanTich/FormKQ/Index"><i class="fa fa-retweet"></i> Phiếu kết quả</a></li>
+                                        <li><a href="~/Administrator/FormKQ/Index"><i class="fa fa-retweet"></i> Form kết quả</a></li>
+                                       
                                         }
                                         if (role == 3)
                                         {
-                                        <a href="~/HopDongLayMau/YeuCauLayMau/Index"><i class="fa fa-home"></i> Hợp đồng lấy mẫu</a>
-                                        
+                                        <a href="~/HopDongLayMau/YeuCauLayMau/Index"><i class="fa fa-home"></i> Hợp đồng lấy mẫu</a>                                       
                                         <a href="~/QuanLySoNhanMau/CacSoNhanMau/Index"><i class="fa fa-home"></i> Sổ nhận mẫu</a>
                                         <a href="~/QuanLySoChuyenMau/CacSoChuyenMau/Index"><i class="fa fa-home"></i> Sổ chuyển mẫu</a>
+                                        <a href="~/BaoGiaChiTieu/MauBaoGia/Upload"><i class="fa fa-home"></i> Mau bao gia</a>
                                         <a href="~/Administrator/FormKQ/Index"><i class="fa fa-home"></i> Form kết quả</a>
                                         }
                                         if (role == 4)
@@ -683,7 +706,32 @@
         });
     </script>
     <!-- /validator -->
+    <!-- jVectorMap -->
+    <script src="~/Areas/Administrator/Content/js/maps/jquery-jvectormap-world-mill-en.js"></script>
+    <script src="~/Areas/Administrator/Content/js/maps/jquery-jvectormap-us-aea-en.js"></script>
+    <script src="~/Areas/Administrator/Content/js/maps/gdp-data.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#world-map-gdp').vectorMap({
+                map: 'world_mill_en',
+                backgroundColor: 'transparent',
+                zoomOnScroll: false,
+                series: {
+                    regions: [{
+                        values: gdpData,
+                        scale: ['#E6F2F0', '#149B7E'],
+                        normalizeFunction: 'polynomial'
+                    }]
+                },
+                onRegionTipShow: function (e, el, code) {
+                    el.html(el.html() + ' (GDP - ' + gdpData[code] + ')');
+                }
+            });
+        });
+    </script>
+    <!-- /jVectorMap -->
 
+    
     @RenderSection("scripts", required: false)
 </body>
 </html>

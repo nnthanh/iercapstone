@@ -25,6 +25,31 @@
     </div>
     <!-- /top tiles -->
 
+<!--Line graph-->
+<!-- bar chart -->
+<div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>Biểu đồ mẫu <small>2017</small></h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li>
+                    <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                </li>
+                
+                <li>
+                    <a class="close-link"><i class="fa fa-close"></i></a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <div id="graph_bar" style="width:100%; height:280px;"></div>
+        </div>
+    </div>
+</div>
+<!-- /bar charts -->
+
+<!--Table-->
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="dashboard_graph">
@@ -58,7 +83,72 @@
                     </thead>
 
                     <tbody>
-                       
+                       <tr class="success">
+                           <td>1</td>
+                           <td>1</td>
+                           <td>1</td>
+                           <td>1</td>
+                           <td>1</td>
+                           <td>1</td>
+                           <td>1</td>
+                           <td>1</td>
+                           <td>1</td>
+                       </tr>
+                        <tr class="warning">
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                        </tr>
+                        <tr class="danger">
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                        </tr>
+                        <tr class="info">
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                        </tr>
+                        <tr class="active">
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                        </tr>
+                        <tr class="default">
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -71,7 +161,7 @@
 
     <div class="row">
                 <!-- start of weather widget -->
-                <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="x_panel">
                         <div class="x_title">
                             <h2>Thời tiết</h2>
@@ -178,5 +268,42 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+<!-- morris.js -->
+<script src="~/Areas/Administrator/vendors/raphael/raphael.min.js"></script>
+<script src="~/Areas/Administrator/vendors/morris.js/morris.min.js"></script>
+<script>
+    $(document).ready(function () {
+        Morris.Bar({
+            element: 'graph_bar',
+            data: [
+              { month: 'Tháng 1', value: 380 },
+              { month: 'Tháng 2', value: 655 },
+              { month: 'Tháng 3', value: 275 },
+              { month: 'Tháng 4', value: 1571 },
+              { month: 'Tháng 5', value: 655 },
+              { month: 'Tháng 6', value: 2154 },
+              { month: 'Tháng 7', value: 1144 },
+              { month: 'Tháng 8', value: 2371 },
+              { month: 'Tháng 9', value: 1471 },
+              { month: 'Tháng 10', value: 678 },
+              { month: 'Tháng 11', value: 789 },
+              { month: 'Tháng 12', value: 1371 }
+            ],
+            xkey: 'month',
+            ykeys: ['value'],
+            labels: ['số lượng mẫu'],
+            barRatio: 0.4,
+            barColors: ['#26B99A', '#34495E', '#ACADAC', '#3498DB'],
+            xLabelAngle: 35,
+            hideHover: 'auto',
+            resize: true
+        });
+
+        $MENU_TOGGLE.on('click', function () {
+            $(window).resize();
+        });
+    });
+</script>
+<!-- /morris.js -->
 }
 
