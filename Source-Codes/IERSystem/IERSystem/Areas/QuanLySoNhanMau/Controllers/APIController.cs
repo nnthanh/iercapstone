@@ -38,6 +38,32 @@ namespace IERSystem.Areas.QuanLySoNhanMau.Controllers
             }
         }
 
+        //TODO: nthoang: SoNhanMau Delete not supported yet
+        // POST: /QuanLyCacSoNhanMau/API/Delete
+        //[HttpPost]
+        //public JsonResult Delete(SoNhanMauInputModel cacsonhanmau_inp)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        try
+        //        {
+        //            CacSoNhanMauAPIImpl.CreateModel(cacsonhanmau_inp, db);
+        //            db.SaveChanges();
+        //            Console.WriteLine("OK");
+        //            return Json(new UpsertDBResponse { IsOK = true, ErrMsg = "" });
+        //        }
+        //        catch (System.Data.Entity.Infrastructure.DbUpdateException e)
+        //        {
+        //            Console.WriteLine(e.Message);
+        //            return Json(new UpsertDBResponse { IsOK = false, ErrMsg = "" });
+        //        }
+        //    }
+        //    else
+        //    {
+        //        return Json(new UpsertDBResponse { IsOK = false, ErrMsg = "" });
+        //    }
+        //}
+
         // POST: /QuanLyCacSoNhanMau/API/GetMauPTCandids
         [HttpPost]
         public JsonResult GetMauPTCandids(MauPTToBeAddedInputModel maupttobeadded_inp)

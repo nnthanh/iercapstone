@@ -21,384 +21,383 @@ else
     ViewBag.Title = "Index";
 }
 
-    <div class="page-title">
-        <div class="title-left">
-            <h3>Sổ nhận mẫu</h3>
-        </div>
-        <div class="title-right">
-            <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search for...">
-                        <span class="input-group-btn">
-                            <button class="btn btn-default" type="button">Go!</button>
-                        </span>
-                    </div>
+<div class="page-title">
+    <div class="title-left">
+        <h3>Sổ nhận mẫu</h3>
+    </div>
+    <div class="title-right">
+        <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search for...">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button">Go!</button>
+                </span>
             </div>
         </div>
     </div>
-    <div class="clearfix"></div>
+</div>
+<div class="clearfix"></div>
 
-    <!-- Modal -->
-    <div id="themMauModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
+<!-- Modal -->
+<div id="themMauModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
 
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Thêm mẫu</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="table-responsive">
-                        <table id="mauThemTable" class="table table-striped jambo_table bulk_action">
-                            <thead>
-                                <tr class="headings">
-                                    <th>
-                                        <input type="checkbox" id="check-all" class="flat">
-                                    </th>
-                                    <th class="column-title">Mã đơn </th>
-                                    <th class="column-title">Tên khách hàng </th>
-                                    <th class="column-title">Mã mẫu </th>
-                                    <th class="column-title">Mô tả mẫu </th>
-                                    <th class="column-title">Ngày tạo hợp đồng </th>
-                                    <th class="column-title">Ngày trả mẫu </th>
-                                    <th class="column-title no-link last">
-                                        <span class="nobr">Hành động</span>
-                                    </th>
-                                    <th class="bulk-actions" colspan="7">
-                                        <a class="antoo" style="color:#fff; font-weight:500;">Chọn nhiều ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
-                                    </th>
-                                </tr>
-                            </thead>
-
-                            <tbody></tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button id="addMauBtn" type="button" class="btn btn-success" data-dismiss="modal">Thêm Mẫu</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                </div>
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Thêm mẫu</h4>
             </div>
-
-        </div>
-    </div>
-
-    <div class="col-md-12 col-sm-12 col-xs-12">
-
-
-        <!--Notification-->
-        <div class="alert alert-success alert-dismissible fade in" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">×</span>
-            </button>
-            <strong>
-                Chào
-                @{
-                    if (Session["loggedUser"] != null)
-                    {
-                        @Session["loggedUser"].ToString()
-                    }
-                }!
-            </strong> Bạn có 5 mẫu mới có thể chuyển vào sổ.
-            <a href="#" onclick="show()"><u>Xem</u></a>
-        </div>
-        <!--End of Notification-->
-        
-        <!--Noti table-->
-        <div class="x_panel" id="danhsachmaumoi" style="display:none">
-            <div class="x_title">
-                <h2>MẪU MỚI</h2>
-                <ul class="nav navbar-right panel_toolbox">
-                    <li>
-                        <a class="collapse-link">
-                            <i class="fa fa-chevron-up"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a onclick="$('#danhsachmaumoi').hide()">
-                            <i class="fa fa-close"></i>
-                        </a>
-                    </li>
-                </ul>
-                <div class="clearfix"></div>
-            </div>
-            <div class="x_content">
+            <div class="modal-body">
                 <div class="table-responsive">
-                    <table class="table table-striped">
+                    <table id="mauThemTable" class="table table-striped jambo_table bulk_action">
                         <thead>
-                            <tr>
+                            <tr class="headings">
+                                <th>
+                                    <input type="checkbox" id="check-all" class="flat">
+                                </th>
                                 <th class="column-title">Mã đơn </th>
                                 <th class="column-title">Tên khách hàng </th>
                                 <th class="column-title">Mã mẫu </th>
                                 <th class="column-title">Mô tả mẫu </th>
                                 <th class="column-title">Ngày tạo hợp đồng </th>
                                 <th class="column-title">Ngày trả mẫu </th>
+                                <th class="column-title no-link last">
+                                    <span class="nobr">Hành động</span>
+                                </th>
+                                <th class="bulk-actions" colspan="7">
+                                    <a class="antoo" style="color:#fff; font-weight:500;">Chọn nhiều ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
+                                </th>
                             </tr>
                         </thead>
 
                         <tbody></tbody>
-
                     </table>
                 </div>
             </div>
-        </div>
-        <!--Noti table-->
-
-        <!-- danh sach so -->
-        <div class="x_panel">
-            <div class="x_title">
-                <h2>DANH SÁCH SỔ NHẬN MẪU</h2>
-                <ul class="nav navbar-right panel_toolbox">
-                    <li>
-                        <a class="collapse-link">
-                            <i class="fa fa-chevron-up"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="close-link">
-                            <i class="fa fa-close"></i>
-                        </a>
-                    </li>
-                </ul>
-                <div class="clearfix"></div>
-            </div>
-            <div class="x_content">
-                <div class="table-responsive">
-                    <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
-                        <thead>
-                            <tr>
-                                <th>Tên</th>
-                                <th>Năm</th>
-                                <th>Hành động</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>quyển số 1 (1/1/2017-31/3/2017)</td>
-                                <td>2017</td>
-                                <td>
-                                    <button>Mở</button>
-                                    <button data-toggle="modal" data-target="#xoaModal"><span class="fa fa-trash"></span></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>quyển số 2 (1/1/2017-31/3/2017)</td>
-                                <td>2017</td>
-                                <td>
-                                    <button>Mở</button>
-                                    <button data-toggle="modal" data-target="#xoaModal"><span class="fa fa-trash"></span></button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>     
-                </div>
+            <div class="modal-footer">
+                <button id="addMauBtn" type="button" class="btn btn-success" data-dismiss="modal">Thêm Mẫu</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
             </div>
         </div>
-        <!-- danh sach so -->
 
+    </div>
+</div>
 
-                <!--Table dynamic-->
-                @foreach (var cacsonhanmau in Model)
+<div class="col-md-12 col-sm-12 col-xs-12">
+
+    <!--Notification-->
+    <div class="alert alert-success alert-dismissible fade in" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">×</span>
+        </button>
+        <strong>
+            Chào
+            @{
+                if (Session["loggedUser"] != null)
                 {
-                    <div class="col-md-12 col-sm-12 col-xs-12">
-                        <div class="x_panel">
-                            <div class="x_title">  
-                                <h2>SỔ NHẬN MẪU - Quyển số @cacsonhanmau.QuyenSo (@cacsonhanmau.TuNgay - @cacsonhanmau.DenNgay) <small><i class="green">5 </i>mẫu mới </small></h2>
-                                <ul class="nav navbar-right panel_toolbox">
-                                    <li>
-                                        <a class="collapse-link">
-                                            <i class="fa fa-chevron-up"></i>
-                                        </a>
-                                    </li>
-                                    <li data-toggle="tooltip" title="Thêm mẫu">
-                                        <a data-toggle="modal" data-target="#themMauModal" class="btnThemMau" role="button" aria-expanded="false">
-                                            <div class="data-sonhanmau-tungay" style="display: none;">
-                                                @Html.DisplayFor(modelItem => cacsonhanmau.TuNgay)
-                                            </div>
-                                            <div class="data-sonhanmau-denngay" style="display: none;">
-                                                @Html.DisplayFor(modelItem => cacsonhanmau.DenNgay)
-                                            </div>
-                                            <div class="data-sonhanmau-id" style="display: none;">
-                                                @Html.DisplayFor(modelItem => cacsonhanmau.Id)
-                                            </div>
-                                            <i class="fa fa-plus"></i>
-                                        </a>
-                                    </li>
-
-                                    <li data-toggle="tooltip" title="In">
-                                        <a onclick="location.href='@Url.Action("", "")'">
-                                            <i class="fa fa-print"></i>
-                                        </a>
-                                    </li>
-                                    <li data-toggle="tooltip" title="Đóng">
-                                        @*<a data-toggle="modal" data-target="#xoaModal">
-                                            <i class="fa fa-close"></i>
-                                        </a>*@
-                                        <a class="close-link">
-                                            <i class="fa fa-close"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                                <div class="clearfix"></div>
-                            </div>
-                            <div class="x_content">
-                                <table class="datatable-buttons table table-striped table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th>Phiếu yêu cầu</th>
-                                            <th>Tên/ Địa chỉ khách hàng</th>
-                                            <th>Mã số</th>
-                                            @*<th>Chỉ tiêu thử nghiệm</th>*@
-                                            <th>Ngày nhận</th>
-                                            @*<th>Ngày trả kết quả</th>*@
-                                            @*<th>Ký hiệu mẫu</th>*@
-                                            <th>KH ký nhận trả tiền</th>
-                                            <th>KH ký nhận trả kết quả</th>
-                                            @*<th>Mã mẫu khách hàng</th>*@
-                                            <th>Ngày thêm vào sổ</th>
-                                            <th>Hành động</th>
-                                        </tr>
-                                    </thead>
-
-                                    <tbody>
-                                        @foreach (var sonhanmau in cacsonhanmau.NoiDung)
-                                        {
-                                            <tr>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => sonhanmau.MaPhieuYeuCau)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => sonhanmau.TenDiaChiKH)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => sonhanmau.MaMau)
-                                                </td>
-                                                @*<td>
-                                                    @Html.DisplayFor(modelItem => sonhanmau.ChiTieuThuNghiem)
-                                                </td>*@
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => sonhanmau.NgayNhan)
-                                                </td>
-                                                @*<td>
-                                                    @Html.DisplayFor(modelItem => sonhanmau.NgayTraKQ)
-                                                </td>*@
-                                                @*<td>
-                                                        N/A
-                                                    </td>*@
-                                                <td>
-                                                    <div class="checkbox">
-                                                        <label class="">
-                                                            <input type="checkbox" class="flat" disabled="disabled">
-                                                        </label>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="checkbox">
-                                                        <label class="">
-                                                            <input type="checkbox" class="flat" disabled="disabled">
-                                                        </label>
-                                                    </div>
-                                                </td>
-                                                
-                                                @*<td>
-                                                    @Html.DisplayFor(modelItem => sonhanmau.MaMauKH)
-                                                </td>*@
-                                                <td>
-                                                    Hôm nay
-                                                </td>
-                                                <td>
-                                                    <button data-toggle="tooltip" title="Chỉnh sửa" onclick="location.href='@Url.Action("Edit", "SoNhanMau", new { id = sonhanmau.Id })'"><span class="fa fa-edit"></span></button>
-                                                    <button data-toggle="tooltip" title="Xem chi tiết" onclick="location.href='@Url.Action("Details", "SoNhanMau", new { id = sonhanmau.Id })'"><span class="fa fa-info"></span></button>
-                                                    <button data-toggle="tooltip" title="Trả về"><span class="fa fa-reply"></span></button>
-                                                    <button data-toggle="modal" data-target="#xoaModal"><span class="fa fa-trash"></span></button>
-                                                </td>
-                                            </tr>
-                                        }
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
+        @Session["loggedUser"].ToString()
                 }
-            </div>
-
-    <!--Danh sach hop dong-->
-    <div class="col-md-12 col-sm-12 col-xs-12">
-        <div class="x_panel">
-            <div class="x_title">
-                <h2>BẢNG HỢP ĐỒNG <small><i class="green">5 </i>mẫu mới </small></h2>
-                <ul class="nav navbar-right panel_toolbox">
-                    <li>
-                        <a class="collapse-link">
-                            <i class="fa fa-chevron-up"></i>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a class="close-link">
-                            <i class="fa fa-close"></i>
-                        </a>
-                    </li>
-                </ul>
-                <div class="clearfix"></div>
-            </div>
-            <div class="x_content">
-                <table id="" class="datatable-buttons table table-striped table-bordered">
+            }!
+        </strong> Bạn có 5 mẫu mới có thể chuyển vào sổ.
+        <a href="#" onclick="show()"><u>Xem</u></a>
+    </div>
+    <!--End of Notification-->
+    <!--Noti table-->
+    <div class="x_panel" id="danhsachmaumoi" style="display:none">
+        <div class="x_title">
+            <h2>MẪU MỚI</h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li>
+                    <a class="collapse-link">
+                        <i class="fa fa-chevron-up"></i>
+                    </a>
+                </li>
+                <li>
+                    <a onclick="$('#danhsachmaumoi').hide()">
+                        <i class="fa fa-close"></i>
+                    </a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <div class="table-responsive">
+                <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>Mã đơn</th>
-                            <th>Tên khách hàng</th>
-                            <th>Tên đại diện</th>
-                            <th>Địa chỉ lấy mẫu</th>
-                            <th>Địa chỉ KH</th>
-                            @*<th>Mã số thuế</th>
-                            <th>Số điện thoại</th>
-                            <th>Số Fax</th>
-                            <th>Ngày tạo HD</th>
-                            <th>Ngày trả mẫu</th>*@
-                            <th>Số mẫu đã có KQ</th>
-                            <th>Tình trạng hợp đồng</th>
-                            <th>Hành động</th>
+                            <th class="column-title">Mã đơn </th>
+                            <th class="column-title">Tên khách hàng </th>
+                            <th class="column-title">Mã mẫu </th>
+                            <th class="column-title">Mô tả mẫu </th>
+                            <th class="column-title">Ngày tạo hợp đồng </th>
+                            <th class="column-title">Ngày trả mẫu </th>
                         </tr>
                     </thead>
 
+                    <tbody></tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+    <!--Noti table-->
+    <!-- danh sach so -->
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>DANH SÁCH SỔ NHẬN MẪU</h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li>
+                    <a class="collapse-link">
+                        <i class="fa fa-chevron-up"></i>
+                    </a>
+                </li>
+                <li>
+                    <a class="close-link">
+                        <i class="fa fa-close"></i>
+                    </a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <div class="table-responsive">
+                <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th>Tên</th>
+                            <th>Hành động</th>
+                        </tr>
+                    </thead>
                     <tbody>
-                        <tr class="warning">
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>4/5</td>
-                            <td>Chưa xong</td>                        
-                            <!--Nut hoan tat hop dong-->
+
+                        @foreach (var cacsonhanmau in Model)
+                        {
+                        <tr>
+                            <td>Quyển Số @cacsonhanmau.QuyenSo (@cacsonhanmau.TuNgay-@cacsonhanmau.DenNgay)</td>
                             <td>
-                                @*<div data-toggle="tooltip" title="Hoành thành hợp đồng">*@
-                                    <button data-toggle="modal" data-target="#hopdongModal"><span class="fa fa-check-square-o"></span></button>
-                                @*</div>*@
+                                <button>Mở</button>
+                                <button data-toggle="modal" data-target="#xoaModal"><span class="fa fa-trash"></span></button>
                             </td>
                         </tr>
-                        <tr class="success">
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>3/3</td>
-                            <td>Đã xong</td>
-                            <!--Nut hoan tat hop dong-->
-                            <td>
-                                @*<div data-toggle="tooltip" title="Hoành thành hợp đồng">*@
-                                    <button data-toggle="modal" data-target="#hopdongModal" disabled="disabled"><span class="fa fa-check-square-o"></span></button>
-                                @*</div>*@
-                            </td>
-                        </tr>
+                        }
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
+    <!-- danh sach so -->
+    <!--Table dynamic-->
+    @foreach (var cacsonhanmau in Model)
+    {
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>SỔ NHẬN MẪU - Quyển số @cacsonhanmau.QuyenSo (@cacsonhanmau.TuNgay - @cacsonhanmau.DenNgay) <small><i class="green">5 </i>mẫu mới </small></h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li>
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                        </li>
+                        <li data-toggle="tooltip" title="Thêm mẫu">
+                            <a data-toggle="modal" data-target="#themMauModal" class="btnThemMau" role="button" aria-expanded="false">
+                                <div class="data-sonhanmau-tungay" style="display: none;">
+                                    @Html.DisplayFor(modelItem => cacsonhanmau.TuNgay)
+                                </div>
+                                <div class="data-sonhanmau-denngay" style="display: none;">
+                                    @Html.DisplayFor(modelItem => cacsonhanmau.DenNgay)
+                                </div>
+                                <div class="data-sonhanmau-id" style="display: none;">
+                                    @Html.DisplayFor(modelItem => cacsonhanmau.Id)
+                                </div>
+                                <i class="fa fa-plus"></i>
+                            </a>
+                        </li>
+
+                        <li data-toggle="tooltip" title="In">
+                            <a onclick="location.href='@Url.Action("", "")'">
+                                <i class="fa fa-print"></i>
+                            </a>
+                        </li>
+                        <li data-toggle="tooltip" title="Đóng">
+                            @*<a data-toggle="modal" data-target="#xoaModal">
+                                    <i class="fa fa-close"></i>
+                                </a>*@
+                            <a class="close-link">
+                                <i class="fa fa-close"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <table class="datatable-buttons table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Phiếu yêu cầu</th>
+                                <th>Tên/ Địa chỉ khách hàng</th>
+                                <th>Mã số</th>
+                                @*<th>Chỉ tiêu thử nghiệm</th>*@
+                                <th>Ngày nhận</th>
+                                @*<th>Ngày trả kết quả</th>*@
+                                @*<th>Ký hiệu mẫu</th>*@
+                                <th>KH ký nhận trả tiền</th>
+                                <th>KH ký nhận trả kết quả</th>
+                                @*<th>Mã mẫu khách hàng</th>*@
+                                <th>Ngày thêm vào sổ</th>
+                                <th>Hành động</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @foreach (var sonhanmau in cacsonhanmau.NoiDung)
+                            {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => sonhanmau.MaPhieuYeuCau)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => sonhanmau.TenDiaChiKH)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => sonhanmau.MaMau)
+                                </td>
+                                @*<td>
+                                        @Html.DisplayFor(modelItem => sonhanmau.ChiTieuThuNghiem)
+                                    </td>*@
+                                <td>
+                                    @Html.DisplayFor(modelItem => sonhanmau.NgayNhan)
+                                </td>
+                                @*<td>
+                                        @Html.DisplayFor(modelItem => sonhanmau.NgayTraKQ)
+                                    </td>*@
+                                @*<td>
+                                        N/A
+                                    </td>*@
+                                <td>
+                                    <div class="checkbox">
+                                        <label class="">
+                                            <input type="checkbox" class="flat" disabled="disabled">
+                                        </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="checkbox">
+                                        <label class="">
+                                            <input type="checkbox" class="flat" disabled="disabled">
+                                        </label>
+                                    </div>
+                                </td>
+
+                                @*<td>
+                                        @Html.DisplayFor(modelItem => sonhanmau.MaMauKH)
+                                    </td>*@
+                                <td>
+                                    Hôm nay
+                                </td>
+                                <td>
+                                    <button data-toggle="tooltip" title="Chỉnh sửa" onclick="location.href='@Url.Action("Edit", "SoNhanMau", new { id = sonhanmau.Id })'"><span class="fa fa-edit"></span></button>
+                                    <button data-toggle="tooltip" title="Xem chi tiết" onclick="location.href='@Url.Action("Details", "SoNhanMau", new { id = sonhanmau.Id })'"><span class="fa fa-info"></span></button>
+                                    <button data-toggle="tooltip" title="Trả về"><span class="fa fa-reply"></span></button>
+                                    <button data-toggle="modal" data-target="#xoaModal"><span class="fa fa-trash"></span></button>
+                                </td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<div class="col-md-12 col-sm-12 col-xs-12">
+    <div id="app-4">
+        <ol>
+            <li v-for="todo in todos">
+                {{ todo.text }}
+            </li>
+        </ol>
+    </div>
+</div>
+
+<!--Danh sach hop dong-->
+<div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>BẢNG HỢP ĐỒNG <small><i class="green">5 </i>mẫu mới </small></h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li>
+                    <a class="collapse-link">
+                        <i class="fa fa-chevron-up"></i>
+                    </a>
+                </li>
+
+                <li>
+                    <a class="close-link">
+                        <i class="fa fa-close"></i>
+                    </a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <table id="" class="datatable-buttons table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>Mã đơn</th>
+                        <th>Tên khách hàng</th>
+                        <th>Tên đại diện</th>
+                        <th>Địa chỉ lấy mẫu</th>
+                        <th>Địa chỉ KH</th>
+                        @*<th>Mã số thuế</th>
+                            <th>Số điện thoại</th>
+                            <th>Số Fax</th>
+                            <th>Ngày tạo HD</th>
+                            <th>Ngày trả mẫu</th>*@
+                        <th>Số mẫu đã có KQ</th>
+                        <th>Tình trạng hợp đồng</th>
+                        <th>Hành động</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr class="warning">
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>4/5</td>
+                        <td>Chưa xong</td>
+                        <!--Nut hoan tat hop dong-->
+                        <td>
+                            @*<div data-toggle="tooltip" title="Hoành thành hợp đồng">*@
+                            <button data-toggle="modal" data-target="#hopdongModal"><span class="fa fa-check-square-o"></span></button>
+                            @*</div>*@
+                        </td>
+                    </tr>
+                    <tr class="success">
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>3/3</td>
+                        <td>Đã xong</td>
+                        <!--Nut hoan tat hop dong-->
+                        <td>
+                            @*<div data-toggle="tooltip" title="Hoành thành hợp đồng">*@
+                            <button data-toggle="modal" data-target="#hopdongModal" disabled="disabled"><span class="fa fa-check-square-o"></span></button>
+                            @*</div>*@
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
 <!-- Modal -->
 <div id="xoaModal" class="modal fade" role="dialog">
@@ -409,7 +408,8 @@ else
                 <h4>Bạn có chắc chắn muốn xóa mẫu này?</h4>
                 <h5>Bạn sẽ không để hoàn tác hành động này.</h5>
                 <div class="form-group" align="center">
-                    <button type="button" class="btn btn-success" data-dismiss="modal"><span class="fa fa-check"></span></button>
+                    @*TODO: nthoang: SoNhanMau Delete not supported yet*@
+                    <button type="button" id="delSonhanmauBtn" class="btn btn-success" data-dismiss="modal"><span class="fa fa-check"></span></button>
                     <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="fa fa-close"></span></button>
                 </div>
             </div>
@@ -436,6 +436,19 @@ else
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Areas/Administrator/vendors/vuejs/vue.min.js"></script>
+    <script>
+        var app4 = new Vue({
+            el: '#app-4',
+            data: {
+                todos: [
+                  { text: 'Learn JavaScript' },
+                  { text: 'Learn Vue' },
+                  { text: 'Build something awesome' }
+                ]
+            }
+        });
+    </script>
     <script>
         function show() {
             document.getElementById("danhsachmaumoi").style.display = "none";
