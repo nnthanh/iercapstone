@@ -1,16 +1,20 @@
-﻿@model IEnumerable<IERSystem.Areas.Administrator.Models.User>
+﻿@model IEnumerable<IERSystem.Areas.Administrator.Models.MauLayHienTruong>
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Administrator/Views/Shared/_Layout.cshtml";
 }
-
+    @{
+        int Total = ViewBag.TongSoHD;
+        int HopDongMoi = ViewBag.HDMoi;
+        int TiLeHD = HopDongMoi / Total * 100;
+    }
     <!-- top tiles -->
     <div class="row tile_count">
         <div class="col-md-4 col-sm-4 col-xs-6 tile_stats_count">
             <span class="count_top"><i class="fa fa-suitcase"></i> Tổng số hợp đồng</span>
-            <div class="count">2500</div>
-            <span class="count_bottom"><i class="green">4% </i> Từ tuần trước</span>
+            <div class="count">@Total</div>
+            <span class="count_bottom"><i class="green">@TiLeHD % </i> Từ tuần trước</span>
         </div>
         <div class="col-md-4 col-sm-4 col-xs-6 tile_stats_count">
             <span class="count_top"><i class="fa fa-check"></i> Tổng số mẫu nhận</span>
