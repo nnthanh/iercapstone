@@ -40,7 +40,10 @@
     <link href="~/Areas/Administrator/vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet" />
     <!-- Dropzone.js -->
     <link href="~/Areas/Administrator/vendors/dropzone/dist/min/dropzone.min.css" rel="stylesheet">
-  
+    <!-- PNotify -->
+    <link href="~/Areas/Administrator/vendors/pnotify/dist/pnotify.css" rel="stylesheet">
+    <link href="~/Areas/Administrator/vendors/pnotify/dist/pnotify.buttons.css" rel="stylesheet">
+    <link href="~/Areas/Administrator/vendors/pnotify/dist/pnotify.nonblock.css" rel="stylesheet">
     
     
       <!-- jQuery -->
@@ -131,6 +134,10 @@
     <!-- morris.js -->
     <script src="~/Areas/Administrator/vendors/raphael/raphael.min.js"></script>
     <script src="~/Areas/Administrator/vendors/morris.js/morris.min.js"></script>
+    <!-- PNotify -->
+    <script src="~/Areas/Administrator/vendors/pnotify/dist/pnotify.js"></script>
+    <script src="~/Areas/Administrator/vendors/pnotify/dist/pnotify.buttons.js"></script>
+    <script src="~/Areas/Administrator/vendors/pnotify/dist/pnotify.nonblock.js"></script>
 </head>
 <body class="nav-md">
     <div class="container body">
@@ -204,29 +211,28 @@
                                         <li><a href="~/QuanLyKetQuaPhanTich/SoKQThuNghiem/Index"><i class="fa fa-book"></i> Sổ kết quả thử nghiệm</a></li>
                                         <li><a href="~/QuanLyKetQuaPhanTich/FormKQ/Index"><i class="fa fa-retweet"></i> Phiếu kết quả</a></li>
                                         <li><a href="~/Administrator/FormKQ/Index"><i class="fa fa-retweet"></i> Form kết quả</a></li>
-                                       
+
                                         }
                                         if (role == 3)
                                         {
-                                        <a href="~/HopDongLayMau/YeuCauLayMau/Index"><i class="fa fa-home"></i> Hợp đồng lấy mẫu</a>                                       
-                                        <a href="~/QuanLySoNhanMau/CacSoNhanMau/Index"><i class="fa fa-home"></i> Sổ nhận mẫu</a>
-                                        <a href="~/QuanLySoChuyenMau/CacSoChuyenMau/Index"><i class="fa fa-home"></i> Sổ chuyển mẫu</a>
-                                        <a href="~/BaoGiaChiTieu/MauBaoGia/Upload"><i class="fa fa-home"></i> Mau bao gia</a>
-                                        <a href="~/Administrator/FormKQ/Index"><i class="fa fa-home"></i> Form kết quả</a>
+                                            <li><a href="~/HopDongLayMau/YeuCauLayMau/Index"><i class="fa fa-home"></i> Hợp đồng lấy mẫu</a></li>
+                                            <li><a href="~/QuanLySoNhanMau/CacSoNhanMau/Index"><i class="fa fa-home"></i> Sổ nhận mẫu</a></li>
+                                            <li><a href="~/QuanLySoChuyenMau/CacSoChuyenMau/Index"><i class="fa fa-home"></i> Sổ chuyển mẫu</a></li>
+                                            <li><a href="~/BaoGiaChiTieu/MauBaoGia/Upload"><i class="fa fa-home"></i> Mau bao gia</a></li>
+                                            <li><a href="~/Administrator/FormKQ/Index"><i class="fa fa-home"></i> Form kết quả</a></li>
                                         }
                                         if (role == 4)
                                         {
-                                        <a href="~/QuanLySoChuyenMau/CacSoChuyenMau/Index"><i class="fa fa-home"></i> Sổ chuyển mẫu</a>
-                                        <a href="~/QuanLyKetQuaPhanTich/SoKQThuNghiem/Index"><i class="fa fa-home"></i> Sổ kết quả thử nghiệm</a>
+                                            <li><a href="~/QuanLySoChuyenMau/CacSoChuyenMau/Index"><i class="fa fa-home"></i> Sổ chuyển mẫu</a></li>
+                                            <li><a href="~/QuanLyKetQuaPhanTich/SoKQThuNghiem/Index"><i class="fa fa-home"></i> Sổ kết quả thử nghiệm</a></li>
                                         }
                                         if (role == 5)
                                         {
-                                        <a href="~/QuanLyKetQuaPhanTich/FormKQ/Index"><i class="fa fa-home"></i> Phiếu kết quả</a>
+                                             <li><a href="~/QuanLyKetQuaPhanTich/FormKQ/Index"><i class="fa fa-home"></i> Phiếu kết quả</a></li>
                                         }
                                     }
 
-                                    }
-                                </li>
+                                    }                     
                             </ul>
                         </div>
 
@@ -732,7 +738,34 @@
         });
     </script>
     <!-- /jVectorMap -->
+    <!-- PNotify -->
+    @*<script>
+        $(document).ready(function () {
+            new PNotify({
+                title: "PNotify",
+                type: "info",
+                text: "Welcome. Try hovering over me. You can click things behind me, because I'm non-blocking.",
+                nonblock: {
+                    nonblock: true
+                },
+                addclass: 'dark',
+                styling: 'bootstrap3',
+                hide: false,
+                before_close: function (PNotify) {
+                    PNotify.update({
+                        title: PNotify.options.title + " - Enjoy your Stay",
+                        before_close: null
+                    });
 
+                    PNotify.queueRemove();
+
+                    return false;
+                }
+            });
+
+        });
+    </script>*@
+    <!-- /PNotify -->
     
     @RenderSection("scripts", required: false)
 </body>
