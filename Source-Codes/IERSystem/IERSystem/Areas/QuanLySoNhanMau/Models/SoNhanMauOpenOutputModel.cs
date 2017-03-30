@@ -5,7 +5,15 @@ using System.Web;
 
 namespace IERSystem.Areas.QuanLySoNhanMau.Models
 {
-    public class SoNhanMauOutputModel
+    public class SoNhanMauOpenOutputModel
+    {
+        public long QuyenSo { get; set; }
+        public string TuNgay { get; set; }
+        public string DenNgay { get; set; }
+        public IEnumerable<SoNhanMauOpenRowOutputModel> NoiDung { get; set; }
+    }
+
+    public class SoNhanMauOpenRowOutputModel
     {
         public long Id { get; set; }
         public string MaPhieuYeuCau { get; set; }
@@ -16,5 +24,4 @@ namespace IERSystem.Areas.QuanLySoNhanMau.Models
         public string NgayTraKQ { get; set; }
         public string MaMauKH { get; set; }
     }
-
 }

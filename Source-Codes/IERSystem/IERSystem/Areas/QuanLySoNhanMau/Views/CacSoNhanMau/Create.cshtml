@@ -1,4 +1,4 @@
-﻿@model IERSystem.Areas.QuanLySoNhanMau.Models.SoNhanMauInputModel
+﻿@model IERSystem.Areas.QuanLySoNhanMau.Models.SoNhanMauCreateInputModel
 
 @{
     ViewBag.Title = "Create";
@@ -78,12 +78,12 @@
             url: ' @Url.Action("Create", "API")',
             data: JSON.stringify(formData),
             success: function (res) {
-                if (res.isOk) {
+                if (res.IsOk) {
                     console.log(formData);
                 } else {
-                    console.log(res.errMsg);
+                    alert("Có Lỗi Khi Tạo Sổ Nhận Mẫu");
                 }
-                location.href = '@Url.Action("Index", "CacSoNhanMau")'
+                location.href = '@Url.Action("Index", "CacSoNhanMau")';
             },
             dataType: 'json',
             contentType: 'application/json; charset=utf-8'

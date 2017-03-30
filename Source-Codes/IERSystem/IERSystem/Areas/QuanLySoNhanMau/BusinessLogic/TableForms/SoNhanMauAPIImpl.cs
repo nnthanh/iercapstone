@@ -4,12 +4,47 @@ using IERSystem.BusinessLogic.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 
 namespace IERSystem.BusinessLogic.TableForms
 {
     public static partial class SoNhanMauAPIImpl
     {
+        public static SoNhanMauOpenOutputModel FetchSoNhanMau(long id, IERSystemModelContainer db)
+        {
+            try
+            {
+                var target_sonhanmau = db.CacSoNhanMaus.Single((snm) => snm.Id == id);
+                return new SoNhanMauOpenOutputModel()
+                {
+                    //nthoang: QuyenSo should start from 1
+                    QuyenSo = target_sonhanmau.Id,
+                    TuNgay = target_sonhanmau.TuNgay.ToShortDateString(),
+                    DenNgay = target_sonhanmau.DenNgay.ToShortDateString(),
+                    NoiDung = new List<SoNhanMauOpenRowOutputModel>(target_sonhanmau.SoNhanMaus.Select((snm_row) =>
+                        new SoNhanMauOpenRowOutputModel()
+                        {
+                            MaMau = snm_row.MauLayHienTruong.MaMau,
+                            MaMauKH = snm_row.MauLayHienTruong.MaMauKH,
+                            MaPhieuYeuCau = snm_row.MauLayHienTruong.PhieuYeuCau.MaDon,
+                            NgayNhan = snm_row.NgayNhanMau.ToShortDateString(),
+                            NgayTraKQ = snm_row.NgayTraKQ.ToShortDateString(),
+                            TenDiaChiKH =
+                                snm_row.MauLayHienTruong.PhieuYeuCau.TenKhachHang + " / " +
+                                snm_row.MauLayHienTruong.PhieuYeuCau.DiaChiKhachHang,
+                            ChiTieuThuNghiem =
+                                String.Join(", ", snm_row.MauLayHienTruong.ChiTieuPhanTiches.Select((item) => item.TenChiTieu))
+                        }
+                    ))
+                };
+            }
+            catch (InvalidOperationException e)
+            {
+                throw e;
+            }
+        }
+
         public static void AddMauPT(MauPTAdderInputModel mauptadd_inp, IERSystemModelContainer db)
         {
             try

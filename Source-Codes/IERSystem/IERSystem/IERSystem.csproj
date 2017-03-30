@@ -303,8 +303,9 @@
     <Compile Include="Areas\QuanLySoNhanMau\Models\MauPTAdderInputModel.cs" />
     <Compile Include="Areas\QuanLySoNhanMau\Models\MauPTToBeAddedInputModel.cs" />
     <Compile Include="Areas\QuanLySoNhanMau\Models\MauPTToBeAddedOutputModel.cs" />
-    <Compile Include="Areas\QuanLySoNhanMau\Models\SoNhanMauInputModel.cs" />
-    <Compile Include="Areas\QuanLySoNhanMau\Models\SoNhanMauOutputModel.cs" />
+    <Compile Include="Areas\QuanLySoNhanMau\Models\SoNhanMauCreateInputModel.cs" />
+    <Compile Include="Areas\QuanLySoNhanMau\Models\SoNhanMauOpenInputModel.cs" />
+    <Compile Include="Areas\QuanLySoNhanMau\Models\SoNhanMauOpenOutputModel.cs" />
     <Compile Include="Areas\QuanLySoNhanMau\QuanLySoNhanMauAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />

@@ -10,7 +10,6 @@
 @if (role == 2)
 {
     <input type="button" class="btn btn-info" value="Tạo sổ nhận mẫu mới" onclick="location.href='@Url.Action("Create", "CacSoNhanMau")'" disabled />
-
 }
 else
 {
@@ -36,55 +35,10 @@ else
         </div>
     </div>
 </div>
+
 <div class="clearfix"></div>
 
-<!-- Modal -->
-<div id="themMauModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Thêm mẫu</h4>
-            </div>
-            <div class="modal-body">
-                <div class="table-responsive">
-                    <table id="mauThemTable" class="table table-striped jambo_table bulk_action">
-                        <thead>
-                            <tr class="headings">
-                                <th>
-                                    <input type="checkbox" id="check-all" class="flat">
-                                </th>
-                                <th class="column-title">Mã đơn </th>
-                                <th class="column-title">Tên khách hàng </th>
-                                <th class="column-title">Mã mẫu </th>
-                                <th class="column-title">Mô tả mẫu </th>
-                                <th class="column-title">Ngày tạo hợp đồng </th>
-                                <th class="column-title">Ngày trả mẫu </th>
-                                <th class="column-title no-link last">
-                                    <span class="nobr">Hành động</span>
-                                </th>
-                                <th class="bulk-actions" colspan="7">
-                                    <a class="antoo" style="color:#fff; font-weight:500;">Chọn nhiều ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
-                                </th>
-                            </tr>
-                        </thead>
-
-                        <tbody></tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button id="addMauBtn" type="button" class="btn btn-success" data-dismiss="modal">Thêm Mẫu</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-            </div>
-        </div>
-
-    </div>
-</div>
-
-<div class="col-md-12 col-sm-12 col-xs-12">
+<div id="cacsonhanmau-app" class="col-md-12 col-sm-12 col-xs-12">
 
     <!--Notification-->
     <div class="alert alert-success alert-dismissible fade in" role="alert">
@@ -96,7 +50,7 @@ else
             @{
                 if (Session["loggedUser"] != null)
                 {
-        @Session["loggedUser"].ToString()
+                    @Session["loggedUser"].ToString()
                 }
             }!
         </strong> Bạn có 5 mẫu mới có thể chuyển vào sổ.
@@ -170,16 +124,15 @@ else
                         </tr>
                     </thead>
                     <tbody>
-
                         @foreach (var cacsonhanmau in Model)
                         {
-                        <tr>
-                            <td>Quyển Số @cacsonhanmau.QuyenSo (@cacsonhanmau.TuNgay-@cacsonhanmau.DenNgay)</td>
-                            <td>
-                                <button>Mở</button>
-                                <button data-toggle="modal" data-target="#xoaModal"><span class="fa fa-trash"></span></button>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td>Quyển Số @cacsonhanmau.QuyenSo (@cacsonhanmau.TuNgay - @cacsonhanmau.DenNgay)</td>
+                                <td>
+                                    <button v-on:click="openSoNhanMau(@(cacsonhanmau.QuyenSo))">Mở</button>
+                                    <button data-toggle="modal" data-target="#xoaModal"><span class="fa fa-trash"></span></button>
+                                </td>
+                            </tr>
                         }
                     </tbody>
                 </table>
@@ -188,138 +141,157 @@ else
     </div>
     <!-- danh sach so -->
     <!--Table dynamic-->
-    @foreach (var cacsonhanmau in Model)
-    {
-        <div class="col-md-12 col-sm-12 col-xs-12">
-            <div class="x_panel">
-                <div class="x_title">
-                    <h2>SỔ NHẬN MẪU - Quyển số @cacsonhanmau.QuyenSo (@cacsonhanmau.TuNgay - @cacsonhanmau.DenNgay) <small><i class="green">5 </i>mẫu mới </small></h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                        <li>
-                            <a class="collapse-link">
-                                <i class="fa fa-chevron-up"></i>
-                            </a>
-                        </li>
-                        <li data-toggle="tooltip" title="Thêm mẫu">
-                            <a data-toggle="modal" data-target="#themMauModal" class="btnThemMau" role="button" aria-expanded="false">
-                                <div class="data-sonhanmau-tungay" style="display: none;">
-                                    @Html.DisplayFor(modelItem => cacsonhanmau.TuNgay)
-                                </div>
-                                <div class="data-sonhanmau-denngay" style="display: none;">
-                                    @Html.DisplayFor(modelItem => cacsonhanmau.DenNgay)
-                                </div>
-                                <div class="data-sonhanmau-id" style="display: none;">
-                                    @Html.DisplayFor(modelItem => cacsonhanmau.Id)
-                                </div>
-                                <i class="fa fa-plus"></i>
-                            </a>
-                        </li>
-
-                        <li data-toggle="tooltip" title="In">
-                            <a onclick="location.href='@Url.Action("", "")'">
-                                <i class="fa fa-print"></i>
-                            </a>
-                        </li>
-                        <li data-toggle="tooltip" title="Đóng">
-                            @*<a data-toggle="modal" data-target="#xoaModal">
-                                    <i class="fa fa-close"></i>
-                                </a>*@
-                            <a class="close-link">
+    <div v-for="cacsonhanmau in cacsonhanmaus_open" class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>SỔ NHẬN MẪU - Quyển số {{ cacsonhanmau.QuyenSo }} ({{ cacsonhanmau.TuNgay }} - {{ cacsonhanmau.DenNgay }}) <small><i class="green">5 </i>mẫu mới </small></h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li>
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                    </li>
+                    <li data-toggle="tooltip" title="Thêm mẫu">
+                        <a data-toggle="modal" v-on:click="openThemMauModal(cacsonhanmau.TuNgay, cacsonhanmau.DenNgay, cacsonhanmau.QuyenSo)" data-target="#themMauModal" role="button" aria-expanded="false">
+                            <i class="fa fa-plus"></i>
+                        </a>
+                    </li>
+                    <li data-toggle="tooltip" title="In">
+                        <a onclick="location.href='@Url.Action("", "")'">
+                            <i class="fa fa-print"></i>
+                        </a>
+                    </li>
+                    <li data-toggle="tooltip" title="Đóng">
+                        @*<a data-toggle="modal" data-target="#xoaModal">
                                 <i class="fa fa-close"></i>
-                            </a>
-                        </li>
-                    </ul>
-                    <div class="clearfix"></div>
-                </div>
-                <div class="x_content">
-                    <table class="datatable-buttons table table-striped table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Phiếu yêu cầu</th>
-                                <th>Tên/ Địa chỉ khách hàng</th>
-                                <th>Mã số</th>
-                                @*<th>Chỉ tiêu thử nghiệm</th>*@
-                                <th>Ngày nhận</th>
-                                @*<th>Ngày trả kết quả</th>*@
-                                @*<th>Ký hiệu mẫu</th>*@
-                                <th>KH ký nhận trả tiền</th>
-                                <th>KH ký nhận trả kết quả</th>
-                                @*<th>Mã mẫu khách hàng</th>*@
-                                <th>Ngày thêm vào sổ</th>
-                                <th>Hành động</th>
-                            </tr>
-                        </thead>
+                            </a>*@
+                        <a class="close-link">
+                            <i class="fa fa-close"></i>
+                        </a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <table class="datatable-buttons table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Phiếu yêu cầu</th>
+                            <th>Tên/ Địa chỉ khách hàng</th>
+                            <th>Mã số</th>
+                            <th>Chỉ tiêu thử nghiệm</th>
+                            <th>Ngày nhận</th>
+                            <th>Ngày trả kết quả</th>
+                            <th>KH ký nhận trả tiền</th>
+                            <th>KH ký nhận trả kết quả</th>
+                            <th>Hành động</th>
+                        </tr>
+                    </thead>
 
-                        <tbody>
-                            @foreach (var sonhanmau in cacsonhanmau.NoiDung)
-                            {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => sonhanmau.MaPhieuYeuCau)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => sonhanmau.TenDiaChiKH)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => sonhanmau.MaMau)
-                                </td>
-                                @*<td>
-                                        @Html.DisplayFor(modelItem => sonhanmau.ChiTieuThuNghiem)
-                                    </td>*@
-                                <td>
-                                    @Html.DisplayFor(modelItem => sonhanmau.NgayNhan)
-                                </td>
-                                @*<td>
-                                        @Html.DisplayFor(modelItem => sonhanmau.NgayTraKQ)
-                                    </td>*@
-                                @*<td>
-                                        N/A
-                                    </td>*@
-                                <td>
-                                    <div class="checkbox">
-                                        <label class="">
-                                            <input type="checkbox" class="flat" disabled="disabled">
-                                        </label>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="checkbox">
-                                        <label class="">
-                                            <input type="checkbox" class="flat" disabled="disabled">
-                                        </label>
-                                    </div>
-                                </td>
-
-                                @*<td>
-                                        @Html.DisplayFor(modelItem => sonhanmau.MaMauKH)
-                                    </td>*@
-                                <td>
-                                    Hôm nay
-                                </td>
-                                <td>
-                                    <button data-toggle="tooltip" title="Chỉnh sửa" onclick="location.href='@Url.Action("Edit", "SoNhanMau", new { id = sonhanmau.Id })'"><span class="fa fa-edit"></span></button>
-                                    <button data-toggle="tooltip" title="Xem chi tiết" onclick="location.href='@Url.Action("Details", "SoNhanMau", new { id = sonhanmau.Id })'"><span class="fa fa-info"></span></button>
-                                    <button data-toggle="tooltip" title="Trả về"><span class="fa fa-reply"></span></button>
-                                    <button data-toggle="modal" data-target="#xoaModal"><span class="fa fa-trash"></span></button>
-                                </td>
-                            </tr>
-                            }
-                        </tbody>
-                    </table>
-                </div>
+                    <tbody>
+                        <tr v-for="sonhanmau in cacsonhanmau.NoiDung">
+                            <td>
+                                {{sonhanmau.MaPhieuYeuCau}}
+                            </td>
+                            <td>
+                                {{sonhanmau.TenDiaChiKH}}
+                            </td>
+                            <td>
+                                {{sonhanmau.MaMau}}
+                            </td>
+                            <td>
+                                {{sonhanmau.ChiTieuThuNghiem}}
+                            </td>
+                            <td>
+                                {{sonhanmau.NgayNhan}}
+                            </td>
+                            <td>
+                                {{sonhanmau.NgayTraKQ}}
+                            </td>
+                            <td>
+                                <div class="checkbox">
+                                    <label class="">
+                                        <input type="checkbox" class="flat">
+                                    </label>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="checkbox">
+                                    <label class="">
+                                        <input type="checkbox" class="flat">
+                                    </label>
+                                </div>
+                            </td>
+                            <td>
+                                @*<div slot="" style="display: none;">{{sonhanmau.Id}}</div>*@
+                                <button data-toggle="tooltip" title="Chỉnh sửa" v-on:click="location.href='QuanLySoNhanMau/SoNhanMau/Edit/' + sonhanmau.Id"><span class="fa fa-edit"></span></button>
+                                <button data-toggle="tooltip" title="Xem chi tiết" v-on:click="location.href='QuanLySoNhanMau/SoNhanMau/Details/' + sonhanmau.Id"><span class="fa fa-info"></span></button>
+                                <button data-toggle="tooltip" title="Trả về"><span class="fa fa-reply"></span></button>
+                                <button data-toggle="tooltip" title="Xóa"><span class="fa fa-trash"></span></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
-    }
-</div>
-
-<div class="col-md-12 col-sm-12 col-xs-12">
-    <div id="app-4">
-        <ol>
-            <li v-for="todo in todos">
-                {{ todo.text }}
-            </li>
-        </ol>
     </div>
+
+    <!-- Them Mau Modal -->
+    <div id="themMauModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Thêm mẫu</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="table-responsive">
+                        <table id="mauThemTable" class="table table-striped jambo_table bulk_action">
+                            <thead>
+                                <tr class="headings">
+                                    <th>
+                                        <input type="checkbox" id="check-all" class="flat">
+                                    </th>
+                                    <th class="column-title">Mã đơn </th>
+                                    <th class="column-title">Tên khách hàng </th>
+                                    <th class="column-title">Mã mẫu </th>
+                                    <th class="column-title">Mô tả mẫu </th>
+                                    <th class="column-title">Ngày tạo hợp đồng </th>
+                                    <th class="column-title">Ngày trả mẫu </th>
+                                    <th class="column-title no-link last">
+                                        <span class="nobr">Hành động</span>
+                                    </th>
+                                    <th class="bulk-actions" colspan="7">
+                                        <a class="antoo" style="color:#fff; font-weight:500;">Chọn nhiều ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="mauptcandid in mauptcandids">
+                                    <td class='a-center'>
+                                        <input type='checkbox' class='flat' name='table_records'>
+                                    </td>
+                                    <td> {{mauptcandid.MaDon}} </td>
+                                    <td> {{mauptcandid.TenKhachHang}} </td>
+                                    <td> {{mauptcandid.MaMau}} </td>
+                                    <td> {{mauptcandid.MoTaMau}} </td>
+                                    <td> {{mauptcandid.NgayTaoHD}} </td>
+                                    <td> {{mauptcandid.NgayTraMau}} </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button v-on:click="addMauPTs" type="button" class="btn btn-success" data-dismiss="modal">Thêm Mẫu</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
 </div>
 
 <!--Danh sach hop dong-->
@@ -437,15 +409,103 @@ else
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     <script src="~/Areas/Administrator/vendors/vuejs/vue.min.js"></script>
+    <!-- VueJS App -->
     <script>
-        var app4 = new Vue({
-            el: '#app-4',
+        //nthoang: Global state to store cacsonhanmauId for ReceiveMauPTs action 
+        var $target_cacsonhanmau = undefined;
+
+        var $cacsonhanmau_app = new Vue({
+            el: '#cacsonhanmau-app',
             data: {
-                todos: [
-                  { text: 'Learn JavaScript' },
-                  { text: 'Learn Vue' },
-                  { text: 'Build something awesome' }
-                ]
+                cacsonhanmaus_open: [],
+                mauptcandids: []
+            },
+            methods: {
+                refreshOpenedSoNhanMau: function (id) {
+                    $.ajax({
+                        type: 'POST',
+                        url: ' @Url.Action("OpenSoNhanMau", "API")',
+                        data: JSON.stringify({Id: id}),
+                        success: function (res) {
+                            if (res.IsOK) {
+                                var refreshtarget = 
+                                    $cacsonhanmau_app.cacsonhanmaus_open.find(function (e) { return e.QuyenSo == id });
+                                if (refreshtarget != undefined) {
+                                    refreshtarget.NoiDung = res.Data.NoiDung;
+                                } 
+                            } else {
+                                console.log("Có lỗi khi mở sổ nhận mẫu " + id);
+                            }
+                        },
+                        dataType: 'json',
+                        contentType: 'application/json; charset=utf-8'
+                    });   
+                },
+                openSoNhanMau: function (id) {
+                    $.ajax({
+                        type: 'POST',
+                        url: ' @Url.Action("OpenSoNhanMau", "API")',
+                        data: JSON.stringify({Id: id}),
+                        success: function (res) {
+                            if (res.IsOK) {
+                                $cacsonhanmau_app.cacsonhanmaus_open.push(res.Data);
+                            } else {
+                                alert("Có lỗi khi mở sổ nhận mẫu");
+                            }
+                        },
+                        dataType: 'json',
+                        contentType: 'application/json; charset=utf-8'
+                    });
+                },
+                openThemMauModal: function (tungay, denngay, cacsonhanmauid) {
+                    $cacsonhanmau_app.mauptcandids = [];
+                    $.ajax({
+                        type: 'POST',
+                        url: '@Url.Action("GetMauPTCandids", "API")',
+                        //Prepare the data to populate mauThemTable
+                        data: JSON.stringify({
+                            TuNgay: tungay,
+                            DenNgay: denngay
+                        }),
+                        success: function (res) {
+                            if (res.IsOK) {
+                                $cacsonhanmau_app.mauptcandids = res.Data;
+                                $target_cacsonhanmau = cacsonhanmauid;
+                            } else {
+                                alert("Có lỗi khi lấy danh sách mẫu");
+                            }
+                        },
+                        dataType: 'json',
+                        contentType: 'application/json; charset=utf-8'
+                    });
+                },
+                addMauPTs: function () {
+                    var maupt_ids = []
+                    $("#mauThemTable tbody").find("tr td input[type=checkbox]").each(function (ind, e) {
+                        maupt_ids.push({ Checked: e.checked, Index: ind });
+                    });
+                    var formData1 = {
+                        MauPhanTichIDs: maupt_ids
+                                        .filter(function (item) { return item.Checked; })
+                                        .map(function (item) { return $cacsonhanmau_app.mauptcandids[item.Index].Id; }),
+                        CacSoNhanMauID: $target_cacsonhanmau,
+                    };
+                    $.ajax({
+                        type: 'POST',
+                        url: ' @Url.Action("ReceiveMauPTs", "API")',
+                        data: JSON.stringify(formData1),
+                        success: function (res) {
+                            if (res.IsOK) {
+                                //window.location.reload(true);
+                                $cacsonhanmau_app.refreshOpenedSoNhanMau($target_cacsonhanmau);
+                            } else {
+                                alert("Có lỗi khi thêm mẫu vào sổ nhận mẫu");
+                            }
+                        },
+                        dataType: 'json',
+                        contentType: 'application/json; charset=utf-8'
+                    });
+                }
             }
         });
     </script>
@@ -458,85 +518,6 @@ else
     <script>
         $(document).ready(function () {
             $('[data-toggle="tooltip"]').tooltip();
-        });
-    </script>
-    <script>
-        $(document).ready(function () {
-            var candidstable = $("#mauThemTable tbody");
-            var candid_idarr = [];
-            var target_cacsonhanmau = undefined;
-
-            $("#addMauBtn").bind("click", function () {
-                var maupt_ids = []
-                $("#mauThemTable tbody").find("tr td input[type=checkbox]").each(function (ind, e) {
-                    maupt_ids.push({ Checked: e.checked, Index: ind });
-                });
-                var formData1 = {
-                    MauPhanTichIDs: maupt_ids
-                                    .filter(function (item) { return item.Checked; })
-                                    .map(function (item) { return candid_idarr[item.Index]; }),
-                    CacSoNhanMauID: target_cacsonhanmau,
-                };
-                $.ajax({
-                    type: 'POST',
-                    url: ' @Url.Action("ReceiveMauPTs", "API")',
-                    data: JSON.stringify(formData1),
-                    success: function (res) {
-                        if (res.isOk) {
-                            console.log(formData);
-                        } else {
-                            console.log(res.errMsg);
-                        }
-                        window.location.reload(true);
-                    },
-                    dataType: 'json',
-                    contentType: 'application/json; charset=utf-8'
-                });
-            });
-
-            $(".btnThemMau").bind("click", function () {
-                target_cacsonhanmau = $(this).find(".data-sonhanmau-id")[0].innerText.trim();
-
-                //Prepare the data to populate mauThemTable
-                var formData = {
-                    TuNgay: $(this).find(".data-sonhanmau-tungay")[0].innerText.trim(),
-                    DenNgay: $(this).find(".data-sonhanmau-denngay")[0].innerText.trim()
-                };
-
-                $.ajax({
-                    type: 'POST',
-                    url: '@Url.Action("GetMauPTCandids", "API")',
-                    data: JSON.stringify(formData),
-                    success: function (res) {
-                        candidstable.empty();
-                        candid_idarr = [];
-                        res.forEach(function (item, index) {
-                            candid_idarr[index] = item.Id;
-                            candidstable.append(
-                                "<tr>" +
-                                    //"<td class='a-center'>" +
-                                    //    "<input class='flat' name='table_records' style='opacity: 0;' type='checkbox'>" +
-                                    //    "<div class='icheckbox_flat-green' style='position: relative;'><input class='flat' name='table_records' style='opacity: 0;' type='checkbox'><ins class='iCheck-helper' style='position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;'></ins></div>" +
-                                    //"</td>" +
-                                    "<td class='a-center'>" +
-                                        //"<div class='icheckbox_flat-green'>" +
-                                        "<input type='checkbox' class='flat' name='table_records'>" +
-                                        //"</div>"+
-                                    "</td>" +
-                                    "<td>" + item.MaDon + "</td>" +
-                                    "<td>" + item.TenKhachHang + "</td>" +
-                                    "<td>" + item.MaMau + "</td>" +
-                                    "<td>" + item.MoTaMau + "</td>" +
-                                    "<td>" + item.NgayTaoHD + "</td>" +
-                                    "<td>" + item.NgayTraMau + "</td>" +
-                                "</tr>"
-                            );
-                        });
-                    },
-                    dataType: 'json',
-                    contentType: 'application/json; charset=utf-8'
-                });
-            });
         });
     </script>
 }
