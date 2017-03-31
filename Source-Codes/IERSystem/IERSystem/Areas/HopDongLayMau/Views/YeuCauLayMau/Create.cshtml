@@ -19,92 +19,89 @@
                 </div>
                 <div class="x_content">
                     <br>
-                    <form id="demo-form2" data-parsley-validate="" class="form-horizontal form-label-left" novalidate>
-                        @*<div class="form-group">
-                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
-                                Mã đơn
-                            </label>
-                            <div class="col-md-4 col-sm-4 col-xs-12">
-                                @Html.TextBoxFor(model => model.MaDon, new { @class = "form-control col-md-4 col-xs-12" })
-                                @Html.ValidationMessageFor(model => model.MaDon)
-                            </div>
-                        </div>*@
-                        <div class="clearfix"/>
-                        <div class="form-group">
-                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                    <form id="form" class="form-horizontal form-label-left" novalidate="">
+                        <div class="clearfix" />
+                        <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">
                                 Tên khách hàng <span class="required">*</span>
                             </label>
 
-                            <div class="col-md-4 col-sm-4 col-xs-12">
-                                @Html.TextBoxFor(model => model.TenKhachHang, new { @class = "form-control col-md-4 col-xs-12", required="required" })                              
-                                @Html.ValidationMessageFor(model => model.TenKhachHang)
-                            </div>                                                                                     
-                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input id="TenKhachHang" class="form-control col-md-4 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="name" required="required" type="text">                       
+                            </div>
+                                                     
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
                                 Mã số thuế
                             </label>
-                            <div class="col-md-4 col-sm-4 col-xs-12">
+                            <div class="col-md-6 col-sm-6 col-xs-12">
                                 @Html.TextBoxFor(model => model.MaSoThue, new { @class = "form-control col-md-4 col-xs-12" })
                                 @Html.ValidationMessageFor(model => model.MaSoThue)
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
                                 Người đại diện
                             </label>
-                            <div class="col-md-4 col-sm-4 col-xs-12">
+                            <div class="col-md-6 col-sm-6 col-xs-12">
                                 @Html.TextBoxFor(model => model.TenDaiDien, new { @class = "form-control col-md-4 col-xs-12" })
                                 @Html.ValidationMessageFor(model => model.TenDaiDien)
                             </div>
-                            <label class="control-label col-md-offset-1 col-sm-1 col-xs-12" for="first-name">
-                                SĐT <span class="required">*</span>
+                        </div>
+                        <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="telephone">
+                                Số điện thoại <span class="required">*</span>
                             </label>
-                            <div class="col-md-2 col-sm-2 col-xs-12">
-                                @Html.TextBoxFor(model => model.SoDienThoai, new { @class = "form-control col-md-2 col-xs-12", required="required" })
-                                @Html.ValidationMessageFor(model => model.SoDienThoai)
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="tel" id="SoDienThoai" name="phone" required="required" data-validate-length-range="8,20" class="form-control col-md-7 col-xs-12">
                             </div>
-                            <label class="control-label col-md-1 col-sm-1 col-xs-12" for="first-name">
+                        </div>
+                        <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
                                 Fax
                             </label>
-                            <div class="col-md-1 col-sm-2 col-xs-12">
+                            <div class="col-md-6 col-sm-6 col-xs-12">
                                 @Html.TextBoxFor(model => model.SoFax, new { @class = "form-control col-md-2 col-xs-12" })
                                 @Html.ValidationMessageFor(model => model.SoFax)
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                        
+                        <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="occupation">
                                 Nơi lấy mẫu <span class="required">*</span>
                             </label>
-                            <div class="col-md-4 col-sm-4 col-xs-12">
-                                @Html.TextBoxFor(model => model.DiaChiLayMau, new { @class = "form-control col-md-4 col-xs-12", required="required" })
-                                @Html.ValidationMessageFor(model => model.DiaChiLayMau)
-                            </div>
-                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
-                                Ngày gửi/lấy mẫu <span class="required">*</span>
-                            </label>
-                            <div class="form-group input-group-sm col-md-4 col-sm-4 col-xs-12">
-                                @Html.TextBoxFor(model => model.NgayLayMau, new { @class = "date-picker form-control col-md-7 col-xs-12 active", placeholder = "Nhập ngày gửi/lấy mẫu vào đây", required = "required", type = "text",id= "NgayLayMau" })
-                                @Html.ValidationMessageFor(model => model.NgayLayMau)
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input id="NoiLayMau" type="text" name="occupation" data-validate-length-range="5,30" class="form-control col-md-7 col-xs-12" required="required">                   
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                        <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="occupation">
                                 Địa chỉ <span class="required">*</span>
                             </label>
-                            <div class="col-md-4 col-sm-4 col-xs-12">
-                                @Html.TextBoxFor(model => model.DiaChiKhachHang, new { @class = "form-control col-md-4 col-xs-12", required="required" })
-                                @Html.ValidationMessageFor(model => model.DiaChiKhachHang)
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input id="DiaChi" type="text" name="occupation" data-validate-length-range="5,50" class="form-control col-md-7 col-xs-12" required="required">
+                            </div>           
+                        </div>
+                        <div class="item form-group">                         
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                                Ngày gửi/lấy mẫu <span class="required">*</span>
+                            </label>
+                            <div class="form-group input-group-sm col-md-6 col-sm-6 col-xs-12">
+                                @Html.TextBoxFor(model => model.NgayLayMau, new { @class = "date-picker form-control col-md-7 col-xs-12 active", placeholder = "Nhập ngày gửi/lấy mẫu vào đây", required = "required", type = "date-picker", id = "NgayLayMau" })                   
                             </div>
-                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                        </div>
+                        <div class="item form-group"> 
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
                                 Ngày dự kiến trả mẫu <span class="required">*</span>
                             </label>
-                            <div class="form-group input-group-sm col-md-4 col-sm-4 col-xs-12">
-                                <select class="form-control col-md-4 col-xs-12" required="required" id="NgayHenTraKQ">
+                            <div class="form-group input-group-sm col-md-6 col-sm-6 col-xs-12" >
+                                <select class="form-control col-md-4 col-xs-12" id="NgayHenTraKQ" required="required">
                                     <option>Chọn ngày trả mẫu</option>
                                     <option>2 ngày</option>
                                     <option>7 ngày</option>
                                     <option>10 ngày</option>
                                 </select>
-                                @Html.ValidationMessageFor(model => model.NgayHenTraKQ)
                             </div>
                         </div>
 
@@ -127,7 +124,7 @@
                         <div class="form-group" style="display:none">
                             @Html.LabelFor(model => model.PhiThiNghiemTamTinh, new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
-                                @Html.EditorFor(model => model.PhiThiNghiemTamTinh, new {@value="0" })
+                                @Html.EditorFor(model => model.PhiThiNghiemTamTinh, new { @value = "0" })
                                 @Html.ValidationMessageFor(model => model.PhiThiNghiemTamTinh)
                             </div>
                         </div>
@@ -141,93 +138,20 @@
                         </div>
 
                         @*<div class="form-group" style="display:none">
-                            @Html.LabelFor(model => model.DaGuiMau, new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.DaGuiMau)
-                                @Html.ValidationMessageFor(model => model.DaGuiMau)
-                            </div>
-                        </div>*@
+                @Html.LabelFor(model => model.DaGuiMau, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.DaGuiMau)
+                    @Html.ValidationMessageFor(model => model.DaGuiMau)
+                </div>
+            </div>*@
                         <h2 class="StepTitle">Thông Tin Các Mẫu</h2>
                         <div class="row">
                             <div class="col-md-2 col-sm-2 col-xs-2">
-                                <button id="btnThemMau" type="button" 
+                                <button id="btnThemMau" type="button"
                                         data-toggle="modal" data-target="#themMauModal"
-                                        class="btn btn-success">Thêm Mẫu</button>
-                            </div>
-                            <!-- Modal -->
-                            <div id="themMauModal" class="modal fade" role="dialog">
-                                <div class="modal-dialog">
-
-                                    <!-- Modal content-->
-
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                <h4 class="modal-title">Modal Header</h4>
-                                            </div>
-                                            <div class="modal-body">
-                                                <div class="form-group">
-                                                    <label for="email">Mã Mẫu</label>
-                                                    <input type="email" class="form-control" id="ma-mau">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="email">Kí Hiệu Mẫu</label>
-                                                    <select id="kh-mau" class="form-control">
-                                                        <option></option>
-                                                        <option>NT: Nước Thải</option>
-                                                        <option>NC: Nước Cấp</option>
-                                                        <option>NM: Nước Mặt</option>
-                                                        <option>KK: Không Khí</option>
-                                                        <option>B: Bùn Thải</option>
-                                                        <option>Đ: Đất</option>
-                                                        <option>TP: Thực Phẩm</option>
-                                                    </select>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="email">Vị Trí Lấy Mẫu <span class="required">*</span></label>
-                                                    <input type="email" class="form-control" id="vitri-laymau" required="required">
-                                                </div>
-                                                <div class="form-group">
-                                                    <div class="col-sm-8">
-                                                        <label for="email">Số Lượng</label>
-                                                        <input type="email" class="form-control" id="so-luong">
-                                                    </div>
-                                                    <div class="col-sm-4">
-                                                        <label for="email">Đơn Vị</label>
-                                                        <input type="email" class="form-control" id="don-vi">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="email">Mô Tả Mẫu <span class="required">*</span></label>
-                                                    <input type="email" class="form-control" id="mota-mau" required="required">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="email">Loại Mẫu Theo Nhóm Chỉ Tiêu</label>
-                                                    <select id="loai-chitieu" class="form-control"></select>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="email">Chỉ Tiêu Yêu Cầu <span class="required">*</span></label>
-                                                    <select class="select2_multiple form-control " multiple="multiple" required="required" @*id="chitieu-yeucau"*@ style="width: 100%;">
-                                                        <optgroup label="Thường xuyên được dùng">
-                                                            <option value="AK">Alaska</option>
-                                                            <option value="HI">Hawaii</option>
-                                                        </optgroup>
-                                                        <optgroup label="Ít được dùng">
-                                                            <option value="CA">California</option>
-                                                            <option value="NV">Nevada</option>
-                                                            <option value="OR">Oregon</option>
-                                                            <option value="WA">Washington</option>
-                                                        </optgroup>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button id="saveMauBtn" type="button" class="btn btn-success" data-dismiss="modal">Thêm Mẫu</button>
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                                            </div>
-                                        </div>
-                                   
-                                    </div>
+                                        class="btn btn-success">
+                                    Thêm Mẫu
+                                </button>
                             </div>
                         </div>
                         <div class="row">
@@ -255,8 +179,8 @@
                         <div class="ln_solid"></div>
                         <div class="form-group">
                             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-5">
-                                <input type="submit" id="submitBtn" value="Tạo" class="btn btn-success" />
-                                <input type="submit" class="btn btn-danger" value="Quay lại" onclick="location.href='@Url.Action("Index", "YeuCauLayMau")'" />
+                                <button data-toggle="tooltip" title="Tạo" id="submitBtn" type="submit" class="btn btn-success"><span class="fa fa-check"></span></button>
+                                <button data-toggle="tooltip" title="Quay lại" type="submit" class="btn btn-danger" onclick="location.href='@Url.Action("Index", "YeuCauLayMau")'"><span class="fa fa-arrow-left"></span></button>                            
                             </div>
                         </div>
                     </form> 
@@ -267,19 +191,149 @@
     
 }
 
+<!-- Modal -->
+<div id="themMauModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        @*<form id="form-modal" class="form-horizontal form-label-left" novalidate="">*@
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Modal Header</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="email">Mã Mẫu</label>
+                        <input type="email" class="form-control" id="ma-mau">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Kí Hiệu Mẫu</label>
+                        <select id="kh-mau" class="form-control">
+                            <option></option>
+                            <option>NT: Nước Thải</option>
+                            <option>NC: Nước Cấp</option>
+                            <option>NM: Nước Mặt</option>
+                            <option>KK: Không Khí</option>
+                            <option>B: Bùn Thải</option>
+                            <option>Đ: Đất</option>
+                            <option>TP: Thực Phẩm</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="textarea">Vị Trí Lấy Mẫu <span class="required">*</span></label>
+                        <input id="vitri-laymau" type="text" name="textarea" data-validate-length-range="5,30" class="form-control col-md-7 col-xs-12" required="required">
+                        @*<input id="vitri-laymau" type="email" class="form-control"  required="required">*@
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-8">
+                            <label for="email">Số Lượng</label>
+                            <input type="email" class="form-control" id="so-luong">
+                        </div>
+                        <div class="col-sm-4">
+                            <label for="email">Đơn Vị</label>
+                            <input type="email" class="form-control" id="don-vi">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="textarea">Mô Tả Mẫu <span class="required">*</span></label>
+                        <input name="textarea" class="form-control" id="mota-mau" required="required">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Loại Mẫu Theo Nhóm Chỉ Tiêu</label>
+                        <select id="loai-chitieu" class="form-control"></select>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Chỉ Tiêu Yêu Cầu <span class="required">*</span></label>
+                        <select class="select2_multiple form-control " multiple="multiple" required="required" id="chitieu-yeucau" style="width: 100%;">
+                            @*<optgroup label="Thường xuyên được dùng">
+                                <option value="AK">Alaska</option>
+                                <option value="HI">Hawaii</option>
+                            </optgroup>
+                            <optgroup label="Ít được dùng">
+                                <option value="CA">California</option>
+                                <option value="NV">Nevada</option>
+                                <option value="OR">Oregon</option>
+                                <option value="WA">Washington</option>
+                            </optgroup>*@
+                        </select>
+                    </div>
+                </div>
+
+
+                <div class="modal-footer">
+                    <button id="saveMauBtn" type="button" class="btn btn-success" onclick="validate()">Thêm Mẫu</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                </div>
+            </div>
+        @*</form>*@
+    </div>
+</div>
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
+
+<!-- validator -->
+<script>
+    // initialize the validator function
+    validator.message.date = 'Không phải ngày thật';
+
+     //validate a field on "blur" event, a 'select' on 'change' event & a '.reuired' classed multifield on 'keyup':
+    $('form')
+      .on('blur', 'input[required], input.optional, select.required', validator.checkField)
+      .on('change', 'select.required', validator.checkField)
+      .on('keypress', 'input[required][pattern]', validator.keypress);
+
+    $('.multi.required').on('keyup blur', 'input', function () {
+       validator.checkField.apply($(this).siblings().last()[0]);
+    });
+
+
+    $('form').submit(function (e) {
+        e.preventDefault();
+        var submit = true;
+
+        // evaluate the form using generic validaing
+        if (!validator.checkField.apply($('#TenKhachHang')) || !validator.checkField.apply($('#SoDienThoai')) || !validator.checkField.apply($('#NoiLayMau')) || !validator.checkField.apply($('#DiaChi')) || !validator.checkField.apply($('#NgayLayMau')) || !validator.checkField.apply($('#NgayHenTraKQ'))) {
+            submit = false;
+            new PNotify({
+                title: 'Thất bại',
+                text: 'kiểm tra lại thông tin về hợp đồng của bạn rồi thử lại.',
+                type: 'error',
+                styling: 'bootstrap3'
+            });
+        }
+
+        if (submit) {
+            this.submit(
+                new PNotify({
+                title: 'Thành công',
+                text: 'tạo hợp đồng mới hợp lệ, hợp đồng đã được thêm vào lưu trữ',
+                type: 'success',
+                styling: 'bootstrap3'
+                }));
+            @*location.href = '@Url.Action("Index", "YeuCauLayMau")'*@
+        }
+
+        return false;
+    });
+</script>
+<!-- /validator -->
+
     <!--nthoang-PhieuYeuCauThuNghiemView: Editable Table-->
     <!--nthoang-Cac logic lien quan den Bang Mau duoc code tai day-->
     
 <script>
-    $(document).ready(function () {
+    $(document).ready(
+        function () {
         $('#NgayLayMau').daterangepicker({
             singleDatePicker: true,
             calender_style: "picker_1"
         }, function (start, end, label) {
             console.log(start.toISOString(), end.toISOString(), label);
         });
+        
+            
     });
 </script>
 
@@ -354,6 +408,7 @@
         }
 
         $("#saveMauBtn").bind("click", function () {
+            
             var tabledata = $("#sampledata-table tbody");
             var soluong = $("#so-luong").val();
             var donvi = $("#don-vi").val();
@@ -369,41 +424,30 @@
                 ChiTieuYeuCaus: chitieuyeucaus
             });
 
-            tabledata.append(
+
+
+            if ($('#vitri-laymau').val() && $('#mota-mau').val && $('#chitieu-yeucau').val()) {
+                tabledata.append(
                 "<tr>" +
                 //"<td></td>" +
                 "<td>" + $("#ma-mau").val() + "</td>" +
                 "<td>" + $("#kh-mau").val() + "</td>" +
                 "<td>" + $("#vitri-laymau").val() + "</td>" +
-                "<td>" + soluong + " " +  donvi + "</td>" +
+                "<td>" + soluong + " " + donvi + "</td>" +
                 "<td>" + $("#mota-mau").val() + "</td>" +
                 "<td>" + chitieuyeucaus.map(function (e) { return e.TenChiTieu }).join(", ") + "</td>" +
                 "<td></td>" +
                 "</tr>");
+                //hide modal
+                $('#themMauModal').modal('hide');
+            }
 
             //On Row Hover
             tabledata.children().last().hover(OnRowIn, OnRowOut);
+            
         });
 
         $("#submitBtn").bind("click", function () {
-
-            $.listen('parsley:field:validate', function () {
-                validateFront();
-            });
-            $('#submitBtn').on('click', function () {
-                $('#demo-form2').parsley().validate();
-                validateFront();
-            });
-            var validateFront = function () {
-                if (true === $('#demo-form2').parsley().isValid()) {
-                    $('.bs-callout-info').removeClass('hidden');
-                    $('.bs-callout-warning').addClass('hidden');
-                } else {
-                    $('.bs-callout-info').addClass('hidden');
-                    $('.bs-callout-warning').removeClass('hidden');
-                }
-            };
-
             function getFormData() {
                 var res = {
                     TenKhachHang: $("#TenKhachHang").val(),
@@ -449,16 +493,14 @@
                     } else {
                         console.log(res.errMsg);
                     }
-                    location.href = '@Url.Action("Index", "YeuCauLayMau")'
+                    @*location.href = '@Url.Action("Index", "YeuCauLayMau")'*@
                 },
                 dataType: 'json',
                 contentType: 'application/json; charset=utf-8'
             });
         });
     });
-    try {
-        hljs.initHighlightingOnLoad();
-    } catch (err) { }
+
 </script>
 
 
