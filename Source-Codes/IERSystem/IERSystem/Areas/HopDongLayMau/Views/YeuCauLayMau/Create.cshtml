@@ -203,7 +203,7 @@
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <button id="saveMauBtn" type="button" class="btn btn-success" data-dismiss="modal">Thêm Mẫu</button>
+                                                <button id="saveMauBtn" type="button" class="btn btn-success" @*data-dismiss="modal"*@>Thêm Mẫu</button>
                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
                                             </div>
                                         </div>
@@ -237,7 +237,7 @@
                         <div class="form-group">
                             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-5">
                                 <input type="button" id="submitBtn" value="Tạo" class="btn btn-success" />
-                                <input type="button" class="btn btn-danger" value="Quay lại" onclick="location.href='@Url.Action("Index", "YeuCauLayMau")'" />
+                                <input type="button" class="btn btn-danger" value="Quay lại" data-toggle="modal" data-target="#confirmModal"/>
                             </div>
                         </div>
                     </form> 
@@ -318,11 +318,28 @@
 
 
                 <div class="modal-footer">
-                    <button id="saveMauBtn" type="button" class="btn btn-success" onclick="validate()">Thêm Mẫu</button>
+                    <button id="saveMauBtn" type="button" class="btn btn-success">Thêm Mẫu</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
                 </div>
             </div>
         @*</form>*@
+    </div>
+</div>
+
+<!-- Quay Lai Modal -->
+<div id="confirmModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+                <h4>Bạn có chắc chắn muốn quay lại?</h4>
+                <h5>Những thông tin bạn đã nhập sẽ không được lưu vào dữ liệu hệ thống.</h5>
+                <div class="form-group" align="center">
+                    <button type="submit" class="btn btn-success" data-dismiss="modal" onclick="turnBack()"><span class="fa fa-check"></span></button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="fa fa-close"></span></button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -345,35 +362,18 @@
        validator.checkField.apply($(this).siblings().last()[0]);
     });
 
-
-    $('form').submit(function (e) {
-        e.preventDefault();
-        var submit = true;
-
-        // evaluate the form using generic validaing
-        if (!validator.checkField.apply($('#TenKhachHang')) || !validator.checkField.apply($('#SoDienThoai')) || !validator.checkField.apply($('#NoiLayMau')) || !validator.checkField.apply($('#DiaChi')) || !validator.checkField.apply($('#NgayLayMau')) || !validator.checkField.apply($('#NgayHenTraKQ'))) {
-            submit = false;
-            new PNotify({
-                title: 'Thất bại',
-                text: 'kiểm tra lại thông tin về hợp đồng của bạn rồi thử lại.',
-                type: 'error',
-                styling: 'bootstrap3'
-            });
-        }
-
-        if (submit) {
-            this.submit(
-                new PNotify({
-                title: 'Thành công',
-                text: 'tạo hợp đồng mới hợp lệ, hợp đồng đã được thêm vào lưu trữ',
-                type: 'success',
-                styling: 'bootstrap3'
-                }));
-            @*location.href = '@Url.Action("Index", "YeuCauLayMau")'*@
-        }
-
-        return false;
-    });
+    function turnBack() {
+        new PNotify({
+            title: 'Chuyển trang',
+            text: 'bạn đang được chuyển sang trang chủ.',
+            type: 'success',
+            styling: 'bootstrap3'
+        });
+        setTimeout(function () {
+            window.location.href = '@Url.Action("Index", "YeuCauLayMau")'
+        }, 2000);
+        
+    }
 </script>
 <!-- /validator -->
 
@@ -400,7 +400,7 @@
         var $CacheChiTieu = {};
         var $SelectedCT_Id = [];
         var chitieu_selectbox = $("#chitieu-yeucau");
-        
+
         $.ajax({
             type: 'POST',
             url: ' @Url.Action("GetNhomChiTieu", "API", new { area = "BaoGiaChiTieu" })',
@@ -465,7 +465,7 @@
         }
 
         $("#saveMauBtn").bind("click", function () {
-            
+
             var tabledata = $("#sampledata-table tbody");
             var soluong = $("#so-luong").val();
             var donvi = $("#don-vi").val();
@@ -496,12 +496,19 @@
                 "<td></td>" +
                 "</tr>");
                 //hide modal
-                $('#themMauModal').modal('hide');
+                $('#themMauModal').modal('toggle');
             }
-
+            else {
+                new PNotify({
+                    title: 'Thêm mẫu thất bại',
+                    text: 'nhập đầy đủ các thông tin của mẫu rồi thử lại.',
+                    type: 'error',
+                    styling: 'bootstrap3'
+                });
+            }
             //On Row Hover
             tabledata.children().last().hover(OnRowIn, OnRowOut);
-            
+
         });
 
         $("#submitBtn").bind("click", function () {
@@ -546,9 +553,22 @@
                 data: JSON.stringify(formData),
                 success: function (res) {
                     if (res.IsOK) {
-                        location.href = '@Url.Action("Index", "YeuCauLayMau")'
+                        new PNotify({
+                            title: 'Thành công',
+                            text: 'tạo hợp đồng mới hợp lệ, hợp đồng đã được thêm vào lưu trữ',
+                            type: 'success',
+                            styling: 'bootstrap3'
+                        });
+                        setTimeout(function () {
+                            window.location.href = '@Url.Action("Index", "YeuCauLayMau")'
+                        }, 2000);
                     } else {
-                        alert("Có lỗi khi thêm mẫu vào sổ nhận mẫu");
+                        new PNotify({
+                            title: 'Thất bại',
+                            text: 'kiểm tra lại thông tin về hợp đồng của bạn rồi thử lại.',
+                            type: 'error',
+                            styling: 'bootstrap3'
+                        });
                     }
                 },
                 dataType: 'json',
