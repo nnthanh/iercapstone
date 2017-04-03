@@ -85,6 +85,17 @@ namespace IERSystem.Areas.QuanLyKetQuaPhanTich.Controllers
             return View(sokq);
         }
 
+        // GET: QuanLyKetQuaPhanTich/SoKQThuNghiem/AddResult/5
+        public ActionResult AddResult(long id = 0)
+        {
+            var sokq = db.SoKQThuNghiems.Find(id);
+            if (sokq == null)
+            {
+                return HttpNotFound();
+            }
+            return View(sokq);
+        }
+
         // GET: QuanLyKetQuaPhanTich/SoKQThuNghiem/Delete/5
         public ActionResult Delete(int id)
         {

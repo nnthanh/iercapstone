@@ -9,86 +9,7 @@
 
 <input type="button" class="btn btn-info" value="Tạo phiếu kết quả mới" onclick="location.href='@Url.Action("Create", "FormKQ")'" />
 
-<button id="btnThemMau" type="button"
-        data-toggle="modal" data-target="#themMauModal"
-        class="btn btn-warning">
-    Thêm kết quả
-</button>
-
-<!-- Modal -->
-<div id="themMauModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Thêm mẫu</h4>
-            </div>
-            <div class="modal-body">
-                <div class="table-responsive">
-                    <table class="table table-striped jambo_table bulk_action">
-                        <thead>
-                            <tr class="headings">
-                                <th>
-                                    <input type="checkbox" id="check-all" class="flat">
-                                </th>
-                                <th class="column-title">Phiếu yêu cầu </th>
-                                <th class="column-title">Tên khách hàng/địa chỉ </th>
-                                <th class="column-title">Ký hiệu mẫu </th>
-                                <th class="column-title">Ngày nhận mẫu</th>
-                                <th class="column-title">Ngày trả mẫu </th>
-                                <th class="column-title no-link last">
-                                    <span class="nobr">Hành động</span>
-                                </th>
-                                <th class="bulk-actions" colspan="7">
-                                    <a class="antoo" style="color:#fff; font-weight:500;">Chọn nhiều ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
-                                </th>
-                            </tr>
-                        </thead>
-
-                        <tbody>
-                            <tr class="even pointer">
-                                <td class="a-center ">
-                                    <input type="checkbox" class="flat" name="table_records">
-                                </td>
-                                <td class=" ">0002002</td>
-                                <td class=" ">Nguyen Ngoc Thanh </td>
-                                <td class=" ">Tân Bình</td>
-                                <td class=" ">20 Jan, 2017</td>
-                                <td class=" ">22 Jan, 2017</td>
-                                <td class=" last">
-                                    <a href="#">Xem</a>
-                                </td>
-                            </tr>
-                            <tr class="odd pointer">
-                                <td class="a-center ">
-                                    <input type="checkbox" class="flat" name="table_records">
-                                </td>
-                                <td class=" ">0002002</td>
-                                <td class=" ">Nguyen Ngoc Thanh </td>
-                                <td class=" ">Tân Bình</td>
-                                <td class=" ">20 Jan, 2017</td>
-                                <td class=" ">22 Jan, 2017</td>
-                                <td class=" last">
-                                    <a href="#">Xem</a>
-                                </td>
-                            </tr>
-
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button id="saveMauBtn" type="button" class="btn btn-success" data-dismiss="modal">Thêm Mẫu</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-            </div>
-        </div>
-
-    </div>
-</div>
-
-<div class>
+<div>
     <div class="page-title">
         <div class="title-left">
             <h3>Phiếu kết quả</h3>
@@ -105,16 +26,81 @@
         </div>
     </div>
     <div class="clearfix"></div>
+    <!--Notification-->
+    <div class="alert alert-success alert-dismissible fade in" role="alert" id="myNoti">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">×</span>
+        </button>
+        <strong>
+            Chào
+            @{
+                if (Session["loggedUser"] != null)
+                {
+                    @Session["loggedUser"].ToString()
+                }
+            }!
+        </strong> Bạn có 5 mẫu mới có thể chuyển vào sổ.
+        <a href="#" onclick="$('#danhsachmaumoi').fadeIn(500)"><u>Xem</u></a>
+    </div>
+    <!--End of Notification-->
+    <!--Noti table-->
+    <div class="x_panel" id="danhsachmaumoi" style="display:none">
+        <div class="x_title">
+            <h2>KẾT QUẢ MỚI</h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li>
+                    <a class="collapse-link">
+                        <i class="fa fa-chevron-up"></i>
+                    </a>
+                </li>
+                <li>
+                    <a onclick="$('#danhsachmaumoi').hide()">
+                        <i class="fa fa-close"></i>
+                    </a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th class="column-title">Mã đơn </th>
+                            <th class="column-title">Tên khách hàng </th>
+                            <th class="column-title">Mã mẫu </th>
+                            <th class="column-title">Mô tả mẫu </th>
+                            <th class="column-title">Ngày tạo hợp đồng </th>
+                            <th class="column-title">Ngày trả mẫu </th>
+                        </tr>
+                    </thead>
+
+                    <tbody></tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+    <!--Noti table-->
 
 
+    <div class="clearfix"></div>
+
+       <!--Table dynamic-->
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
             <div class="x_title">
-                <h2>Danh sách mẫu</h2>
+                <h2>DANH SÁCH PHIẾU KẾT QUẢ <small><i class="green">5 </i>mẫu mới </small></h2>
                 <ul class="nav navbar-right panel_toolbox">
                     <li>
                         <a class="collapse-link">
                             <i class="fa fa-chevron-up"></i>
+                        </a>
+                    </li>
+ 
+                    <li data-toggle="tooltip" title="Thêm mẫu">
+                        <a data-toggle="modal" data-target="#themMauModal" class="btnThemMau" role="button" aria-expanded="false">                          
+                            <i class="fa fa-plus"></i>
                         </a>
                     </li>
                     <li>
@@ -126,6 +112,73 @@
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
+                <table id="" class="datatable-buttons table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Nơi lấy mẫu</th>
+                            <th>Ngày gửi mẫu</th>
+                            <th>Địa chỉ</th>
+                            <th>Loại mẫu</th>
+                            <th>Vị trí lấy mẫu</th>
+                            <th>Ngày thêm vào sổ</th>
+                            <th>Hành động</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>             
+                        <tr>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>
+                                <button data-toggle="tooltip" title="Chỉnh sửa" onclick="location.href='@Url.Action("Edit", "FormKQ")'"><span class="fa fa-edit"></span></button>
+                                <button data-toggle="tooltip" title="Xem chi tiết" onclick="location.href='@Url.Action("Details", "FormKQ")'"><span class="fa fa-info"></span></button>
+                                <button data-toggle="tooltip" title="In"><span class="fa fa-print"></span></button>
+                                <button data-toggle="tooltip" title="Trả về" onclick="returnItem()"><span class="fa fa-reply"></span></button>
+                                <button data-toggle="modal" data-target="#xoaModal"><span class="fa fa-trash"></span></button>
+                            </td>
+                        </tr>   
+                                             
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<!-- Modal -->
+<div id="xoaModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+                <h4>Bạn có chắc chắn muốn xóa mẫu này?</h4>
+                <h5>Bạn sẽ không để hoàn tác hành động này.</h5>
+                <div class="form-group" align="center">
+                    <button type="button" class="btn btn-success" data-dismiss="modal" onclick="delSucNoti()"><span class="fa fa-check"></span></button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="delFailNoti()"><span class="fa fa-close"></span></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div id="themMauModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Thêm mẫu</h4>
+            </div>
+            <div class="modal-body">
                 <div class="table-responsive">
                     <table id="mauThemTable" class="table table-striped jambo_table bulk_action">
                         <thead>
@@ -138,239 +191,23 @@
                                 <th class="column-title">Ký hiệu mẫu </th>
                                 <th class="column-title">Ngày nhận mẫu</th>
                                 <th class="column-title">Ngày trả mẫu </th>
-                                <th class="column-title no-link last">
-                                    <span class="nobr">Trạng thái</span>
-                                </th>
-                                <th class="bulk-actions" colspan="7">
+                                <th class="bulk-actions" colspan="6">
                                     <a class="antoo" style="color:#fff; font-weight:500;">Chọn nhiều ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
                                 </th>
                             </tr>
                         </thead>
 
-                        <tbody></tbody>
-
+                        <tbody>
+                        </tbody>
                     </table>
-                    <br />
-                    <div class="form-group">
-                        <div style="position:absolute; right:0; bottom:0;">
-                            <button class="btn btn-warning" data-toggle="tooltip" title="Cập nhật mẫu mới"><span class="fa fa-undo"></span></button>
-                            <button class="btn btn-success" data-toggle="tooltip" title="Xác nhận thêm mẫu"><span class="fa fa-check"></span></button>
-                        </div>
-                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-
-    <!--Table dynamic-->
-    <div class="col-md-12 col-sm-12 col-xs-12">
-        <div class="x_panel">
-            <div class="x_title">
-                <h2>DANH SÁCH PHIẾU KẾT QUẢ <small><i class="green">5 </i>mẫu mới </small></h2>
-                <ul class="nav navbar-right panel_toolbox">
-                    <li>
-                        <a class="collapse-link">
-                            <i class="fa fa-chevron-up"></i>
-                        </a>
-                    </li>
- 
-                    <li>
-                        <a class="close-link">
-                            <i class="fa fa-close"></i>
-                        </a>
-                    </li>
-                </ul>
-                <div class="clearfix"></div>
-            </div>
-            <div class="x_content">
-                <table id="" class="datatable-buttons table table-striped table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Số</th>
-                            <th>Ký hiệu mẫu</th>
-                            <th>Nơi lấy mẫu</th>
-                            <th>Ngày gửi mẫu</th>
-                            <th>Địa chỉ</th>
-                            <th>Loại mẫu</th>
-                            <th>Vị trí lấy mẫu</th>
-                            <th>Ngày thêm vào sổ</th>
-                            <th>Hành động</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        <tr class="success">
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <!--Nho them nut tra ve (fa fa-reply)-->
-                            <td>
-                                <button data-toggle="tooltip" title="Chỉnh sửa"><span class="fa fa-edit"></span></button>
-                                <button data-toggle="tooltip" title="Xem chi tiết"><span class="fa fa-info"></span></button>
-                                <button data-toggle="tooltip" title="In"><span class="fa fa-print"></span></button>
-                                <button data-toggle="tooltip" title="Trả về"><span class="fa fa-reply"></span></button>
-                                <button data-toggle="tooltip" title="Xóa"><span class="fa fa-trash"></span></button>
-                            </td>
-                        </tr>
-                        <tr class="danger">
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <!--Nho them nut tra ve (fa fa-reply)-->
-                            <td>
-                                <button data-toggle="tooltip" title="Chỉnh sửa"><span class="fa fa-edit"></span></button>
-                                <button data-toggle="tooltip" title="Xem chi tiết"><span class="fa fa-info"></span></button>
-                                <button data-toggle="tooltip" title="In"><span class="fa fa-print"></span></button>
-                                <button data-toggle="tooltip" title="Trả về"><span class="fa fa-reply"></span></button>
-                                <button data-toggle="tooltip" title="Xóa"><span class="fa fa-trash"></span></button>
-                            </td>
-                        </tr>   
-                        <tr class="info">
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <!--Nho them nut tra ve (fa fa-reply)-->
-                            <td>
-                                <button data-toggle="tooltip" title="Chỉnh sửa"><span class="fa fa-edit"></span></button>
-                                <button data-toggle="tooltip" title="Xem chi tiết"><span class="fa fa-info"></span></button>
-                                <button data-toggle="tooltip" title="In"><span class="fa fa-print"></span></button>
-                                <button data-toggle="tooltip" title="Trả về"><span class="fa fa-reply"></span></button>
-                                <button data-toggle="tooltip" title="Xóa"><span class="fa fa-trash"></span></button>
-                            </td>
-                        </tr>                           
-                    </tbody>
-                </table>
+            <div class="modal-footer">
+                <button id="saveMauBtn" type="button" class="btn btn-success" data-dismiss="modal" onclick="addItem()">Thêm Mẫu</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" onclick="addItemFail()">Đóng</button>
             </div>
         </div>
-    </div>
 
-    <!--Danh sach hop dong-->
-    <div class="col-md-12 col-sm-12 col-xs-12">
-        <div class="x_panel">
-            <div class="x_title">
-                <h2>BẢNG HỢP ĐỒNG <small><i class="green">5 </i>mẫu mới </small></h2>
-                <ul class="nav navbar-right panel_toolbox">
-                    <li>
-                        <a class="collapse-link">
-                            <i class="fa fa-chevron-up"></i>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a class="close-link">
-                            <i class="fa fa-close"></i>
-                        </a>
-                    </li>
-                </ul>
-                <div class="clearfix"></div>
-            </div>
-            <div class="x_content">
-                <table id="" class="datatable-buttons table table-striped table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Mã đơn</th>
-                            <th>Tên khách hàng</th>
-                            <th>Tên đại diện</th>
-                            <th>Địa chỉ lấy mẫu</th>
-                            <th>Địa chỉ KH</th>
-                            <th>Mã số thuế</th>
-                            <th>Số điện thoại</th>
-                            <th>Số Fax</th>
-                            <th>Ngày tạo HD</th>
-                            <th>Ngày trả mẫu</th>
-                            <th>Tình trạng hợp đồng</th>
-                            <th>Hành động</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        <tr class="success">
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <!--Nut hoan tat hop dong-->
-                            <td>
-                                <button data-toggle="tooltip" title="Hoành thành hợp đồng"><span class="fa fa-check-square-o"></span></button>
-                            </td>
-                        </tr>
-                        <tr class="info">
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <!--Nut hoan tat hop dong-->
-                            <td>
-                                <button data-toggle="tooltip" title="Hoành thành hợp đồng"><span class="fa fa-check-square-o"></span></button>
-                            </td>
-                        </tr>
-                        <tr class="danger">
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <!--Nut hoan tat hop dong-->
-                            <td>
-                                <button data-toggle="tooltip" title="Hoành thành hợp đồng"><span class="fa fa-check-square-o"></span></button>
-                            </td>
-                        </tr>
-                        <tr class="warning">
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <!--Nut hoan tat hop dong-->
-                            <td>
-                                <button data-toggle="tooltip" title="Hoành thành hợp đồng"><span class="fa fa-check-square-o"></span></button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
     </div>
 </div>
 
@@ -380,5 +217,124 @@
         $(document).ready(function () {
             $('[data-toggle="tooltip"]').tooltip();
         });
+        $(function () {
+            $('#myNoti').hide().fadeIn(1000);
+        })
+        function delFailNoti() {
+            new PNotify({
+                title: 'Hủy',
+                text: 'mẫu không được xóa khỏi dữ liệu.',
+                styling: 'bootstrap3'
+            });
+        }
+        function delSucNoti() {
+            new PNotify({
+                title: 'Thành công',
+                text: 'xóa mẫu thành công khỏi dữ liệu.',
+                type: 'success',
+                styling: 'bootstrap3'
+            })
+        }
+        function addItem() {
+            new PNotify({
+                title: 'Thành công',
+                text: 'thêm mẫu thành công vào dữ liệu.',
+                type: 'success',
+                styling: 'bootstrap3'
+            })
+        }
+        function addItemFail() {
+            new PNotify({
+                title: 'Hủy',
+                text: 'mẫu không được thêm vào dữ liệu.',
+                styling: 'bootstrap3'
+            })
+        }
+        function returnItem() {
+            new PNotify({
+                title: 'Thông báo',
+                text: 'mẫu đã được hoàn trả.',
+                type: 'info',
+                styling: 'bootstrap3'
+            });
+        }
     </script>
+
+<script>
+        $(document).ready(function () {
+            var candidstable = $("#mauThemTable tbody");
+            var candid_idarr = [];
+            var target_cacsochuyenmau = undefined;
+
+            $("#addMauBtn").bind("click", function () {
+                var maupt_ids = []
+                $("#mauThemTable tbody").find("tr td input[type=checkbox]").each(function (ind, e) {
+                    maupt_ids.push({ Checked: e.checked, Index: ind });
+                });
+                var formData1 = {
+                    MauPhanTichIDs: maupt_ids
+                                    .filter(function (item) { return item.Checked; })
+                                    .map(function (item) { return candid_idarr[item.Index]; }),
+                    CacSoChuyenMauID: target_cacsochuyenmau,
+                };
+                $.ajax({
+                    type: 'POST',
+                    url: ' @Url.Action("ReceiveMauPTs", "API")',
+                    data: JSON.stringify(formData1),
+                    success: function (res) {
+                        if (res.isOk) {
+                            console.log(formData);
+                        } else {
+                            console.log(res.errMsg);
+                        }
+                        window.location.reload(true);
+                    },
+                    dataType: 'json',
+                    contentType: 'application/json; charset=utf-8'
+                });
+            });
+
+            $(".btnThemMau").bind("click", function () {
+                target_cacsochuyenmau = $(this).find(".data-sochuyenmau-id")[0].innerText.trim();
+
+                //Prepare the data to populate mauThemTable
+                var formData = {
+                    TuNgay: $(this).find(".data-sochuyenmau-tungay")[0].innerText.trim(),
+                    DenNgay: $(this).find(".data-sochuyenmau-denngay")[0].innerText.trim()
+                };
+
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("GetMauPTCandids", "API")',
+                    data: JSON.stringify(formData),
+                    success: function (res) {
+                        candidstable.empty();
+                        candid_idarr = [];
+                        res.forEach(function (item, index) {
+                            candid_idarr[index] = item.Id;
+                            candidstable.append(
+                                "<tr>" +
+                                    //"<td class='a-center'>" +
+                                    //    "<input class='flat' name='table_records' style='opacity: 0;' type='checkbox'>" +
+                                    //    "<div class='icheckbox_flat-green' style='position: relative;'><input class='flat' name='table_records' style='opacity: 0;' type='checkbox'><ins class='iCheck-helper' style='position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;'></ins></div>" +
+                                    //"</td>" +
+                                    "<td class='a-center '>" +
+                                        "<input type='checkbox' class='flat' name='table_records'>" +
+                                    "</td>" +
+                                    "<td>" + item.MaDon + "</td>" +
+                                    "<td>" + item.TenDiaChiKhachHang + "</td>" +
+                                    "<td>" + item.MaMau + "</td>" +
+                                    "<td>" + item.NgayNhanMau + "</td>" +
+                                    "<td>" + item.NgayTraMau + "</td>" +
+                                    "<td>" + item.MoTaMau + "</td>" +
+                                "</tr>"
+                            );
+                        });
+                    },
+                    dataType: 'json',
+                    contentType: 'application/json; charset=utf-8'
+                });
+            });
+        });
+</script>
 }

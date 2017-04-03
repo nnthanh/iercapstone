@@ -15,7 +15,7 @@ namespace IERSystem.Areas.QuanLySoChuyenMau.Controllers
 
         // POST: /QuanLyCacSoChuyenMau/API/Create
         [HttpPost]
-        public JsonResult Create(SoChuyenMauInputModel cacsonhanmau_inp)
+        public JsonResult Create(SoChuyenMauCreateInputModel cacsonhanmau_inp)
         {
             if (ModelState.IsValid)
             {
@@ -47,11 +47,38 @@ namespace IERSystem.Areas.QuanLySoChuyenMau.Controllers
             {
                 var result =
                     MauLayHienTruongAPIImpl.GetCandidMauPTSoChuyenMau(maupttobeadded_inp, DateTime.Now, db);
-                return Json(result);
+                return Json(new GetDBResponse<IEnumerable<MauPTToBeAddedOutputModel>>()
+                {
+                    IsOK = true,
+                    Data = result
+                });
             }
             else
             {
-                return Json(new UpsertDBResponse { IsOK = false, ErrMsg = "" });
+                return Json(new GetDBResponse<IEnumerable<MauPTToBeAddedOutputModel>> { IsOK = false, Data = null });
+            }
+        }
+
+        // POST: /QuanLyCacSoChuyenMau/API/OpenSoChuyenMau
+        [HttpPost]
+        public JsonResult OpenSoChuyenMau(SoChuyenMauOpenInputModel sochuyenmauopen_inp)
+        {
+            try
+            {
+                var result = SoChuyenMauAPIImpl.FetchSoChuyenMau(sochuyenmauopen_inp.Id, db);
+                return Json(new GetDBResponse<SoChuyenMauOpenOutputModel>()
+                {
+                    IsOK = true,
+                    Data = result
+                });
+            }
+            catch (InvalidOperationException e)
+            {
+                return Json(new GetDBResponse<SoChuyenMauOpenOutputModel>()
+                {
+                    IsOK = false,
+                    Data = null
+                });
             }
         }
 

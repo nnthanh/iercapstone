@@ -11,7 +11,7 @@ namespace IERSystem.BusinessLogic.TableForms
 {
     public static partial class CacSoNhanMauAPIImpl
     {
-        public static void CreateModel(SoNhanMauInputModel input_request, IERSystemModelContainer db)
+        public static void CreateModel(SoNhanMauCreateInputModel input_request, IERSystemModelContainer db)
         {
             db.CacSoNhanMaus.Add(new CacSoNhanMau()
             {
@@ -27,33 +27,15 @@ namespace IERSystem.BusinessLogic.TableForms
         public static async Task<IEnumerable<CacSoNhanMauOutputModel>> CreateView(IERSystemModelContainer db)
         {
             var queried_async = await db.CacSoNhanMaus.ToListAsync();
-            return queried_async.Select((cacsonhanmau_model, index) =>
+            return queried_async.Select((cacsonhanmau_model) =>
             {
                 return new CacSoNhanMauOutputModel()
                 {
                     //nthoang: QuyenSo should start from 1
-                    QuyenSo = index + 1,
+                    QuyenSo = cacsonhanmau_model.Id,
                     CreatedBy = cacsonhanmau_model.CreatedBy,
-                    Id = cacsonhanmau_model.Id,
                     TuNgay = cacsonhanmau_model.TuNgay.ToShortDateString(),
-                    DenNgay = cacsonhanmau_model.DenNgay.ToShortDateString(),
-                    NoiDung = cacsonhanmau_model.SoNhanMaus.ToList().Select((sonhanmau_model) => {
-                        //nthoang: Cache db query result to reuse(if needed)
-                        var maulayhientruong_mapped = sonhanmau_model.MauLayHienTruong;
-                        return new SoNhanMauOutputModel()
-                        {
-                            Id = sonhanmau_model.Id,
-                            MaMau = sonhanmau_model.MauLayHienTruong.MaMau,
-                            MaMauKH = maulayhientruong_mapped.MaMauKH,
-                            MaPhieuYeuCau = maulayhientruong_mapped.PhieuYeuCau.MaDon,
-                            NgayNhan = sonhanmau_model.NgayNhanMau.ToShortDateString(),
-                            NgayTraKQ = sonhanmau_model.NgayTraKQ.ToShortDateString(),
-                            TenDiaChiKH =
-                                maulayhientruong_mapped.PhieuYeuCau.TenKhachHang + " / " +
-                                maulayhientruong_mapped.PhieuYeuCau.DiaChiKhachHang,
-                            ChiTieuThuNghiem = String.Join(", ", maulayhientruong_mapped.ChiTieuPhanTiches.Select((item) => item.TenChiTieu))
-                        };
-                    })
+                    DenNgay = cacsonhanmau_model.DenNgay.ToShortDateString()
                 };
             });
         }

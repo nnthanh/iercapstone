@@ -31,10 +31,10 @@
 
 <!--Line graph-->
 <!-- bar chart -->
-<div class="col-md-12 col-sm-12 col-xs-12">
+<div class="col-md-8 col-sm-8 col-xs-12">
     <div class="x_panel">
         <div class="x_title">
-            <h2>Biểu đồ mẫu <small>2017</small></h2>
+            <h2>MẪU NHẬN<small><i class="green">2017</i></small></h2>
             <ul class="nav navbar-right panel_toolbox">
                 <li>
                     <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -53,13 +53,86 @@
 </div>
 <!-- /bar charts -->
 
+<!--dough nut-->
+<div class="col-md-4 col-sm-4 col-xs-12">
+    <div class="x_panel tile fixed_height_320 overflow_hidden">
+        <div class="x_title">
+            <h2>VỊ TRÍ MẪU</h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li>
+                    <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                </li>
+                <li>
+                    <a class="close-link"><i class="fa fa-close"></i></a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <table class="" style="width:100%">
+                <tr>
+                    <th style="width:37%;">
+                    </th>
+                    <th>
+                        <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+                            <p class="">Vị trí</p>
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                            <p class="">Số lượng</p>
+                        </div>
+                    </th>
+                </tr>
+                <tr>
+                    <td>
+                        <canvas id="canvas1" class="canvasDoughnut" height="140" width="140" style="margin: 15px 10px 10px 0"></canvas>
+                    </td>
+                    <td>
+                        <table class="tile_info">
+                            <tr>
+                                <td>
+                                    <p><i class="fa fa-square blue"></i>Hợp đồng </p>
+                                </td>
+                                <td>30</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p><i class="fa fa-square green"></i>Nhận </p>
+                                </td>
+                                <td>10</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p><i class="fa fa-square purple"></i>Chuyển </p>
+                                </td>
+                                <td>20</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p><i class="fa fa-square aero"></i>Kết quả</p>
+                                </td>
+                                <td>15</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p><i class="fa fa-square red"></i>Phiếu KQ </p>
+                                </td>
+                                <td>30</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
 <!--Table-->
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="dashboard_graph">
                 <div class="row x_title">
                     <div class="col-md-6">
-                        <h3>Danh sách mẫu</h3>
+                        <h3>DANH SÁCH MẪU</h3>
                     </div>
                     <div class="col-md-6">
                         <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
@@ -163,12 +236,12 @@
             </div>
     <br />
 
-    <div class="row">
+    @*<div class="row">
                 <!-- start of weather widget -->
-                <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="col-md-8 col-sm-10 col-xs-12">
                     <div class="x_panel">
                         <div class="x_title">
-                            <h2>Thời tiết</h2>
+                            <h2>THỜI TIẾT</h2>
                             <ul class="nav navbar-right panel_toolbox">
                                 <li>
                                     <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -266,9 +339,7 @@
 
                 </div>
                 <!-- end of weather widget -->
-            </div>
-        </div>
-    </div>
+            </div>*@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
@@ -309,5 +380,47 @@
     });
 </script>
 <!-- /morris.js -->
+    <!-- Doughnut Chart -->
+<script>
+    $(document).ready(function () {
+        var options = {
+            legend: false,
+            responsive: false
+        };
+
+        new Chart(document.getElementById("canvas1"), {
+            type: 'doughnut',
+            tooltipFillColor: "rgba(51, 51, 51, 0.55)",
+            data: {
+                labels: [
+                  "Kết quả",
+                  "Chuyển",
+                  "Phiếu KQ",
+                  "Nhận",
+                  "Hợp đồng"     
+                ],
+                datasets: [{
+                    data: [15, 20, 30, 10, 30],
+                    backgroundColor: [
+                      "#BDC3C7",
+                      "#9B59B6",
+                      "#E74C3C",
+                      "#26B99A",
+                      "#3498DB"
+                    ],
+                    hoverBackgroundColor: [
+                      "#CFD4D8",
+                      "#B370CF",
+                      "#E95E4F",
+                      "#36CAAB",
+                      "#49A9EA"
+                    ]
+                }]
+            },
+            options: options
+        });
+    });
+</script>
+<!-- /Doughnut Chart -->
 }
 

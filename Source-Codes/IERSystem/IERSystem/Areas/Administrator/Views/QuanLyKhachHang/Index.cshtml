@@ -1,0 +1,108 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Administrator/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<input type="button" class="btn btn-info" value="Thêm khách hàng"/>
+<div>
+    <div class="page-title">
+        <div class="title-left">
+            <h3>Danh sách khách hàng</h3>
+
+        </div>
+        <div class="title-right">
+            <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search for...">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">Go!</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+
+    <!--Table dynamic-->
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>THÔNG TIN KHÁCH HÀNG <small><i class="green">5</i> khách hàng mới</small></h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li>
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="close-link">
+                            <i class="fa fa-close"></i>
+                        </a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <table id="" class="datatable-buttons table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Tên khách hàng</th>
+                            <th>Tên đại diện</th>
+                            <th>Địa chỉ KH</th>
+                            <th>Mã số thuế</th>
+                            <th>Số điện thoại</th>
+                            <th>Số Fax</th>
+                            <th>Hành động</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>    
+                            <td>
+                                <button data-toggle="tooltip" title="Chỉnh sửa"><span class="fa fa-edit"></span></button>
+                                <button data-toggle="tooltip" title="Xem chi tiết"><span class="fa fa-info"></span></button>
+                                <button data-toggle="tooltip" title="In"><span class="fa fa-print"></span></button>
+                                <button data-toggle="modal" data-target="#xoaModal"><span class="fa fa-trash"></span></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div id="xoaModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+                <h4>Bạn có chắc chắn muốn xóa mẫu này?</h4>
+                <h5>Bạn sẽ không để hoàn tác hành động này.</h5>
+                <div class="form-group" align="center">
+                    <button type="button" class="btn btn-success" data-dismiss="modal"><span class="fa fa-check"></span></button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="fa fa-close"></span></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+}

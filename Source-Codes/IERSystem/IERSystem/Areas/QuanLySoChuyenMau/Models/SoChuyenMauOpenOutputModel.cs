@@ -5,7 +5,15 @@ using System.Text;
 
 namespace IERSystem.Areas.QuanLySoChuyenMau.Models
 {
-    public class SoChuyenMauOutputModel
+    public class SoChuyenMauOpenOutputModel
+    {
+        public long QuyenSo { get; set; }
+        public string TuNgay { get; set; }
+        public string DenNgay { get; set; }
+        public IEnumerable<SoChuyenMauOpenRowOutputModel> NoiDung { get; set; }
+    }
+
+    public class SoChuyenMauOpenRowOutputModel
     {
         public long Id { get; set; }
         public string MaKhachHang { get; set; }

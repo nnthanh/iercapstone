@@ -27,61 +27,25 @@
     </div>
     <div class="clearfix"></div>
 
-    <div class="col-md-12 col-sm-12 col-xs-12">
-        <div class="x_panel">
-            <div class="x_title">
-                <h2>Danh sách mẫu<small><i class="green">5 </i>mẫu mới </small></h2>
-                <ul class="nav navbar-right panel_toolbox">
-                    <li>
-                        <a class="collapse-link">
-                            <i class="fa fa-chevron-up"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="close-link">
-                            <i class="fa fa-close"></i>
-                        </a>
-                    </li>
-                </ul>
-                <div class="clearfix"></div>
-            </div>
-            <div class="x_content">
-                <div class="table-responsive">
-                    <table id="mauThemTable" class="table table-striped jambo_table bulk_action">
-                        <thead>
-                            <tr class="headings">
-                                <th>
-                                    <input type="checkbox" id="check-all" class="flat">
-                                </th>
-                                <th class="column-title">Phiếu yêu cầu </th>
-                                <th class="column-title">Tên/Địa chỉ KH </th>
-                                <th class="column-title">Mã số </th>
-                                <th class="column-title">Ngày nhận mẫu </th>
-                                <th class="column-title">Ngày trả mẫu </th>
-                                <th class="column-title">Mô tả mẫu </th>
-                                <th class="column-title no-link last">
-                                    <span class="nobr">Trạng thái</span>
-                                </th>
-                                <th class="bulk-actions" colspan="7">
-                                    <a class="antoo" style="color:#fff; font-weight:500;">Chọn nhiều ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
-                                </th>
-                            </tr>
-                        </thead>
-
-                        <tbody></tbody>
-
-                    </table>
-                    <br />
-                    <div class="form-group">
-                        <div style="position:absolute; right:0; bottom:0;">
-                            <button class="btn btn-warning" data-toggle="tooltip" title="Cập nhật mẫu mới"><span class="fa fa-undo"></span></button>
-                            <button class="btn btn-success" data-toggle="tooltip" title="Xác nhận thêm mẫu"><span class="fa fa-check"></span></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <!--Notification-->
+    <div class="alert alert-success alert-dismissible fade in" role="alert" id="myNoti">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">×</span>
+        </button>
+        <strong>
+            Chào
+            @{
+                if (Session["loggedUser"] != null)
+                {
+                    @Session["loggedUser"].ToString()
+                }
+            }!
+        </strong> Bạn có 5 mẫu mới trong sổ.
+        
     </div>
+    <!--End of Notification-->
+
+    <div class="clearfix"></div>
 
     <!--Table dynamic-->
     <div class="col-md-12 col-sm-12 col-xs-12">
@@ -110,6 +74,7 @@
                             <th>Ngày nhận mẫu</th>
                             <th>Ngày trả mẫu</th>
                             <th>Ngày thêm vào sổ</th>
+                            <th>Tình trạng</th>
                             <th>Hành động</th>
                             
                         </tr>
@@ -118,7 +83,7 @@
                     <tbody>
                         @foreach (var item in Model)
                         {
-                            <tr class="warning">
+                            <tr>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.MaMau)
                                 </td>
@@ -129,19 +94,39 @@
                                     @Html.DisplayFor(modelItem => item.NgayTraMau)
                                 </td>
                                 <td>
+                                    Đã thêm kết quả
+                                </td>
+                                <td>
                                     Hôm nay
                                 </td>
                                 <td>
-                                    <button data-toggle="tooltip" title="Nhập kết quả" onclick="location.href='@Url.Action("Edit", "SoKQThuNghiem", new { id = item.Id })'"><span class="fa fa-file-text"></span></button>
+                                    <button data-toggle="tooltip" title="Nhập kết quả" onclick="location.href='@Url.Action("AddResult", "SoKQThuNghiem", new { id = item.Id })'"><span class="fa fa-file-text"></span></button>
                                     <button data-toggle="tooltip" title="Chỉnh sửa" onclick="location.href='@Url.Action("Edit", "SoKQThuNghiem", new { id = item.Id })'"><span class="fa fa-edit"></span></button>
                                     <button data-toggle="tooltip" title="Xem chi tiết" onclick="location.href='@Url.Action("Details", "SoKQThuNghiem", new { id = item.Id })'"><span class="fa fa-info"></span></button>
                                     <button data-toggle="tooltip" title="In" onclick="location.href='@Url.Action("", "")'"><span class="fa fa-print"></span></button>
-                                    <button data-toggle="tooltip" title="Xóa" onclick="location.href='@Url.Action("Delete", "SoKQThuNghiem", new { id = item.Id })'"><span class="fa fa-trash"></span></button>
+                                    <button data-toggle="modal" data-target="#xoaModal"><span class="fa fa-trash"></span></button>
                                 </td>
                             </tr>
                         }
                     </tbody>
                 </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div id="xoaModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+                <h4>Bạn có chắc chắn muốn xóa mẫu này?</h4>
+                <h5>Bạn sẽ không để hoàn tác hành động này.</h5>
+                <div class="form-group" align="center">
+                    <button type="button" class="btn btn-success" data-dismiss="modal" onclick="delSucNoti()"><span class="fa fa-check"></span></button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="delFailNoti()"><span class="fa fa-close"></span></button>
+                </div>
             </div>
         </div>
     </div>
@@ -153,5 +138,24 @@
         $(document).ready(function () {
             $('[data-toggle="tooltip"]').tooltip();
         });
+        $(function () {
+            $('#myNoti').hide().fadeIn(1000);
+        })
+        function delFailNoti() {
+            new PNotify({
+                title: 'Hủy',
+                text: 'mẫu không được xóa khỏi dữ liệu.',
+                styling: 'bootstrap3'
+            });
+        }
+        function delSucNoti()
+        {
+            new PNotify({
+                title: 'Thành công',
+                text: 'xóa mẫu thành công khỏi dữ liệu.',
+                type: 'success',
+                styling: 'bootstrap3'
+            })
+        }
     </script>
 }

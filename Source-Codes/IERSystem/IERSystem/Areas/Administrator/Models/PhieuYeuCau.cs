@@ -27,7 +27,6 @@ namespace IERSystem.Areas.Administrator.Models
         public string MaDon { get; set; }
         public string MaSoThue { get; set; }
         public System.DateTime NgayTaoHD { get; set; }
-        public Nullable<System.DateTime> EditedDate { get; set; }
         public string NoiLayMau { get; set; }
         public Nullable<decimal> PhiThiNghiemTamTinh { get; set; }
         public string SoDienThoai { get; set; }

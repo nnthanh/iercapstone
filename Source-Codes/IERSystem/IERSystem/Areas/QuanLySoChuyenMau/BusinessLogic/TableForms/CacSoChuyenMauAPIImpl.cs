@@ -14,34 +14,20 @@ namespace IERSystem.BusinessLogic.TableForms
         public static async Task<IEnumerable<CacSoChuyenMauOutputModel>> CreateView(IERSystemModelContainer db)
         {
             var queried_async = await db.CacSoChuyenMaus.ToListAsync();
-            return queried_async.Select((cacsonhanmau_model, index) =>
+            return queried_async.Select((cacsochuyenmau_model) =>
             {
                 return new CacSoChuyenMauOutputModel()
                 {
                     //nthoang: QuyenSo should start from 1
-                    QuyenSo = index + 1,
-                    CreatedBy = cacsonhanmau_model.CreatedBy,
-                    Id = cacsonhanmau_model.Id,
-                    TuNgay = cacsonhanmau_model.TuNgay.ToShortDateString(),
-                    DenNgay = cacsonhanmau_model.DenNgay.ToShortDateString(),
-                    NoiDung = cacsonhanmau_model.SoChuyenMaus.ToList().Select((sonhanmau_model) =>
-                    {
-                        //nthoang: Cache db query result to reuse(if needed)
-                        var maulayhientruong_mapped = sonhanmau_model.MauLayHienTruong;
-                        return new SoChuyenMauOutputModel()
-                        {
-                            MaMau = sonhanmau_model.MauLayHienTruong.MaMau,
-                            MaKhachHang = maulayhientruong_mapped.PhieuYeuCau.MaDon,
-                            NgayGiao = sonhanmau_model.NgayGiaoMau.ToShortDateString(),
-                            NgayTraKQ = sonhanmau_model.NgayTraKQ.ToShortDateString(),
-                            ChiTieuThuNghiem = String.Join(", ", maulayhientruong_mapped.ChiTieuPhanTiches.Select((item) => item.TenChiTieu))
-                        };
-                    })
+                    QuyenSo = cacsochuyenmau_model.Id,
+                    CreatedBy = cacsochuyenmau_model.CreatedBy,
+                    TuNgay = cacsochuyenmau_model.TuNgay.ToShortDateString(),
+                    DenNgay = cacsochuyenmau_model.DenNgay.ToShortDateString()
                 };
             });
         }
 
-        internal static void CreateModel(SoChuyenMauInputModel cacsochuyenmau_inp, IERSystemModelContainer db)
+        internal static void CreateModel(SoChuyenMauCreateInputModel cacsochuyenmau_inp, IERSystemModelContainer db)
         {
             db.CacSoChuyenMaus.Add(new CacSoChuyenMau()
             {

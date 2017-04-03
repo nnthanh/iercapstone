@@ -14,12 +14,6 @@ namespace IERSystem.Areas.Administrator.Models
     
     public partial class SoChuyenMau
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public SoChuyenMau()
-        {
-            this.ChiTieuPhanTiches = new HashSet<ChiTieuPhanTich>();
-        }
-    
         public long Id { get; set; }
         public string DienTen { get; set; }
         public string GhiChu { get; set; }
@@ -30,8 +24,6 @@ namespace IERSystem.Areas.Administrator.Models
     
         public virtual CacSoChuyenMau CacSoChuyenMau { get; set; }
         public virtual MauLayHienTruong MauLayHienTruong { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ChiTieuPhanTich> ChiTieuPhanTiches { get; set; }
         public virtual User CreatedBy { get; set; }
     }
 }

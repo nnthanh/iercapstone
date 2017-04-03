@@ -2,15 +2,15 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-
-namespace IERSystem.Areas.QuanLySoChuyenMau.Models
+using System.Web;
+namespace IERSystem.Areas.QuanLySoNhanMau.Models
 {
-    public class SoChuyenMauInputModel
+    public class SoNhanMauCreateInputModel
     {
         public int Nam { get; set; }
         public int TuThang { get; set; }
         public int DenThang { get; set; }
+        public int UserId { get; set; }
         public User CreatedBy { get; set; }
         public DateTime CreatedDate { get; set; }
     }

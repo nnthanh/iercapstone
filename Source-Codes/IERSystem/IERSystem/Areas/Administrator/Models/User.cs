@@ -19,9 +19,9 @@ namespace IERSystem.Areas.Administrator.Models
         {
             this.CacSoChuyenMaus = new HashSet<CacSoChuyenMau>();
             this.CacSoNhanMaus = new HashSet<CacSoNhanMau>();
-            this.PhieuYeuCaus = new HashSet<PhieuYeuCau>();
             this.SoChuyenMaus = new HashSet<SoChuyenMau>();
             this.SoNhanMaus = new HashSet<SoNhanMau>();
+            this.PhieuYeuCaus = new HashSet<PhieuYeuCau>();
         }
     
         public int Id { get; set; }
@@ -37,10 +37,10 @@ namespace IERSystem.Areas.Administrator.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CacSoNhanMau> CacSoNhanMaus { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PhieuYeuCau> PhieuYeuCaus { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SoChuyenMau> SoChuyenMaus { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SoNhanMau> SoNhanMaus { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PhieuYeuCau> PhieuYeuCaus { get; set; }
     }
 }
