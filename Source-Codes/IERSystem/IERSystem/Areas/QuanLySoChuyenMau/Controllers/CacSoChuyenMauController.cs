@@ -26,6 +26,8 @@ namespace IERSystem.Areas.QuanLySoChuyenMau.Controllers
             if (ModelState.IsValid)
             {
                 var today = DateTime.Now;
+                cacsochuyenmau_inp.CreatedBy = db.Users.Find((int)Session["loggedID"]);
+                cacsochuyenmau_inp.CreatedDate = DateTime.Now;
                 cacsochuyenmau_inp.Nam = today.Year;
                 cacsochuyenmau_inp.TuThang = today.Month;
                 cacsochuyenmau_inp.DenThang = today.Month;

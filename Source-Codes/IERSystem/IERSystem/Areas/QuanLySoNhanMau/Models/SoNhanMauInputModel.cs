@@ -10,6 +10,7 @@ namespace IERSystem.Areas.QuanLySoNhanMau.Models
         public int Nam { get; set; }
         public int TuThang { get; set; }
         public int DenThang { get; set; }
+        public int UserId { get; set; }
         public User CreatedBy { get; set; }
         public DateTime CreatedDate { get; set; }
     }

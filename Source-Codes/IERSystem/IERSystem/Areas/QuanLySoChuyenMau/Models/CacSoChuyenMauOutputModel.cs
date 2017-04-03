@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using IERSystem.Areas.Administrator.Models;
 
 namespace IERSystem.Areas.QuanLySoChuyenMau.Models
 {
@@ -12,5 +13,6 @@ namespace IERSystem.Areas.QuanLySoChuyenMau.Models
         public string DenNgay { get; set; }
         public long QuyenSo { get; set; }
         public IEnumerable<SoChuyenMauOutputModel> NoiDung { get; set; }
+        public User CreatedBy { get; set; }
     }
 }

@@ -49,6 +49,7 @@ namespace IERSystem.BusinessLogic.TableForms
             req.NoiLayMau = input_request.DiaChiLayMau;
             req.NgayLayMau = input_request.NgayLayMau;
             req.NgayTaoHD = today;
+            req.UserId = input_request.CreatedBy.Id;
             req.CreatedBy = input_request.CreatedBy;
             req.MauLayHienTruongs = input_request.MauLayHienTruongs.Select((elem) =>
             {

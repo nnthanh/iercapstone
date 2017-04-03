@@ -21,6 +21,7 @@ namespace IERSystem.Areas.QuanLySoChuyenMau.Controllers
             {
                 try
                 {
+                    cacsonhanmau_inp.CreatedBy = db.Users.Find((int)Session["loggedId"]);
                     CacSoChuyenMauAPIImpl.CreateModel(cacsonhanmau_inp, db);
                     db.SaveChanges();
                     Console.WriteLine("OK");
