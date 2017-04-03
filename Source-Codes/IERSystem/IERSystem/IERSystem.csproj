@@ -286,13 +286,14 @@
     <Compile Include="Areas\QuanLySoChuyenMau\BusinessLogic\TableForms\MauLayHienTruongAPIImpl.cs" />
     <Compile Include="Areas\QuanLySoChuyenMau\BusinessLogic\TableForms\SoChuyenMauAPIImpl.cs" />
     <Compile Include="Areas\QuanLySoChuyenMau\Controllers\APIController.cs" />
+    <Compile Include="Areas\QuanLySoChuyenMau\Models\SoChuyenMauOpenInputModel.cs" />
     <Compile Include="Areas\QuanLySoChuyenMau\Models\MauPTAdderInputModel.cs" />
     <Compile Include="Areas\QuanLySoChuyenMau\Models\MauPTToBeAddedInputModel.cs" />
     <Compile Include="Areas\QuanLySoChuyenMau\Models\MauPTToBeAddedOutputModel.cs" />
-    <Compile Include="Areas\QuanLySoChuyenMau\Models\SoChuyenMauInputModel.cs" />
+    <Compile Include="Areas\QuanLySoChuyenMau\Models\SoChuyenMauCreateInputModel.cs" />
     <Compile Include="Areas\QuanLySoChuyenMau\Models\CacSoChuyenMauOutputModel.cs" />
     <Compile Include="Areas\QuanLySoChuyenMau\Controllers\CacSoChuyenMauController.cs" />
-    <Compile Include="Areas\QuanLySoChuyenMau\Models\SoChuyenMauOutputModel.cs" />
+    <Compile Include="Areas\QuanLySoChuyenMau\Models\SoChuyenMauOpenOutputModel.cs" />
     <Compile Include="Areas\QuanLySoChuyenMau\QuanLySoChuyenMauAreaRegistration.cs" />
     <Compile Include="Areas\QuanLySoNhanMau\BusinessLogic\TableForms\CacSoNhanMauAPIImpl.cs" />
     <Compile Include="Areas\QuanLySoNhanMau\BusinessLogic\TableForms\MauLayHienTruongAPIImpl.cs" />

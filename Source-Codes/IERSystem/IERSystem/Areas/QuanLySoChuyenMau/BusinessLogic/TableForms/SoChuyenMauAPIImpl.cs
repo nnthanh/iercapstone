@@ -10,6 +10,38 @@ namespace IERSystem.BusinessLogic.TableForms
 {
     public static partial class SoChuyenMauAPIImpl
     {
+        public static SoChuyenMauOpenOutputModel FetchSoChuyenMau(long id, IERSystemModelContainer db)
+        {
+            try
+            {
+                var target_sochuyenmau = db.CacSoChuyenMaus.Single((snm) => snm.Id == id);
+                return new SoChuyenMauOpenOutputModel()
+                {
+                    //nthoang: QuyenSo should start from 1
+                    QuyenSo = target_sochuyenmau.Id,
+                    TuNgay = target_sochuyenmau.TuNgay.ToShortDateString(),
+                    DenNgay = target_sochuyenmau.DenNgay.ToShortDateString(),
+                    NoiDung = new List<SoChuyenMauOpenRowOutputModel>(target_sochuyenmau.SoChuyenMaus.Select((scm_row) =>
+                        new SoChuyenMauOpenRowOutputModel()
+                        {
+                            NguoiGiaoMau = "N/A",
+                            NguoiNhanMau = "N/A",
+                            MaMau = scm_row.MauLayHienTruong.MaMau,
+                            MaKhachHang = scm_row.MauLayHienTruong.PhieuYeuCau.MaDon,
+                            NgayGiao = scm_row.NgayGiaoMau.ToShortDateString(),
+                            NgayTraKQ = scm_row.NgayTraKQ.ToShortDateString(),
+                            ChiTieuThuNghiem = String.Join(", ", scm_row.MauLayHienTruong.ChiTieuPhanTiches.Select((item) => item.TenChiTieu))
+                        }
+                    ))
+                };
+            }
+            catch (InvalidOperationException e)
+            {
+                throw e;
+            }
+        }
+
+
         public static void AddMauPT(MauPTAdderInputModel mauptadd_inp, IERSystemModelContainer db)
         {
             try

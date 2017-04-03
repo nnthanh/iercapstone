@@ -6,7 +6,7 @@ using System.Text;
 
 namespace IERSystem.Areas.QuanLySoChuyenMau.Models
 {
-    public class SoChuyenMauInputModel
+    public class SoChuyenMauCreateInputModel
     {
         public int Nam { get; set; }
         public int TuThang { get; set; }

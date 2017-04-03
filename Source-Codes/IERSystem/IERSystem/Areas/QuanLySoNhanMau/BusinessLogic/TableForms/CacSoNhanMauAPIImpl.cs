@@ -24,12 +24,12 @@ namespace IERSystem.BusinessLogic.TableForms
         public static async Task<IEnumerable<CacSoNhanMauOutputModel>> CreateView(IERSystemModelContainer db)
         {
             var queried_async = await db.CacSoNhanMaus.ToListAsync();
-            return queried_async.Select((cacsonhanmau_model, index) =>
+            return queried_async.Select((cacsonhanmau_model) =>
             {
                 return new CacSoNhanMauOutputModel()
                 {
                     //nthoang: QuyenSo should start from 1
-                    QuyenSo = index + 1,
+                    QuyenSo = cacsonhanmau_model.Id,
                     TuNgay = cacsonhanmau_model.TuNgay.ToShortDateString(),
                     DenNgay = cacsonhanmau_model.DenNgay.ToShortDateString()
                 };
