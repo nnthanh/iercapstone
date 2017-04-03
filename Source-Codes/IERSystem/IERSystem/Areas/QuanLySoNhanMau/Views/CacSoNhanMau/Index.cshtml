@@ -54,7 +54,7 @@ else
                 }
             }!
         </strong> Bạn có 5 mẫu mới có thể chuyển vào sổ.
-        <a href="#" onclick="show()"><u>Xem</u></a>
+        <a href="#" onclick="$('#danhsachmaumoi').fadeIn(500)"><u>Xem</u></a>
     </div>
     <!--End of Notification-->
     <!--Noti table-->
@@ -398,8 +398,8 @@ else
                 <h4>Xác nhận hoàn thành hợp đồng?</h4>
                 <h5>Bạn sẽ không để hoàn tác hành động này.</h5>
                 <div class="form-group" align="center">
-                    <button type="button" class="btn btn-success" data-dismiss="modal"><span class="fa fa-check"></span></button>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="fa fa-close"></span></button>
+                    <button type="button" class="btn btn-success" data-dismiss="modal" onclick="compContractSucNoti()"><span class="fa fa-check"></span></button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="compContractFailNoti()"><span class="fa fa-close"></span></button>
                 </div>
             </div>
         </div>
@@ -510,14 +510,73 @@ else
         });
     </script>
     <script>
-        function show() {
-            document.getElementById("danhsachmaumoi").style.display = "none";
-            document.getElementById("danhsachmaumoi").style.display = "block";
-        }
-    </script>
-    <script>
         $(document).ready(function () {
             $('[data-toggle="tooltip"]').tooltip();
+            
         });
+        $(function () {
+            $('#myNoti').hide().fadeIn(1000);   
+        });
+
+        function delSucNoti()
+        {
+            new PNotify({
+                title: 'Thành công',
+                text: 'xóa mẫu thành công khỏi dữ liệu.',
+                type: 'success',
+                styling: 'bootstrap3'
+            })
+        }
+
+        function compContractSucNoti() {
+            new PNotify({
+                title: 'Thành công',
+                text: 'đã đánh dấu hợp đồng đã hoàn tất.',
+                type: 'success',
+                styling: 'bootstrap3'
+            })
+        }
+
+        function addItem() {
+            new PNotify({
+                title: 'Thành công',
+                text: 'thêm mẫu thành công vào dữ liệu.',
+                type: 'success',
+                styling: 'bootstrap3'
+            })
+        }
+
+        function delFailNoti() {
+            new PNotify({
+                title: 'Hủy',
+                text: 'mẫu không được xóa khỏi dữ liệu.',
+                styling: 'bootstrap3'
+            });
+        }
+
+        function compContractFailNoti() {
+            new PNotify({
+                title: 'Hủy',
+                text: 'hợp đồng không được đánh dấu hoàn thành.',
+                styling: 'bootstrap3'
+            })
+        }
+
+        function addItemFail() {
+            new PNotify({
+                title: 'Hủy',
+                text: 'mẫu không được thêm vào dữ liệu.',
+                styling: 'bootstrap3'
+            })
+        }
+
+        function returnItem() {
+            new PNotify({
+                title: 'Thông báo',
+                text: 'mẫu đã được hoàn trả.',
+                type: 'info',
+                styling: 'bootstrap3'
+            });
+        }
     </script>
 }

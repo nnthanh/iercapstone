@@ -4931,6 +4931,9 @@
     <Content Include="Areas\Administrator\vendors\jqvmap\REGIONS.md" />
     <Content Include="Areas\Administrator\Views\QuanLyKhachHang\Index.cshtml" />
     <Content Include="Areas\QuanLyKetQuaPhanTich\Views\SoKQThuNghiem\AddResult.cshtml" />
+    <Content Include="Areas\QuanLyKetQuaPhanTich\Views\FormKQ\Details.cshtml" />
+    <Content Include="Areas\QuanLyKetQuaPhanTich\Views\FormKQ\Create.cshtml" />
+    <Content Include="Areas\QuanLyKetQuaPhanTich\Views\FormKQ\Edit.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

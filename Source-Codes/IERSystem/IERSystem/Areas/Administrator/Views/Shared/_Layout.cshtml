@@ -174,61 +174,43 @@
                                 @{
                                     if ((Boolean)Session["isAdmin"] == true)
                                     {
-                                        <a><i class="fa fa-home"></i> Quản trị <span class="fa fa-chevron-down"></span></a>
-                                        <ul class="nav child_menu">
-                                            <li>
-                                                <a href="~/Administrator/User/Index">Người dùng</a>
-                                            </li>
-                                            <li>
-                                                <a href="~/Administrator/User/Index">Phòng ban</a>
-                                            </li>
-                                            <li>
-                                                <a href="~/Administrator/User/Index">Thiết bị</a>
-                                            </li>
-                                        </ul>
+                                        <li><a href="~/Administrator/DashBoard/Index"><i class="fa fa-home"></i>Trang chủ</a></li>
+                                        <li><a href="~/Administrator/User/Index"><i class="fa fa-user"></i>Người dùng</a></li>
                                     }
                                     else
                                     {
                                         int role = (int)Session["role"];
                                         if (role == 2)
                                         {
-                                      
-                                        <li>
-                                            <a><i class="fa fa-leaf"></i> Quản lý <span class="fa fa-chevron-down"></span></a>                                           
-                                            <ul class="nav child_menu">
-                                                <li>
-                                                    <a href="~/Administrator/QuanLyKhachHang/Index">Khách hàng</a>
-                                                </li>
-                                                <li>
-                                                    <a href="~/Administrator/DashBoard/Index">Mẫu</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        
+                                        <li><a href="~/Administrator/DashBoard/Index"><i class="fa fa-home"></i>Trang chủ</a></li>
+                                        <li><a href="~/Administrator/QuanLyKhachHang/Index"><i class="fa fa-user"></i>Khách hàng</a></li>
                                         <li><a href="~/HopDongLayMau/YeuCauLayMau/Index"><i class="fa fa-briefcase"></i> Hợp đồng lấy mẫu</a></li>
                                         <li><a href="~/QuanLySoNhanMau/CacSoNhanMau/Index"><i class="fa fa-book"></i> Sổ nhận mẫu</a></li>
                                         <li><a href="~/QuanLySoChuyenMau/CacSoChuyenMau/Index"><i class="fa fa-book"></i> Sổ chuyển mẫu</a></li>
                                         <li><a href="~/QuanLyKetQuaPhanTich/SoKQThuNghiem/Index"><i class="fa fa-book"></i> Sổ kết quả thử nghiệm</a></li>
                                         <li><a href="~/QuanLyKetQuaPhanTich/FormKQ/Index"><i class="fa fa-retweet"></i> Phiếu kết quả</a></li>
-                                        <li><a href="~/Administrator/FormKQ/Index"><i class="fa fa-retweet"></i> Form kết quả</a></li>
+                                       
 
                                         }
                                         if (role == 3)
                                         {
-                                            <li><a href="~/HopDongLayMau/YeuCauLayMau/Index"><i class="fa fa-home"></i> Hợp đồng lấy mẫu</a></li>
-                                            <li><a href="~/QuanLySoNhanMau/CacSoNhanMau/Index"><i class="fa fa-home"></i> Sổ nhận mẫu</a></li>
-                                            <li><a href="~/QuanLySoChuyenMau/CacSoChuyenMau/Index"><i class="fa fa-home"></i> Sổ chuyển mẫu</a></li>
-                                            <li><a href="~/BaoGiaChiTieu/MauBaoGia/Upload"><i class="fa fa-home"></i> Mau bao gia</a></li>
-                                            <li><a href="~/Administrator/FormKQ/Index"><i class="fa fa-home"></i> Form kết quả</a></li>
+                                            <li><a href="~/Administrator/DashBoard/Index"><i class="fa fa-home"></i>Trang chủ</a></li>
+                                            <li><a href="~/HopDongLayMau/YeuCauLayMau/Index"><i class="fa fa-briefcase"></i> Hợp đồng lấy mẫu</a></li>
+                                            <li><a href="~/QuanLySoNhanMau/CacSoNhanMau/Index"><i class="fa fa-book"></i> Sổ nhận mẫu</a></li>
+                                            <li><a href="~/QuanLySoChuyenMau/CacSoChuyenMau/Index"><i class="fa fa-book"></i> Sổ chuyển mẫu</a></li>
+                                            <li><a href="~/BaoGiaChiTieu/MauBaoGia/Upload"><i class="fa fa-home"></i> Mẫu báo giá</a></li>
+                                            <li><a href="~/Administrator/FormKQ/Index"><i class="fa fa-retweet"></i> Phiếu kết quả</a></li>
                                         }
                                         if (role == 4)
                                         {
-                                            <li><a href="~/QuanLySoChuyenMau/CacSoChuyenMau/Index"><i class="fa fa-home"></i> Sổ chuyển mẫu</a></li>
-                                            <li><a href="~/QuanLyKetQuaPhanTich/SoKQThuNghiem/Index"><i class="fa fa-home"></i> Sổ kết quả thử nghiệm</a></li>
+                                            <li><a href="~/Administrator/DashBoard/Index"><i class="fa fa-home"></i>Trang chủ</a></li>
+                                            <li><a href="~/QuanLySoChuyenMau/CacSoChuyenMau/Index"><i class="fa fa-book"></i> Sổ chuyển mẫu</a></li>
+                                            <li><a href="~/QuanLyKetQuaPhanTich/SoKQThuNghiem/Index"><i class="fa fa-book"></i> Sổ kết quả thử nghiệm</a></li>
                                         }
                                         if (role == 5)
                                         {
-                                             <li><a href="~/QuanLyKetQuaPhanTich/FormKQ/Index"><i class="fa fa-home"></i> Phiếu kết quả</a></li>
+                                            <li><a href="~/Administrator/DashBoard/Index"><i class="fa fa-home"></i>Trang chủ</a></li>
+                                             <li><a href="~/QuanLyKetQuaPhanTich/FormKQ/Index"><i class="fa fa-retweet"></i> Phiếu kết quả</a></li>
                                         }
                                     }
 
@@ -683,37 +665,7 @@
         });
     </script>
     <!-- /Datatables -->
-    <!-- validator -->
-    <script>
-        // initialize the validator function
-        validator.message.date = 'Không phải ngày thật';
 
-        // validate a field on "blur" event, a 'select' on 'change' event & a '.reuired' classed multifield on 'keyup':
-        $('form')
-          .on('blur', 'input[required], input.optional, select.required', validator.checkField)
-          .on('change', 'select.required', validator.checkField)
-          .on('keypress', 'input[required][pattern]', validator.keypress);
-
-        $('.multi.required').on('keyup blur', 'input', function () {
-            validator.checkField.apply($(this).siblings().last()[0]);
-        });
-
-        $('form').submit(function (e) {
-            e.preventDefault();
-            var submit = true;
-
-            // evaluate the form using generic validaing
-            if (!validator.checkAll($(this))) {
-                submit = false;
-            }
-
-            if (submit)
-                this.submit();
-
-            return false;
-        });
-    </script>
-    <!-- /validator -->
     <!-- jVectorMap -->
     <script src="~/Areas/Administrator/Content/js/maps/jquery-jvectormap-world-mill-en.js"></script>
     <script src="~/Areas/Administrator/Content/js/maps/jquery-jvectormap-us-aea-en.js"></script>
@@ -738,35 +690,7 @@
         });
     </script>
     <!-- /jVectorMap -->
-    <!-- PNotify -->
-    @*<script>
-        $(document).ready(function () {
-            new PNotify({
-                title: "PNotify",
-                type: "info",
-                text: "Welcome. Try hovering over me. You can click things behind me, because I'm non-blocking.",
-                nonblock: {
-                    nonblock: true
-                },
-                addclass: 'dark',
-                styling: 'bootstrap3',
-                hide: false,
-                before_close: function (PNotify) {
-                    PNotify.update({
-                        title: PNotify.options.title + " - Enjoy your Stay",
-                        before_close: null
-                    });
 
-                    PNotify.queueRemove();
-
-                    return false;
-                }
-            });
-
-        });
-    </script>*@
-    <!-- /PNotify -->
-    
     @RenderSection("scripts", required: false)
 </body>
 </html>
