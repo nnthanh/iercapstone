@@ -17,6 +17,12 @@ namespace IERSystem.BusinessLogic.TableForms
         public string ErrMsg { get; set; }
     }
 
+    public class GetDBResponse<T>
+    {
+        public bool IsOK { get; set; }
+        public T Data { get; set; }
+    }
+
     public static partial class HopDongLayMauAPIImpl
     {
         public static void CreateModel(YeuCauLayMauInputModel input_request, IERSystemModelContainer db)

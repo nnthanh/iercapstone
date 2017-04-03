@@ -181,6 +181,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Areas\Administrator\Controllers\DashBoardController.cs" />
+    <Compile Include="Areas\Administrator\Controllers\QuanLyKhachHangController.cs" />
     <Compile Include="Areas\Administrator\Controllers\UserController.cs" />
     <Compile Include="Areas\Administrator\Models\CacSoChuyenMau.cs">
       <DependentUpon>IERSystemModel.tt</DependentUpon>
@@ -285,13 +286,14 @@
     <Compile Include="Areas\QuanLySoChuyenMau\BusinessLogic\TableForms\MauLayHienTruongAPIImpl.cs" />
     <Compile Include="Areas\QuanLySoChuyenMau\BusinessLogic\TableForms\SoChuyenMauAPIImpl.cs" />
     <Compile Include="Areas\QuanLySoChuyenMau\Controllers\APIController.cs" />
+    <Compile Include="Areas\QuanLySoChuyenMau\Models\SoChuyenMauOpenInputModel.cs" />
     <Compile Include="Areas\QuanLySoChuyenMau\Models\MauPTAdderInputModel.cs" />
     <Compile Include="Areas\QuanLySoChuyenMau\Models\MauPTToBeAddedInputModel.cs" />
     <Compile Include="Areas\QuanLySoChuyenMau\Models\MauPTToBeAddedOutputModel.cs" />
-    <Compile Include="Areas\QuanLySoChuyenMau\Models\SoChuyenMauInputModel.cs" />
+    <Compile Include="Areas\QuanLySoChuyenMau\Models\SoChuyenMauCreateInputModel.cs" />
     <Compile Include="Areas\QuanLySoChuyenMau\Models\CacSoChuyenMauOutputModel.cs" />
     <Compile Include="Areas\QuanLySoChuyenMau\Controllers\CacSoChuyenMauController.cs" />
-    <Compile Include="Areas\QuanLySoChuyenMau\Models\SoChuyenMauOutputModel.cs" />
+    <Compile Include="Areas\QuanLySoChuyenMau\Models\SoChuyenMauOpenOutputModel.cs" />
     <Compile Include="Areas\QuanLySoChuyenMau\QuanLySoChuyenMauAreaRegistration.cs" />
     <Compile Include="Areas\QuanLySoNhanMau\BusinessLogic\TableForms\CacSoNhanMauAPIImpl.cs" />
     <Compile Include="Areas\QuanLySoNhanMau\BusinessLogic\TableForms\MauLayHienTruongAPIImpl.cs" />
@@ -302,8 +304,9 @@
     <Compile Include="Areas\QuanLySoNhanMau\Models\MauPTAdderInputModel.cs" />
     <Compile Include="Areas\QuanLySoNhanMau\Models\MauPTToBeAddedInputModel.cs" />
     <Compile Include="Areas\QuanLySoNhanMau\Models\MauPTToBeAddedOutputModel.cs" />
-    <Compile Include="Areas\QuanLySoNhanMau\Models\SoNhanMauInputModel.cs" />
-    <Compile Include="Areas\QuanLySoNhanMau\Models\SoNhanMauOutputModel.cs" />
+    <Compile Include="Areas\QuanLySoNhanMau\Models\SoNhanMauCreateInputModel.cs" />
+    <Compile Include="Areas\QuanLySoNhanMau\Models\SoNhanMauOpenInputModel.cs" />
+    <Compile Include="Areas\QuanLySoNhanMau\Models\SoNhanMauOpenOutputModel.cs" />
     <Compile Include="Areas\QuanLySoNhanMau\QuanLySoNhanMauAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -3992,6 +3995,7 @@
     <Content Include="Areas\Administrator\vendors\validator\validator.html" />
     <Content Include="Areas\Administrator\vendors\validator\validator.js" />
     <Content Include="Areas\Administrator\vendors\validator\validator.min.js" />
+    <Content Include="Areas\Administrator\vendors\vuejs\vue.min.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -4926,6 +4930,11 @@
     <Content Include="Areas\Administrator\vendors\jqvmap\package.json" />
     <Content Include="Areas\Administrator\vendors\jqvmap\README.md" />
     <Content Include="Areas\Administrator\vendors\jqvmap\REGIONS.md" />
+    <Content Include="Areas\Administrator\Views\QuanLyKhachHang\Index.cshtml" />
+    <Content Include="Areas\QuanLyKetQuaPhanTich\Views\SoKQThuNghiem\AddResult.cshtml" />
+    <Content Include="Areas\QuanLyKetQuaPhanTich\Views\FormKQ\Details.cshtml" />
+    <Content Include="Areas\QuanLyKetQuaPhanTich\Views\FormKQ\Create.cshtml" />
+    <Content Include="Areas\QuanLyKetQuaPhanTich\Views\FormKQ\Edit.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

@@ -18,22 +18,20 @@
         <EntityTypeShape EntityType="IERSystemModel.CacSoChuyenMau" Width="2.125" PointX="7.375" PointY="0.75" />
         <AssociationConnector Association="IERSystemModel.CacSoChuyenMauSoChuyenMau" />
         <EntityTypeShape EntityType="IERSystemModel.KQThuNghiemMau" Width="2" PointX="3.375" PointY="10.75" />
-        <EntityTypeShape EntityType="IERSystemModel.SoKQThuNghiem" Width="1.875" PointX="0.75" PointY="6.5" />
+        <EntityTypeShape EntityType="IERSystemModel.SoKQThuNghiem" Width="1.875" PointX="0.75" PointY="6.5" IsExpanded="true" />
         <AssociationConnector Association="IERSystemModel.SoKQThuNghiemKQThuNghiemMau" />
         <EntityTypeShape EntityType="IERSystemModel.FormKQ" Width="1.5" PointX="5" PointY="14.125" />
         <AssociationConnector Association="IERSystemModel.MauLayHienTruong_SoChuyenMau" />
-        <AssociationConnector Association="IERSystemModel.SoChuyenMau_ChiTieuPhanTich" ManuallyRouted="false" >
-        </AssociationConnector>
         <AssociationConnector Association="IERSystemModel.SoKQThuNghiem_MauLayHienTruong" />
         <EntityTypeShape EntityType="IERSystemModel.NhomChiTieu" Width="1.5" PointX="10" PointY="10" />
         <AssociationConnector Association="IERSystemModel.NhomChiTieu_ChiTieuPhanTich" />
-        <AssociationConnector Association="IERSystemModel.KQThuNghiemMau_ChiTieuPhanTich" />
         <AssociationConnector Association="IERSystemModel.SoKQThuNghiem_FormKQ" />
         <EntityTypeShape EntityType="IERSystemModel.RoleMaster" Width="1.5" PointX="10.75" PointY="1" />
         <EntityTypeShape EntityType="IERSystemModel.User" Width="1.5" PointX="13" PointY="1.875" />
         <AssociationConnector Association="IERSystemModel.RoleMasterUser" />
         <EntityTypeShape EntityType="IERSystemModel.RoleMatrix" PointX="13" PointY="5" Width="1.5" />
         <AssociationConnector Association="IERSystemModel.RoleMasterRoleMatrix" />
+        <AssociationConnector Association="IERSystemModel.KQThuNghiemMau_ChiTieuPhanTich" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

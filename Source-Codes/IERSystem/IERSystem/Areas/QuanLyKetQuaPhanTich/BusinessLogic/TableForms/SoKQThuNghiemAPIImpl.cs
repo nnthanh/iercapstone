@@ -55,13 +55,15 @@ namespace IERSystem.BusinessLogic.TableForms
                     NgayTraMau = target_mau.PhieuYeuCau.NgayHenTraKQ
                 };
                 foreach (var chitieu in target_mau.ChiTieuPhanTiches) {
-                    newkqthunghiem.KQThuNghiemMaus.Add(new KQThuNghiemMau()
+                    var kqitem = new KQThuNghiemMau()
                     {
                         ChiTieuPhanTich = chitieu,
                         DonVi = "",
                         KetQua = "",
                         NguoiThucHien = "N/A",
-                    });
+                    };
+                    db.KQThuNghiemMaus.Add(kqitem);
+                    newkqthunghiem.KQThuNghiemMaus.Add(kqitem);
                 }
                 db.SoKQThuNghiems.Add(newkqthunghiem);
             }
