@@ -2,13 +2,11 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 03/25/2017 11:48:49
+-- Date Created: 04/03/2017 07:31:45
 -- Generated from EDMX file: D:\Code\iercapstone\Source-Codes\IERSystem\IERSystem\Areas\Administrator\Models\IERSystemModel.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
-GO
-USE [master];
 GO
 IF SCHEMA_ID(N'dbo') IS NULL EXECUTE(N'CREATE SCHEMA [dbo]');
 GO
@@ -132,6 +130,7 @@ CREATE TABLE [dbo].[PhieuYeuCaus] (
     [MaDon] nvarchar(max)  NOT NULL,
     [MaSoThue] nvarchar(max)  NULL,
     [NgayTaoHD] datetime  NOT NULL,
+    [EditedDate] datetime  NULL,
     [NoiLayMau] nvarchar(max)  NOT NULL,
     [PhiThiNghiemTamTinh] decimal(18,0)  NULL,
     [SoDienThoai] nvarchar(max)  NULL,
@@ -139,7 +138,8 @@ CREATE TABLE [dbo].[PhieuYeuCaus] (
     [TenDaiDien] nvarchar(max)  NULL,
     [TenKhachHang] nvarchar(max)  NULL,
     [NgayLayMau] datetime  NOT NULL,
-    [NgayHenTraKQ] datetime  NOT NULL
+    [NgayHenTraKQ] datetime  NOT NULL,
+    [UserId] int  NOT NULL
 );
 GO
 
@@ -175,6 +175,7 @@ CREATE TABLE [dbo].[SoNhanMaus] (
     [NgayNhanMau] datetime  NOT NULL,
     [NgayTraKQ] datetime  NOT NULL,
     [CacSoNhanMauId] bigint  NOT NULL,
+    [UserId] int  NOT NULL,
     [MauLayHienTruong_Id] bigint  NOT NULL
 );
 GO
@@ -183,7 +184,9 @@ GO
 CREATE TABLE [dbo].[CacSoNhanMaus] (
     [Id] bigint IDENTITY(1,1) NOT NULL,
     [TuNgay] datetime  NOT NULL,
-    [DenNgay] datetime  NOT NULL
+    [DenNgay] datetime  NOT NULL,
+    [CreatedDate] datetime  NOT NULL,
+    [UserId] int  NOT NULL
 );
 GO
 
@@ -195,6 +198,7 @@ CREATE TABLE [dbo].[SoChuyenMaus] (
     [NgayGiaoMau] datetime  NOT NULL,
     [NgayTraKQ] datetime  NOT NULL,
     [CacSoChuyenMauId] bigint  NOT NULL,
+    [UserId] int  NOT NULL,
     [MauLayHienTruong_Id] bigint  NOT NULL
 );
 GO
@@ -202,8 +206,10 @@ GO
 -- Creating table 'CacSoChuyenMaus'
 CREATE TABLE [dbo].[CacSoChuyenMaus] (
     [Id] bigint IDENTITY(1,1) NOT NULL,
+    [CreatedDate] datetime  NOT NULL,
     [TuNgay] datetime  NOT NULL,
-    [DenNgay] datetime  NOT NULL
+    [DenNgay] datetime  NOT NULL,
+    [UserId] int  NOT NULL
 );
 GO
 
@@ -610,6 +616,76 @@ ADD CONSTRAINT [FK_RoleMasterRoleMatrix]
 CREATE INDEX [IX_FK_RoleMasterRoleMatrix]
 ON [dbo].[RoleMatrices]
     ([RoleMasterId]);
+GO
+
+-- Creating foreign key on [UserId] in table 'CacSoChuyenMaus'
+ALTER TABLE [dbo].[CacSoChuyenMaus]
+ADD CONSTRAINT [FK_UserCacSoChuyenMau]
+    FOREIGN KEY ([UserId])
+    REFERENCES [dbo].[Users]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_UserCacSoChuyenMau'
+CREATE INDEX [IX_FK_UserCacSoChuyenMau]
+ON [dbo].[CacSoChuyenMaus]
+    ([UserId]);
+GO
+
+-- Creating foreign key on [UserId] in table 'CacSoNhanMaus'
+ALTER TABLE [dbo].[CacSoNhanMaus]
+ADD CONSTRAINT [FK_UserCacSoNhanMau]
+    FOREIGN KEY ([UserId])
+    REFERENCES [dbo].[Users]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_UserCacSoNhanMau'
+CREATE INDEX [IX_FK_UserCacSoNhanMau]
+ON [dbo].[CacSoNhanMaus]
+    ([UserId]);
+GO
+
+-- Creating foreign key on [UserId] in table 'PhieuYeuCaus'
+ALTER TABLE [dbo].[PhieuYeuCaus]
+ADD CONSTRAINT [FK_UserPhieuYeuCau]
+    FOREIGN KEY ([UserId])
+    REFERENCES [dbo].[Users]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_UserPhieuYeuCau'
+CREATE INDEX [IX_FK_UserPhieuYeuCau]
+ON [dbo].[PhieuYeuCaus]
+    ([UserId]);
+GO
+
+-- Creating foreign key on [UserId] in table 'SoChuyenMaus'
+ALTER TABLE [dbo].[SoChuyenMaus]
+ADD CONSTRAINT [FK_UserSoChuyenMau]
+    FOREIGN KEY ([UserId])
+    REFERENCES [dbo].[Users]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_UserSoChuyenMau'
+CREATE INDEX [IX_FK_UserSoChuyenMau]
+ON [dbo].[SoChuyenMaus]
+    ([UserId]);
+GO
+
+-- Creating foreign key on [UserId] in table 'SoNhanMaus'
+ALTER TABLE [dbo].[SoNhanMaus]
+ADD CONSTRAINT [FK_UserSoNhanMau]
+    FOREIGN KEY ([UserId])
+    REFERENCES [dbo].[Users]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_UserSoNhanMau'
+CREATE INDEX [IX_FK_UserSoNhanMau]
+ON [dbo].[SoNhanMaus]
+    ([UserId]);
 GO
 
 -- --------------------------------------------------

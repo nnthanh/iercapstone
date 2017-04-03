@@ -5,13 +5,13 @@
 }
 
 
-@*@using (Html.BeginForm("Upload", "MauBaoGia", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("Upload", "MauBaoGia", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <input type="file" name="UploadedFile" />
     <input type="submit" name="Submit" id="Submit" value="Upload" />
-}*@
+}
 <!-- page content -->
-<div class="">
+@*@<div class="">
     <div class="page-title">
         <div class="title_left">
             <h3>Upload chỉ tiêu phân tích </h3>
@@ -58,3 +58,4 @@
     </div>
 </div>
 <!-- /page content -->
+*@

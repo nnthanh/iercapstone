@@ -21,10 +21,13 @@ namespace IERSystem.Areas.Administrator.Models
         }
     
         public long Id { get; set; }
+        public System.DateTime CreatedDate { get; set; }
         public System.DateTime TuNgay { get; set; }
         public System.DateTime DenNgay { get; set; }
+        public int UserId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SoChuyenMau> SoChuyenMaus { get; set; }
+        public virtual User CreatedBy { get; set; }
     }
 }

@@ -56,6 +56,7 @@ namespace IERSystem.Controllers
                     //await SignInAsync(user, model.RememberMe);
                     //return RedirectToLocal(returnUrl);
                     Session["loggedUser"] = user.Username;
+                    Session["loggedID"] = user.Id;
                     Session["role"] = user.RoleMasterId;
                     if (IsAdmin(user.Id))
                     {

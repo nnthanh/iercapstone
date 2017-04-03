@@ -24,6 +24,7 @@ namespace IERSystem.BusinessLogic.TableForms
             var today_dep = DateTime.Now.Date;
             var encoded_inp_req = HopDongLayMauEncoding.Encode(input_request, db, today_dep);
             var yeucaulaymau_model = convertToModel(input_request, db, today_dep);
+            //yeucaulaymau_model.CreatedBy = (int)Session["loggedID"];
             db.PhieuYeuCaus.Add(yeucaulaymau_model);
         }
 
@@ -48,6 +49,7 @@ namespace IERSystem.BusinessLogic.TableForms
             req.NoiLayMau = input_request.DiaChiLayMau;
             req.NgayLayMau = input_request.NgayLayMau;
             req.NgayTaoHD = today;
+            req.CreatedBy = input_request.CreatedBy;
             req.MauLayHienTruongs = input_request.MauLayHienTruongs.Select((elem) =>
             {
                 var mapped = new MauLayHienTruong();

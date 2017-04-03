@@ -25,6 +25,9 @@ namespace IERSystem.Areas.HopDongLayMau.Models
         public String TenTieuChuanDoiChieu { get; set; }
         public double? PhiThiNghiemTamTinh { get; set; }
         public double? TienKhachHangTraTruoc { get; set; }
+        public User CreatedBy { get; set; }
+        public int? EditedBy { get; set; }
+        public DateTime? EditedDate { get; set; }
         //public Boolean DaGuiMau { get; set; }
         //public uint NamLayHD { get; set; }
 

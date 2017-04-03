@@ -4,14 +4,14 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="828b25fc5ff543bbbad874f3bf4c75d9" Name="Diagram1" ZoomLevel="105" >
+      <Diagram DiagramId="828b25fc5ff543bbbad874f3bf4c75d9" Name="Diagram1" ZoomLevel="79" >
         <EntityTypeShape EntityType="IERSystemModel.PhieuYeuCau" Width="1.75" PointX="0.875" PointY="1.625" />
         <EntityTypeShape EntityType="IERSystemModel.MauLayHienTruong" Width="2.5" PointX="3.375" PointY="5.875" />
         <AssociationConnector Association="IERSystemModel.PhieuYeuCau_MauLayHienTruong" />
         <EntityTypeShape EntityType="IERSystemModel.ChiTieuPhanTich" Width="2.125" PointX="6.625" PointY="8.25" />
         <AssociationConnector Association="IERSystemModel.MauLayHienTruong_ChiTieuPhanTich" />
         <EntityTypeShape EntityType="IERSystemModel.SoNhanMau" Width="1.875" PointX="6.625" PointY="4.25" />
-        <EntityTypeShape EntityType="IERSystemModel.CacSoNhanMau" Width="1.5" PointX="4.375" PointY="2.75" />
+        <EntityTypeShape EntityType="IERSystemModel.CacSoNhanMau" Width="1.5" PointX="15.25" PointY="2.25" />
         <AssociationConnector Association="IERSystemModel.CacSoNhanMau_SoNhanMau" />
         <AssociationConnector Association="IERSystemModel.MauLayHienTruong_SoNhanMau" />
         <EntityTypeShape EntityType="IERSystemModel.SoChuyenMau" Width="2" PointX="9.625" PointY="6.125" IsExpanded="true" />
@@ -32,8 +32,13 @@
         <EntityTypeShape EntityType="IERSystemModel.RoleMaster" Width="1.5" PointX="10.75" PointY="1" />
         <EntityTypeShape EntityType="IERSystemModel.User" Width="1.5" PointX="13" PointY="1.875" />
         <AssociationConnector Association="IERSystemModel.RoleMasterUser" />
-        <EntityTypeShape EntityType="IERSystemModel.RoleMatrix" PointX="13" PointY="5" Width="1.5" />
+        <EntityTypeShape EntityType="IERSystemModel.RoleMatrix" PointX="13" PointY="5.75" Width="1.5" />
         <AssociationConnector Association="IERSystemModel.RoleMasterRoleMatrix" />
+        <AssociationConnector Association="IERSystemModel.UserCacSoChuyenMau" />
+        <AssociationConnector Association="IERSystemModel.UserCacSoNhanMau" />
+        <AssociationConnector Association="IERSystemModel.UserPhieuYeuCau" />
+        <AssociationConnector Association="IERSystemModel.UserSoChuyenMau" />
+        <AssociationConnector Association="IERSystemModel.UserSoNhanMau" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

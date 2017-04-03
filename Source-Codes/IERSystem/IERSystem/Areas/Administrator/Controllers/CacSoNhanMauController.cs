@@ -51,6 +51,8 @@ namespace IERSystem.Areas.Administrator.Controllers
         {
             if (ModelState.IsValid)
             {
+                cacsonhanmau.CreatedBy = db.Users.Find((int)Session["loggedID"]);
+                cacsonhanmau.CreatedDate = DateTime.Now;
                 db.CacSoNhanMaus.Add(cacsonhanmau);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
