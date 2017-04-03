@@ -78,12 +78,11 @@
             url: ' @Url.Action("Create", "API")',
             data: JSON.stringify(formData),
             success: function (res) {
-                if (res.isOk) {
-                    console.log(formData);
+                if (res.IsOK) {
+                    location.href = '@Url.Action("Index", "CacSoChuyenMau")';
                 } else {
-                    console.log(res.errMsg);
+                    alert("Có Lỗi Khi Tạo Sổ Chuyển Mẫu");
                 }
-                location.href = '@Url.Action("Index", "CacSoChuyenMau")'
             },
             dataType: 'json',
             contentType: 'application/json; charset=utf-8'

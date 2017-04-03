@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 03/27/2017 17:17:30
+-- Date Created: 04/03/2017 15:22:16
 -- Generated from EDMX file: E:\Capstone\iercapstone\Source-Codes\IERSystem\IERSystem\Areas\Administrator\Models\IERSystemModel.edmx
 -- --------------------------------------------------
 
@@ -47,9 +47,6 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_NhomChiTieu_ChiTieuPhanTich]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[ChiTieuPhanTiches] DROP CONSTRAINT [FK_NhomChiTieu_ChiTieuPhanTich];
 GO
-IF OBJECT_ID(N'[dbo].[FK_KQThuNghiemMau_ChiTieuPhanTich]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[KQThuNghiemMaus] DROP CONSTRAINT [FK_KQThuNghiemMau_ChiTieuPhanTich];
-GO
 IF OBJECT_ID(N'[dbo].[FK_SoKQThuNghiem_FormKQ]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[FormKQs] DROP CONSTRAINT [FK_SoKQThuNghiem_FormKQ];
 GO
@@ -58,6 +55,9 @@ IF OBJECT_ID(N'[dbo].[FK_RoleMasterUser]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_RoleMasterRoleMatrix]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[RoleMatrices] DROP CONSTRAINT [FK_RoleMasterRoleMatrix];
+GO
+IF OBJECT_ID(N'[dbo].[FK_KQThuNghiemMau_ChiTieuPhanTich]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[KQThuNghiemMaus] DROP CONSTRAINT [FK_KQThuNghiemMau_ChiTieuPhanTich];
 GO
 
 -- --------------------------------------------------

@@ -72,7 +72,7 @@
                                 Nơi lấy mẫu <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input id="NoiLayMau" type="text" name="occupation" data-validate-length-range="5,30" class="form-control col-md-7 col-xs-12" required="required">                   
+                                <input id="DiaChiLayMau" type="text" name="occupation" data-validate-length-range="5,30" class="form-control col-md-7 col-xs-12" required="required">                   
                             </div>
                         </div>
                         <div class="item form-group">
@@ -80,7 +80,7 @@
                                 Địa chỉ <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input id="DiaChi" type="text" name="occupation" data-validate-length-range="5,50" class="form-control col-md-7 col-xs-12" required="required">
+                                <input id="DiaChiKhachHang" type="text" name="occupation" data-validate-length-range="5,50" class="form-control col-md-7 col-xs-12" required="required">
                             </div>           
                         </div>
                         <div class="item form-group">                         
@@ -545,12 +545,11 @@
                 url: ' @Url.Action("Create", "API")',
                 data: JSON.stringify(formData),
                 success: function (res) {
-                    if (res.isOk) {
-                        console.log(formData);
+                    if (res.IsOK) {
+                        location.href = '@Url.Action("Index", "YeuCauLayMau")'
                     } else {
-                        console.log(res.errMsg);
+                        alert("Có lỗi khi thêm mẫu vào sổ nhận mẫu");
                     }
-                    @*location.href = '@Url.Action("Index", "YeuCauLayMau")'*@
                 },
                 dataType: 'json',
                 contentType: 'application/json; charset=utf-8'
