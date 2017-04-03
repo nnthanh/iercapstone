@@ -28,6 +28,8 @@ namespace IERSystem.Areas.QuanLySoNhanMau.Controllers
             if (ModelState.IsValid)
             {
                 var today = DateTime.Now;
+                cacsonhanmau_inp.CreatedBy = db.Users.Find((int)Session["loggedID"]);
+                cacsonhanmau_inp.CreatedDate = DateTime.Now;
                 cacsonhanmau_inp.Nam = today.Year;
                 cacsonhanmau_inp.TuThang = today.Month;
                 cacsonhanmau_inp.DenThang = today.Month;
