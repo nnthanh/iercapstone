@@ -3,6 +3,7 @@ using IERSystem.Areas.HopDongLayMau.Models;
 using IERSystem.BusinessLogic.TableForms;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -36,7 +37,33 @@ namespace IERSystem.Areas.HopDongLayMau.Controllers
             //    return Json(new UpsertDBResponse { IsOK = false, ErrMsg = "" }); 
             //}
         }
-
+        public JsonResult GetCustomer()
+        {
+            ///if (ModelState.IsValid)
+            //{
+                var result =
+                    db.KhachHangs.Select((kh) => kh.TenKhachHang + "/" + kh.DiaChiKhachHang);
+                return Json(new GetDBResponse<IEnumerable<string>>() { IsOK = true, Data = result });
+            //}
+            //else
+            //{
+            //    return Json(new UpsertDBResponse { IsOK = false, ErrMsg = "" });
+            //}
+        }
+        
+        [HttpPost]
+        public JsonResult GetCustomerInfo(GetCustomerInfoInputModel customer_inpmodel)
+        {
+            try {
+                var result = db.KhachHangs.Where((kh) => kh.TenKhachHang.Equals(customer_inpmodel.CustomerName)
+                    && kh.DiaChiKhachHang.Equals(customer_inpmodel.CustomerAddress)).Single();
+                return Json(new GetDBResponse<KhachHang>() { IsOK = true, Data = result });
+            } catch (InvalidOperationException e) {
+                //Throw if name is not unique (Should not be expected)
+                Debug.Assert(false);
+                return Json(new GetDBResponse<KhachHang>() { IsOK = false, Data = null });
+            }
+        }
         protected override void Dispose(bool disposing) {
             if (disposing) {
                 db.Dispose();
