@@ -27,7 +27,7 @@
                             </label>
 
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input id="TenKhachHang" class="form-control col-md-4 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="name" required="required" type="text">                       
+                                <input id="TenKhachHang" class="form-control col-md-4 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="name" required="required" type="text" placeholder="Họ và tên đầy đủ của khách hàng">                       
                             </div>
                                                      
                         </div>
@@ -54,7 +54,7 @@
                                 Số điện thoại <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="tel" id="SoDienThoai" name="phone" required="required" data-validate-length-range="8,20" class="form-control col-md-7 col-xs-12">
+                                <input type="tel" id="SoDienThoai" name="phone" required="required" data-validate-length-range="8,20" class="form-control col-md-7 col-xs-12", placeholder="Chỉ cho phép ký tự số">
                             </div>
                         </div>
                         <div class="item form-group">
@@ -72,7 +72,7 @@
                                 Nơi lấy mẫu <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input id="DiaChiLayMau" type="text" name="occupation" data-validate-length-range="5,30" class="form-control col-md-7 col-xs-12" required="required">                   
+                                <input id="DiaChiLayMau" type="text" name="occupation" data-validate-length-range="5,50" class="form-control col-md-7 col-xs-12" required="required">                   
                             </div>
                         </div>
                         <div class="item form-group">
@@ -88,7 +88,7 @@
                                 Ngày gửi/lấy mẫu <span class="required">*</span>
                             </label>
                             <div class="form-group input-group-sm col-md-6 col-sm-6 col-xs-12">
-                                @Html.TextBoxFor(model => model.NgayLayMau, new { @class = "date-picker form-control col-md-7 col-xs-12 active", placeholder = "Nhập ngày gửi/lấy mẫu vào đây", required = "required", type = "date-picker", id = "NgayLayMau" })                   
+                                @Html.TextBoxFor(model => model.NgayLayMau, new { @class = "date-picker form-control col-md-7 col-xs-12 active", placeholder = "Nhập ngày gửi/lấy mẫu vào đây", required = "required", type = "date", id = "NgayLayMau" })                   
                             </div>
                         </div>
                         <div class="item form-group"> 
@@ -371,7 +371,7 @@
         });
         setTimeout(function () {
             window.location.href = '@Url.Action("Index", "YeuCauLayMau")'
-        }, 2000);
+        }, 1500);
         
     }
 </script>
@@ -380,7 +380,7 @@
     <!--nthoang-PhieuYeuCauThuNghiemView: Editable Table-->
     <!--nthoang-Cac logic lien quan den Bang Mau duoc code tai day-->
     
-<script>
+@*<script>
     $(document).ready(
         function () {
         $('#NgayLayMau').daterangepicker({
@@ -392,7 +392,7 @@
         
             
     });
-</script>
+</script>*@
 
 <script>
     $(document).ready(function () {
@@ -561,7 +561,7 @@
                         });
                         setTimeout(function () {
                             window.location.href = '@Url.Action("Index", "YeuCauLayMau")'
-                        }, 2000);
+                        }, 1500);
                     } else {
                         new PNotify({
                             title: 'Thất bại',
