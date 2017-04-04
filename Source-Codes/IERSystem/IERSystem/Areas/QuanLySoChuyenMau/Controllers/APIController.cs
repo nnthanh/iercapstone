@@ -90,6 +90,7 @@ namespace IERSystem.Areas.QuanLySoChuyenMau.Controllers
             {
                 try
                 {
+                    mauptadd_inp.CreatedBy = db.Users.Find((int)Session["loggedId"]);
                     SoChuyenMauAPIImpl.AddMauPT(mauptadd_inp, db);
                     db.SaveChanges();
                     Console.WriteLine("OK");

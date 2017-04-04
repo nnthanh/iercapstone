@@ -24,17 +24,17 @@ namespace IERSystem.Areas.Administrator.Controllers
             var TongSoHD = db.PhieuYeuCaus.Count();
             ViewBag.TongSoHD = TongSoHD;
             //Dem so hop dong vua tao trong vong 3 ngay
-            var HDMoi = (from r in db.PhieuYeuCaus 
-                         where (SqlFunctions.DateDiff("day", DateTime.Now, r.NgayTaoHD) < 3) 
+            var HDMoi = (from r in db.PhieuYeuCaus
+                         where (DbFunctions.DiffDays(DateTime.Now, r.NgayTaoHD) < 3) 
                          select r).Count();
             ViewBag.HDMoi = HDMoi;
             //Dem so mau da duoc nhan
             var SoMauDaNhan = (from m in db.MauLayHienTruongs where(m.TinhTrang==1)select m).Count();
-            ViewBag.SoMauDaNHan = SoMauDaNhan;
+            ViewBag.SoMauDaNhan = SoMauDaNhan;
             //Dem so mau da nhan trong vong 1 tuan
             var SoMauMoiNhan = (from m in db.MauLayHienTruongs
                                 join so in db.SoNhanMaus on m.Id equals so.MauLayHienTruong.Id
-                                where (m.TinhTrang == 1 && (SqlFunctions.DateDiff("day", DateTime.Now, m.SoNhanMau.NgayNhanMau) < 7)) 
+                                where (m.TinhTrang == 1 && (DbFunctions.DiffDays( DateTime.Now, m.SoNhanMau.NgayNhanMau) < 7)) 
                                 select m).Count();
             ViewBag.SoMauMoiNhan = SoMauMoiNhan;
             //Dem so mau da duoc thi nghiem
@@ -43,7 +43,7 @@ namespace IERSystem.Areas.Administrator.Controllers
             //Dem so mau da duoc thi nghiem trong vong 1 tuan
             var SoMauMoiTN = (from m in db.MauLayHienTruongs
                               join so in db.SoKQThuNghiems on m.Id equals so.MauLayHienTruong.Id
-                              where (m.TinhTrang == 3 && (DateTime.Now - (DateTime)m.SoKQThuNghiem.NgayNhanMau).TotalDays < 7)
+                              where (m.TinhTrang == 3 && (DbFunctions.DiffDays( DateTime.Now, m.SoNhanMau.NgayNhanMau) < 7))
                               select m).Count();
             ViewBag.SoMauMoiTN = SoMauMoiTN;
             return View(await danhsachmau.ToListAsync());

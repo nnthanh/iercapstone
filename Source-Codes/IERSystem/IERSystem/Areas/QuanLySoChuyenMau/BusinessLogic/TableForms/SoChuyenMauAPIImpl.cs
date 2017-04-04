@@ -68,6 +68,8 @@ namespace IERSystem.BusinessLogic.TableForms
                     //nthoang: Then add new SoNhanMau entry to the model
                     target.SoChuyenMaus.Add(new SoChuyenMau()
                     {
+                        CreatedBy = mauptadd_inp.CreatedBy,
+                        UserId = mauptadd_inp.CreatedBy.Id,
                         MauLayHienTruong = mau_tobeadded,
                         NgayGiaoMau = today,
                         NgayTraKQ = mau_tobeadded.PhieuYeuCau.NgayHenTraKQ

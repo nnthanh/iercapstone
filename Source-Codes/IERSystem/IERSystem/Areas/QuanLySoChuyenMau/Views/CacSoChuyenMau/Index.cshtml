@@ -7,15 +7,8 @@
     int role = (int)Session["role"];
 }
 <h2>MỤC LỤC</h2>
-@if (role == 2 || role == 4)
-{
-    <input type="button" class="btn btn-info" value="Tạo sổ chuyển mẫu mới" onclick="location.href='@Url.Action("Create", "CacSoChuyenMau")'" disabled />
+<input type="button" class="btn btn-info" value="Tạo sổ chuyển mẫu mới" onclick="location.href='@Url.Action("Create", "CacSoChuyenMau")'" />
 
-}
-else
-{
-    <input type="button" class="btn btn-info" value="Tạo sổ chuyển mẫu mới" onclick="location.href='@Url.Action("Create", "CacSoChuyenMau")'" />
-}
 
 <div class="page-title">
     <div class="title-left">

@@ -115,6 +115,7 @@ namespace IERSystem.Areas.QuanLySoNhanMau.Controllers
             {
                 try
                 {
+                    mauptadd_inp.CreateBy = db.Users.Find((int)Session["loggedId"]);
                     SoNhanMauAPIImpl.AddMauPT(mauptadd_inp, db);
                     db.SaveChanges();
                     Console.WriteLine("OK");
