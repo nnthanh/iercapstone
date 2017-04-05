@@ -37,18 +37,12 @@ namespace IERSystem.Areas.HopDongLayMau.Controllers
             //    return Json(new UpsertDBResponse { IsOK = false, ErrMsg = "" }); 
             //}
         }
+        [HttpPost]
         public JsonResult GetCustomer()
         {
-            ///if (ModelState.IsValid)
-            //{
                 var result =
                     db.KhachHangs.Select((kh) => kh.TenKhachHang + "/" + kh.DiaChiKhachHang);
                 return Json(new GetDBResponse<IEnumerable<string>>() { IsOK = true, Data = result });
-            //}
-            //else
-            //{
-            //    return Json(new UpsertDBResponse { IsOK = false, ErrMsg = "" });
-            //}
         }
         
         [HttpPost]
@@ -63,6 +57,44 @@ namespace IERSystem.Areas.HopDongLayMau.Controllers
                 Debug.Assert(false);
                 return Json(new GetDBResponse<KhachHang>() { IsOK = false, Data = null });
             }
+        }
+
+        [HttpPost]
+        public JsonResult GetNumberOfNewContracts()
+        {
+            var expire_date = DateTime.Today.AddDays(-3);
+            try
+            {
+                int count = (from pyc in db.PhieuYeuCaus
+                             where pyc.NgayTaoHD > expire_date
+                             select pyc).Count();
+                return Json(new GetDBResponse<int>() { IsOK = true, Data = count });
+            }
+            catch (InvalidOperationException e)
+            {
+                Debug.Assert(false);
+                return Json(new GetDBResponse<KhachHang>() { IsOK = false, Data = null });
+            }    
+        }
+
+        [HttpPost]
+        public JsonResult GetNewContracts()
+        {
+            var expire_date = DateTime.Today.AddDays(-3);
+            try
+            {
+                var result = from pyc in db.PhieuYeuCaus
+                             where pyc.NgayTaoHD > expire_date
+                             select pyc.MaDon;
+                return Json(new GetDBResponse<IEnumerable<string>>() { IsOK = true, Data = result });
+            }
+            catch (InvalidOperationException e)
+            {
+                Debug.Assert(false);
+                return Json(new GetDBResponse<KhachHang>() { IsOK = false, Data = null });
+            }
+
+            
         }
         protected override void Dispose(bool disposing) {
             if (disposing) {

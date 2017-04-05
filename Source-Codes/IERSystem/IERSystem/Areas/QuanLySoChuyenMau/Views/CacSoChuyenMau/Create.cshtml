@@ -66,6 +66,8 @@
     </div>
 }
 
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
 <script>
     $("#submitBtn").bind("click", function () {
         formData = {
@@ -102,4 +104,5 @@
         });
     });
 
-
+    </script>
+    }
