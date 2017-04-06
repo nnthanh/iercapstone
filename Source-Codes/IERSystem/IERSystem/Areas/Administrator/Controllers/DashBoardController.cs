@@ -19,34 +19,60 @@ namespace IERSystem.Areas.Administrator.Controllers
         // GET: /Administrator/DashBoard/
         public async Task<ActionResult> Index()
         {
+            DashBoardOutputModel dashboardOutput = new DashBoardOutputModel();
             var danhsachmau = db.MauLayHienTruongs.Include(u=>u.PhieuYeuCau);
             //Dem tong so hop dong
             var TongSoHD = db.PhieuYeuCaus.Count();
-            ViewBag.TongSoHD = TongSoHD;
+            dashboardOutput.DanhSachMau = danhsachmau;
+            dashboardOutput.TongSoHD = TongSoHD;
+            //ViewBag.TongSoHD = TongSoHD;
             //Dem so hop dong vua tao trong vong 3 ngay
             var HDMoi = (from r in db.PhieuYeuCaus
                          where (DbFunctions.DiffDays(DateTime.Now, r.NgayTaoHD) < 3) 
                          select r).Count();
-            ViewBag.HDMoi = HDMoi;
+            //ViewBag.HDMoi = HDMoi;
+            dashboardOutput.HopDongMoi = HDMoi;
+            double TiLeHDMoi = 0;
+            double TiLeMauMoi = 0;
+            double TiLeTNMoi = 0;
+            if (TongSoHD != 0)
+            {
+                TiLeHDMoi = HDMoi / TongSoHD*100;
+            }
+            dashboardOutput.TiLeHDMoi = Math.Round(TiLeHDMoi,2);
             //Dem so mau da duoc nhan
             var SoMauDaNhan = (from m in db.MauLayHienTruongs where(m.TinhTrang==1)select m).Count();
-            ViewBag.SoMauDaNhan = SoMauDaNhan;
+            //ViewBag.SoMauDaNhan = SoMauDaNhan;
+            dashboardOutput.SoMauDaNhan = SoMauDaNhan;
             //Dem so mau da nhan trong vong 1 tuan
             var SoMauMoiNhan = (from m in db.MauLayHienTruongs
                                 join so in db.SoNhanMaus on m.Id equals so.MauLayHienTruong.Id
                                 where (m.TinhTrang == 1 && (DbFunctions.DiffDays( DateTime.Now, m.SoNhanMau.NgayNhanMau) < 7)) 
                                 select m).Count();
-            ViewBag.SoMauMoiNhan = SoMauMoiNhan;
+            //ViewBag.SoMauMoiNhan = SoMauMoiNhan;
+            dashboardOutput.SoMauMoiNhan = SoMauMoiNhan;
+            if(SoMauDaNhan!=0)
+            {
+                TiLeMauMoi = SoMauMoiNhan/SoMauDaNhan*100;
+            }
+            dashboardOutput.TiLeMauMoi = Math.Round(TiLeMauMoi,2);
             //Dem so mau da duoc thi nghiem
             var SoMauDaDuocTN = (from m in db.MauLayHienTruongs where(m.TinhTrang==3)select m).Count();
-            ViewBag.SoMauDaDuocTN = SoMauDaDuocTN;
+            //ViewBag.SoMauDaDuocTN = SoMauDaDuocTN;
+            dashboardOutput.SoMauDaTN = SoMauDaDuocTN;
             //Dem so mau da duoc thi nghiem trong vong 1 tuan
             var SoMauMoiTN = (from m in db.MauLayHienTruongs
                               join so in db.SoKQThuNghiems on m.Id equals so.MauLayHienTruong.Id
                               where (m.TinhTrang == 3 && (DbFunctions.DiffDays( DateTime.Now, m.SoNhanMau.NgayNhanMau) < 7))
                               select m).Count();
-            ViewBag.SoMauMoiTN = SoMauMoiTN;
-            return View(await danhsachmau.ToListAsync());
+            //ViewBag.SoMauMoiTN = SoMauMoiTN;
+            dashboardOutput.SoMauMoiTN = SoMauMoiTN;
+            if (SoMauDaDuocTN != 0)
+            {
+                TiLeTNMoi = SoMauMoiTN / SoMauDaDuocTN * 100;
+            }
+            dashboardOutput.TiLeTNMoi = Math.Round(TiLeTNMoi, 2);
+            return View(dashboardOutput);
         }
 
         protected override void Dispose(bool disposing)

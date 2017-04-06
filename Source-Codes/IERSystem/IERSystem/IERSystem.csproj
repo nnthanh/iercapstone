@@ -192,6 +192,7 @@
     <Compile Include="Areas\Administrator\Models\ChiTieuPhanTich.cs">
       <DependentUpon>IERSystemModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Areas\Administrator\Models\DashBoardOutput.cs" />
     <Compile Include="Areas\Administrator\Models\FormKQ.cs">
       <DependentUpon>IERSystemModel.tt</DependentUpon>
     </Compile>

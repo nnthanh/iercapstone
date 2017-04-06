@@ -1,38 +1,26 @@
-﻿@model IEnumerable<IERSystem.Areas.Administrator.Models.MauLayHienTruong>
+﻿@model IERSystem.Areas.Administrator.Models.DashBoardOutputModel
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Administrator/Views/Shared/_Layout.cshtml";
 }
-    @{
-        int Total = ViewBag.TongSoHD;
-        int HopDongMoi = ViewBag.HDMoi;
-        int TiLeHD = HopDongMoi / Total * 100;
 
-        int MauTotal = ViewBag.SoMauDaNhan;
-        int SoMauMoiNhan = ViewBag.SoMauMoiNhan;
-        int TiLeMauNhan = SoMauMoiNhan / MauTotal * 100;
-        
-        int TNTotal = ViewBag.SoMauDaDuocTN;
-        int TNMoi = ViewBag.SoMauMoiTN;
-        int TiLeTN = TNMoi / TNTotal * 100;
-    }
     <!-- top tiles -->
     <div class="row tile_count">
         <div class="col-md-4 col-sm-4 col-xs-6 tile_stats_count">
             <span class="count_top"><i class="fa fa-suitcase"></i> Tổng số hợp đồng</span>
-            <div class="count">@Total</div>
-            <span class="count_bottom"><i class="green">@TiLeHD % </i> Từ tuần trước</span>
+            <div class="count">@Model.HopDongMoi</div>
+            <span class="count_bottom"><i class="green">@Model.TiLeHDMoi % </i> Từ tuần trước</span>
         </div>
         <div class="col-md-4 col-sm-4 col-xs-6 tile_stats_count">
             <span class="count_top"><i class="fa fa-check"></i> Tổng số mẫu nhận</span>
-            <div class="count">@MauTotal</div>
-            <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>@TiLeMauNhan% </i> Từ tuần trước</span>
+            <div class="count">@Model.SoMauDaNhan</div>
+            <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>@Model.TiLeMauMoi% </i> Từ tuần trước</span>
         </div>
         <div class="col-md-4 col-sm-4 col-xs-6 tile_stats_count">
             <span class="count_top"><i class="fa fa-leaf"></i> Mẫu đang được thí nghiệm</span>
-            <div class="count green">@TNTotal</div>
-            <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>@TiLeTN% </i> Từ tuần trước</span>
+            <div class="count green">@Model.SoMauDaTN</div>
+            <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>@Model.TiLeTNMoi% </i> Từ tuần trước</span>
         </div>
     </div>
     <!-- /top tiles -->
@@ -168,72 +156,66 @@
                     </thead>
 
                     <tbody>
-                       <tr class="success">
-                           <td>1</td>
-                           <td>1</td>
-                           <td>1</td>
-                           <td>1</td>
-                           <td>1</td>
-                           <td>1</td>
-                           <td>1</td>
-                           <td>1</td>
-                           <td>1</td>
-                       </tr>
-                        <tr class="warning">
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                        </tr>
-                        <tr class="danger">
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                        </tr>
-                        <tr class="info">
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                        </tr>
-                        <tr class="active">
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                        </tr>
-                        <tr class="default">
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                        </tr>
+                       @foreach(var item in Model.DanhSachMau)
+                       {
+  
+                            switch (item.TinhTrang)
+                            {
+                                case 0: 
+                                    <tr class="default">
+                                        <td>@item.PhieuYeuCau.MaDon</td>
+                                        <td>@item.MaMau</td>
+                                        <td>@item.PhieuYeuCau.TenKhachHang</td>
+                                        <td>@item.PhieuYeuCau.DiaChiKhachHang</td>
+                                        <td>@item.PhieuYeuCau.SoDienThoai</td>
+                                        <td>@item.PhieuYeuCau.NgayTaoHD</td>
+                                        <td>@item.PhieuYeuCau.NgayHenTraKQ</td>
+                                        <td>Khởi tạo</td>
+                                        <td>1</td>
+                                    </tr>
+                                    break;
+                               case 1: 
+                                    <tr class="warning">
+                                        <td>@item.PhieuYeuCau.MaDon</td>
+                                        <td>@item.MaMau</td>
+                                        <td>@item.PhieuYeuCau.TenKhachHang</td>
+                                        <td>@item.PhieuYeuCau.DiaChiKhachHang</td>
+                                        <td>@item.PhieuYeuCau.SoDienThoai</td>
+                                        <td>@item.PhieuYeuCau.NgayTaoHD</td>
+                                        <td>@item.PhieuYeuCau.NgayHenTraKQ</td>
+                                        <td>Đã nhận</td>
+                                        <td>1</td>
+                                    </tr>
+                                    break;
+                                case 2: 
+                                    <tr class="danger">
+                                        <td>@item.PhieuYeuCau.MaDon</td>
+                                        <td>@item.MaMau</td>
+                                        <td>@item.PhieuYeuCau.TenKhachHang</td>
+                                        <td>@item.PhieuYeuCau.DiaChiKhachHang</td>
+                                        <td>@item.PhieuYeuCau.SoDienThoai</td>
+                                        <td>@item.PhieuYeuCau.NgayTaoHD</td>
+                                        <td>@item.PhieuYeuCau.NgayHenTraKQ</td>
+                                        <td>Đã chuyển</td>
+                                        <td>1</td>
+                                    </tr>
+                                    break;
+                                case 3: 
+                                    <tr class="success">
+                                        <td>@item.PhieuYeuCau.MaDon</td>
+                                        <td>@item.MaMau</td>
+                                        <td>@item.PhieuYeuCau.TenKhachHang</td>
+                                        <td>@item.PhieuYeuCau.DiaChiKhachHang</td>
+                                        <td>@item.PhieuYeuCau.SoDienThoai</td>
+                                        <td>@item.PhieuYeuCau.NgayTaoHD</td>
+                                        <td>@item.PhieuYeuCau.NgayHenTraKQ</td>
+                                        <td>Đã có kết quả</td>
+                                        <td>1</td>
+                                    </tr>
+                                    break;
+                                default: break;
+                            }
+                       }
                     </tbody>
                 </table>
             </div>
