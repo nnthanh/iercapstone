@@ -88,31 +88,31 @@
                                 <td>
                                     <p><i class="fa fa-square blue"></i>Hợp đồng </p>
                                 </td>
-                                <td>30</td>
+                                <td>@Model.StatusGraph[0]</td>
                             </tr>
                             <tr>
                                 <td>
                                     <p><i class="fa fa-square green"></i>Nhận </p>
                                 </td>
-                                <td>10</td>
+                                <td>@Model.StatusGraph[1]</td>
                             </tr>
                             <tr>
                                 <td>
                                     <p><i class="fa fa-square purple"></i>Chuyển </p>
                                 </td>
-                                <td>20</td>
+                                <td>@Model.StatusGraph[2]</td>
                             </tr>
                             <tr>
                                 <td>
                                     <p><i class="fa fa-square aero"></i>Kết quả</p>
                                 </td>
-                                <td>15</td>
+                                <td>@Model.StatusGraph[3]</td>
                             </tr>
                             <tr>
                                 <td>
                                     <p><i class="fa fa-square red"></i>Phiếu KQ </p>
                                 </td>
-                                <td>30</td>
+                                <td>@Model.StatusGraph[4]</td>
                             </tr>
                         </table>
                     </td>
@@ -341,18 +341,18 @@
         Morris.Bar({
             element: 'graph_bar',
             data: [
-              { month: 'Tháng 1', value: 380 },
-              { month: 'Tháng 2', value: 655 },
-              { month: 'Tháng 3', value: 275 },
-              { month: 'Tháng 4', value: 1571 },
-              { month: 'Tháng 5', value: 655 },
-              { month: 'Tháng 6', value: 2154 },
-              { month: 'Tháng 7', value: 1144 },
-              { month: 'Tháng 8', value: 2371 },
-              { month: 'Tháng 9', value: 1471 },
-              { month: 'Tháng 10', value: 678 },
-              { month: 'Tháng 11', value: 789 },
-              { month: 'Tháng 12', value: 1371 }
+              { month: 'Tháng 1', value: '@Model.MonthlyGraph[0]' },
+              { month: 'Tháng 2', value: '@Model.MonthlyGraph[1]' },
+              { month: 'Tháng 3', value: '@Model.MonthlyGraph[2]' },
+              { month: 'Tháng 4', value: '@Model.MonthlyGraph[3]' },
+              { month: 'Tháng 5', value: '@Model.MonthlyGraph[4]' },
+              { month: 'Tháng 6', value: '@Model.MonthlyGraph[5]' },
+              { month: 'Tháng 7', value: '@Model.MonthlyGraph[6]' },
+              { month: 'Tháng 8', value: '@Model.MonthlyGraph[7]' },
+              { month: 'Tháng 9', value: '@Model.MonthlyGraph[8]' },
+              { month: 'Tháng 10', value: '@Model.MonthlyGraph[9]' },
+              { month: 'Tháng 11', value: '@Model.MonthlyGraph[10]' },
+              { month: 'Tháng 12', value: '@Model.MonthlyGraph[11]' },
             ],
             xkey: 'month',
             ykeys: ['value'],

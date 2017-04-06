@@ -7,6 +7,11 @@ namespace IERSystem.Areas.Administrator.Models
 {
     public class DashBoardOutputModel
     {
+        public DashBoardOutputModel()
+        {
+            MonthlyGraph = new List<int>();
+            StatusGraph = new List<int>();
+        }
         public IEnumerable<MauLayHienTruong> DanhSachMau { get; set; }
         public int TongSoHD { get; set; }
         public int HopDongMoi { get; set; }
@@ -20,4 +25,5 @@ namespace IERSystem.Areas.Administrator.Models
         public List<int> MonthlyGraph { get; set; }
         public List<int> StatusGraph { get; set; }
     }
+
 }

@@ -72,6 +72,19 @@ namespace IERSystem.Areas.Administrator.Controllers
                 TiLeTNMoi = SoMauMoiTN / SoMauDaDuocTN * 100;
             }
             dashboardOutput.TiLeTNMoi = Math.Round(TiLeTNMoi, 2);
+
+            //Tinh du lieu cho month chart
+            for (int i = 1; i <= 12; i++) 
+            { 
+                int Count = (from a in danhsachmau where a.PhieuYeuCau.NgayTaoHD.Month == i select a).Count();
+                dashboardOutput.MonthlyGraph.Add(Count);
+            }
+            //Tinh du lieu cho status chart
+            for (int i = 0; i < 5;i++)
+            {
+                int Count = (from a in danhsachmau where a.TinhTrang == i select a).Count();
+                dashboardOutput.StatusGraph.Add(Count);
+            }
             return View(dashboardOutput);
         }
 
