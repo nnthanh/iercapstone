@@ -28,7 +28,7 @@
     <div class="clearfix"></div>
 
     <!--Notification-->
-    <div class="alert alert-success alert-dismissible fade in" role="alert" id="myNoti">
+    <div class="alert alert-success alert-dismissible" role="alert" id="myNoti" hidden="hidden">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">×</span>
         </button>
@@ -40,7 +40,8 @@
                     @Session["loggedUser"].ToString()
                 }
             }!
-        </strong> Bạn có 5 hợp đồng mới trong sổ.
+        
+        </strong> Bạn có <i id="numcontract"></i> hợp đồng mới trong sổ. <a onclick="scrollDown()"><u> Xem </u></a>
 
     </div>
     <!--End of Notification-->
@@ -51,7 +52,7 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
             <div class="x_title">
-                <h2>DANH SÁCH PHIẾU YÊU CẦU <small><i class="green">5</i> hợp đồng mới</small></h2>
+                <h2>DANH SÁCH PHIẾU YÊU CẦU <small><i class="green" id="newContract"></i> hợp đồng mới</small></h2>
                 <ul class="nav navbar-right panel_toolbox">
                     <li>
                         <a class="collapse-link">
@@ -67,7 +68,7 @@
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
-                <table id="" class="datatable-buttons table table-striped table-bordered">
+                <table id="phieuyeucautable" class="datatable-buttons table table-striped table-bordered">
                     <thead>
                         <tr>
                             <th>Mã đơn</th>
@@ -87,7 +88,7 @@
                     <tbody>
                         @foreach (var item in Model)
                         {
-                            <tr>
+                            <tr id="hopDongtr">
                                 <td>
                                     @Html.DisplayFor(modelItem => item.MaDon)
                                 </td>
@@ -158,9 +159,10 @@
         $(document).ready(function () {
             $('[data-toggle="tooltip"]').tooltip();
         });
-        $(function () {
-            $('#myNoti').hide().fadeIn(1000);
-        })
+        function scrollDown() {
+            $("html, body").animate({ scrollTop: $("#phieuyeucautable").offset().top }, 1000);
+        }
+
         function delSucNoti()
         {
             new PNotify({
@@ -170,6 +172,7 @@
                 styling: 'bootstrap3'
             })
         }
+
         function delFailNoti()
         {
             new PNotify({
@@ -178,5 +181,52 @@
                 styling: 'bootstrap3'
             });
         }
+
+        $.ajax({
+            type: 'POST',
+            url: ' @Url.Action("GetNumberOfNewContracts", "API") ',
+            success: function (res) {
+                if (res.IsOK) {
+                    var result = res.Data;
+                    var contract = document.createElement('soan');
+                    contract.innerHTML = " " + result + " ";
+                    document.getElementById('newContract').appendChild(contract);
+                    if (result > 0) {
+                        $('#myNoti').fadeIn(1000);
+                    }
+                }
+            },
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8'
+        });
+
+        //var listPhieu;
+        $.ajax({
+            type: 'POST',
+            url: ' @Url.Action("GetNewContracts", "API") ',
+            success: function (res) {
+                if (res.IsOK) {
+                    var listPhieu = res.Data;
+                    recentlyAddedRows(listPhieu);
+                }
+            },
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8'
+        });
+
+        function recentlyAddedRows(listPhieu){
+            var table = document.getElementById('phieuyeucautable');
+            var row, rows = table.rows;
+            var cell, cells;
+            var rowText;
+            for(var i=0, iLen=rows.length; i<iLen; i++){
+                row = rows[i];
+                cell = row.cells[0];
+                if (jQuery.inArray(cell.textContent.trim(), listPhieu) != -1){
+                    jQuery(row).addClass("success");
+                }
+            }
+        }
+
     </script>
 }

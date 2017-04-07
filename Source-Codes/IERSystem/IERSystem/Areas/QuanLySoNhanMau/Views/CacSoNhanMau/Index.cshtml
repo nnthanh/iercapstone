@@ -41,7 +41,7 @@ else
 <div id="cacsonhanmau-app" class="col-md-12 col-sm-12 col-xs-12">
 
     <!--Notification-->
-    <div class="alert alert-success alert-dismissible fade in" role="alert">
+    <div class="alert alert-success alert-dismissible" role="alert" hidden="hidden" id="myNoti">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">×</span>
         </button>
@@ -53,8 +53,8 @@ else
                     @Session["loggedUser"].ToString()
                 }
             }!
-        </strong> Bạn có 5 mẫu mới có thể chuyển vào sổ.
-        <a href="#" onclick="$('#danhsachmaumoi').fadeIn(500)"><u>Xem</u></a>
+        </strong> Bạn có <i id="NumOfNewItem"></i> mẫu mới có thể chuyển vào sổ.
+        <a onclick="$('#danhsachmaumoi').fadeIn(500)"><u>Xem</u></a>
     </div>
     <!--End of Notification-->
     <!--Noti table-->
@@ -77,7 +77,7 @@ else
         </div>
         <div class="x_content">
             <div class="table-responsive">
-                <table class="table table-striped">
+                <table class="table table-striped" id="notiTable">
                     <thead>
                         <tr>
                             <th class="column-title">Mã đơn </th>
@@ -129,7 +129,7 @@ else
                             <tr>
                                 <td>Quyển Số @cacsonhanmau.QuyenSo (@cacsonhanmau.TuNgay - @cacsonhanmau.DenNgay)</td>
                                 <td>
-                                    <button v-on:click="openSoNhanMau(@(cacsonhanmau.QuyenSo))">Mở</button>
+                                    <button v-on:click="openSoNhanMau(@(cacsonhanmau.QuyenSo));getNumber(@(cacsonhanmau.QuyenSo))">Mở</button>
                                     <button data-toggle="modal" data-target="#xoaModal"><span class="fa fa-trash"></span></button>
                                 </td>
                             </tr>
@@ -144,7 +144,7 @@ else
     <div v-for="cacsonhanmau in cacsonhanmaus_open" class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
             <div class="x_title">
-                <h2>SỔ NHẬN MẪU - Quyển số {{ cacsonhanmau.QuyenSo }} ({{ cacsonhanmau.TuNgay }} - {{ cacsonhanmau.DenNgay }}) <small><i class="green">5 </i>mẫu mới </small></h2>
+                <h2>SỔ NHẬN MẪU - Quyển số {{ cacsonhanmau.QuyenSo }} ({{ cacsonhanmau.TuNgay }} - {{ cacsonhanmau.DenNgay }}) <small><i class="green" id="NewItemForOneBook"> </i> mẫu mới </small></h2>
                 <ul class="nav navbar-right panel_toolbox">
                     <li>
                         <a class="collapse-link">
@@ -173,14 +173,14 @@ else
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
-                <table class="datatable-buttons table table-striped table-bordered">
+                <table id="sonhanmautable" class="datatable-buttons table table-striped table-bordered">
                     <thead>
                         <tr>
                             <th>Phiếu yêu cầu</th>
                             <th>Tên/ Địa chỉ khách hàng</th>
                             <th>Mã số</th>
                             <th>Chỉ tiêu thử nghiệm</th>
-                            <th>Ngày nhận</th>
+                            <th>Ngày thêm vào sổ</th>
                             <th>Ngày trả kết quả</th>
                             <th>KH ký nhận trả tiền</th>
                             <th>KH ký nhận trả kết quả</th>
@@ -211,14 +211,14 @@ else
                             <td>
                                 <div class="checkbox">
                                     <label class="">
-                                        <input type="checkbox" class="flat">
+                                        <input type="checkbox" class="flat" disabled="disabled" style="width:20px; height:20px">
                                     </label>
                                 </div>
                             </td>
                             <td>
                                 <div class="checkbox">
                                     <label class="">
-                                        <input type="checkbox" class="flat">
+                                        <input type="checkbox" class="flat" disabled="disabled" style="width:20px; height:20px">
                                     </label>
                                 </div>
                             </td>
@@ -251,7 +251,7 @@ else
                             <thead>
                                 <tr class="headings">
                                     <th>
-                                        <input type="checkbox" id="check-all" class="flat">
+                                        @*<input type="checkbox" id="check-all" class="flat">*@
                                     </th>
                                     <th class="column-title">Mã đơn </th>
                                     <th class="column-title">Tên khách hàng </th>
@@ -259,10 +259,7 @@ else
                                     <th class="column-title">Mô tả mẫu </th>
                                     <th class="column-title">Ngày tạo hợp đồng </th>
                                     <th class="column-title">Ngày trả mẫu </th>
-                                    <th class="column-title no-link last">
-                                        <span class="nobr">Hành động</span>
-                                    </th>
-                                    <th class="bulk-actions" colspan="7">
+                                    <th class="bulk-actions" colspan="6">
                                         <a class="antoo" style="color:#fff; font-weight:500;">Chọn nhiều ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
                                     </th>
                                 </tr>
@@ -270,7 +267,7 @@ else
                             <tbody>
                                 <tr v-for="mauptcandid in mauptcandids">
                                     <td class='a-center'>
-                                        <input type='checkbox' class='flat' name='table_records'>
+                                        <input type='checkbox' class='flat' name='table_records' style="width:20px; height:20px">
                                     </td>
                                     <td> {{mauptcandid.MaDon}} </td>
                                     <td> {{mauptcandid.TenKhachHang}} </td>
@@ -514,8 +511,18 @@ else
             $('[data-toggle="tooltip"]').tooltip();
             
         });
+
         $(function () {
-            $('#myNoti').hide().fadeIn(1000);   
+            $('#check-all').change(function(){
+                if (this.checked) {
+                    $(':checkbox', this).prop("checked");
+                }
+            })
+            $('.jambo_table').click(function (event) {
+                if (event.target.type !== 'checkbox') {
+                    $(':checkbox', this).trigger('click');
+                }
+            });
         });
 
         function delSucNoti()
@@ -578,5 +585,102 @@ else
                 styling: 'bootstrap3'
             });
         }
+
+        $.ajax({
+            type: 'POST',
+            url: ' @Url.Action("GetNumberOfNewItems", "API") ',
+            data: JSON.stringify({
+                TuNgay: "1/1/1900",
+                DenNgay: "1/1/2500"
+            }),
+            success: function (res) {
+                if (res.IsOK) {
+                    var result = res.Data;
+                    var itemnew = document.createElement('span');
+                    itemnew.innerHTML = " " + result + " ";
+                    document.getElementById('NumOfNewItem').appendChild(itemnew);
+                    if (result > 0) {
+                        $('#myNoti').fadeIn(1000);
+                    }
+                }
+            },
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8'
+        });
+        var listSoId = [];
+        $.ajax({
+            type: 'POST',
+            url: ' @Url.Action("GetNewItems", "API")',
+            data: JSON.stringify({
+                TuNgay: "1/1/1900",
+                DenNgay: "1/1/2500"
+            }),
+            success: function (res) {
+                if (res.IsOK) {
+                    var tabledata = $("#notiTable tbody");
+                    var items = res.Data;
+                    for (var i = 0, iLen = items.length; i < iLen; ++i) {
+                        listSoId.push(items[i].Id);
+                        tabledata.append(
+                            "<tr>" +
+                            "<td>" + items[i].MaDon + "</td>" +
+                            "<td>" + items[i].TenKhachHang + "</td>" +
+                            "<td>" + items[i].MaMau + "</td>" +
+                            "<td>" + items[i].MoTaMau + "</td>" +
+                            "<td>" + items[i].NgayTaoHD + "</td>" +
+                            "<td>" + items[i].NgayTraMau + "</td>" +
+                            "</tr>");                
+                    }
+                } 
+            },
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8'
+        });
+        function getNumber(id) {
+            $.ajax({
+                type: 'POST',
+                url: ' @Url.Action("GetNewItemsForOneBook", "API")',
+                data: JSON.stringify({Id:id}),
+                success: function (res) {
+                    if (res.IsOK) {
+                        var listPhieu = res.Data;
+                        recentlyAddedRows(listPhieu);
+                    }
+                },
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8'
+            }); 
+            
+            $.ajax({
+                type: 'POST',
+                url: ' @Url.Action("GetNumberOfNewItemsForOneBook", "API")',
+                data: JSON.stringify({Id:id}),
+                success: function (res) {
+                    if (res.IsOK) {
+                        var result = res.Data;
+                        var itemnew = document.createElement('i');
+                        itemnew.innerHTML = " " + result + " ";
+                        document.getElementById('NewItemForOneBook').appendChild(itemnew);
+                    }
+                },
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8'
+            });
+        }
+
+        function recentlyAddedRows(listPhieu){
+            var table = document.getElementById('sonhanmautable');
+            var row, rows = table.rows;
+            var cell, cells;
+            var rowText;
+            for(var i=0, iLen=rows.length; i<iLen; i++){
+                row = rows[i];
+                cell = row.cells[0];
+                if (jQuery.inArray(cell.textContent.trim(), listPhieu) != -1){
+                    jQuery(row).addClass("success");
+                }
+            }
+        }
+        
     </script>
 }

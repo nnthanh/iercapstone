@@ -205,6 +205,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>IERSystemModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Areas\Administrator\Models\KhachHang.cs">
+      <DependentUpon>IERSystemModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Areas\Administrator\Models\KQThuNghiemMau.cs">
       <DependentUpon>IERSystemModel.tt</DependentUpon>
     </Compile>
@@ -262,6 +265,7 @@
     <Compile Include="Areas\HopDongLayMau\BusinessLogic\YeuCauLayMauEncoding.cs" />
     <Compile Include="Areas\HopDongLayMau\Controllers\APIController.cs" />
     <Compile Include="Areas\HopDongLayMau\Controllers\DefaultController.cs" />
+    <Compile Include="Areas\HopDongLayMau\Models\GetCustomerInfoInputModel.cs" />
     <Compile Include="Areas\HopDongLayMau\Models\MauPTInputModel.cs" />
     <Compile Include="Areas\HopDongLayMau\Models\YeuCauLayMauInputModel.cs" />
     <Compile Include="Areas\Administrator\Models\User.cs">
