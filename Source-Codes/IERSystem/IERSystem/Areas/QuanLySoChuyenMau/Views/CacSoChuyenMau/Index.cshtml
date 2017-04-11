@@ -157,10 +157,7 @@ else
                         </a>
                     </li>
                     <li data-toggle="tooltip" title="Đóng">
-                        @*<a data-toggle="modal" data-target="#xoaModal">
-                                <i class="fa fa-close"></i>
-                            </a>*@
-                        <a class="close-link">
+                        <a v-on:click="closeSoChuyenMau(cacsochuyenmau.QuyenSo)" class="close-link">
                             <i class="fa fa-close"></i>
                         </a>
                     </li>
@@ -451,6 +448,12 @@ else
                         dataType: 'json',
                         contentType: 'application/json; charset=utf-8'
                     });
+                },
+                closeSoChuyenMau: function (id) {
+                    var index = this.cacsochuyenmaus_open.findIndex(function (so) { return so.QuyenSo == id; });
+                    if (index > -1) {
+                        this.cacsochuyenmaus_open.splice(index, 1);
+                    }
                 }
             }
         });
