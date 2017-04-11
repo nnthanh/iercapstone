@@ -1,15 +1,17 @@
-﻿
+﻿@model IEnumerable<IERSystem.Areas.Administrator.Models.KhachHang>
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Administrator/Views/Shared/_Layout.cshtml";
 }
 
 <br />
-<input type="button" class="btn btn-info" value="Thêm khách hàng"/>
+<h2>MỤC LỤC</h2>
+<input type="button" class="btn btn-info" value="Tạo phiếu yêu cầu mới" onclick="location.href='@Url.Action("Create", "QuanLyKhachHang")'" />
 <div>
     <div class="page-title">
         <div class="title-left">
-            <h3>Danh sách khách hàng</h3>
+            <h3>Khách hàng</h3>
 
         </div>
         <div class="title-right">
@@ -25,11 +27,32 @@
     </div>
     <div class="clearfix"></div>
 
+    <!--Notification-->
+    <div class="alert alert-success alert-dismissible" role="alert" id="myNoti" hidden="hidden">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">×</span>
+        </button>
+        <strong>
+            Chào
+            @{
+                if (Session["loggedUser"] != null)
+                {
+                    @Session["loggedUser"].ToString()
+                }
+            }!
+
+        </strong> Bạn có <i id="numcontract"></i> khách hàng mới. <a onclick='scrollDown()'><u> Xem </u></a>
+
+    </div>
+    <!--End of Notification-->
+
+    <div class="clearfix"></div>
+
     <!--Table dynamic-->
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
             <div class="x_title">
-                <h2>THÔNG TIN KHÁCH HÀNG <small><i class="green">5</i> khách hàng mới</small></h2>
+                <h2>THÔNG TIN KHÁCH HÀNG <small><i class="green" id="newContract"></i> hợp đồng mới</small></h2>
                 <ul class="nav navbar-right panel_toolbox">
                     <li>
                         <a class="collapse-link">
@@ -45,13 +68,13 @@
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
-                <table id="" class="datatable-buttons table table-striped table-bordered">
+                <table id="khachhangtable" class="datatable-buttons table table-striped table-bordered">
                     <thead>
                         <tr>
                             <th>Tên khách hàng</th>
                             <th>Tên đại diện</th>
                             <th>Địa chỉ KH</th>
-                            <th>Mã số thuế</th>
+                            @*<th>Mã số thuế</th>*@
                             <th>Số điện thoại</th>
                             <th>Số Fax</th>
                             <th>Hành động</th>
@@ -59,20 +82,34 @@
                     </thead>
 
                     <tbody>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>    
-                            <td>
-                                <button data-toggle="tooltip" title="Chỉnh sửa"><span class="fa fa-edit"></span></button>
-                                <button data-toggle="tooltip" title="Xem chi tiết"><span class="fa fa-info"></span></button>
-                                <button data-toggle="tooltip" title="In"><span class="fa fa-print"></span></button>
-                                <button data-toggle="modal" data-target="#xoaModal"><span class="fa fa-trash"></span></button>
-                            </td>
-                        </tr>
+                        @foreach (var item in Model)
+                        {
+                            <tr id="hopDongtr">
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TenKhachHang)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TenDaiDien)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DiaChiKhachHang)
+                                </td>
+                                @*<td>
+                                    @Html.DisplayFor(modelItem => item.MaSoThue)
+                                </td>*@
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.SoDienThoai)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.SoFax)
+                                </td>
+                                <td>
+                                    <button data-toggle="tooltip" title="Chỉnh sửa" onclick="location.href='@Url.Action("Edit", "QuanLyKhachHang", new { id = item.Id })'"><span class="fa fa-edit"></span></button>
+                                    <button data-toggle="tooltip" title="Xem chi tiết" onclick="location.href='@Url.Action("Details", "QuanLyKhachHang", new { id = item.Id })'"><span class="fa fa-info"></span></button>
+                                    <button data-toggle="modal" data-target="#xoaModal"><span class="fa fa-trash"></span></button>
+                                </td>
+                            </tr>
+                        }
                     </tbody>
                 </table>
             </div>
@@ -86,23 +123,13 @@
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-body">
-                <h4>Bạn có chắc chắn muốn xóa mẫu này?</h4>
+                <h4>Bạn có chắc chắn muốn xóa?</h4>
                 <h5>Bạn sẽ không để hoàn tác hành động này.</h5>
                 <div class="form-group" align="center">
-                    <button type="button" class="btn btn-success" data-dismiss="modal"><span class="fa fa-check"></span></button>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="fa fa-close"></span></button>
+                    <button type="button" class="btn btn-success" data-dismiss="modal" onclick="delSucNoti()"><span class="fa fa-check"></span></button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="delFailNoti()"><span class="fa fa-close"></span></button>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-    <script>
-        $(document).ready(function () {
-            $('[data-toggle="tooltip"]').tooltip();
-        });
-    </script>
-}

@@ -49,7 +49,7 @@ else
                 }
             }!
         </strong> Bạn có <i id="NumOfNewItem"></i> mẫu mới có thể chuyển vào sổ.
-        <a onclick="$('#danhsachmaumoi').fadeIn(500)"><u>Xem</u></a>
+        <a onclick="loadNotiTable();$('#danhsachmaumoi').fadeIn(500)"><u>Xem</u></a>
     </div>
     <!--End of Notification-->
     <!--Noti table-->
@@ -124,7 +124,7 @@ else
                         <tr>
                             <td>Quyển Số @cacsochuyenmau.QuyenSo (@cacsochuyenmau.TuNgay - @cacsochuyenmau.DenNgay)</td>
                             <td>
-                                <button v-on:click="openSoChuyenMau(@(cacsochuyenmau.QuyenSo));getNumber(@(cacsochuyenmau.QuyenSo))">Mở</button>
+                                <button v-on:click="openSoChuyenMau(@(cacsochuyenmau.QuyenSo))">Mở</button>
                                 <button data-toggle="modal" data-target="#xoaModal"><span class="fa fa-trash"></span></button>
                             </td>
                         </tr>
@@ -388,6 +388,7 @@ else
                                 if (refreshtarget != undefined) {
                                     refreshtarget.NoiDung = res.Data.NoiDung;
                                 }
+                                getNumber(id);
                             } else {
                                 console.log("Có lỗi khi mở sổ chuyển mẫu " + id);
                             }
@@ -395,6 +396,7 @@ else
                         dataType: 'json',
                         contentType: 'application/json; charset=utf-8'
                     });
+                    
                 },
                 openSoChuyenMau: function (id) {
                     $.ajax({
@@ -404,6 +406,7 @@ else
                         success: function (res) {
                             if (res.IsOK) {
                                 $cacsochuyenmau_app.cacsochuyenmaus_open.push(res.Data);
+                                getNumber(id);
                             } else {
                                 alert("Có lỗi khi mở sổ chuyển mẫu");
                             }
@@ -411,6 +414,7 @@ else
                         dataType: 'json',
                         contentType: 'application/json; charset=utf-8'
                     });
+                    
                 },
                 openThemMauModal: function (tungay, denngay, cacsochuyenmauid) {
                     $cacsochuyenmau_app.mauptcandids = [];
@@ -464,6 +468,8 @@ else
             }
         });
 
+        
+
         $.ajax({
             type: 'POST',
             url: ' @Url.Action("GetNumberOfNewItems", "API") ',
@@ -474,7 +480,7 @@ else
             success: function (res) {
                 if (res.IsOK) {
                     var result = res.Data;
-                    var itemnew = document.createElement('span');
+                    var itemnew = document.createElement('i');
                     itemnew.innerHTML = " " + result + " ";
                     document.getElementById('NumOfNewItem').appendChild(itemnew);
                     if (result > 0) {
@@ -486,49 +492,42 @@ else
             contentType: 'application/json; charset=utf-8'
         });
         var listSoId = [];
-        $.ajax({
-            type: 'POST',
-            url: ' @Url.Action("GetNewItems", "API")',
-            data: JSON.stringify({
-                TuNgay: "1/1/1900",
-                DenNgay: "1/1/2500"
-            }),
-            success: function (res) {
-                if (res.IsOK) {
-                    var tabledata = $("#notiTable tbody");
-                    var items = res.Data;
-                    for (var i = 0, iLen = items.length; i < iLen; ++i) {
-                        listSoId.push(items[i].Id);
-                        tabledata.append(
-                            "<tr>" +
-                            "<td>" + items[i].MaDon + "</td>" +
-                            "<td>" + items[i].TenDiaChiKhachHang + "</td>" +
-                            "<td>" + items[i].MaMau + "</td>" +                          
-                            "<td>" + items[i].NgayNhanMau + "</td>" +
-                            "<td>" + items[i].NgayTraMau + "</td>" +
-                            "<td>" + items[i].MoTaMau + "</td>" +
-                            "</tr>");
-                    }
-                }
-            },
-            dataType: 'json',
-            contentType: 'application/json; charset=utf-8'
-        });
-        function getNumber(id) {
+
+        //Load noti table
+        function loadNotiTable() {
             $.ajax({
                 type: 'POST',
-                url: ' @Url.Action("GetNewItemsForOneBook", "API")',
-                data: JSON.stringify({ Id: id }),
+                url: ' @Url.Action("GetNewItems", "API")',
+                data: JSON.stringify({
+                    TuNgay: "1/1/1900",
+                    DenNgay: "1/1/2500"
+                }),
                 success: function (res) {
                     if (res.IsOK) {
-                        var listPhieu = res.Data;
-                        recentlyAddedRows(listPhieu);
+                        var tabledata = $("#notiTable tbody");
+                        var items = res.Data;
+                        for (var i = 0, iLen = items.length; i < iLen; ++i) {
+                            listSoId.push(items[i].Id);
+                            tabledata.append(
+                                "<tr>" +
+                                "<td>" + items[i].MaDon + "</td>" +
+                                "<td>" + items[i].TenDiaChiKhachHang + "</td>" +
+                                "<td>" + items[i].MaMau + "</td>" +
+                                "<td>" + items[i].NgayNhanMau + "</td>" +
+                                "<td>" + items[i].NgayTraMau + "</td>" +
+                                "<td>" + items[i].MoTaMau + "</td>" +
+                                "</tr>");
+                        }
                     }
                 },
                 dataType: 'json',
                 contentType: 'application/json; charset=utf-8'
             });
+        }
+       
+        function getNumber(id) {
 
+            //Get number of new items of 1 book
             $.ajax({
                 type: 'POST',
                 url: ' @Url.Action("GetNumberOfNewItemsForOneBook", "API")',
@@ -539,6 +538,21 @@ else
                         var itemnew = document.createElement('i');
                         itemnew.innerHTML = " " + result + " ";
                         document.getElementById('NewItemForOneBook').appendChild(itemnew);
+                    }
+                },
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8'
+            });
+                
+            //Add class for new items
+            $.ajax({
+                type: 'POST',
+                url: ' @Url.Action("GetNewItemsForOneBook", "API")',
+                data: JSON.stringify({ Id: id }),
+                success: function (res) {
+                    if (res.IsOK) {
+                        var listPhieu = res.Data;
+                        recentlyAddedRows(listPhieu);
                     }
                 },
                 dataType: 'json',

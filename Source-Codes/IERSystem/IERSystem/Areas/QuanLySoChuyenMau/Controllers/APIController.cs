@@ -3,7 +3,10 @@ using IERSystem.Areas.QuanLySoChuyenMau.Models;
 using IERSystem.BusinessLogic.TableForms;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -191,6 +194,8 @@ namespace IERSystem.Areas.QuanLySoChuyenMau.Controllers
                 return Json(new GetDBResponse<IEnumerable<MauPTToBeAddedOutputModel>> { IsOK = false, Data = null });
             }
         }
+
+
 
         protected override void Dispose(bool disposing)
         {
