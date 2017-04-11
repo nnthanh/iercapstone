@@ -39,5 +39,6 @@ namespace IERSystem.Areas.Administrator.Models
         public virtual DbSet<RoleMaster> RoleMasters { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<RoleMatrix> RoleMatrices { get; set; }
+        public virtual DbSet<KhachHang> KhachHangs { get; set; }
     }
 }

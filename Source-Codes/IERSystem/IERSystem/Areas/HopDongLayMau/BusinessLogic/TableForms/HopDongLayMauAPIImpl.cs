@@ -30,6 +30,7 @@ namespace IERSystem.BusinessLogic.TableForms
             var today_dep = DateTime.Now.Date;
             var encoded_inp_req = HopDongLayMauEncoding.Encode(input_request, db, today_dep);
             var yeucaulaymau_model = convertToModel(input_request, db, today_dep);
+            //yeucaulaymau_model.CreatedBy = (int)Session["loggedID"];
             db.PhieuYeuCaus.Add(yeucaulaymau_model);
         }
 
@@ -42,6 +43,26 @@ namespace IERSystem.BusinessLogic.TableForms
             var req = new PhieuYeuCau();
             //nthoang: here PhieuYeuCau should already been Encoded
             Debug.Assert(input_request.MaDon != null);
+            if (input_request.KhachHangMoi)
+            {
+                var duplicate_exists = db.KhachHangs.Any((kh) => 
+                    kh.DiaChiKhachHang.Equals(input_request.DiaChiKhachHang) &&
+                    kh.TenKhachHang.Equals(input_request.TenKhachHang)
+                );
+                if (!duplicate_exists)
+                {
+                    db.KhachHangs.Add(new KhachHang()
+                    {
+                        TenKhachHang = input_request.TenKhachHang,
+                        TenDaiDien = input_request.TenDaiDien,
+                        SoDienThoai = input_request.SoDienThoai,
+                        SoFax = input_request.SoFax,
+                        DiaChiKhachHang = input_request.DiaChiKhachHang,
+                        MaSoThue = input_request.MaSoThue
+                    });
+                }
+            }
+            
             req.MaDon = input_request.MaDon;
             req.TenDaiDien = input_request.TenDaiDien;
             req.TenKhachHang = input_request.TenKhachHang;
@@ -54,6 +75,8 @@ namespace IERSystem.BusinessLogic.TableForms
             req.NoiLayMau = input_request.DiaChiLayMau;
             req.NgayLayMau = input_request.NgayLayMau;
             req.NgayTaoHD = today;
+            req.UserId = input_request.CreatedBy.Id;
+            req.CreatedBy = input_request.CreatedBy;
             req.MauLayHienTruongs = input_request.MauLayHienTruongs.Select((elem) =>
             {
                 var mapped = new MauLayHienTruong();

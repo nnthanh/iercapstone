@@ -51,6 +51,7 @@ namespace IERSystem.Areas.Administrator.Controllers
         {
             if (ModelState.IsValid)
             {
+                sonhanmau.CreatedBy = db.Users.Find((int)Session["loggedID"]);
                 db.SoNhanMaus.Add(sonhanmau);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");

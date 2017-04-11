@@ -57,6 +57,7 @@ namespace IERSystem.Areas.HopDongLayMau.Controllers
             //)] 
             YeuCauLayMauInputModel inputRequest)
         {
+            inputRequest.CreatedBy = db.Users.Find((int)Session["loggedID"]);
             return View(inputRequest);
         }
 

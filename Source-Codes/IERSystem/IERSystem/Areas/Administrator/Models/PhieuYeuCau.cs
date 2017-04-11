@@ -35,8 +35,11 @@ namespace IERSystem.Areas.Administrator.Models
         public string TenKhachHang { get; set; }
         public System.DateTime NgayLayMau { get; set; }
         public System.DateTime NgayHenTraKQ { get; set; }
+        public long UserId { get; set; }
+        public long KhachHangId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MauLayHienTruong> MauLayHienTruongs { get; set; }
+        public virtual User CreatedBy { get; set; }
     }
 }

@@ -192,6 +192,7 @@
     <Compile Include="Areas\Administrator\Models\ChiTieuPhanTich.cs">
       <DependentUpon>IERSystemModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Areas\Administrator\Models\DashBoardOutput.cs" />
     <Compile Include="Areas\Administrator\Models\FormKQ.cs">
       <DependentUpon>IERSystemModel.tt</DependentUpon>
     </Compile>
@@ -203,6 +204,9 @@
     <Compile Include="Areas\Administrator\Models\IERSystemModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <DependentUpon>IERSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Administrator\Models\KhachHang.cs">
       <DependentUpon>IERSystemModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Areas\Administrator\Models\KQThuNghiemMau.cs">
@@ -232,6 +236,9 @@
     <Compile Include="Areas\Administrator\Models\SoNhanMau.cs">
       <DependentUpon>IERSystemModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Areas\Administrator\Models\User.cs">
+      <DependentUpon>IERSystemModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Areas\BaoGiaChiTieu\BaoGiaChiTieuAreaRegistration.cs" />
     <Compile Include="Areas\BaoGiaChiTieu\BusinessLogic\BaoGiaChiTieuSheetParser.cs" />
     <Compile Include="Areas\BaoGiaChiTieu\BusinessLogic\TableForms\ChiTieuPhanTichAPIImpl.cs" />
@@ -248,25 +255,21 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Areas\Administrator\AccountController.cs" />
     <Compile Include="Areas\Administrator\AdministratorAreaRegistration.cs" />
     <Compile Include="Areas\Administrator\Controllers\FormKQController.cs" />
     <Compile Include="Areas\Administrator\Controllers\MauLayHienTruongController.cs" />
     <Compile Include="Areas\Administrator\Controllers\SoChuyenMauController.cs" />
     <Compile Include="Areas\Administrator\Controllers\SoKQThuNghiemController.cs" />
     <Compile Include="Areas\Administrator\Controllers\SoNhanMauController.cs" />
-    <Compile Include="Areas\Administrator\HomeController.cs" />
     <Compile Include="Areas\HopDongLayMau\BusinessLogic\Utils\LoaiMauConverter.cs" />
     <Compile Include="Areas\HopDongLayMau\BusinessLogic\Utils\TinhTrangMauConverter.cs" />
     <Compile Include="Areas\HopDongLayMau\BusinessLogic\Utils\DateTimeUtils.cs" />
     <Compile Include="Areas\HopDongLayMau\BusinessLogic\YeuCauLayMauEncoding.cs" />
     <Compile Include="Areas\HopDongLayMau\Controllers\APIController.cs" />
     <Compile Include="Areas\HopDongLayMau\Controllers\DefaultController.cs" />
+    <Compile Include="Areas\HopDongLayMau\Models\GetCustomerInfoInputModel.cs" />
     <Compile Include="Areas\HopDongLayMau\Models\MauPTInputModel.cs" />
     <Compile Include="Areas\HopDongLayMau\Models\YeuCauLayMauInputModel.cs" />
-    <Compile Include="Areas\Administrator\Models\User.cs">
-      <DependentUpon>IERSystemModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Areas\HopDongLayMau\Controllers\YeuCauLayMauController.cs" />
     <Compile Include="Areas\HopDongLayMau\HopDongLayMauAreaRegistration.cs" />
     <Compile Include="Areas\HopDongLayMau\Tests\HDLayMau_SNhanMauTest.cs" />
@@ -4837,7 +4840,6 @@
     <Content Include="Areas\Administrator\Content\js\maps\us-unemployment.json" />
     <Content Include="Areas\Administrator\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Administrator\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\Administrator\Views\Home\Index.cshtml" />
     <Content Include="Areas\Administrator\Views\Shared\_LoginCommon.cshtml" />
     <Content Include="Areas\HopDongLayMau\Views\YeuCauLayMau\Create.cshtml" />
     <Content Include="Areas\HopDongLayMau\Views\YeuCauLayMau\Delete.cshtml" />
@@ -4930,11 +4932,16 @@
     <Content Include="Areas\Administrator\vendors\jqvmap\package.json" />
     <Content Include="Areas\Administrator\vendors\jqvmap\README.md" />
     <Content Include="Areas\Administrator\vendors\jqvmap\REGIONS.md" />
-    <Content Include="Areas\Administrator\Views\QuanLyKhachHang\Index.cshtml" />
     <Content Include="Areas\QuanLyKetQuaPhanTich\Views\SoKQThuNghiem\AddResult.cshtml" />
     <Content Include="Areas\QuanLyKetQuaPhanTich\Views\FormKQ\Details.cshtml" />
     <Content Include="Areas\QuanLyKetQuaPhanTich\Views\FormKQ\Create.cshtml" />
     <Content Include="Areas\QuanLyKetQuaPhanTich\Views\FormKQ\Edit.cshtml" />
+    <Content Include="Areas\Administrator\Views\QuanLyKhachHang\Index.cshtml" />
+    <Content Include="Areas\Administrator\Views\QuanLyKhachHang\Create.cshtml" />
+    <Content Include="Areas\Administrator\Views\QuanLyKhachHang\Delete.cshtml" />
+    <Content Include="Areas\Administrator\Views\QuanLyKhachHang\Details.cshtml" />
+    <Content Include="Areas\Administrator\Views\QuanLyKhachHang\Edit.cshtml" />
+    <Content Include="Areas\Administrator\Views\Shared\_HomepageLayout.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -4960,9 +4967,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
@@ -4976,6 +4980,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_DanhSauMau.cshtml" />
     <Content Include="Views\Shared\_SharedLogin.cshtml" />
+    <Content Include="Views\Home\TrangChu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />
