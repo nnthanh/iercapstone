@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 04/04/2017 17:36:15
+-- Date Created: 04/07/2017 19:29:52
 -- Generated from EDMX file: E:\Things\Books\Year 4\Term 1\Capstone\IER PERSONAL WORK\iercapstone\Source-Codes\IERSystem\IERSystem\Areas\Administrator\Models\IERSystemModel.edmx
 -- --------------------------------------------------
 
@@ -58,9 +58,6 @@ IF OBJECT_ID(N'[dbo].[FK_RoleMasterRoleMatrix]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_KQThuNghiemMau_ChiTieuPhanTich]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[KQThuNghiemMaus] DROP CONSTRAINT [FK_KQThuNghiemMau_ChiTieuPhanTich];
-GO
-IF OBJECT_ID(N'[dbo].[FK_KhachHangPhieuYeuCau]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[PhieuYeuCaus] DROP CONSTRAINT [FK_KhachHangPhieuYeuCau];
 GO
 
 -- --------------------------------------------------
