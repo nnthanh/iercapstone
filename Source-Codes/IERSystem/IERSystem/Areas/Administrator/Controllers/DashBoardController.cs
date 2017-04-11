@@ -88,6 +88,13 @@ namespace IERSystem.Areas.Administrator.Controllers
             return View(dashboardOutput);
         }
 
+        public async Task<ActionResult> Homepage()
+        {
+            var users = db.Users.Include(u => u.RoleMaster);
+            return View(await users.ToListAsync());
+        }
+        
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

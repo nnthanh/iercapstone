@@ -22,15 +22,27 @@
                     <form id="form" class="form-horizontal form-label-left" novalidate="">
                         <div class="clearfix" />
                         <div class="item form-group">
+                            <div class=" col-md-offset-3 col-sm-offset-3 col-xs-12">
+                                <input id="isNewKH" type="checkbox" class="flat">  <i class="green">Khách hàng mới</i>
+                            </div>
+                        </div>
+                        <div class="item form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">
                                 Tên khách hàng <span class="required">*</span>
                             </label>
 
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input id="TenKhachHang" class="form-control col-md-4 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="name" required="required" type="text">                       
+                                <input id="TenKhachHang" class="form-control col-md-4 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="name" required="required" type="text" placeholder="Họ và tên đầy đủ của khách hàng">                       
                             </div>
-                                                     
+                                                                           
                         </div>
+                        <div class="form-group">
+                            <div id="autocomplete-container" class="col-md-offset-3 col-sm-offset-3 col-xs-12">
+                                <div class="autocomplete-suggestions" style="position: absolute; display: none; max-height: 300px; z-index: 9999;">
+                                </div>
+                            </div>
+                        </div>
+                        
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
                                 Mã số thuế
@@ -54,7 +66,7 @@
                                 Số điện thoại <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="tel" id="SoDienThoai" name="phone" required="required" data-validate-length-range="8,20" class="form-control col-md-7 col-xs-12">
+                                <input type="tel" id="SoDienThoai" name="phone" required="required" data-validate-length-range="8,20" class="form-control col-md-7 col-xs-12", placeholder="Chỉ cho phép ký tự số">
                             </div>
                         </div>
                         <div class="item form-group">
@@ -72,7 +84,7 @@
                                 Nơi lấy mẫu <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input id="DiaChiLayMau" type="text" name="occupation" data-validate-length-range="5,30" class="form-control col-md-7 col-xs-12" required="required">                   
+                                <input id="DiaChiLayMau" type="text" name="occupation" data-validate-length-range="5,50" class="form-control col-md-7 col-xs-12" required="required">                   
                             </div>
                         </div>
                         <div class="item form-group">
@@ -88,7 +100,7 @@
                                 Ngày gửi/lấy mẫu <span class="required">*</span>
                             </label>
                             <div class="form-group input-group-sm col-md-6 col-sm-6 col-xs-12">
-                                @Html.TextBoxFor(model => model.NgayLayMau, new { @class = "date-picker form-control col-md-7 col-xs-12 active", placeholder = "Nhập ngày gửi/lấy mẫu vào đây", required = "required", type = "date-picker", id = "NgayLayMau" })                   
+                                @Html.TextBoxFor(model => model.NgayLayMau, new { @class = "date-picker form-control col-md-7 col-xs-12 active", placeholder = "Nhập ngày gửi/lấy mẫu vào đây", required = "required", type = "date", id = "NgayLayMau" })                   
                             </div>
                         </div>
                         <div class="item form-group"> 
@@ -234,6 +246,7 @@
                             </div>
                         </div>
                         <div class="ln_solid"></div>
+                        
                         <div class="form-group">
                             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-5">
                                 <input type="button" id="submitBtn" value="Tạo" class="btn btn-success" />
@@ -371,7 +384,7 @@
         });
         setTimeout(function () {
             window.location.href = '@Url.Action("Index", "YeuCauLayMau")'
-        }, 2000);
+        }, 1500);
         
     }
 </script>
@@ -380,7 +393,7 @@
     <!--nthoang-PhieuYeuCauThuNghiemView: Editable Table-->
     <!--nthoang-Cac logic lien quan den Bang Mau duoc code tai day-->
     
-<script>
+@*<script>
     $(document).ready(
         function () {
         $('#NgayLayMau').daterangepicker({
@@ -392,7 +405,7 @@
         
             
     });
-</script>
+</script>*@
 
 <script>
     $(document).ready(function () {
@@ -526,7 +539,8 @@
                     PhuongPhapLayMau: $("#PhuongPhapLayMau").val(),
                     TenTieuChuanDoiChieu: $("#TenTieuChuanDoiChieu").val(),
                     PhiThiNghiemTamTinh: $("#PhiThiNghiemTamTinh").val(),
-                    TienKhachHangTraTruoc: $("#TienKhachHangTraTruoc").val()
+                    TienKhachHangTraTruoc: $("#TienKhachHangTraTruoc").val(),
+                    KhachHangMoi: document.getElementById('isNewKH').checked
                 };
                 var sampledata = $("#sampledata-table tbody tr").map(function (i, elem) {
                     var rowdata = $(elem).find("td").map(function () { return $(this).text(); }).get();
@@ -561,7 +575,7 @@
                         });
                         setTimeout(function () {
                             window.location.href = '@Url.Action("Index", "YeuCauLayMau")'
-                        }, 2000);
+                        }, 1500);
                     } else {
                         new PNotify({
                             title: 'Thất bại',
@@ -579,5 +593,67 @@
 
 </script>
 
+    <!-- jQuery autocomplete -->
+<script>
+    $(document).ready(function () {
 
+        var customers = [];
+        $.ajax({
+            type: 'POST',
+            url: ' @Url.Action("GetCustomer", "API")',
+            //data: JSON.stringify(),
+            success: function (res) {
+                if (res.IsOK) {
+                    customers = res.Data;
+                    var customersArray = $.map(customers, function (value, key) {
+                        return {
+                            value: value,
+                            data: key
+                        };
+                    });
+
+                    // initialize autocomplete with custom appendTo
+                    $('#TenKhachHang').autocomplete({
+                        lookup: customersArray,
+                        appendTo: '#autocomplete-container',
+                        onSelect: function (e, ui) {
+                            var customerArr = e.value.split('/');
+                            var formData = {
+                                CustomerName: customerArr[0],
+                                CustomerAddress: customerArr[1]
+                            };
+                            $.ajax({
+                                type: 'POST',
+                                url: ' @Url.Action("GetCustomerInfo","API")',
+                                data: JSON.stringify(formData),
+                                success: function(res){
+                                    var khachhang = res.Data;
+                                    $('#TenKhachHang').val(khachhang.TenKhachHang);
+                                    $('#TenDaiDien').val(khachhang.TenDaiDien);
+                                    $('#DiaChiKhachHang').val(khachhang.DiaChiKhachHang);
+                                    $('#SoDienThoai').val(khachhang.SoDienThoai);
+                                    $('#SoFax').val(khachhang.SoFax);
+                                    //$('#TenDaiDien').prop('disabled', true);
+                                    //$('#DiaChiKhachHang').prop('disabled', true);
+                                    //$('#SoDienThoai').prop('disabled', true);
+                                    //$('#SoFax').prop('disabled', true);
+                                },
+                                dataType: 'json',
+                                contentType: 'application/json; charset=utf-8'
+                            });
+                        }
+                    });
+
+                    
+                    
+                }
+            },
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8'
+        });
+      
+
+    });
+</script>
+    <!-- /jQuery autocomplete -->
 }

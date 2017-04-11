@@ -3,7 +3,10 @@ using IERSystem.Areas.QuanLySoChuyenMau.Models;
 using IERSystem.BusinessLogic.TableForms;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -107,6 +110,94 @@ namespace IERSystem.Areas.QuanLySoChuyenMau.Controllers
                 return Json(new UpsertDBResponse { IsOK = false, ErrMsg = "" });
             }
         }
+
+        [HttpPost]
+        public JsonResult GetNumberOfNewItems(MauPTToBeAddedInputModel maupttobeadded_inp)
+        {
+            if (ModelState.IsValid)
+            {
+                int result =
+                    (MauLayHienTruongAPIImpl.GetCandidMauPTSoChuyenMau(maupttobeadded_inp, DateTime.Now, db)).Count();
+                return Json(new GetDBResponse<int>()
+                {
+                    IsOK = true,
+                    Data = result
+                });
+            }
+            else
+            {
+                return Json(new GetDBResponse<IEnumerable<MauPTToBeAddedOutputModel>> { IsOK = false, Data = null });
+            }
+        }
+
+        [HttpPost]
+        public JsonResult GetNewItems(MauPTToBeAddedInputModel maupttobeadded_inp)
+        {
+            if (ModelState.IsValid)
+            {
+                var result =
+                    MauLayHienTruongAPIImpl.GetCandidMauPTSoChuyenMau(maupttobeadded_inp, DateTime.Now, db);
+                return Json(new GetDBResponse<IEnumerable<MauPTToBeAddedOutputModel>>()
+                {
+                    IsOK = true,
+                    Data = result
+                });
+            }
+            else
+            {
+                return Json(new GetDBResponse<IEnumerable<MauPTToBeAddedOutputModel>> { IsOK = false, Data = null });
+            }
+        }
+
+        [HttpPost]
+        public JsonResult GetNewItemsForOneBook(SoChuyenMauOpenInputModel sochuyenmauopen_inp)
+        {
+            var expire_date = DateTime.Today.AddDays(-3);
+            if (ModelState.IsValid)
+            {
+                //var target_sonhanmau = db.CacSoNhanMaus.Single((snm) => snm.Id == id);
+                var result = from scm in db.SoChuyenMaus
+                             join cscm in db.CacSoChuyenMaus on scm.CacSoChuyenMauId equals cscm.Id
+                             where scm.NgayGiaoMau > expire_date && cscm.Id == sochuyenmauopen_inp.Id
+                             select scm.MauLayHienTruong.MaMau;
+
+                return Json(new GetDBResponse<IEnumerable<string>>()
+                {
+                    IsOK = true,
+                    Data = result
+                });
+            }
+            else
+            {
+                return Json(new GetDBResponse<IEnumerable<MauPTToBeAddedOutputModel>> { IsOK = false, Data = null });
+            }
+        }
+
+        [HttpPost]
+        public JsonResult GetNumberOfNewItemsForOneBook(SoChuyenMauOpenInputModel sochuyenmauopen_inp)
+        {
+            var expire_date = DateTime.Today.AddDays(-3);
+            if (ModelState.IsValid)
+            {
+                //var target_sonhanmau = db.CacSoNhanMaus.Single((snm) => snm.Id == id);
+                int result = (from scm in db.SoChuyenMaus
+                              join cscm in db.CacSoChuyenMaus on scm.CacSoChuyenMauId equals cscm.Id
+                              where scm.NgayGiaoMau > expire_date && cscm.Id == sochuyenmauopen_inp.Id
+                              select scm.MauLayHienTruong.MaMau).Count();
+
+                return Json(new GetDBResponse<int>()
+                {
+                    IsOK = true,
+                    Data = result
+                });
+            }
+            else
+            {
+                return Json(new GetDBResponse<IEnumerable<MauPTToBeAddedOutputModel>> { IsOK = false, Data = null });
+            }
+        }
+
+
 
         protected override void Dispose(bool disposing)
         {

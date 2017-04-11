@@ -24,7 +24,7 @@ namespace IERSystem.Areas.Administrator.Models
             this.PhieuYeuCaus = new HashSet<PhieuYeuCau>();
         }
     
-        public int Id { get; set; }
+        public long Id { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
         public string Phone { get; set; }

@@ -43,6 +43,25 @@ namespace IERSystem.BusinessLogic.TableForms
             var req = new PhieuYeuCau();
             //nthoang: here PhieuYeuCau should already been Encoded
             Debug.Assert(input_request.MaDon != null);
+            if (input_request.KhachHangMoi)
+            {
+                var duplicate_exists = db.KhachHangs.Any((kh) => 
+                    kh.DiaChiKhachHang.Equals(input_request.DiaChiKhachHang) &&
+                    kh.TenKhachHang.Equals(input_request.TenKhachHang)
+                );
+                if (!duplicate_exists)
+                {
+                    db.KhachHangs.Add(new KhachHang()
+                    {
+                        TenKhachHang = input_request.TenKhachHang,
+                        TenDaiDien = input_request.TenDaiDien,
+                        SoDienThoai = input_request.SoDienThoai,
+                        SoFax = input_request.SoFax,
+                        DiaChiKhachHang = input_request.DiaChiKhachHang
+                    });
+                }
+            }
+            
             req.MaDon = input_request.MaDon;
             req.TenDaiDien = input_request.TenDaiDien;
             req.TenKhachHang = input_request.TenKhachHang;

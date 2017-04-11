@@ -20,6 +20,7 @@
     <EntitySet Name="RoleMasters" EntityType="IERSystemModel.Store.RoleMasters" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Users" EntityType="IERSystemModel.Store.Users" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="RoleMatrices" EntityType="IERSystemModel.Store.RoleMatrices" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="KhachHangs" EntityType="IERSystemModel.Store.KhachHangs" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="MauLayHienTruong_ChiTieuPhanTich" EntityType="IERSystemModel.Store.MauLayHienTruong_ChiTieuPhanTich" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="PhieuYeuCau_MauLayHienTruong" Association="IERSystemModel.Store.PhieuYeuCau_MauLayHienTruong">
       <End Role="PhieuYeuCau" EntitySet="PhieuYeuCaus" />
@@ -117,7 +118,8 @@
     <Property Name="TenKhachHang" Type="nvarchar(max)" Nullable="true" />
     <Property Name="NgayLayMau" Type="datetime" Nullable="false" />
     <Property Name="NgayHenTraKQ" Type="datetime" Nullable="false" />
-    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="bigint" Nullable="false" />
+    <Property Name="KhachHangId" Type="bigint" Nullable="false" />
   </EntityType>
   <EntityType Name="MauLayHienTruongs">
     <Key>
@@ -153,7 +155,7 @@
     <Property Name="NgayNhanMau" Type="datetime" Nullable="false" />
     <Property Name="NgayTraKQ" Type="datetime" Nullable="false" />
     <Property Name="CacSoNhanMauId" Type="bigint" Nullable="false" />
-    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="bigint" Nullable="false" />
     <Property Name="MauLayHienTruong_Id" Type="bigint" Nullable="false" />
   </EntityType>
   <EntityType Name="CacSoNhanMaus">
@@ -163,7 +165,7 @@
     <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="TuNgay" Type="datetime" Nullable="false" />
     <Property Name="DenNgay" Type="datetime" Nullable="false" />
-    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="bigint" Nullable="false" />
     <Property Name="CreatedDate" Type="datetime" Nullable="false" />
   </EntityType>
   <EntityType Name="SoChuyenMaus">
@@ -176,7 +178,7 @@
     <Property Name="NgayGiaoMau" Type="datetime" Nullable="false" />
     <Property Name="NgayTraKQ" Type="datetime" Nullable="false" />
     <Property Name="CacSoChuyenMauId" Type="bigint" Nullable="false" />
-    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="bigint" Nullable="false" />
     <Property Name="MauLayHienTruong_Id" Type="bigint" Nullable="false" />
   </EntityType>
   <EntityType Name="CacSoChuyenMaus">
@@ -186,7 +188,7 @@
     <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="TuNgay" Type="datetime" Nullable="false" />
     <Property Name="DenNgay" Type="datetime" Nullable="false" />
-    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="bigint" Nullable="false" />
     <Property Name="CreatedDate" Type="datetime" Nullable="false" />
   </EntityType>
   <EntityType Name="KQThuNghiemMaus">
@@ -243,7 +245,7 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Username" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Phone" Type="nvarchar(max)" Nullable="false" />
@@ -261,6 +263,17 @@
     <Property Name="SoKQ" Type="smallint" Nullable="false" />
     <Property Name="FormKQ" Type="smallint" Nullable="false" />
     <Property Name="RoleMasterId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="KhachHangs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenKhachHang" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DiaChiKhachHang" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="TenDaiDien" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SoDienThoai" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SoFax" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="MauLayHienTruong_ChiTieuPhanTich">
     <Key>
@@ -589,6 +602,7 @@
             <End Role="User" EntitySet="Users" />
             <End Role="PhieuYeuCau" EntitySet="PhieuYeuCaus" />
           </AssociationSet>
+          <EntitySet Name="KhachHangs" EntityType="IERSystemModel.KhachHang" />
         </EntityContainer>
         <EntityType Name="PhieuYeuCau">
           <Key>
@@ -611,7 +625,8 @@
           <Property Name="NgayLayMau" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="NgayHenTraKQ" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="CreatedBy" Relationship="IERSystemModel.UserPhieuYeuCau" FromRole="PhieuYeuCau" ToRole="User" />
-          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int64" Nullable="false" />
+          <Property Name="KhachHangId" Type="Int64" Nullable="false" />
         </EntityType>
         <EntityType Name="MauLayHienTruong">
           <Key>
@@ -674,7 +689,7 @@
           <Property Name="CacSoNhanMauId" Type="Int64" Nullable="false" />
           <NavigationProperty Name="MauLayHienTruong" Relationship="IERSystemModel.MauLayHienTruong_SoNhanMau" FromRole="SoNhanMau" ToRole="MauLayHienTruong" />
           <NavigationProperty Name="CreatedBy" Relationship="IERSystemModel.UserSoNhanMau" FromRole="SoNhanMau" ToRole="User" />
-          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int64" Nullable="false" />
         </EntityType>
         <EntityType Name="CacSoNhanMau">
           <Key>
@@ -685,7 +700,7 @@
           <Property Name="DenNgay" Type="DateTime" Nullable="false" />
           <NavigationProperty Name="SoNhanMaus" Relationship="IERSystemModel.CacSoNhanMau_SoNhanMau" FromRole="CacSoNhanMau" ToRole="SoNhanMau" />
           <NavigationProperty Name="CreatedBy" Relationship="IERSystemModel.UserCacSoNhanMau" FromRole="CacSoNhanMau" ToRole="User" />
-          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int64" Nullable="false" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
         </EntityType>
         <Association Name="CacSoNhanMau_SoNhanMau">
@@ -717,7 +732,7 @@
           <Property Name="CacSoChuyenMauId" Type="Int64" Nullable="false" />
           <NavigationProperty Name="MauLayHienTruong" Relationship="IERSystemModel.MauLayHienTruong_SoChuyenMau" FromRole="SoChuyenMau" ToRole="MauLayHienTruong" />
           <NavigationProperty Name="CreatedBy" Relationship="IERSystemModel.UserSoChuyenMau" FromRole="SoChuyenMau" ToRole="User" />
-          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int64" Nullable="false" />
         </EntityType>
         <EntityType Name="CacSoChuyenMau">
           <Key>
@@ -728,7 +743,7 @@
           <NavigationProperty Name="SoChuyenMaus" Relationship="IERSystemModel.CacSoChuyenMauSoChuyenMau" FromRole="CacSoChuyenMau" ToRole="SoChuyenMau" />
           <Property Name="DenNgay" Type="DateTime" Nullable="false" />
           <NavigationProperty Name="CreatedBy" Relationship="IERSystemModel.UserCacSoChuyenMau" FromRole="CacSoChuyenMau" ToRole="User" />
-          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int64" Nullable="false" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
         </EntityType>
         <Association Name="CacSoChuyenMauSoChuyenMau">
@@ -839,7 +854,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Username" Type="String" Nullable="false" />
           <Property Name="Password" Type="String" Nullable="false" />
           <Property Name="Phone" Type="String" Nullable="false" />
@@ -953,6 +968,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="KhachHang">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenKhachHang" Type="String" Nullable="false" />
+          <Property Name="DiaChiKhachHang" Type="String" Nullable="false" />
+          <Property Name="TenDaiDien" Type="String" Nullable="false" />
+          <Property Name="SoDienThoai" Type="String" Nullable="false" />
+          <Property Name="SoFax" Type="String" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -978,6 +1004,7 @@
           <ScalarProperty Name="NgayLayMau" ColumnName="NgayLayMau" />
           <ScalarProperty Name="NgayHenTraKQ" ColumnName="NgayHenTraKQ" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="KhachHangId" ColumnName="KhachHangId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1129,6 +1156,18 @@
           <ScalarProperty Name="SoKQ" ColumnName="SoKQ" />
           <ScalarProperty Name="FormKQ" ColumnName="FormKQ" />
           <ScalarProperty Name="RoleMasterId" ColumnName="RoleMasterId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KhachHangs">
+      <EntityTypeMapping TypeName="IsTypeOf(IERSystemModel.KhachHang)">
+        <MappingFragment StoreEntitySet="KhachHangs">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TenKhachHang" ColumnName="TenKhachHang" />
+          <ScalarProperty Name="DiaChiKhachHang" ColumnName="DiaChiKhachHang" />
+          <ScalarProperty Name="TenDaiDien" ColumnName="TenDaiDien" />
+          <ScalarProperty Name="SoDienThoai" ColumnName="SoDienThoai" />
+          <ScalarProperty Name="SoFax" ColumnName="SoFax" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

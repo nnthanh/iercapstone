@@ -133,6 +133,91 @@ namespace IERSystem.Areas.QuanLySoNhanMau.Controllers
             }
         }
 
+        [HttpPost]
+        public JsonResult GetNumberOfNewItems(MauPTToBeAddedInputModel maupttobeadded_inp)
+        {
+            if (ModelState.IsValid)
+            {
+                int result =
+                    (MauLayHienTruongAPIImpl.GetCandidMauPTSoNhanMau(maupttobeadded_inp, DateTime.Now, db)).Count();
+                return Json(new GetDBResponse<int>()
+                {
+                    IsOK = true,
+                    Data = result
+                });
+            }
+            else
+            {
+                return Json(new GetDBResponse<IEnumerable<MauPTToBeAddedOutputModel>> { IsOK = false, Data = null });
+            }
+        }
+
+        [HttpPost]
+        public JsonResult GetNewItems(MauPTToBeAddedInputModel maupttobeadded_inp)
+        {
+            if (ModelState.IsValid)
+            {
+                var result =
+                    MauLayHienTruongAPIImpl.GetCandidMauPTSoNhanMau(maupttobeadded_inp, DateTime.Now, db);
+                return Json(new GetDBResponse<IEnumerable<MauPTToBeAddedOutputModel>>()
+                {
+                    IsOK = true,
+                    Data = result
+                });
+            }
+            else
+            {
+                return Json(new GetDBResponse<IEnumerable<MauPTToBeAddedOutputModel>> { IsOK = false, Data = null });
+            }
+        }
+
+        [HttpPost]
+        public JsonResult GetNewItemsForOneBook(SoNhanMauOpenInputModel sonhanmauopen_inp)
+        {
+            var expire_date = DateTime.Today.AddDays(-3);
+            if (ModelState.IsValid)
+            {
+                //var target_sonhanmau = db.CacSoNhanMaus.Single((snm) => snm.Id == id);
+                var result = from snm in db.SoNhanMaus
+                             join csnm in db.CacSoNhanMaus on snm.CacSoNhanMauId equals csnm.Id
+                             where snm.NgayNhanMau > expire_date && csnm.Id == sonhanmauopen_inp.Id
+                             select snm.MauLayHienTruong.PhieuYeuCau.MaDon;                     
+
+                return Json(new GetDBResponse<IEnumerable<string>>()
+                {
+                    IsOK = true,
+                    Data = result
+                });
+            }
+            else
+            {
+                return Json(new GetDBResponse<IEnumerable<MauPTToBeAddedOutputModel>> { IsOK = false, Data = null });
+            }
+        }
+
+        [HttpPost]
+        public JsonResult GetNumberOfNewItemsForOneBook(SoNhanMauOpenInputModel sonhanmauopen_inp)
+        {
+            var expire_date = DateTime.Today.AddDays(-3);
+            if (ModelState.IsValid)
+            {
+                //var target_sonhanmau = db.CacSoNhanMaus.Single((snm) => snm.Id == id);
+                int result = (from snm in db.SoNhanMaus
+                             join csnm in db.CacSoNhanMaus on snm.CacSoNhanMauId equals csnm.Id
+                             where snm.NgayNhanMau > expire_date && csnm.Id == sonhanmauopen_inp.Id
+                             select snm.MauLayHienTruong.PhieuYeuCau.MaDon).Count();
+
+                return Json(new GetDBResponse<int>()
+                {
+                    IsOK = true,
+                    Data = result
+                });
+            }
+            else
+            {
+                return Json(new GetDBResponse<IEnumerable<MauPTToBeAddedOutputModel>> { IsOK = false, Data = null });
+            }
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

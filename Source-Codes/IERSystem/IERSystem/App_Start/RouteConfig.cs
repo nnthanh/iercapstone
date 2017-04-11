@@ -19,12 +19,22 @@ namespace IERSystem
                 defaults: new { controller = "Account", action = "Login", id = UrlParameter.Optional }
             );//.DataTokens.Add("area", "Administrator"); ;
              */
+
             routes.MapRoute(
                 "Default",
                 "{controller}/{action}/{id}",
-                new { controller = "Account", action = "Login", id = UrlParameter.Optional },
-                new[] { "IERSystem.Controllers" }
+                new
+                {
+                    controller = "Home", // default controller
+                    action = "TrangChu",  // default action on the controller
+                    id = ""
+                }
+
             );
+        }
+        protected void Application_Start()
+        {
+            RegisterRoutes(RouteTable.Routes);
         }
     }
 }

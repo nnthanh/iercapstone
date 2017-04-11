@@ -20,7 +20,7 @@ namespace IERSystem.Areas.Administrator.Models
         public System.DateTime NgayNhanMau { get; set; }
         public System.DateTime NgayTraKQ { get; set; }
         public long CacSoNhanMauId { get; set; }
-        public int UserId { get; set; }
+        public long UserId { get; set; }
     
         public virtual CacSoNhanMau CacSoNhanMau { get; set; }
         public virtual MauLayHienTruong MauLayHienTruong { get; set; }

@@ -28,6 +28,8 @@ namespace IERSystem.Areas.HopDongLayMau.Models
         public User CreatedBy { get; set; }
         public int? EditedBy { get; set; }
         public DateTime? EditedDate { get; set; }
+        public bool KhachHangMoi { get; set; }
+
         //public Boolean DaGuiMau { get; set; }
         //public uint NamLayHD { get; set; }
 

@@ -78,7 +78,7 @@ namespace IERSystem.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
-        Boolean IsAdmin(int userId) {
+        Boolean IsAdmin(long userId) {
             var user = db.Users.Find(userId);
             if (user != null) {
                 if (user.RoleMaster.Id == 1)
