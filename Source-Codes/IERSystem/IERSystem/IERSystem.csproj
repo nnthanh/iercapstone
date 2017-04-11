@@ -192,6 +192,7 @@
     <Compile Include="Areas\Administrator\Models\ChiTieuPhanTich.cs">
       <DependentUpon>IERSystemModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Areas\Administrator\Models\DashBoardOutput.cs" />
     <Compile Include="Areas\Administrator\Models\FormKQ.cs">
       <DependentUpon>IERSystemModel.tt</DependentUpon>
     </Compile>
@@ -235,6 +236,9 @@
     <Compile Include="Areas\Administrator\Models\SoNhanMau.cs">
       <DependentUpon>IERSystemModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Areas\Administrator\Models\User.cs">
+      <DependentUpon>IERSystemModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Areas\BaoGiaChiTieu\BaoGiaChiTieuAreaRegistration.cs" />
     <Compile Include="Areas\BaoGiaChiTieu\BusinessLogic\BaoGiaChiTieuSheetParser.cs" />
     <Compile Include="Areas\BaoGiaChiTieu\BusinessLogic\TableForms\ChiTieuPhanTichAPIImpl.cs" />
@@ -266,9 +270,6 @@
     <Compile Include="Areas\HopDongLayMau\Models\GetCustomerInfoInputModel.cs" />
     <Compile Include="Areas\HopDongLayMau\Models\MauPTInputModel.cs" />
     <Compile Include="Areas\HopDongLayMau\Models\YeuCauLayMauInputModel.cs" />
-    <Compile Include="Areas\Administrator\Models\User.cs">
-      <DependentUpon>IERSystemModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Areas\HopDongLayMau\Controllers\YeuCauLayMauController.cs" />
     <Compile Include="Areas\HopDongLayMau\HopDongLayMauAreaRegistration.cs" />
     <Compile Include="Areas\HopDongLayMau\Tests\HDLayMau_SNhanMauTest.cs" />

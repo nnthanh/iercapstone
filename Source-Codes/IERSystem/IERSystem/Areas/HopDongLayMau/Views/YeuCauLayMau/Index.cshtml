@@ -80,6 +80,9 @@
                             <th>Số điện thoại</th>
                             <th>Số Fax</th>
                             <th>Ngày tạo HD</th>
+                            <th>Được tạo bởi</th>
+                            <th>Chỉnh sửa lần cuối bởi</th>
+                            <th>Lần chỉnh sửa cuối lúc</th>
                             <th>Ngày trả mẫu</th>
                             <th>Hành động</th>
                         </tr>
@@ -116,6 +119,11 @@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.NgayTaoHD)
                                 </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CreatedBy.Username)
+                                </td>
+                                <td></td>
+                                <td></td>
                                 <td>
                                     <!--Ngay tra mau = NgayTaoHD + so ngay-->
                                     @Html.DisplayFor(modelItem => item.NgayTaoHD)

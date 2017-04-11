@@ -20,6 +20,7 @@ namespace IERSystem.BusinessLogic.TableForms
                 {
                     //nthoang: QuyenSo should start from 1
                     QuyenSo = cacsochuyenmau_model.Id,
+                    CreatedBy = cacsochuyenmau_model.CreatedBy,
                     TuNgay = cacsochuyenmau_model.TuNgay.ToShortDateString(),
                     DenNgay = cacsochuyenmau_model.DenNgay.ToShortDateString()
                 };
@@ -30,6 +31,9 @@ namespace IERSystem.BusinessLogic.TableForms
         {
             db.CacSoChuyenMaus.Add(new CacSoChuyenMau()
             {
+                UserId = cacsochuyenmau_inp.CreatedBy.Id,
+                CreatedBy = cacsochuyenmau_inp.CreatedBy,
+                CreatedDate = DateTime.Now,
                 TuNgay = new DateTime(cacsochuyenmau_inp.Nam, cacsochuyenmau_inp.TuThang, 1),
                 DenNgay = new DateTime(
                     cacsochuyenmau_inp.Nam, cacsochuyenmau_inp.DenThang, 

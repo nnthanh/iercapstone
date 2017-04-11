@@ -7,14 +7,9 @@
     int role = (int)Session["role"];
 }
 <h2>MỤC LỤC</h2>
-@if (role == 2)
-{
-    <input type="button" class="btn btn-info" value="Tạo sổ nhận mẫu mới" onclick="location.href='@Url.Action("Create", "CacSoNhanMau")'" disabled />
-}
-else
-{
-    <input type="button" class="btn btn-info" value="Tạo sổ nhận mẫu mới" onclick="location.href='@Url.Action("Create", "CacSoNhanMau")'" />
-}
+
+<input type="button" class="btn btn-info" value="Tạo sổ nhận mẫu mới" onclick="location.href='@Url.Action("Create", "CacSoNhanMau")'" />
+
 
 @{
     ViewBag.Title = "Index";

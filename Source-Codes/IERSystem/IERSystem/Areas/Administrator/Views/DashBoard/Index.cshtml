@@ -1,4 +1,4 @@
-﻿@model IEnumerable<IERSystem.Areas.Administrator.Models.User>
+﻿@model IERSystem.Areas.Administrator.Models.DashBoardOutputModel
 
 @{
     ViewBag.Title = "Index";
@@ -9,18 +9,18 @@
     <div class="row tile_count">
         <div class="col-md-4 col-sm-4 col-xs-6 tile_stats_count">
             <span class="count_top"><i class="fa fa-suitcase"></i> Tổng số hợp đồng</span>
-            <div class="count">2500</div>
-            <span class="count_bottom"><i class="green">4% </i> Từ tuần trước</span>
+            <div class="count">@Model.HopDongMoi</div>
+            <span class="count_bottom"><i class="green">@Model.TiLeHDMoi % </i> Từ tuần trước</span>
         </div>
         <div class="col-md-4 col-sm-4 col-xs-6 tile_stats_count">
             <span class="count_top"><i class="fa fa-check"></i> Tổng số mẫu nhận</span>
-            <div class="count">123.50</div>
-            <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>3% </i> Từ tuần trước</span>
+            <div class="count">@Model.SoMauDaNhan</div>
+            <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>@Model.TiLeMauMoi% </i> Từ tuần trước</span>
         </div>
         <div class="col-md-4 col-sm-4 col-xs-6 tile_stats_count">
             <span class="count_top"><i class="fa fa-leaf"></i> Mẫu đang được thí nghiệm</span>
-            <div class="count green">2,500</div>
-            <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> Từ tuần trước</span>
+            <div class="count green">@Model.SoMauDaTN</div>
+            <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>@Model.TiLeTNMoi% </i> Từ tuần trước</span>
         </div>
     </div>
     <!-- /top tiles -->
@@ -88,31 +88,31 @@
                                 <td>
                                     <p><i class="fa fa-square blue"></i>Hợp đồng </p>
                                 </td>
-                                <td>30</td>
+                                <td>@Model.StatusGraph[0]</td>
                             </tr>
                             <tr>
                                 <td>
                                     <p><i class="fa fa-square green"></i>Nhận </p>
                                 </td>
-                                <td>10</td>
+                                <td>@Model.StatusGraph[1]</td>
                             </tr>
                             <tr>
                                 <td>
                                     <p><i class="fa fa-square purple"></i>Chuyển </p>
                                 </td>
-                                <td>20</td>
+                                <td>@Model.StatusGraph[2]</td>
                             </tr>
                             <tr>
                                 <td>
                                     <p><i class="fa fa-square aero"></i>Kết quả</p>
                                 </td>
-                                <td>15</td>
+                                <td>@Model.StatusGraph[3]</td>
                             </tr>
                             <tr>
                                 <td>
                                     <p><i class="fa fa-square red"></i>Phiếu KQ </p>
                                 </td>
-                                <td>30</td>
+                                <td>@Model.StatusGraph[4]</td>
                             </tr>
                         </table>
                     </td>
@@ -156,72 +156,66 @@
                     </thead>
 
                     <tbody>
-                       <tr class="success">
-                           <td>1</td>
-                           <td>1</td>
-                           <td>1</td>
-                           <td>1</td>
-                           <td>1</td>
-                           <td>1</td>
-                           <td>1</td>
-                           <td>1</td>
-                           <td>1</td>
-                       </tr>
-                        <tr class="warning">
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                        </tr>
-                        <tr class="danger">
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                        </tr>
-                        <tr class="info">
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                        </tr>
-                        <tr class="active">
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                        </tr>
-                        <tr class="default">
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                        </tr>
+                       @foreach(var item in Model.DanhSachMau)
+                       {
+  
+                            switch (item.TinhTrang)
+                            {
+                                case 0: 
+                                    <tr class="default">
+                                        <td>@item.PhieuYeuCau.MaDon</td>
+                                        <td>@item.MaMau</td>
+                                        <td>@item.PhieuYeuCau.TenKhachHang</td>
+                                        <td>@item.PhieuYeuCau.DiaChiKhachHang</td>
+                                        <td>@item.PhieuYeuCau.SoDienThoai</td>
+                                        <td>@item.PhieuYeuCau.NgayTaoHD</td>
+                                        <td>@item.PhieuYeuCau.NgayHenTraKQ</td>
+                                        <td>Khởi tạo</td>
+                                        <td>1</td>
+                                    </tr>
+                                    break;
+                               case 1: 
+                                    <tr class="warning">
+                                        <td>@item.PhieuYeuCau.MaDon</td>
+                                        <td>@item.MaMau</td>
+                                        <td>@item.PhieuYeuCau.TenKhachHang</td>
+                                        <td>@item.PhieuYeuCau.DiaChiKhachHang</td>
+                                        <td>@item.PhieuYeuCau.SoDienThoai</td>
+                                        <td>@item.PhieuYeuCau.NgayTaoHD</td>
+                                        <td>@item.PhieuYeuCau.NgayHenTraKQ</td>
+                                        <td>Đã nhận</td>
+                                        <td>1</td>
+                                    </tr>
+                                    break;
+                                case 2: 
+                                    <tr class="danger">
+                                        <td>@item.PhieuYeuCau.MaDon</td>
+                                        <td>@item.MaMau</td>
+                                        <td>@item.PhieuYeuCau.TenKhachHang</td>
+                                        <td>@item.PhieuYeuCau.DiaChiKhachHang</td>
+                                        <td>@item.PhieuYeuCau.SoDienThoai</td>
+                                        <td>@item.PhieuYeuCau.NgayTaoHD</td>
+                                        <td>@item.PhieuYeuCau.NgayHenTraKQ</td>
+                                        <td>Đã chuyển</td>
+                                        <td>1</td>
+                                    </tr>
+                                    break;
+                                case 3: 
+                                    <tr class="success">
+                                        <td>@item.PhieuYeuCau.MaDon</td>
+                                        <td>@item.MaMau</td>
+                                        <td>@item.PhieuYeuCau.TenKhachHang</td>
+                                        <td>@item.PhieuYeuCau.DiaChiKhachHang</td>
+                                        <td>@item.PhieuYeuCau.SoDienThoai</td>
+                                        <td>@item.PhieuYeuCau.NgayTaoHD</td>
+                                        <td>@item.PhieuYeuCau.NgayHenTraKQ</td>
+                                        <td>Đã có kết quả</td>
+                                        <td>1</td>
+                                    </tr>
+                                    break;
+                                default: break;
+                            }
+                       }
                     </tbody>
                 </table>
             </div>
@@ -347,18 +341,18 @@
         Morris.Bar({
             element: 'graph_bar',
             data: [
-              { month: 'Tháng 1', value: 380 },
-              { month: 'Tháng 2', value: 655 },
-              { month: 'Tháng 3', value: 275 },
-              { month: 'Tháng 4', value: 1571 },
-              { month: 'Tháng 5', value: 655 },
-              { month: 'Tháng 6', value: 2154 },
-              { month: 'Tháng 7', value: 1144 },
-              { month: 'Tháng 8', value: 2371 },
-              { month: 'Tháng 9', value: 1471 },
-              { month: 'Tháng 10', value: 678 },
-              { month: 'Tháng 11', value: 789 },
-              { month: 'Tháng 12', value: 1371 }
+              { month: 'Tháng 1', value: '@Model.MonthlyGraph[0]' },
+              { month: 'Tháng 2', value: '@Model.MonthlyGraph[1]' },
+              { month: 'Tháng 3', value: '@Model.MonthlyGraph[2]' },
+              { month: 'Tháng 4', value: '@Model.MonthlyGraph[3]' },
+              { month: 'Tháng 5', value: '@Model.MonthlyGraph[4]' },
+              { month: 'Tháng 6', value: '@Model.MonthlyGraph[5]' },
+              { month: 'Tháng 7', value: '@Model.MonthlyGraph[6]' },
+              { month: 'Tháng 8', value: '@Model.MonthlyGraph[7]' },
+              { month: 'Tháng 9', value: '@Model.MonthlyGraph[8]' },
+              { month: 'Tháng 10', value: '@Model.MonthlyGraph[9]' },
+              { month: 'Tháng 11', value: '@Model.MonthlyGraph[10]' },
+              { month: 'Tháng 12', value: '@Model.MonthlyGraph[11]' },
             ],
             xkey: 'month',
             ykeys: ['value'],
@@ -396,7 +390,7 @@
                   "Hợp đồng"     
                 ],
                 datasets: [{
-                    data: [15, 20, 30, 10, 30],
+                    data: [@Model.StatusGraph[3], @Model.StatusGraph[2], @Model.StatusGraph[4], @Model.StatusGraph[1], @Model.StatusGraph[0]],
                     backgroundColor: [
                       "#BDC3C7",
                       "#9B59B6",

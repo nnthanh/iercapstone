@@ -50,12 +50,13 @@ namespace IERSystem.Controllers
             if (ModelState.IsValid)
             {
                 //var user = await UserManager.FindAsync(model.UserName, model.Password);
-                var user = (from u in db.Users where u.Username == model.UserName select u).FirstOrDefault();
+                var user = (from u in db.Users where u.Username == model.UserName && u.Password == model.Password select u).FirstOrDefault();
                 if (user != null)
                 {
                     //await SignInAsync(user, model.RememberMe);
                     //return RedirectToLocal(returnUrl);
                     Session["loggedUser"] = user.Username;
+                    Session["loggedID"] = user.Id;
                     Session["role"] = user.RoleMasterId;
                     if (IsAdmin(user.Id))
                     {
@@ -77,7 +78,7 @@ namespace IERSystem.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
-        Boolean IsAdmin(int userId) {
+        Boolean IsAdmin(long userId) {
             var user = db.Users.Find(userId);
             if (user != null) {
                 if (user.RoleMaster.Id == 1)

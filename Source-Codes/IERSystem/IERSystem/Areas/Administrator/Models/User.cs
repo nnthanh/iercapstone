@@ -14,7 +14,17 @@ namespace IERSystem.Areas.Administrator.Models
     
     public partial class User
     {
-        public int Id { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public User()
+        {
+            this.CacSoChuyenMaus = new HashSet<CacSoChuyenMau>();
+            this.CacSoNhanMaus = new HashSet<CacSoNhanMau>();
+            this.SoChuyenMaus = new HashSet<SoChuyenMau>();
+            this.SoNhanMaus = new HashSet<SoNhanMau>();
+            this.PhieuYeuCaus = new HashSet<PhieuYeuCau>();
+        }
+    
+        public long Id { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
         public string Phone { get; set; }
@@ -22,5 +32,15 @@ namespace IERSystem.Areas.Administrator.Models
         public int RoleMasterId { get; set; }
     
         public virtual RoleMaster RoleMaster { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CacSoChuyenMau> CacSoChuyenMaus { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CacSoNhanMau> CacSoNhanMaus { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SoChuyenMau> SoChuyenMaus { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SoNhanMau> SoNhanMaus { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PhieuYeuCau> PhieuYeuCaus { get; set; }
     }
 }
