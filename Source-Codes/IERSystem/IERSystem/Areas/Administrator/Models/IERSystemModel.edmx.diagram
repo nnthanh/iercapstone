@@ -10,13 +10,9 @@
         <AssociationConnector Association="IERSystemModel.PhieuYeuCau_MauLayHienTruong" />
         <EntityTypeShape EntityType="IERSystemModel.ChiTieuPhanTich" Width="2.125" PointX="12.5" PointY="13.5" />
         <AssociationConnector Association="IERSystemModel.MauLayHienTruong_ChiTieuPhanTich" />
-<<<<<<< HEAD
         <EntityTypeShape EntityType="IERSystemModel.SoNhanMau" Width="1.875" PointX="10" PointY="8.875" />
         <EntityTypeShape EntityType="IERSystemModel.CacSoNhanMau" Width="1.5" PointX="6.75" PointY="5.25" />
-=======
-        
-        
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; master
+
         <AssociationConnector Association="IERSystemModel.CacSoNhanMau_SoNhanMau" />
         <AssociationConnector Association="IERSystemModel.MauLayHienTruong_SoNhanMau" />
         <EntityTypeShape EntityType="IERSystemModel.SoChuyenMau" Width="2" PointX="9.625" PointY="4.25" IsExpanded="true" />
@@ -36,15 +32,12 @@
         <AssociationConnector Association="IERSystemModel.RoleMasterUser" />
         <EntityTypeShape EntityType="IERSystemModel.RoleMatrix" PointX="3" PointY="13.875" Width="1.5" />
         <AssociationConnector Association="IERSystemModel.RoleMasterRoleMatrix" />
-<<<<<<< HEAD
         <AssociationConnector Association="IERSystemModel.UserCacSoChuyenMau" />
         <AssociationConnector Association="IERSystemModel.UserCacSoNhanMau" />
         <AssociationConnector Association="IERSystemModel.UserPhieuYeuCau" />
         <AssociationConnector Association="IERSystemModel.UserSoChuyenMau" />
         <AssociationConnector Association="IERSystemModel.UserSoNhanMau" />
-=======
         <AssociationConnector Association="IERSystemModel.KQThuNghiemMau_ChiTieuPhanTich" />
-<<<<<<< HEAD
         <AssociationConnector Association="IERSystemModel.UserCacSoChuyenMau1" />
         <AssociationConnector Association="IERSystemModel.UserCacSoChuyenMau2" />
         <AssociationConnector Association="IERSystemModel.UserCacSoNhanMau1" />
