@@ -24,7 +24,7 @@ namespace IERSystem.Areas.HopDongLayMau.Controllers
             //if (ModelState.IsValid) {
                 try {
                     lock (_api_create_lock) {
-                        input_request.CreatedBy = db.Users.Find((int)Session["loggedID"]);
+                        input_request.CreatedBy = db.Users.Find((long)Session["loggedID"]);
                         HopDongLayMauAPIImpl.CreateModel(input_request, db);
                         db.SaveChanges();
                     }

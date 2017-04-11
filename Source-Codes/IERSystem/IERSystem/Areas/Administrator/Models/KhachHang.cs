@@ -20,5 +20,6 @@ namespace IERSystem.Areas.Administrator.Models
         public string TenDaiDien { get; set; }
         public string SoDienThoai { get; set; }
         public string SoFax { get; set; }
+        public string MaSoThue { get; set; }
     }
 }

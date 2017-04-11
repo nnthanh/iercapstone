@@ -41,7 +41,7 @@
                 }
             }!
 
-        </strong> Bạn có <i id="numcontract"></i> khách hàng mới. <a onclick='scrollDown()'><u> Xem </u></a>
+        </strong> Bạn có <i id="numcontract"></i> khách hàng mới. <a onclick="scrollDown()"><u> Xem </u></a>
 
     </div>
     <!--End of Notification-->
@@ -74,7 +74,7 @@
                             <th>Tên khách hàng</th>
                             <th>Tên đại diện</th>
                             <th>Địa chỉ KH</th>
-                            @*<th>Mã số thuế</th>*@
+                            <th>Mã số thuế</th>
                             <th>Số điện thoại</th>
                             <th>Số Fax</th>
                             <th>Hành động</th>
@@ -94,9 +94,9 @@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.DiaChiKhachHang)
                                 </td>
-                                @*<td>
+                                <td>
                                     @Html.DisplayFor(modelItem => item.MaSoThue)
-                                </td>*@
+                                </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.SoDienThoai)
                                 </td>

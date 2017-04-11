@@ -50,7 +50,7 @@
         
 &gt;&gt;&gt;&gt;&gt;&gt;&gt; master
 =======
-        <EntityTypeShape EntityType="IERSystemModel.KhachHang" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="IERSystemModel.KhachHang" Width="1.5" PointX="2.375" PointY="1.125" />
 >>>>>>> master
       </Diagram>
     </edmx:Diagrams>
