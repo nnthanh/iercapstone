@@ -274,6 +274,7 @@
     <Property Name="TenDaiDien" Type="nvarchar(max)" Nullable="false" />
     <Property Name="SoDienThoai" Type="nvarchar(max)" Nullable="false" />
     <Property Name="SoFax" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="MaSoThue" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="MauLayHienTruong_ChiTieuPhanTich">
     <Key>
@@ -978,6 +979,7 @@
           <Property Name="TenDaiDien" Type="String" Nullable="false" />
           <Property Name="SoDienThoai" Type="String" Nullable="false" />
           <Property Name="SoFax" Type="String" Nullable="false" />
+          <Property Name="MaSoThue" Type="String" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1168,6 +1170,7 @@
           <ScalarProperty Name="TenDaiDien" ColumnName="TenDaiDien" />
           <ScalarProperty Name="SoDienThoai" ColumnName="SoDienThoai" />
           <ScalarProperty Name="SoFax" ColumnName="SoFax" />
+          <ScalarProperty Name="MaSoThue" ColumnName="MaSoThue" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

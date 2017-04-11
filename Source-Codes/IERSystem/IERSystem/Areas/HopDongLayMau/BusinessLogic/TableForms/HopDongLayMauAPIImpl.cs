@@ -57,7 +57,8 @@ namespace IERSystem.BusinessLogic.TableForms
                         TenDaiDien = input_request.TenDaiDien,
                         SoDienThoai = input_request.SoDienThoai,
                         SoFax = input_request.SoFax,
-                        DiaChiKhachHang = input_request.DiaChiKhachHang
+                        DiaChiKhachHang = input_request.DiaChiKhachHang,
+                        MaSoThue = input_request.MaSoThue
                     });
                 }
             }
