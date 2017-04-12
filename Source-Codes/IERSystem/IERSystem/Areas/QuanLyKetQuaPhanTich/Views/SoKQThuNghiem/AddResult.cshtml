@@ -85,19 +85,19 @@
                                                 {
                                                     <tr>
                                                         <td>
-                                                            @Html.EditorFor(model => model.KQThuNghiemMaus.ElementAt(i).ChiTieuPhanTich.TenChiTieu, new { @class = "form-control col-md-4 col-xs-12", @readonly = "readonly" })
+                                                            @Html.TextBoxFor(model => model.KQThuNghiemMaus.ElementAt(i).ChiTieuPhanTich.TenChiTieu, new { @class = "form-control col-md-4 col-xs-12", @readonly = "readonly" })
                                                             @*@Html.ValidationMessageFor(model => kqthunghiem.ChiTieuPhanTich.TenChiTieu)*@
                                                         </td>
                                                         <td class="donvi">
-                                                            @Html.EditorFor(model => model.KQThuNghiemMaus.ElementAt(i).DonVi, new { @class = "form-control col-md-4 col-xs-12" })
+                                                            @Html.TextBoxFor(model => model.KQThuNghiemMaus.ElementAt(i).DonVi, new { @class = "form-control col-md-4 col-xs-12"@*, @readonly = "readonly"*@ })
                                                             @* @Html.ValidationMessageFor(model => kqthunghiem.DonVi)*@
                                                         </td>
                                                         <td class="ketqua" data='@Model.KQThuNghiemMaus.ElementAt(i).Id'>
-                                                            @Html.EditorFor(model => model.KQThuNghiemMaus.ElementAt(i).KetQua, new { @class = "form-control col-md-4 col-xs-12" })
+                                                            @Html.TextBoxFor(model => model.KQThuNghiemMaus.ElementAt(i).KetQua, new { @class = "form-control col-md-4 col-xs-12", id=i })
                                                             @*@Html.ValidationMessageFor(model => kqthunghiem.KetQua)*@
                                                         </td>
                                                         <td>N/A</td>
-                                                        @*<td><button id="btnSaveKQ" type="button" data-toggle="tooltip" title="Lưu"><span class="fa fa-save"></span></button></td>*@
+                                                        @*<td><button id="btnSaveKQ" type="button" data-toggle="tooltip" title="Lưu" onclick="luuKQ(id)"><span class="fa fa-save"></span></button></td>*@
                                                     </tr>
                                                 }
                                             </tbody>
@@ -112,7 +112,7 @@
                 </div>
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <input id="submitEdit" @*type="submit"*@ value="Lưu" class="btn btn-success" />
+                        <input id="submitEdit" type="button" value="Lưu" class="btn btn-success" />
                         <input type="button" class="btn btn-danger" value="Quay lại" onclick="location.href='@Url.Action("Index", "SoKQThuNghiem")'" />
                     </div>
                 </div>
@@ -139,18 +139,19 @@
                 $.ajax({
                     type: 'POST',
                     url: ' @Url.Action("EditSoKQ", "API")',
-                        data: JSON.stringify({
-                            Id: @Model.Id,
-                            KetQuas: formData
-                        }),
-                        success: function (res) {
-                            location.href = '@Url.Action("Index", "SoKQThuNghiem")'
+                    data: JSON.stringify({
+                        Id: @Model.Id,
+                        KetQuas: formData
+                    }),
+                    success: function (res) {
+                        location.href = '@Url.Action("Index", "SoKQThuNghiem")'
                     },
                     dataType: 'json',
                     contentType: 'application/json; charset=utf-8'
                 });
             });
         });
+
     </script>
 
     <script>

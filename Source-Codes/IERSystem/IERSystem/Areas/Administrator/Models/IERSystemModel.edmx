@@ -211,6 +211,7 @@
     <Property Name="MaMau" Type="nvarchar(max)" Nullable="false" />
     <Property Name="NgayNhanMau" Type="datetime" Nullable="false" />
     <Property Name="NgayTraMau" Type="datetime" Nullable="false" />
+    <Property Name="NgayThemVaoSo" Type="datetime" Nullable="false" />
     <Property Name="MauLayHienTruong_Id" Type="bigint" Nullable="false" />
   </EntityType>
   <EntityType Name="FormKQs">
@@ -783,6 +784,7 @@
           <NavigationProperty Name="KQThuNghiemMaus" Relationship="IERSystemModel.SoKQThuNghiemKQThuNghiemMau" FromRole="SoKQThuNghiem" ToRole="KQThuNghiemMau" />
           <NavigationProperty Name="MauLayHienTruong" Relationship="IERSystemModel.SoKQThuNghiem_MauLayHienTruong" FromRole="SoKQThuNghiem" ToRole="MauLayHienTruong" />
           <NavigationProperty Name="FormKQ" Relationship="IERSystemModel.SoKQThuNghiem_FormKQ" FromRole="SoKQThuNghiem" ToRole="FormKQ" />
+          <Property Name="NgayThemVaoSo" Type="DateTime" Nullable="false" />
         </EntityType>
         <Association Name="SoKQThuNghiemKQThuNghiemMau">
           <End Type="IERSystemModel.SoKQThuNghiem" Role="SoKQThuNghiem" Multiplicity="1" />
@@ -1103,6 +1105,7 @@
           <ScalarProperty Name="MaMau" ColumnName="MaMau" />
           <ScalarProperty Name="NgayNhanMau" ColumnName="NgayNhanMau" />
           <ScalarProperty Name="NgayTraMau" ColumnName="NgayTraMau" />
+          <ScalarProperty Name="NgayThemVaoSo" ColumnName="NgayThemVaoSo" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
