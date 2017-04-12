@@ -28,7 +28,7 @@
     <div class="clearfix"></div>
 
     <!--Notification-->
-    <div class="alert alert-success alert-dismissible fade in" role="alert" id="myNoti">
+    <div class="alert alert-success alert-dismissible" role="alert" id="myNoti" hidden="hidden">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">×</span>
         </button>
@@ -40,7 +40,7 @@
                     @Session["loggedUser"].ToString()
                 }
             }!
-        </strong> Bạn có 5 mẫu mới trong sổ.
+        </strong> Bạn có <i id="numcontract"></i> mẫu mới trong sổ. <a onclick="scrollDown()"><u> Xem </u></a>
         
     </div>
     <!--End of Notification-->
@@ -51,7 +51,7 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
             <div class="x_title">
-                <h2>DANH SÁCH KẾT QUẢ <small><i class="green">5 </i>mẫu mới </small></h2>
+                <h2>DANH SÁCH KẾT QUẢ <small><i class="green" id="newContract"> </i> mẫu mới </small></h2>
                 <ul class="nav navbar-right panel_toolbox">
                     <li>
                         <a class="collapse-link">
@@ -67,14 +67,13 @@
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
-                <table id="" class="datatable-buttons table table-striped table-bordered">
+                <table id="ketquatable" class="datatable-buttons table table-striped table-bordered">
                     <thead>
                         <tr>
                             <th>Mã mẫu</th>
                             <th>Ngày nhận mẫu</th>
                             <th>Ngày trả mẫu</th>
                             <th>Ngày thêm vào sổ</th>
-                            <th>Tình trạng</th>
                             <th>Hành động</th>
                             
                         </tr>
@@ -94,13 +93,10 @@
                                     @Html.DisplayFor(modelItem => item.NgayTraMau)
                                 </td>
                                 <td>
-                                    Đã thêm kết quả
+                                    @Html.DisplayFor(modelItem => item.NgayThemVaoSo)
                                 </td>
                                 <td>
-                                    Hôm nay
-                                </td>
-                                <td>
-                                    <button data-toggle="tooltip" title="Nhập kết quả" onclick="location.href='@Url.Action("AddResult", "SoKQThuNghiem", new { id = item.Id })'"><span class="fa fa-file-text"></span></button>
+                                    <button data-toggle="tooltip" title="Nhập kết quả" onclick="location.href='@Url.Action("AddResult", "SoKQThuNghiem", new { id = item.Id })'"><i class="fa fa-file-text"></i></button>
                                     <button data-toggle="tooltip" title="Chỉnh sửa" onclick="location.href='@Url.Action("Edit", "SoKQThuNghiem", new { id = item.Id })'"><span class="fa fa-edit"></span></button>
                                     <button data-toggle="tooltip" title="Xem chi tiết" onclick="location.href='@Url.Action("Details", "SoKQThuNghiem", new { id = item.Id })'"><span class="fa fa-info"></span></button>
                                     <button data-toggle="tooltip" title="In" onclick="location.href='@Url.Action("", "")'"><span class="fa fa-print"></span></button>
@@ -156,6 +152,53 @@
                 type: 'success',
                 styling: 'bootstrap3'
             })
+        }
+        function scrollDown() {
+            $("html, body").animate({ scrollTop: $("#ketquatable").offset().top }, 1000);
+        }
+
+        //var listPhieu;
+        $.ajax({
+            type: 'POST',
+            url: ' @Url.Action("GetNewContracts", "API") ',
+            success: function (res) {
+                if (res.IsOK) {
+                    var listPhieu = res.Data;
+                    var contract = document.createElement('soan');
+                    contract.innerHTML = " " + listPhieu.length + " ";
+                    document.getElementById('newContract').appendChild(contract);
+                    if (listPhieu.length > 0) {
+                        $('#myNoti').fadeIn(1000);
+                    }
+                    recentlyAddedRows(listPhieu);
+                }
+            },
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8'
+        });
+
+        function recentlyAddedRows(listPhieu) {
+            var table = document.getElementById('ketquatable');
+            var row, rows = table.rows;
+            var cell, cells;
+            var rowText;
+            
+            for (var i = 0, iLen = rows.length; i < iLen; i++) {
+                row = rows[i];
+                cell = row.cells[0];
+
+                for (var j=0; j<listPhieu.length; ++j){
+                    if (cell.textContent.trim() == listPhieu[j].MaMau) {
+                        if (listPhieu[j].SoLuongKetQua == 0) {
+                            jQuery(row).addClass("warning");
+                        }
+                        else jQuery(row).addClass("success");
+                    }
+                }
+                //if (jQuery.inArray(cell.textContent.trim(), listPhieu.MaMau) != -1) {
+                //    jQuery(row).addClass("success");
+                //}
+            }
         }
     </script>
 }

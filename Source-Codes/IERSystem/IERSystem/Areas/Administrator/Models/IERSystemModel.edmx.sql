@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 04/11/2017 20:53:30
+-- Date Created: 04/11/2017 23:51:25
 -- Generated from EDMX file: E:\Things\Books\Year 4\Term 1\Capstone\IER PERSONAL WORK\iercapstone\Source-Codes\IERSystem\IERSystem\Areas\Administrator\Models\IERSystemModel.edmx
 -- --------------------------------------------------
 
@@ -242,6 +242,7 @@ CREATE TABLE [dbo].[SoKQThuNghiems] (
     [MaMau] nvarchar(max)  NOT NULL,
     [NgayNhanMau] datetime  NOT NULL,
     [NgayTraMau] datetime  NOT NULL,
+    [NgayThemVaoSo] datetime  NOT NULL,
     [MauLayHienTruong_Id] bigint  NOT NULL
 );
 GO

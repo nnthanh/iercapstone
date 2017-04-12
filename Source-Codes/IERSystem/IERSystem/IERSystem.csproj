@@ -284,6 +284,7 @@
     <Compile Include="Areas\QuanLyKetQuaPhanTich\Models\KetQuaEditedInputModel.cs" />
     <Compile Include="Areas\QuanLyKetQuaPhanTich\Models\MauLayHienTruongAPIImpl.cs" />
     <Compile Include="Areas\QuanLyKetQuaPhanTich\Models\SoKQThuNghiemInputModel.cs" />
+    <Compile Include="Areas\QuanLyKetQuaPhanTich\Models\SoKQThuNghiemOutputModel.cs" />
     <Compile Include="Areas\QuanLyKetQuaPhanTich\QuanLyKetQuaPhanTichAreaRegistration.cs" />
     <Compile Include="Areas\QuanLySoChuyenMau\BusinessLogic\TableForms\CacSoChuyenMauAPIImpl.cs" />
     <Compile Include="Areas\QuanLySoChuyenMau\BusinessLogic\TableForms\MauLayHienTruongAPIImpl.cs" />
