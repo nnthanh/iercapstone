@@ -1,0 +1,268 @@
+﻿@model IERSystem.Areas.Administrator.Models.PhieuYeuCau
+@{
+    ViewBag.Title = "ExportToExcel";
+    Layout = null;
+    //Response.ClearContent();
+    //Response.Buffer = true;
+    //Response.AddHeader("content-disposition", "attachment; filename=Request.pdf");
+    //Response.ContentType = "application/pdf";
+    //Response.Charset = "UTF-8";
+}
+<html>
+<head>
+    <title>Hợp đồng lấy mẫu</title>
+    <style>
+        body {
+            font-family: Arial;
+        }
+        h1 {
+            margin: 20px;
+            font-size: 30px;
+            text-align: center;
+            font-family: Arial;
+        }
+        .header-text {
+            text-align: right;
+            font-size: 10px;
+            font-family: Arial;
+            margin-right: 5px;
+            line-height: 150%;
+        }
+        .header-tab {
+            border-collapse: collapse;
+            border: 1px solid black;
+        }
+        .header-tab td {
+            border: 1px solid black;
+        }
+        .info-tab{
+            padding:10px;
+        }
+
+        .info-tab .first{
+            width:450px;
+        }
+        
+        .text-center{
+            text-align:center;
+        }
+
+        .text-right {
+            text-align: right;
+        }
+
+        .text-left {
+            text-align: left;
+        }
+
+        .model-tab {
+            width: 100%;
+            border-collapse: collapse;
+            border: 1px solid black;
+        }
+            .model-tab th {
+                text-align:center;
+                height: 40px;
+                background: #DBE5F1;
+                border: 1px solid black;
+            }
+            .model-tab td {
+                height: 35px;
+                border-right: 1px solid black;
+                border-bottom: 1px dashed black;
+                padding-left:10px;
+            }
+        .sign-tab{
+            width:100%;
+        }
+
+        ul li {
+            display: inline;
+            margin-right:30px;
+        }
+    </style>
+</head>
+<body>
+    <table class="header-tab">
+        <tr>
+            <td width="120" class="text-center"><img src="~/App_Data/logo.png" style="width:100px;height:100px" /></td>
+            <td>
+                <h1>
+                    PHIẾU YÊU CẦU LẤY MẪU VÀ THỬ NGHIỆM
+                </h1>
+            </td>
+            <td width="300" >
+                <p class="header-text">
+                    VIỆN MÔI TRƯỜNG VÀ TÀI NGUYÊN<br />
+                    TRUNG TÂM CÔNG NGHỆ MÔI TRƯỜNG<br />
+                    PTN PHÂN TÍCH VÀ KỸ THUẬT CÔNG NGHỆ (VILAS 640)<br />
+                    142 TÔ HIẾN THÀNH, P.14, Q.10, TP.HCM<br />
+                    ĐT: 08.22476450
+                </p>
+            </td>
+        </tr>
+    </table>
+    <br />
+    <table class="info-tab">
+        <tr>
+            <td class="first"><b>Tên khách hàng:</b> @Model.TenKhachHang </td>
+            <td colspan="2"><b>Mã số thuế:</b> @Model.MaSoThue</td>
+        </tr>
+        <tr>
+            <td class ="first"><b>Người đại diện:</b> @Model.TenDaiDien </td>
+            <td><b>Điện thoại:</b> @Model.SoDienThoai</td>
+            <td><b>Fax:</b> @Model.SoFax</td>
+        </tr>
+        <tr>
+            <td class ="first"><b>Nơi lấy mẫu:</b> @Model.DiaChiLayMau </td>
+            <td colspan="2"><b>Ngày gửi mẫu/lấy mẫu:</b> @Model.NgayTaoHD</td>
+        </tr>
+        <tr>
+            <td class ="first"><b>Địa chỉ:</b> @Model.DiaChiKhachHang </td>
+            <td colspan="2"><b>Ngày hẹn trả kết quả:</b> @Model.NgayHenTraKQ</td>
+        </tr>
+        <tr>
+            <td colspan="3"><b>Công việc yêu cầu</b>
+                <ul style="list-style-type:none;display:inline;">
+                    <li>&#9633; Gửi mẫu phân tích
+                    <li>&#9633; Khảo sát lấy mẫu
+                </ul>
+            </td>
+        </tr>
+    </table>
+    @Html.Action("DanhSachMau", new { RequestID = Model.Id })
+    
+    <table class="info-tab">
+        <tr>
+            <td colspan="6">
+                <b>Phương pháp thử nghiệm:</b>
+                <ul style="list-style-type:none;display:inline;">
+                    <li>&#9633; PTN PT & KTCN
+                    <li>&#9633; Khách hàng
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="6"><b>Phương pháp lấy mẫu:</b>………………………………………………………………………………………………</td>
+        </tr>
+        <tr>
+            <td>
+                <b>Phương pháp thử nghiệm</b>
+            </td>
+            <td>
+                <ul style="list-style-type:none;display:inline;">
+                    <li>&#9633; Trực tiếp
+                </ul>
+               </td>
+            <td>
+                <ul style="list-style-type:none;display:inline;">
+                    <li>&#9633; Fax
+                </ul>
+            </td>
+            <td>
+                <ul style="list-style-type:none;display:inline;">
+                    <li>&#9633; Email
+                </ul>
+            </td>
+            <td>
+                <ul style="list-style-type:none;display:inline;">
+                    <li>&#9633; Gửi thư
+                </ul>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>
+                <b>Phiếu KQTN</b>
+            </td>
+            <td>
+                <ul style="list-style-type:none;display:inline;">
+                    <li>&#9633; Việt
+                </ul>
+            </td>
+            <td>
+                <ul style="list-style-type:none;display:inline;">
+                    <li>&#9633; Anh
+                </ul>
+            </td>
+            <td>
+                <ul style="list-style-type:none;display:inline;">
+                    <li>&#9633; Việt/Anh
+                </ul>
+            </td>
+            <td>
+                <ul style="list-style-type:none;display:inline;">
+                    <li>&#9633; Số bản
+                </ul>
+            </td>
+            <td>
+            </td>
+        </tr>
+        <tr>
+            <td>
+            </td>
+            <td colspan="5">
+                <ul style="list-style-type:none;display:inline;">
+                    <li>&#9633; So sánh kết quả với tiêu chuẩn…………………
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3"><b>Phí thí nghiệm tạm tính:</b>………………………………</td>
+            <td colspan="3"><b>Khách hàng trả trước:</b>…………………………………</td>
+        </tr>
+    </table>
+    <table class="sign-tab">
+        <tr>
+            <td class="text-left">
+                <p align="center">
+                    Ngày …….. tháng ……. năm ………
+                    <br /><br /><br /><br /><br /><br />
+                </p>
+                <p align="center">
+                    <strong><u>Người gửi mẫu</u></strong>
+                </p>
+            </td>
+            <td class="text-right">
+                <p align="center">
+                    Ngày …… tháng …… năm ………
+                    <br /><br /><br /><br /><br /><br />
+                </p>
+                <p align="center">
+                    <strong><u>Người nhận mẫu</u></strong>
+                </p>
+            </td>
+        </tr>
+    </table>
+    <div class="notice" style="font-size:10px">
+        <p>
+            <strong><em><u>Lưu ý:</u></em></strong>
+        </p>
+        <p>
+            <em>
+                1. Đề nghị quý khách hàng ghi đúng, rõ ràng và đầy đủ tên đơn vị gửi
+                mẫu để thuận tiện khi thiết lập Phiếu kết quả thử nghiệm và hóa đơn tài
+                chính.
+            </em>
+        </p>
+        <p>
+            <em>
+                2. Xin quý khách hàng vui lòng mang theo giấy này khi đến nhận kết quả
+                thử nghiệm.
+            </em>
+        </p>
+        <p>
+            <em>
+                3. Trong trường hợp quý khách hàng không yêu cầu cụ thể phương pháp thử
+                thì PTN được quyền chọn lựa phương pháp thử phù hợp.
+            </em>
+        </p>
+        <p>
+            <em>
+                4. Chỉ thực hiện khi khách hàng đã thanh toán trước phí thử nghiệm hoặc
+                có thỏa thuận trước với PTN, yêu cầu ghi rõ địa chỉ, họ tên người nhận.
+            </em>
+        </p>
+    </div>
+</body>
+</html>

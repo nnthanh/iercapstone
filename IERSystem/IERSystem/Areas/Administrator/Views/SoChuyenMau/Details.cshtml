@@ -1,0 +1,116 @@
+﻿@model IERSystem.Areas.Administrator.Models.SoChuyenMau
+
+@{
+    ViewBag.Title = "Chi tiết";
+    Layout = "~/Areas/Administrator/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Chi tiết mẫu chuyển</h2>
+
+<div>
+    <div class="clearfix">
+    </div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <dl class="dl-horizontal">
+                    <dt>
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                            Mã khách hàng
+                        </label>
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.MaKhachHang)
+                    </dd>
+
+                    <dt>
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                            Mã mẫu
+                        </label>
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.MaMau)
+                    </dd>
+
+                    <dt>
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                            Chỉ tiêu thử nghiệm
+                        </label>
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.ChiTieuThuNghiem)
+                    </dd>
+
+                    <dt>
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                            Người giao mẫu
+                        </label>
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.NguoiGiaoMau)
+                    </dd>
+
+                    <dt>
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                            Người nhận mẫu
+                        </label>
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.NguoiNhanMau)
+                    </dd>
+
+                    <dt>
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                            Ngày giao mẫu
+                        </label>
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.NgayGiaoMau)
+                    </dd>
+
+                    <dt>
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                            Ngày trả kết quả
+                        </label>
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.NgayTraKetQua)
+                    </dd>
+
+                    <dt>
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                            Điền tên
+                        </label>
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.DienTien)
+                    </dd>
+
+                    <dt>
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                            Ghi chú
+                        </label>
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.GhiChu)
+                    </dd>
+
+                </dl>
+            </div>
+            </div>
+        </div>
+    </div>
+
+<p class="mid_center">
+    <button class="btn btn-warning" data-toggle="tooltip" title="Chỉnh sửa" onclick="location.href='@Url.Action("Edit", "SoChuyenMau", new { id = Model.Id })'"><span class="fa fa-edit"></span></button>
+    <button class="btn btn-success" data-toggle="tooltip" title="Quay lại" onclick="location.href='@Url.Action("Index", "SoChuyenMau", new { id = Model.Id })'"><span class="fa fa-arrow-left"></span></button>
+</p>

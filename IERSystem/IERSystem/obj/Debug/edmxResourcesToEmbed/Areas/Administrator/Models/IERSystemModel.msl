@@ -1,0 +1,241 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="IERSystemModelStoreContainer" CdmEntityContainer="IERSystemModelContainer">
+    <EntitySetMapping Name="PhieuYeuCaus">
+      <EntityTypeMapping TypeName="IsTypeOf(IERSystemModel.PhieuYeuCau)">
+        <MappingFragment StoreEntitySet="PhieuYeuCaus">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DiaChiKhachHang" ColumnName="DiaChiKhachHang" />
+          <ScalarProperty Name="DiaChiLayMau" ColumnName="DiaChiLayMau" />
+          <ScalarProperty Name="KhachHangTraTruoc" ColumnName="KhachHangTraTruoc" />
+          <ScalarProperty Name="MaDon" ColumnName="MaDon" />
+          <ScalarProperty Name="MaSoThue" ColumnName="MaSoThue" />
+          <ScalarProperty Name="NgayTaoHD" ColumnName="NgayTaoHD" />
+          <ScalarProperty Name="NoiLayMau" ColumnName="NoiLayMau" />
+          <ScalarProperty Name="PhiThiNghiemTamTinh" ColumnName="PhiThiNghiemTamTinh" />
+          <ScalarProperty Name="SoDienThoai" ColumnName="SoDienThoai" />
+          <ScalarProperty Name="SoFax" ColumnName="SoFax" />
+          <ScalarProperty Name="TenDaiDien" ColumnName="TenDaiDien" />
+          <ScalarProperty Name="TenKhachHang" ColumnName="TenKhachHang" />
+          <ScalarProperty Name="NgayLayMau" ColumnName="NgayLayMau" />
+          <ScalarProperty Name="NgayHenTraKQ" ColumnName="NgayHenTraKQ" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="KhachHangId" ColumnName="KhachHangId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MauLayHienTruongs">
+      <EntityTypeMapping TypeName="IsTypeOf(IERSystemModel.MauLayHienTruong)">
+        <MappingFragment StoreEntitySet="MauLayHienTruongs">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="MaMau" ColumnName="MaMau" />
+          <ScalarProperty Name="MaMauKH" ColumnName="MaMauKH" />
+          <ScalarProperty Name="DonVi" ColumnName="DonVi" />
+          <ScalarProperty Name="MoTaMau" ColumnName="MoTaMau" />
+          <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+          <ScalarProperty Name="ViTriLayMau" ColumnName="ViTriLayMau" />
+          <ScalarProperty Name="PhieuYeuCauId" ColumnName="PhieuYeuCauId" />
+          <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ChiTieuPhanTiches">
+      <EntityTypeMapping TypeName="IsTypeOf(IERSystemModel.ChiTieuPhanTich)">
+        <MappingFragment StoreEntitySet="ChiTieuPhanTiches">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TenChiTieu" ColumnName="TenChiTieu" />
+          <ScalarProperty Name="ChiPhi" ColumnName="ChiPhi" />
+          <ScalarProperty Name="TenPhuongPhap" ColumnName="TenPhuongPhap" />
+          <ScalarProperty Name="NhomChiTieuId" ColumnName="NhomChiTieuId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SoNhanMaus">
+      <EntityTypeMapping TypeName="IsTypeOf(IERSystemModel.SoNhanMau)">
+        <MappingFragment StoreEntitySet="SoNhanMaus">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="KHKiNhanTraKQ" ColumnName="KHKiNhanTraKQ" />
+          <ScalarProperty Name="KHKiNhanTraTien" ColumnName="KHKiNhanTraTien" />
+          <ScalarProperty Name="NgayNhanMau" ColumnName="NgayNhanMau" />
+          <ScalarProperty Name="NgayTraKQ" ColumnName="NgayTraKQ" />
+          <ScalarProperty Name="CacSoNhanMauId" ColumnName="CacSoNhanMauId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CacSoNhanMaus">
+      <EntityTypeMapping TypeName="IsTypeOf(IERSystemModel.CacSoNhanMau)">
+        <MappingFragment StoreEntitySet="CacSoNhanMaus">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TuNgay" ColumnName="TuNgay" />
+          <ScalarProperty Name="DenNgay" ColumnName="DenNgay" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SoChuyenMaus">
+      <EntityTypeMapping TypeName="IsTypeOf(IERSystemModel.SoChuyenMau)">
+        <MappingFragment StoreEntitySet="SoChuyenMaus">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DienTen" ColumnName="DienTen" />
+          <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
+          <ScalarProperty Name="NgayGiaoMau" ColumnName="NgayGiaoMau" />
+          <ScalarProperty Name="NgayTraKQ" ColumnName="NgayTraKQ" />
+          <ScalarProperty Name="CacSoChuyenMauId" ColumnName="CacSoChuyenMauId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CacSoChuyenMaus">
+      <EntityTypeMapping TypeName="IsTypeOf(IERSystemModel.CacSoChuyenMau)">
+        <MappingFragment StoreEntitySet="CacSoChuyenMaus">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TuNgay" ColumnName="TuNgay" />
+          <ScalarProperty Name="DenNgay" ColumnName="DenNgay" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KQThuNghiemMaus">
+      <EntityTypeMapping TypeName="IsTypeOf(IERSystemModel.KQThuNghiemMau)">
+        <MappingFragment StoreEntitySet="KQThuNghiemMaus">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DonVi" ColumnName="DonVi" />
+          <ScalarProperty Name="KetQua" ColumnName="KetQua" />
+          <ScalarProperty Name="NguoiThucHien" ColumnName="NguoiThucHien" />
+          <ScalarProperty Name="SoKQThuNghiemId" ColumnName="SoKQThuNghiemId" />
+          <ScalarProperty Name="FormKQId" ColumnName="FormKQId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SoKQThuNghiems">
+      <EntityTypeMapping TypeName="IsTypeOf(IERSystemModel.SoKQThuNghiem)">
+        <MappingFragment StoreEntitySet="SoKQThuNghiems">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="MaMau" ColumnName="MaMau" />
+          <ScalarProperty Name="NgayNhanMau" ColumnName="NgayNhanMau" />
+          <ScalarProperty Name="NgayTraMau" ColumnName="NgayTraMau" />
+          <ScalarProperty Name="NgayThemVaoSo" ColumnName="NgayThemVaoSo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FormKQs">
+      <EntityTypeMapping TypeName="IsTypeOf(IERSystemModel.FormKQ)">
+        <MappingFragment StoreEntitySet="FormKQs">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="NoiLayMau" ColumnName="NoiLayMau" />
+          <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+          <ScalarProperty Name="ViTriLayMau" ColumnName="ViTriLayMau" />
+          <ScalarProperty Name="NgayGuiMau" ColumnName="NgayGuiMau" />
+          <ScalarProperty Name="LoaiMau" ColumnName="LoaiMau" />
+          <ScalarProperty Name="MaDon" ColumnName="MaDon" />
+          <ScalarProperty Name="MaMau" ColumnName="MaMau" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NhomChiTieux">
+      <EntityTypeMapping TypeName="IsTypeOf(IERSystemModel.NhomChiTieu)">
+        <MappingFragment StoreEntitySet="NhomChiTieux">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TenNhom" ColumnName="TenNhom" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RoleMasters">
+      <EntityTypeMapping TypeName="IsTypeOf(IERSystemModel.RoleMaster)">
+        <MappingFragment StoreEntitySet="RoleMasters">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="IsTypeOf(IERSystemModel.User)">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Fullname" ColumnName="Fullname" />
+          <ScalarProperty Name="RoleMasterId" ColumnName="RoleMasterId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RoleMatrices">
+      <EntityTypeMapping TypeName="IsTypeOf(IERSystemModel.RoleMatrix)">
+        <MappingFragment StoreEntitySet="RoleMatrices">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="HopDong" ColumnName="HopDong" />
+          <ScalarProperty Name="SoNhan" ColumnName="SoNhan" />
+          <ScalarProperty Name="SoChuyen" ColumnName="SoChuyen" />
+          <ScalarProperty Name="SoKQ" ColumnName="SoKQ" />
+          <ScalarProperty Name="FormKQ" ColumnName="FormKQ" />
+          <ScalarProperty Name="RoleMasterId" ColumnName="RoleMasterId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KhachHangs">
+      <EntityTypeMapping TypeName="IsTypeOf(IERSystemModel.KhachHang)">
+        <MappingFragment StoreEntitySet="KhachHangs">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TenKhachHang" ColumnName="TenKhachHang" />
+          <ScalarProperty Name="DiaChiKhachHang" ColumnName="DiaChiKhachHang" />
+          <ScalarProperty Name="TenDaiDien" ColumnName="TenDaiDien" />
+          <ScalarProperty Name="SoDienThoai" ColumnName="SoDienThoai" />
+          <ScalarProperty Name="SoFax" ColumnName="SoFax" />
+          <ScalarProperty Name="MaSoThue" ColumnName="MaSoThue" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="MauLayHienTruong_ChiTieuPhanTich" TypeName="IERSystemModel.MauLayHienTruong_ChiTieuPhanTich" StoreEntitySet="MauLayHienTruong_ChiTieuPhanTich">
+      <EndProperty Name="MauLayHienTruong">
+        <ScalarProperty Name="Id" ColumnName="MauLayHienTruongs_Id" />
+      </EndProperty>
+      <EndProperty Name="ChiTieuPhanTich">
+        <ScalarProperty Name="Id" ColumnName="ChiTieuPhanTiches_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="MauLayHienTruong_SoNhanMau" TypeName="IERSystemModel.MauLayHienTruong_SoNhanMau" StoreEntitySet="SoNhanMaus">
+      <EndProperty Name="MauLayHienTruong">
+        <ScalarProperty Name="Id" ColumnName="MauLayHienTruong_Id" />
+      </EndProperty>
+      <EndProperty Name="SoNhanMau">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="MauLayHienTruong_SoChuyenMau" TypeName="IERSystemModel.MauLayHienTruong_SoChuyenMau" StoreEntitySet="SoChuyenMaus">
+      <EndProperty Name="MauLayHienTruong">
+        <ScalarProperty Name="Id" ColumnName="MauLayHienTruong_Id" />
+      </EndProperty>
+      <EndProperty Name="SoChuyenMau">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="SoKQThuNghiem_MauLayHienTruong" TypeName="IERSystemModel.SoKQThuNghiem_MauLayHienTruong" StoreEntitySet="SoKQThuNghiems">
+      <EndProperty Name="MauLayHienTruong">
+        <ScalarProperty Name="Id" ColumnName="MauLayHienTruong_Id" />
+      </EndProperty>
+      <EndProperty Name="SoKQThuNghiem">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="SoKQThuNghiem_FormKQ" TypeName="IERSystemModel.SoKQThuNghiem_FormKQ" StoreEntitySet="FormKQs">
+      <EndProperty Name="SoKQThuNghiem">
+        <ScalarProperty Name="Id" ColumnName="SoKQThuNghiem_Id" />
+      </EndProperty>
+      <EndProperty Name="FormKQ">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="KQThuNghiemMau_ChiTieuPhanTich" TypeName="IERSystemModel.KQThuNghiemMau_ChiTieuPhanTich" StoreEntitySet="KQThuNghiemMaus">
+      <EndProperty Name="ChiTieuPhanTich">
+        <ScalarProperty Name="Id" ColumnName="ChiTieuPhanTich_Id" />
+      </EndProperty>
+      <EndProperty Name="KQThuNghiemMau">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

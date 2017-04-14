@@ -1,0 +1,469 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="IERSystemModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+  <EntityContainer Name="IERSystemModelContainer" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="PhieuYeuCaus" EntityType="IERSystemModel.PhieuYeuCau" />
+    <EntitySet Name="MauLayHienTruongs" EntityType="IERSystemModel.MauLayHienTruong" />
+    <AssociationSet Name="PhieuYeuCau_MauLayHienTruong" Association="IERSystemModel.PhieuYeuCau_MauLayHienTruong">
+      <End Role="PhieuYeuCau" EntitySet="PhieuYeuCaus" />
+      <End Role="MauLayHienTruong" EntitySet="MauLayHienTruongs" />
+    </AssociationSet>
+    <EntitySet Name="ChiTieuPhanTiches" EntityType="IERSystemModel.ChiTieuPhanTich" />
+    <AssociationSet Name="MauLayHienTruong_ChiTieuPhanTich" Association="IERSystemModel.MauLayHienTruong_ChiTieuPhanTich">
+      <End Role="MauLayHienTruong" EntitySet="MauLayHienTruongs" />
+      <End Role="ChiTieuPhanTich" EntitySet="ChiTieuPhanTiches" />
+    </AssociationSet>
+    <EntitySet Name="SoNhanMaus" EntityType="IERSystemModel.SoNhanMau" />
+    <EntitySet Name="CacSoNhanMaus" EntityType="IERSystemModel.CacSoNhanMau" />
+    <AssociationSet Name="CacSoNhanMau_SoNhanMau" Association="IERSystemModel.CacSoNhanMau_SoNhanMau">
+      <End Role="CacSoNhanMau" EntitySet="CacSoNhanMaus" />
+      <End Role="SoNhanMau" EntitySet="SoNhanMaus" />
+    </AssociationSet>
+    <AssociationSet Name="MauLayHienTruong_SoNhanMau" Association="IERSystemModel.MauLayHienTruong_SoNhanMau">
+      <End Role="MauLayHienTruong" EntitySet="MauLayHienTruongs" />
+      <End Role="SoNhanMau" EntitySet="SoNhanMaus" />
+    </AssociationSet>
+    <EntitySet Name="SoChuyenMaus" EntityType="IERSystemModel.SoChuyenMau" />
+    <EntitySet Name="CacSoChuyenMaus" EntityType="IERSystemModel.CacSoChuyenMau" />
+    <AssociationSet Name="CacSoChuyenMau_SoChuyenMau" Association="IERSystemModel.CacSoChuyenMauSoChuyenMau">
+      <End Role="CacSoChuyenMau" EntitySet="CacSoChuyenMaus" />
+      <End Role="SoChuyenMau" EntitySet="SoChuyenMaus" />
+    </AssociationSet>
+    <EntitySet Name="KQThuNghiemMaus" EntityType="IERSystemModel.KQThuNghiemMau" />
+    <EntitySet Name="SoKQThuNghiems" EntityType="IERSystemModel.SoKQThuNghiem" />
+    <AssociationSet Name="SoKQThuNghiem_KQThuNghiemMau" Association="IERSystemModel.SoKQThuNghiemKQThuNghiemMau">
+      <End Role="SoKQThuNghiem" EntitySet="SoKQThuNghiems" />
+      <End Role="KQThuNghiemMau" EntitySet="KQThuNghiemMaus" />
+    </AssociationSet>
+    <EntitySet Name="FormKQs" EntityType="IERSystemModel.FormKQ" />
+    <AssociationSet Name="MauLayHienTruong_SoChuyenMau" Association="IERSystemModel.MauLayHienTruong_SoChuyenMau">
+      <End Role="MauLayHienTruong" EntitySet="MauLayHienTruongs" />
+      <End Role="SoChuyenMau" EntitySet="SoChuyenMaus" />
+    </AssociationSet>
+    <AssociationSet Name="SoKQThuNghiem_MauLayHienTruong" Association="IERSystemModel.SoKQThuNghiem_MauLayHienTruong">
+      <End Role="SoKQThuNghiem" EntitySet="SoKQThuNghiems" />
+      <End Role="MauLayHienTruong" EntitySet="MauLayHienTruongs" />
+    </AssociationSet>
+    <EntitySet Name="NhomChiTieux" EntityType="IERSystemModel.NhomChiTieu" />
+    <AssociationSet Name="NhomChiTieu_ChiTieuPhanTich" Association="IERSystemModel.NhomChiTieu_ChiTieuPhanTich">
+      <End Role="NhomChiTieu" EntitySet="NhomChiTieux" />
+      <End Role="ChiTieuPhanTich" EntitySet="ChiTieuPhanTiches" />
+    </AssociationSet>
+    <AssociationSet Name="SoKQThuNghiem_FormKQ" Association="IERSystemModel.SoKQThuNghiem_FormKQ">
+      <End Role="SoKQThuNghiem" EntitySet="SoKQThuNghiems" />
+      <End Role="FormKQ" EntitySet="FormKQs" />
+    </AssociationSet>
+    <EntitySet Name="RoleMasters" EntityType="IERSystemModel.RoleMaster" />
+    <EntitySet Name="Users" EntityType="IERSystemModel.User" />
+    <AssociationSet Name="RoleMasterUser" Association="IERSystemModel.RoleMasterUser">
+      <End Role="RoleMaster" EntitySet="RoleMasters" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <EntitySet Name="RoleMatrices" EntityType="IERSystemModel.RoleMatrix" />
+    <AssociationSet Name="RoleMasterRoleMatrix" Association="IERSystemModel.RoleMasterRoleMatrix">
+      <End EntitySet="RoleMasters" Role="RoleMaster" />
+      <End EntitySet="RoleMatrices" Role="RoleMatrix" />
+    </AssociationSet>
+    <AssociationSet Name="KQThuNghiemMau_ChiTieuPhanTich" Association="IERSystemModel.KQThuNghiemMau_ChiTieuPhanTich">
+      <End Role="KQThuNghiemMau" EntitySet="KQThuNghiemMaus" />
+      <End Role="ChiTieuPhanTich" EntitySet="ChiTieuPhanTiches" />
+    </AssociationSet>
+    <AssociationSet Name="UserCacSoChuyenMau" Association="IERSystemModel.UserCacSoChuyenMau">
+      <End Role="User" EntitySet="Users" />
+      <End Role="CacSoChuyenMau" EntitySet="CacSoChuyenMaus" />
+    </AssociationSet>
+    <AssociationSet Name="UserCacSoNhanMau" Association="IERSystemModel.UserCacSoNhanMau">
+      <End Role="User" EntitySet="Users" />
+      <End Role="CacSoNhanMau" EntitySet="CacSoNhanMaus" />
+    </AssociationSet>
+    <AssociationSet Name="UserSoChuyenMau" Association="IERSystemModel.UserSoChuyenMau">
+      <End Role="User" EntitySet="Users" />
+      <End Role="SoChuyenMau" EntitySet="SoChuyenMaus" />
+    </AssociationSet>
+    <AssociationSet Name="UserSoNhanMau" Association="IERSystemModel.UserSoNhanMau">
+      <End Role="User" EntitySet="Users" />
+      <End Role="SoNhanMau" EntitySet="SoNhanMaus" />
+    </AssociationSet>
+    <AssociationSet Name="UserPhieuYeuCau" Association="IERSystemModel.UserPhieuYeuCau">
+      <End Role="User" EntitySet="Users" />
+      <End Role="PhieuYeuCau" EntitySet="PhieuYeuCaus" />
+    </AssociationSet>
+    <EntitySet Name="KhachHangs" EntityType="IERSystemModel.KhachHang" />
+  </EntityContainer>
+  <EntityType Name="PhieuYeuCau">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DiaChiKhachHang" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="DiaChiLayMau" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="KhachHangTraTruoc" Type="Decimal" Nullable="true" Precision="18" Scale="0" />
+    <Property Name="MaDon" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="MaSoThue" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="NgayTaoHD" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="NoiLayMau" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="PhiThiNghiemTamTinh" Type="Decimal" Nullable="true" Precision="18" Scale="0" />
+    <Property Name="SoDienThoai" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="SoFax" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="TenDaiDien" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="TenKhachHang" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="MauLayHienTruongs" Relationship="IERSystemModel.PhieuYeuCau_MauLayHienTruong" FromRole="PhieuYeuCau" ToRole="MauLayHienTruong" />
+    <Property Name="NgayLayMau" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="NgayHenTraKQ" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="CreatedBy" Relationship="IERSystemModel.UserPhieuYeuCau" FromRole="PhieuYeuCau" ToRole="User" />
+    <Property Name="UserId" Type="Int64" Nullable="false" />
+    <Property Name="KhachHangId" Type="Int64" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MauLayHienTruong">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MaMau" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="MaMauKH" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="DonVi" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="MoTaMau" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="SoLuong" Type="Int32" Nullable="false" />
+    <Property Name="ViTriLayMau" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="PhieuYeuCau" Relationship="IERSystemModel.PhieuYeuCau_MauLayHienTruong" FromRole="MauLayHienTruong" ToRole="PhieuYeuCau" />
+    <Property Name="PhieuYeuCauId" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="ChiTieuPhanTiches" Relationship="IERSystemModel.MauLayHienTruong_ChiTieuPhanTich" FromRole="MauLayHienTruong" ToRole="ChiTieuPhanTich" />
+    <NavigationProperty Name="SoNhanMau" Relationship="IERSystemModel.MauLayHienTruong_SoNhanMau" FromRole="MauLayHienTruong" ToRole="SoNhanMau" />
+    <NavigationProperty Name="SoChuyenMau" Relationship="IERSystemModel.MauLayHienTruong_SoChuyenMau" FromRole="MauLayHienTruong" ToRole="SoChuyenMau" />
+    <NavigationProperty Name="SoKQThuNghiem" Relationship="IERSystemModel.SoKQThuNghiem_MauLayHienTruong" FromRole="MauLayHienTruong" ToRole="SoKQThuNghiem" />
+    <Property Name="TinhTrang" Type="Byte" Nullable="false" />
+  </EntityType>
+  <Association Name="PhieuYeuCau_MauLayHienTruong">
+    <End Type="IERSystemModel.PhieuYeuCau" Role="PhieuYeuCau" Multiplicity="1" />
+    <End Type="IERSystemModel.MauLayHienTruong" Role="MauLayHienTruong" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PhieuYeuCau">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MauLayHienTruong">
+        <PropertyRef Name="PhieuYeuCauId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="ChiTieuPhanTich">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenChiTieu" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="MauLayHienTruongs" Relationship="IERSystemModel.MauLayHienTruong_ChiTieuPhanTich" FromRole="ChiTieuPhanTich" ToRole="MauLayHienTruong" />
+    <Property Name="ChiPhi" Type="Decimal" Nullable="false" />
+    <Property Name="TenPhuongPhap" Type="String" Nullable="false" />
+    <NavigationProperty Name="NhomChiTieu" Relationship="IERSystemModel.NhomChiTieu_ChiTieuPhanTich" FromRole="ChiTieuPhanTich" ToRole="NhomChiTieu" />
+    <Property Name="NhomChiTieuId" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="KQThuNghiemMaus" Relationship="IERSystemModel.KQThuNghiemMau_ChiTieuPhanTich" FromRole="ChiTieuPhanTich" ToRole="KQThuNghiemMau" />
+  </EntityType>
+  <Association Name="MauLayHienTruong_ChiTieuPhanTich">
+    <End Type="IERSystemModel.MauLayHienTruong" Role="MauLayHienTruong" Multiplicity="*" />
+    <End Type="IERSystemModel.ChiTieuPhanTich" Role="ChiTieuPhanTich" Multiplicity="*" />
+  </Association>
+  <EntityType Name="SoNhanMau">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KHKiNhanTraKQ" Type="Boolean" Nullable="false" />
+    <Property Name="KHKiNhanTraTien" Type="Boolean" Nullable="false" />
+    <Property Name="NgayNhanMau" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="NgayTraKQ" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="CacSoNhanMau" Relationship="IERSystemModel.CacSoNhanMau_SoNhanMau" FromRole="SoNhanMau" ToRole="CacSoNhanMau" />
+    <Property Name="CacSoNhanMauId" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="MauLayHienTruong" Relationship="IERSystemModel.MauLayHienTruong_SoNhanMau" FromRole="SoNhanMau" ToRole="MauLayHienTruong" />
+    <NavigationProperty Name="CreatedBy" Relationship="IERSystemModel.UserSoNhanMau" FromRole="SoNhanMau" ToRole="User" />
+    <Property Name="UserId" Type="Int64" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CacSoNhanMau">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TuNgay" Nullable="false" Type="DateTime" />
+    <Property Name="DenNgay" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="SoNhanMaus" Relationship="IERSystemModel.CacSoNhanMau_SoNhanMau" FromRole="CacSoNhanMau" ToRole="SoNhanMau" />
+    <NavigationProperty Name="CreatedBy" Relationship="IERSystemModel.UserCacSoNhanMau" FromRole="CacSoNhanMau" ToRole="User" />
+    <Property Name="UserId" Type="Int64" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
+  </EntityType>
+  <Association Name="CacSoNhanMau_SoNhanMau">
+    <End Type="IERSystemModel.CacSoNhanMau" Role="CacSoNhanMau" Multiplicity="1" />
+    <End Type="IERSystemModel.SoNhanMau" Role="SoNhanMau" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CacSoNhanMau">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SoNhanMau">
+        <PropertyRef Name="CacSoNhanMauId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MauLayHienTruong_SoNhanMau">
+    <End Type="IERSystemModel.MauLayHienTruong" Role="MauLayHienTruong" Multiplicity="1" />
+    <End Type="IERSystemModel.SoNhanMau" Role="SoNhanMau" Multiplicity="0..1" />
+  </Association>
+  <EntityType Name="SoChuyenMau">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DienTen" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="GhiChu" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="NgayGiaoMau" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="NgayTraKQ" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="CacSoChuyenMau" Relationship="IERSystemModel.CacSoChuyenMauSoChuyenMau" FromRole="SoChuyenMau" ToRole="CacSoChuyenMau" />
+    <Property Name="CacSoChuyenMauId" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="MauLayHienTruong" Relationship="IERSystemModel.MauLayHienTruong_SoChuyenMau" FromRole="SoChuyenMau" ToRole="MauLayHienTruong" />
+    <NavigationProperty Name="CreatedBy" Relationship="IERSystemModel.UserSoChuyenMau" FromRole="SoChuyenMau" ToRole="User" />
+    <Property Name="UserId" Type="Int64" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CacSoChuyenMau">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TuNgay" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="SoChuyenMaus" Relationship="IERSystemModel.CacSoChuyenMauSoChuyenMau" FromRole="CacSoChuyenMau" ToRole="SoChuyenMau" />
+    <Property Name="DenNgay" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="CreatedBy" Relationship="IERSystemModel.UserCacSoChuyenMau" FromRole="CacSoChuyenMau" ToRole="User" />
+    <Property Name="UserId" Type="Int64" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
+  </EntityType>
+  <Association Name="CacSoChuyenMauSoChuyenMau">
+    <End Type="IERSystemModel.CacSoChuyenMau" Role="CacSoChuyenMau" Multiplicity="1" />
+    <End Type="IERSystemModel.SoChuyenMau" Role="SoChuyenMau" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CacSoChuyenMau">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SoChuyenMau">
+        <PropertyRef Name="CacSoChuyenMauId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="KQThuNghiemMau">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DonVi" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="KetQua" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="NguoiThucHien" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="SoKQThuNghiem" Relationship="IERSystemModel.SoKQThuNghiemKQThuNghiemMau" FromRole="KQThuNghiemMau" ToRole="SoKQThuNghiem" />
+    <Property Name="SoKQThuNghiemId" Type="Int64" Nullable="false" />
+    <Property Name="FormKQId" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="ChiTieuPhanTich" Relationship="IERSystemModel.KQThuNghiemMau_ChiTieuPhanTich" FromRole="KQThuNghiemMau" ToRole="ChiTieuPhanTich" />
+  </EntityType>
+  <EntityType Name="SoKQThuNghiem">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MaMau" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="NgayNhanMau" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="NgayTraMau" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="KQThuNghiemMaus" Relationship="IERSystemModel.SoKQThuNghiemKQThuNghiemMau" FromRole="SoKQThuNghiem" ToRole="KQThuNghiemMau" />
+    <NavigationProperty Name="MauLayHienTruong" Relationship="IERSystemModel.SoKQThuNghiem_MauLayHienTruong" FromRole="SoKQThuNghiem" ToRole="MauLayHienTruong" />
+    <NavigationProperty Name="FormKQ" Relationship="IERSystemModel.SoKQThuNghiem_FormKQ" FromRole="SoKQThuNghiem" ToRole="FormKQ" />
+    <Property Name="NgayThemVaoSo" Type="DateTime" Nullable="false" />
+  </EntityType>
+  <Association Name="SoKQThuNghiemKQThuNghiemMau">
+    <End Type="IERSystemModel.SoKQThuNghiem" Role="SoKQThuNghiem" Multiplicity="1" />
+    <End Type="IERSystemModel.KQThuNghiemMau" Role="KQThuNghiemMau" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SoKQThuNghiem">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="KQThuNghiemMau">
+        <PropertyRef Name="SoKQThuNghiemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="FormKQ">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NoiLayMau" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="DiaChi" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="ViTriLayMau" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="NgayGuiMau" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="LoaiMau" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="MaDon" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="MaMau" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="SoKQThuNghiem" Relationship="IERSystemModel.SoKQThuNghiem_FormKQ" FromRole="FormKQ" ToRole="SoKQThuNghiem" />
+  </EntityType>
+  <Association Name="MauLayHienTruong_SoChuyenMau">
+    <End Type="IERSystemModel.MauLayHienTruong" Role="MauLayHienTruong" Multiplicity="1" />
+    <End Type="IERSystemModel.SoChuyenMau" Role="SoChuyenMau" Multiplicity="0..1" />
+  </Association>
+  <Association Name="SoKQThuNghiem_MauLayHienTruong">
+    <End Type="IERSystemModel.SoKQThuNghiem" Role="SoKQThuNghiem" Multiplicity="0..1" />
+    <End Type="IERSystemModel.MauLayHienTruong" Role="MauLayHienTruong" Multiplicity="1" />
+  </Association>
+  <EntityType Name="NhomChiTieu">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenNhom" Type="String" Nullable="false" />
+    <NavigationProperty Name="ChiTieuPhanTiches" Relationship="IERSystemModel.NhomChiTieu_ChiTieuPhanTich" FromRole="NhomChiTieu" ToRole="ChiTieuPhanTich" />
+  </EntityType>
+  <Association Name="NhomChiTieu_ChiTieuPhanTich">
+    <End Type="IERSystemModel.NhomChiTieu" Role="NhomChiTieu" Multiplicity="1" />
+    <End Type="IERSystemModel.ChiTieuPhanTich" Role="ChiTieuPhanTich" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NhomChiTieu">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ChiTieuPhanTich">
+        <PropertyRef Name="NhomChiTieuId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SoKQThuNghiem_FormKQ">
+    <End Type="IERSystemModel.SoKQThuNghiem" Role="SoKQThuNghiem" Multiplicity="1" />
+    <End Type="IERSystemModel.FormKQ" Role="FormKQ" Multiplicity="0..1" />
+  </Association>
+  <EntityType Name="RoleMaster">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleName" Type="String" Nullable="false" />
+    <NavigationProperty Name="Users" Relationship="IERSystemModel.RoleMasterUser" FromRole="RoleMaster" ToRole="User" />
+    <NavigationProperty Name="RoleMatrices" Relationship="IERSystemModel.RoleMasterRoleMatrix" FromRole="RoleMaster" ToRole="RoleMatrix" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="String" Nullable="false" />
+    <Property Name="Password" Type="String" Nullable="false" />
+    <Property Name="Phone" Type="String" Nullable="false" />
+    <Property Name="Fullname" Type="String" Nullable="false" />
+    <NavigationProperty Name="RoleMaster" Relationship="IERSystemModel.RoleMasterUser" FromRole="User" ToRole="RoleMaster" />
+    <Property Name="RoleMasterId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="CacSoChuyenMaus" Relationship="IERSystemModel.UserCacSoChuyenMau" FromRole="User" ToRole="CacSoChuyenMau" />
+    <NavigationProperty Name="CacSoNhanMaus" Relationship="IERSystemModel.UserCacSoNhanMau" FromRole="User" ToRole="CacSoNhanMau" />
+    <NavigationProperty Name="SoChuyenMaus" Relationship="IERSystemModel.UserSoChuyenMau" FromRole="User" ToRole="SoChuyenMau" />
+    <NavigationProperty Name="SoNhanMaus" Relationship="IERSystemModel.UserSoNhanMau" FromRole="User" ToRole="SoNhanMau" />
+    <NavigationProperty Name="PhieuYeuCaus" Relationship="IERSystemModel.UserPhieuYeuCau" FromRole="User" ToRole="PhieuYeuCau" />
+  </EntityType>
+  <Association Name="RoleMasterUser">
+    <End Type="IERSystemModel.RoleMaster" Role="RoleMaster" Multiplicity="1" />
+    <End Type="IERSystemModel.User" Role="User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RoleMaster">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="RoleMasterId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="RoleMatrix">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+    <Property Name="HopDong" Nullable="false" Type="Int16" />
+    <Property Name="SoNhan" Nullable="false" Type="Int16" />
+    <Property Name="SoChuyen" Nullable="false" Type="Int16" />
+    <Property Name="SoKQ" Nullable="false" Type="Int16" />
+    <Property Name="FormKQ" Nullable="false" Type="Int16" />
+    <NavigationProperty Name="RoleMaster" Relationship="IERSystemModel.RoleMasterRoleMatrix" FromRole="RoleMatrix" ToRole="RoleMaster" />
+    <Property Name="RoleMasterId" Nullable="false" Type="Int32" />
+  </EntityType>
+  <Association Name="RoleMasterRoleMatrix">
+    <End Type="IERSystemModel.RoleMaster" Multiplicity="1" Role="RoleMaster" />
+    <End Type="IERSystemModel.RoleMatrix" Multiplicity="*" Role="RoleMatrix" />
+    <ReferentialConstraint>
+      <Principal Role="RoleMaster">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RoleMatrix">
+        <PropertyRef Name="RoleMasterId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="KQThuNghiemMau_ChiTieuPhanTich">
+    <End Type="IERSystemModel.KQThuNghiemMau" Role="KQThuNghiemMau" Multiplicity="*" />
+    <End Type="IERSystemModel.ChiTieuPhanTich" Role="ChiTieuPhanTich" Multiplicity="1" />
+  </Association>
+  <Association Name="UserCacSoChuyenMau">
+    <End Type="IERSystemModel.User" Role="User" Multiplicity="1" />
+    <End Type="IERSystemModel.CacSoChuyenMau" Role="CacSoChuyenMau" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CacSoChuyenMau">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserCacSoNhanMau">
+    <End Type="IERSystemModel.User" Role="User" Multiplicity="1" />
+    <End Type="IERSystemModel.CacSoNhanMau" Role="CacSoNhanMau" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CacSoNhanMau">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserSoChuyenMau">
+    <End Type="IERSystemModel.User" Role="User" Multiplicity="1" />
+    <End Type="IERSystemModel.SoChuyenMau" Role="SoChuyenMau" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SoChuyenMau">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserSoNhanMau">
+    <End Type="IERSystemModel.User" Role="User" Multiplicity="1" />
+    <End Type="IERSystemModel.SoNhanMau" Role="SoNhanMau" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SoNhanMau">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserPhieuYeuCau">
+    <End Type="IERSystemModel.User" Role="User" Multiplicity="1" />
+    <End Type="IERSystemModel.PhieuYeuCau" Role="PhieuYeuCau" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PhieuYeuCau">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="KhachHang">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenKhachHang" Type="String" Nullable="false" />
+    <Property Name="DiaChiKhachHang" Type="String" Nullable="false" />
+    <Property Name="TenDaiDien" Type="String" Nullable="false" />
+    <Property Name="SoDienThoai" Type="String" Nullable="false" />
+    <Property Name="SoFax" Type="String" Nullable="false" />
+    <Property Name="MaSoThue" Type="String" Nullable="false" />
+  </EntityType>
+</Schema>

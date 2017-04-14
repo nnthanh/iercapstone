@@ -1,0 +1,132 @@
+﻿@model IERSystem.Areas.Administrator.Models.SoNhanMau
+
+@{
+    ViewBag.Title = "Xóa";
+    Layout = "~/Areas/Administrator/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Bạn có chắc chắn muốn xóa mẫu nhận này?</h3>
+
+<div>
+    <div class="clearfix">
+</div>
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <dl class="dl-horizontal">
+                <dt>
+                    <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                        Phiếu yêu cầu
+                    </label>
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.PhieuYeuCau)
+                </dd>
+
+                <dt>
+                    <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                        Tên/Địa chỉ khách hàng
+                    </label>
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.TenDiaChiKhachHang)
+                </dd>
+
+                <dt>
+                    <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                        Mã số
+                    </label>
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.MaSo)
+                </dd>
+
+                <dt>
+                    <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                        Chỉ tiêu thử nghiệm
+                    </label>
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.ChiTieuThuNghiem)
+                </dd>
+
+                <dt>
+                    <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                        Ngày nhận
+                    </label>
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.NgayNhan)
+                </dd>
+
+                <dt>
+                    <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                        Ngày trả kết quả
+                    </label>
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.NgayTraKetQua)
+                </dd>
+
+                <dt>
+                    <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                        Ký hiệu mẫu
+                    </label>
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.KyHieuMau)
+                </dd>
+
+                <dt>
+                    <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                        KH ký nhận trả tiền
+                    </label>
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.KHKyNhanTraTien)
+                </dd>
+
+                <dt>
+                    <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                        KH ký nhận trả kết quả
+                    </label>
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.KHKyNhanTraKQ)
+                </dd>
+                <dt>
+                    <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                        Mã mẫu khách hàng
+                    </label>
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.MaMauKH)
+                </dd>
+
+            </dl>
+
+            
+        </div>
+        </div>
+    </div>
+    </div>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color">
+        <input type="submit" value="Xoá" class="btn btn-default" /> |
+        @Html.ActionLink("Trở về", "Index")
+    </div>
+}
+

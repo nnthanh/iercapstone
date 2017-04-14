@@ -1,0 +1,203 @@
+﻿@model IEnumerable<IERSystem.Areas.Administrator.Models.FormKQ>
+
+@{
+    ViewBag.Title = "Phiếu kết quả";
+    Layout = "~/Areas/Administrator/Views/Shared/_Layout.cshtml";
+}
+
+<h2>MỤC LỤC</h2>
+
+<input type="button" class="btn btn-info" value="Tạo phiếu kết quả mới" onclick="location.href='@Url.Action("Create", "FormKQ")'" />
+
+<button id="btnThemMau" type="button"
+        data-toggle="modal" data-target="#themMauModal"
+        class="btn btn-warning">
+    Thêm kết quả
+</button>
+
+<!-- Modal -->
+<div id="themMauModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Thêm mẫu</h4>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <table class="table table-striped jambo_table bulk_action">
+                        <thead>
+                            <tr class="headings">
+                                <th>
+                                    <input type="checkbox" id="check-all" class="flat">
+                                </th>
+                                <th class="column-title">Phiếu yêu cầu </th>
+                                <th class="column-title">Tên khách hàng/địa chỉ </th>
+                                <th class="column-title">Ký hiệu mẫu </th>
+                                <th class="column-title">Ngày nhận mẫu</th>
+                                <th class="column-title">Ngày trả mẫu </th>
+                                <th class="column-title no-link last">
+                                    <span class="nobr">Hành động</span>
+                                </th>
+                                <th class="bulk-actions" colspan="7">
+                                    <a class="antoo" style="color:#fff; font-weight:500;">Chọn nhiều ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
+                                </th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr class="even pointer">
+                                <td class="a-center ">
+                                    <input type="checkbox" class="flat" name="table_records">
+                                </td>
+                                <td class=" ">0002002</td>
+                                <td class=" ">Nguyen Ngoc Thanh </td>
+                                <td class=" ">Tân Bình</td>
+                                <td class=" ">20 Jan, 2017</td>
+                                <td class=" ">22 Jan, 2017</td>
+                                <td class=" last">
+                                    <a href="#">Xem</a>
+                                </td>
+                            </tr>
+                            <tr class="odd pointer">
+                                <td class="a-center ">
+                                    <input type="checkbox" class="flat" name="table_records">
+                                </td>
+                                <td class=" ">0002002</td>
+                                <td class=" ">Nguyen Ngoc Thanh </td>
+                                <td class=" ">Tân Bình</td>
+                                <td class=" ">20 Jan, 2017</td>
+                                <td class=" ">22 Jan, 2017</td>
+                                <td class=" last">
+                                    <a href="#">Xem</a>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="saveMauBtn" type="button" class="btn btn-success" data-dismiss="modal">Thêm Mẫu</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class>
+    <div class="page-title">
+        <div class="title-left">
+            <h3>Phiếu kết quả</h3>
+        </div>
+        <div class="title-right">
+            <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search for...">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">Go!</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+
+    <!--Table dynamic-->
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>DANH SÁCH PHIẾU KẾT QUẢ <small>Bảng phiếu</small></h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li>
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                    </li>
+                    @*<li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                <i class="fa fa-wrench"></i>
+            </a>
+            <ul class="dropdown-menu" role="menu">
+                <li>
+                    <a href="#">Settings 1</a>
+                </li>
+                <li>
+                    <a href="#">Settings 2</a>
+                </li>
+            </ul>
+        </li>*@
+                    <li>
+                        <a class="close-link">
+                            <i class="fa fa-close"></i>
+                        </a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <table id="datatable-buttons" class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Số</th>
+                            <th>Ký hiệu mẫu</th>
+                            <th>Nơi lấy mẫu</th>
+                            <th>Ngày gửi mẫu</th>
+                            <th>Địa chỉ</th>
+                            <th>Loại mẫu</th>
+                            <th>Vị trí lấy mẫu</th>
+                            <th>Hành động</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @*@foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.So)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.KyHieuMau)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NoiLayMau)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NgayGuiMau)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DiaChi)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.LoaiMau)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ViTriLayMau)
+                                </td>
+                                <td>
+                                    <button data-toggle="tooltip" title="Chỉnh sửa" onclick="location.href='@Url.Action("Edit", "FormKQ", new { id = item.Id })'"><span class="fa fa-edit"></span></button>
+                                    <button data-toggle="tooltip" title="Xem chi tiết" onclick="location.href='@Url.Action("Details", "FormKQ", new { id = item.Id })'"><span class="fa fa-info"></span></button>
+                                    <button data-toggle="tooltip" title="In" onclick="location.href='@Url.Action("", "")'"><span class="fa fa-print"></span></button>
+                                    <button data-toggle="tooltip" title="Xóa" onclick="location.href='@Url.Action("Delete", "FormKQ", new { id = item.Id })'"><span class="fa fa-trash"></span></button>
+                                </td>
+                            </tr>
+                        }*@
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+}
