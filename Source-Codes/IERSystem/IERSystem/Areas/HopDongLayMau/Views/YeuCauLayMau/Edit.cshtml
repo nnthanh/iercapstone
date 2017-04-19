@@ -1,4 +1,4 @@
-﻿@model IERSystem.Areas.Administrator.Models.PhieuYeuCau
+﻿@model IERSystem.Areas.HopDongLayMau.Models.PhieuYeuCauEditOutputModel
 
 @{
     ViewBag.Title = "Chỉnh sửa yêu cầu";
@@ -11,7 +11,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    <div class="form-horizontal">
+    <div id="phieuyeucauedit-app" class="form-horizontal">
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
@@ -107,38 +107,6 @@
                             </div>
                         </div>
 
-                        @*<div class="form-group" style="display:none">
-                            @Html.LabelFor(model => model.PhuongPhapLayMau, new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.PhuongPhapLayMau)
-                                @Html.ValidationMessageFor(model => model.PhuongPhapLayMau)
-                            </div>
-                        </div>
-
-                        <div class="form-group" style="display:none">
-                            @Html.LabelFor(model => model.TenTieuChuanDoiChieu, new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.TenTieuChuanDoiChieu)
-                                @Html.ValidationMessageFor(model => model.TenTieuChuanDoiChieu)
-                            </div>
-                        </div>*@
-
-                        <div class="form-group" style="display:none">
-                            @Html.LabelFor(model => model.PhiThiNghiemTamTinh, new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.PhiThiNghiemTamTinh, new { @value = "0" })
-                                @Html.ValidationMessageFor(model => model.PhiThiNghiemTamTinh)
-                            </div>
-                        </div>
-
-                        @*<div class="form-group" style="display:none">
-                            @Html.LabelFor(model => model.TienKhachHangTraTruoc, new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.TienKhachHangTraTruoc, new { @value = "0" })
-                                @Html.ValidationMessageFor(model => model.TienKhachHangTraTruoc)
-                            </div>
-                        </div>*@
-
                         <h2 class="StepTitle">Thông Tin Các Mẫu</h2>
                         <div class="row">
                             <div class="col-md-2 col-sm-2 col-xs-2">
@@ -212,6 +180,22 @@
 
                                 </div>
                             </div>
+
+                            <!-- Confirm Delete MauPT Modal -->
+                            <div id="confirmDelMauPTModal" class="modal fade" role="dialog">
+                                <div class="modal-dialog">
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                                            <h4>Bạn có chắc chắn muốn xóa mẫu?</h4>
+                                            <div class="form-group" align="center">
+                                                <button type="submit" class="btn btn-success" data-dismiss="modal" v-on:click="setDeleteMauPT(promptedDelMauPT)"><span class="fa fa-check"></span></button>
+                                                <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="fa fa-close"></span></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="row">
 
@@ -231,7 +215,25 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-
+                                        @foreach (var maupt in Model.MauLayHienTruongs)
+                                        {
+                                            <tr role="row">
+                                                <td>@Html.DisplayFor(modelItem => maupt.MaMau)</td>
+                                                <td>@Html.DisplayFor(modelItem => maupt.MaMauKH)</td>
+                                                <td>@Html.DisplayFor(modelItem => maupt.ViTriLayMau)</td>
+                                                <td>@Html.DisplayFor(modelItem => maupt.SoLuong)</td>
+                                                <td>@Html.DisplayFor(modelItem => maupt.MoTaMau)</td>
+                                                <td>@Html.DisplayFor(modelItem => maupt.ChiTieuPTs)</td>
+                                                <td class="column-title">
+                                                    <button title="Chỉnh sửa" data-toggle="modal" data-target="#themMauModal">
+                                                        <span class="fa fa-edit"></span>
+                                                    </button>
+                                                    <button v-if="seen" data-toggle="tooltip" title="Xóa" v-on:click="openChinhMauModal">
+                                                        <span class="fa fa-trash"></span>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        }
                                     </tbody>
                                 </table>
                             </div>
@@ -243,11 +245,11 @@
                                 <input type="button" class="btn btn-danger" value="Quay lại" data-toggle="modal" data-target="#confirmModal" />
                             </div>
                         </div>
-                    </form> 
-                </div>              
-                 </div>
+                    </form>
+                </div>
             </div>
         </div>
+    </div>
 }
 <!-- Quay Lai Modal -->
 <div id="confirmModal" class="modal fade" role="dialog">
@@ -266,10 +268,30 @@
     </div>
 </div>
 
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-<!-- validator -->
-<script>
+
+    <script src="~/Areas/Administrator/vendors/vuejs/vue.min.js"></script>
+    <!-- VueJS App -->
+    <script>
+        var $phieuyeucauedit_app = new Vue({
+            el: '#phieuyeucauedit-app',
+            data: {
+                promtDeleteMauPT: 0,
+                mauptedits: [] 
+            },
+            methods: {
+                setDeleteMauPT: function (id) {
+                    var mauptedits = $phieuyeucauedit_app.mauptedits;
+                    if (mauptedits.find(function (mpt) { mpt.}))
+                    $phieuyeucauedit_app.mauptedits.push({});
+                }
+            });
+    </script>
+
+    <!-- validator -->
+    <script>
     // initialize the validator function
     validator.message.date = 'Không phải ngày thật';
 
@@ -305,7 +327,7 @@
             success: function (res) {
                 if (res.IsOK) {
                     var result= Data;
-                    
+
                 } else {
                     console.log("Có lỗi khi mở sổ nhận mẫu " + id);
                 }
@@ -314,193 +336,192 @@
             contentType: 'application/json; charset=utf-8'
         })
     }
-</script>
-<!-- /validator -->
-<!--nthoang-PhieuYeuCauThuNghiemView: Editable Table-->
-<!--nthoang-Cac logic lien quan den Bang Mau duoc code tai day-->
-<script>
-    $(document).ready(function () {
-        var $Global = [];
-        var $CacheChiTieu = {};
-        var $SelectedCT_Id = [];
-        var chitieu_selectbox = $("#chitieu-yeucau");
+    </script>
+    <!-- /validator -->
+    <!--nthoang-PhieuYeuCauThuNghiemView: Editable Table-->
+    <!--nthoang-Cac logic lien quan den Bang Mau duoc code tai day-->
+    <script>
+        $(document).ready(function () {
+            var $Global = [];
+            var $CacheChiTieu = {};
+            var $SelectedCT_Id = [];
+            var chitieu_selectbox = $("#chitieu-yeucau");
 
-        $.ajax({
-            type: 'POST',
-            url: ' @Url.Action("GetNhomChiTieu", "API", new { area = "BaoGiaChiTieu" })',
-            success: function (res) {
-                var loaimau_selectbox = $("#loai-chitieu");
-                loaimau_selectbox.append("<option></option>");
-                res.forEach(function (item) {
-                    loaimau_selectbox.append("<option>" + item.TenNhom + "</option>");
-                });
-            },
-            dataType: 'json',
-            contentType: 'application/json; charset=utf-8'
-        });
-
-        $('#loai-chitieu').change(function () {
-            //nthoang: AJAX call ChiTieuMau suggestion list
-            var formData2 = {
-                TenNhom: $("#loai-chitieu").val()
-            };
-            if (!(formData2.TenNhom in $CacheChiTieu)) {
-                $.ajax({
-                    type: 'POST',
-                    url: '@Url.Action("FindChiTieu", "API", new { area = "BaoGiaChiTieu" })',
-                    data: JSON.stringify(formData2),
-                    success: function (res) {
-                        chitieu_selectbox.empty();
-                        $CacheChiTieu[formData2.TenNhom] = res;
-                        res.forEach(function (item) {
-                            chitieu_selectbox.append("<option>" + item.TenChiTieu + "</option>");
-                        });
-                    },
-                    dataType: 'json',
-                    contentType: 'application/json; charset=utf-8'
-                });
-            } else {
-                chitieu_selectbox.empty();
-                var cached_ct = $CacheChiTieu[formData2.TenNhom];
-                cached_ct.forEach(function (item) {
-                    chitieu_selectbox.append("<option>" + item.TenChiTieu + "</option>");
-                });
-            }
-        });
-
-        $('#themMauModal').on('hidden.bs.modal', function () {
-            $(this).find("input,textarea,select").val('').end();
-            $(this).find(".select2-selection__rendered").empty();
-        });
-
-        function Delete() {
-            var par = $(this).parent().parent(); //tr
-            par.remove();
-        }
-
-        function OnRowIn() {
-            var deleteCell = $(this).children().last();
-            deleteCell.html("<a id='deleteRowBtn' href='#'><span class='glyphicon glyphicon-remove'></span></a>");
-            $('#deleteRowBtn').bind("click", Delete);
-        }
-
-        function OnRowOut() {
-            $(this).children().last().html('');
-        }
-
-        $("#saveMauBtn").bind("click", function () {
-
-            var tabledata = $("#sampledata-table tbody");
-            var soluong = $("#so-luong").val();
-            var donvi = $("#don-vi").val();
-            var chitieuyeucaus = $(".select2-selection__choice").toArray().map(function (e) {
-                return {
-                    TenChiTieu: e.innerText.substr(1),
-                    NhomChiTieu: $("#loai-chitieu").val()
-                };
-            });
-            $Global.push({
-                SoLuong: soluong,
-                DonVi: donvi,
-                ChiTieuYeuCaus: chitieuyeucaus
-            });
-
-
-
-            if ($('#vitri-laymau').val() && $('#mota-mau').val && $('#chitieu-yeucau').val()) {
-                tabledata.append(
-                "<tr>" +
-                //"<td></td>" +
-                "<td>" + $("#ma-mau").val() + "</td>" +
-                "<td>" + $("#kh-mau").val() + "</td>" +
-                "<td>" + $("#vitri-laymau").val() + "</td>" +
-                "<td>" + soluong + " " + donvi + "</td>" +
-                "<td>" + $("#mota-mau").val() + "</td>" +
-                "<td>" + chitieuyeucaus.map(function (e) { return e.TenChiTieu }).join(", ") + "</td>" +
-                "<td></td>" +
-                "</tr>");
-                //hide modal
-                $('#themMauModal').modal('toggle');
-            }
-            else {
-                new PNotify({
-                    title: 'Thêm mẫu thất bại',
-                    text: 'nhập đầy đủ các thông tin của mẫu rồi thử lại.',
-                    type: 'error',
-                    styling: 'bootstrap3'
-                });
-            }
-            //On Row Hover
-            tabledata.children().last().hover(OnRowIn, OnRowOut);
-
-        });
-
-        $("#submitBtn").bind("click", function () {
-            function getFormData() {
-                var res = {
-                    TenKhachHang: $("#TenKhachHang").val(),
-                    MaSoThue: $("#MaSoThue").val(),
-                    TenDaiDien: $("#TenDaiDien").val(),
-                    SoDienThoai: $("#SoDienThoai").val(),
-                    SoFax: $("#SoFax").val(),
-                    DiaChiLayMau: $("#DiaChiLayMau").val(),
-                    DiaChiKhachHang: $("#DiaChiKhachHang").val(),
-                    NgayLayMau: $("#NgayLayMau").val(),
-                    NgayHenTraKQ: $("#NgayHenTraKQ").val().split(" ")[0],
-                    PhuongPhapLayMau: $("#PhuongPhapLayMau").val(),
-                    TenTieuChuanDoiChieu: $("#TenTieuChuanDoiChieu").val(),
-                    PhiThiNghiemTamTinh: $("#PhiThiNghiemTamTinh").val(),
-                    TienKhachHangTraTruoc: $("#TienKhachHangTraTruoc").val()
-                };
-                var sampledata = $("#sampledata-table tbody tr").map(function (i, elem) {
-                    var rowdata = $(elem).find("td").map(function () { return $(this).text(); }).get();
-                    //alert(rowdata);
-                    return {
-                        MaMauKH: rowdata[0],
-                        //nthoang: Get the first token of the string splitted by ':' character of Kí Hiệu Mẫu
-                        KiHieuMau: rowdata[1].split(":")[0],
-                        ViTriLayMau: rowdata[2],
-                        SoLuong:  $Global[i].SoLuong,
-                        DonVi:  $Global[i].DonVi,
-                        MoTaMau: rowdata[4],
-                        ChiTieuPhanTiches: $Global[i].ChiTieuYeuCaus
-                    }
-                }).get();
-                res.MauLayHienTruongs = sampledata;
-                console.log(res);
-                return res;
-            }
-            var formData = getFormData();
             $.ajax({
                 type: 'POST',
-                url: ' @Url.Action("Create", "API")',
-                data: JSON.stringify(formData),
+                url: ' @Url.Action("GetNhomChiTieu", "API", new { area = "BaoGiaChiTieu" })',
                 success: function (res) {
-                    if (res.IsOK) {
-                        new PNotify({
-                            title: 'Thành công',
-                            text: 'tạo hợp đồng mới hợp lệ, hợp đồng đã được thêm vào lưu trữ',
-                            type: 'success',
-                            styling: 'bootstrap3'
-                        });
-                        setTimeout(function () {
-                            window.location.href = '@Url.Action("Index", "YeuCauLayMau")'
-                        }, 1500);
-                    } else {
-                        new PNotify({
-                            title: 'Thất bại',
-                            text: 'kiểm tra lại thông tin về hợp đồng của bạn rồi thử lại.',
-                            type: 'error',
-                            styling: 'bootstrap3'
-                        });
-                    }
+                    var loaimau_selectbox = $("#loai-chitieu");
+                    loaimau_selectbox.append("<option></option>");
+                    res.forEach(function (item) {
+                        loaimau_selectbox.append("<option>" + item.TenNhom + "</option>");
+                    });
                 },
                 dataType: 'json',
                 contentType: 'application/json; charset=utf-8'
             });
+
+            $('#loai-chitieu').change(function () {
+                //nthoang: AJAX call ChiTieuMau suggestion list
+                var formData2 = {
+                    TenNhom: $("#loai-chitieu").val()
+                };
+                if (!(formData2.TenNhom in $CacheChiTieu)) {
+                    $.ajax({
+                        type: 'POST',
+                        url: '@Url.Action("FindChiTieu", "API", new { area = "BaoGiaChiTieu" })',
+                        data: JSON.stringify(formData2),
+                        success: function (res) {
+                            chitieu_selectbox.empty();
+                            $CacheChiTieu[formData2.TenNhom] = res;
+                            res.forEach(function (item) {
+                                chitieu_selectbox.append("<option>" + item.TenChiTieu + "</option>");
+                            });
+                        },
+                        dataType: 'json',
+                        contentType: 'application/json; charset=utf-8'
+                    });
+                } else {
+                    chitieu_selectbox.empty();
+                    var cached_ct = $CacheChiTieu[formData2.TenNhom];
+                    cached_ct.forEach(function (item) {
+                        chitieu_selectbox.append("<option>" + item.TenChiTieu + "</option>");
+                    });
+                }
+            });
+
+            $('#themMauModal').on('hidden.bs.modal', function () {
+                $(this).find("input,textarea,select").val('').end();
+                $(this).find(".select2-selection__rendered").empty();
+            });
+
+            function Delete() {
+                var par = $(this).parent().parent(); //tr
+                par.remove();
+            }
+
+            function OnRowIn() {
+                var deleteCell = $(this).children().last();
+                deleteCell.html("<a id='deleteRowBtn' href='#'><span class='glyphicon glyphicon-remove'></span></a>");
+                $('#deleteRowBtn').bind("click", Delete);
+            }
+
+            function OnRowOut() {
+                $(this).children().last().html('');
+            }
+
+            $("#saveMauBtn").bind("click", function () {
+
+                var tabledata = $("#sampledata-table tbody");
+                var soluong = $("#so-luong").val();
+                var donvi = $("#don-vi").val();
+                var chitieuyeucaus = $(".select2-selection__choice").toArray().map(function (e) {
+                    return {
+                        TenChiTieu: e.innerText.substr(1),
+                        NhomChiTieu: $("#loai-chitieu").val()
+                    };
+                });
+                $Global.push({
+                    SoLuong: soluong,
+                    DonVi: donvi,
+                    ChiTieuYeuCaus: chitieuyeucaus
+                });
+
+
+
+                if ($('#vitri-laymau').val() && $('#mota-mau').val && $('#chitieu-yeucau').val()) {
+                    tabledata.append(
+                    "<tr>" +
+                    //"<td></td>" +
+                    "<td>" + $("#ma-mau").val() + "</td>" +
+                    "<td>" + $("#kh-mau").val() + "</td>" +
+                    "<td>" + $("#vitri-laymau").val() + "</td>" +
+                    "<td>" + soluong + " " + donvi + "</td>" +
+                    "<td>" + $("#mota-mau").val() + "</td>" +
+                    "<td>" + chitieuyeucaus.map(function (e) { return e.TenChiTieu }).join(", ") + "</td>" +
+                    "<td></td>" +
+                    "</tr>");
+                    //hide modal
+                    $('#themMauModal').modal('toggle');
+                }
+                else {
+                    new PNotify({
+                        title: 'Thêm mẫu thất bại',
+                        text: 'nhập đầy đủ các thông tin của mẫu rồi thử lại.',
+                        type: 'error',
+                        styling: 'bootstrap3'
+                    });
+                }
+                //On Row Hover
+                tabledata.children().last().hover(OnRowIn, OnRowOut);
+
+            });
+
+            $("#submitBtn").bind("click", function () {
+                function getFormData() {
+                    var res = {
+                        TenKhachHang: $("#TenKhachHang").val(),
+                        MaSoThue: $("#MaSoThue").val(),
+                        TenDaiDien: $("#TenDaiDien").val(),
+                        SoDienThoai: $("#SoDienThoai").val(),
+                        SoFax: $("#SoFax").val(),
+                        DiaChiLayMau: $("#DiaChiLayMau").val(),
+                        DiaChiKhachHang: $("#DiaChiKhachHang").val(),
+                        NgayLayMau: $("#NgayLayMau").val(),
+                        NgayHenTraKQ: $("#NgayHenTraKQ").val().split(" ")[0],
+                        PhuongPhapLayMau: $("#PhuongPhapLayMau").val(),
+                        TenTieuChuanDoiChieu: $("#TenTieuChuanDoiChieu").val(),
+                        PhiThiNghiemTamTinh: $("#PhiThiNghiemTamTinh").val(),
+                        TienKhachHangTraTruoc: $("#TienKhachHangTraTruoc").val()
+                    };
+                    var sampledata = $("#sampledata-table tbody tr").map(function (i, elem) {
+                        var rowdata = $(elem).find("td").map(function () { return $(this).text(); }).get();
+                        //alert(rowdata);
+                        return {
+                            MaMauKH: rowdata[0],
+                            //nthoang: Get the first token of the string splitted by ':' character of Kí Hiệu Mẫu
+                            KiHieuMau: rowdata[1].split(":")[0],
+                            ViTriLayMau: rowdata[2],
+                            SoLuong:  $Global[i].SoLuong,
+                            DonVi:  $Global[i].DonVi,
+                            MoTaMau: rowdata[4],
+                            ChiTieuPhanTiches: $Global[i].ChiTieuYeuCaus
+                        }
+                    }).get();
+                    res.MauLayHienTruongs = sampledata;
+                    console.log(res);
+                    return res;
+                }
+                var formData = getFormData();
+                $.ajax({
+                    type: 'POST',
+                    url: ' @Url.Action("Create", "API")',
+                    data: JSON.stringify(formData),
+                    success: function (res) {
+                        if (res.IsOK) {
+                            new PNotify({
+                                title: 'Thành công',
+                                text: 'tạo hợp đồng mới hợp lệ, hợp đồng đã được thêm vào lưu trữ',
+                                type: 'success',
+                                styling: 'bootstrap3'
+                            });
+                            setTimeout(function () {
+                                window.location.href = '@Url.Action("Index", "YeuCauLayMau")'
+                            }, 1500);
+                        } else {
+                            new PNotify({
+                                title: 'Thất bại',
+                                text: 'kiểm tra lại thông tin về hợp đồng của bạn rồi thử lại.',
+                                type: 'error',
+                                styling: 'bootstrap3'
+                            });
+                        }
+                    },
+                    dataType: 'json',
+                    contentType: 'application/json; charset=utf-8'
+                });
+            });
         });
-    });
 
-</script>
-
+    </script>
 }
