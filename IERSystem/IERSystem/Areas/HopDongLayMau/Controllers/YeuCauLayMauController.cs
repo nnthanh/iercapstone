@@ -131,6 +131,7 @@ namespace IERSystem.Areas.HopDongLayMau.Controllers
         {
             if (RequestID == null)
             {
+
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             PhieuYeuCau request = await db.PhieuYeuCaus.FindAsync(RequestID);

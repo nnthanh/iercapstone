@@ -57,16 +57,16 @@
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="NPOI">
-      <HintPath>..\packages\NPOI.2.3.0\lib\net40\NPOI.dll</HintPath>
+      <HintPath>..\packages\NPOI.2.2.1\lib\net40\NPOI.dll</HintPath>
     </Reference>
     <Reference Include="NPOI.OOXML">
-      <HintPath>..\packages\NPOI.2.3.0\lib\net40\NPOI.OOXML.dll</HintPath>
+      <HintPath>..\packages\NPOI.2.2.1\lib\net40\NPOI.OOXML.dll</HintPath>
     </Reference>
     <Reference Include="NPOI.OpenXml4Net">
-      <HintPath>..\packages\NPOI.2.3.0\lib\net40\NPOI.OpenXml4Net.dll</HintPath>
+      <HintPath>..\packages\NPOI.2.2.1\lib\net40\NPOI.OpenXml4Net.dll</HintPath>
     </Reference>
     <Reference Include="NPOI.OpenXmlFormats">
-      <HintPath>..\packages\NPOI.2.3.0\lib\net40\NPOI.OpenXmlFormats.dll</HintPath>
+      <HintPath>..\packages\NPOI.2.2.1\lib\net40\NPOI.OpenXmlFormats.dll</HintPath>
     </Reference>
     <Reference Include="Rotativa, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -330,57 +330,47 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Administrator\Content\css\custom.css">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Areas\Administrator\Content\css\maps\jquery-jvectormap-2.0.3.css">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Areas\Administrator\Content\css\custom.css" />
+    <Content Include="Areas\Administrator\Content\css\maps\jquery-jvectormap-2.0.3.css" />
     <Content Include="Areas\Administrator\Content\Homepage2\about_us.html" />
     <Content Include="Areas\Administrator\Content\Homepage2\contact.html" />
-    <Content Include="Areas\Administrator\Content\Homepage2\css\bootstrap-theme.css">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Areas\Administrator\Content\Homepage2\css\bootstrap-theme.min.css">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Areas\Administrator\Content\Homepage2\css\bootstrap.css">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Areas\Administrator\Content\Homepage2\css\creative.css">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Areas\Administrator\Content\Homepage2\css\creative.min.css">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Areas\Administrator\Content\Homepage2\css\flexslider.css">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Areas\Administrator\Content\Homepage2\css\font-awesome.min.css">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Areas\Administrator\Content\Homepage2\css\mixit.css">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Areas\Administrator\Content\Homepage2\css\responsiveslides.css">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Areas\Administrator\Content\Homepage2\css\style.css">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Areas\Administrator\Content\Homepage2\css\bootstrap-theme.css" />
+    <Content Include="Areas\Administrator\Content\Homepage2\css\bootstrap-theme.min.css" />
+    <Content Include="Areas\Administrator\Content\Homepage2\css\bootstrap.css" />
+    <Content Include="Areas\Administrator\Content\Homepage2\css\creative.css" />
+    <Content Include="Areas\Administrator\Content\Homepage2\css\creative.min.css" />
+    <Content Include="Areas\Administrator\Content\Homepage2\css\flexslider.css" />
+    <Content Include="Areas\Administrator\Content\Homepage2\css\font-awesome.min.css" />
+    <Content Include="Areas\Administrator\Content\Homepage2\css\mixit.css" />
+    <Content Include="Areas\Administrator\Content\Homepage2\css\responsiveslides.css" />
+    <Content Include="Areas\Administrator\Content\Homepage2\css\style.css" />
     <Content Include="Areas\Administrator\Content\Homepage2\img\about_us.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Areas\Administrator\Content\Homepage2\img\dichvu\dichvu1.png" />
-    <Content Include="Areas\Administrator\Content\Homepage2\img\dichvu\dichvu2.png" />
-    <Content Include="Areas\Administrator\Content\Homepage2\img\dichvu\dichvu3.png" />
-    <Content Include="Areas\Administrator\Content\Homepage2\img\dichvu\dichvu4.png" />
+    <Content Include="Areas\Administrator\Content\Homepage2\img\dichvu\dichvu1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Areas\Administrator\Content\Homepage2\img\dichvu\dichvu2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Areas\Administrator\Content\Homepage2\img\dichvu\dichvu3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Areas\Administrator\Content\Homepage2\img\dichvu\dichvu4.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Areas\Administrator\Content\Homepage2\img\down_icon.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Areas\Administrator\Content\Homepage2\img\giangday\giangday1.png" />
-    <Content Include="Areas\Administrator\Content\Homepage2\img\giangday\giangday2.png" />
-    <Content Include="Areas\Administrator\Content\Homepage2\img\giangday\giangday3.png" />
+    <Content Include="Areas\Administrator\Content\Homepage2\img\giangday\giangday1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Areas\Administrator\Content\Homepage2\img\giangday\giangday2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Areas\Administrator\Content\Homepage2\img\giangday\giangday3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Areas\Administrator\Content\Homepage2\img\header.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -396,15 +386,33 @@
     <Content Include="Areas\Administrator\Content\Homepage2\img\logo2.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Areas\Administrator\Content\Homepage2\img\my-icons-collection\png\service_1.png" />
-    <Content Include="Areas\Administrator\Content\Homepage2\img\my-icons-collection\png\service_2.png" />
-    <Content Include="Areas\Administrator\Content\Homepage2\img\my-icons-collection\png\service_3.png" />
-    <Content Include="Areas\Administrator\Content\Homepage2\img\nghiencuu\nghiencuu1.png" />
-    <Content Include="Areas\Administrator\Content\Homepage2\img\nghiencuu\nghiencuu2.png" />
-    <Content Include="Areas\Administrator\Content\Homepage2\img\nghiencuu\nghiencuu3.png" />
-    <Content Include="Areas\Administrator\Content\Homepage2\img\nghiencuu\nghiencuu4.png" />
-    <Content Include="Areas\Administrator\Content\Homepage2\img\nghiencuu\nghiencuu5.png" />
-    <Content Include="Areas\Administrator\Content\Homepage2\img\nghiencuu\nghiencuu6.png" />
+    <Content Include="Areas\Administrator\Content\Homepage2\img\my-icons-collection\png\service_1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Areas\Administrator\Content\Homepage2\img\my-icons-collection\png\service_2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Areas\Administrator\Content\Homepage2\img\my-icons-collection\png\service_3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Areas\Administrator\Content\Homepage2\img\nghiencuu\nghiencuu1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Areas\Administrator\Content\Homepage2\img\nghiencuu\nghiencuu2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Areas\Administrator\Content\Homepage2\img\nghiencuu\nghiencuu3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Areas\Administrator\Content\Homepage2\img\nghiencuu\nghiencuu4.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Areas\Administrator\Content\Homepage2\img\nghiencuu\nghiencuu5.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Areas\Administrator\Content\Homepage2\img\nghiencuu\nghiencuu6.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Areas\Administrator\Content\Homepage2\img\portfolio1.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -531,17 +539,39 @@
     <Content Include="Areas\Administrator\Content\Homepage2\img\testimonial_bg.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Areas\Administrator\Content\Homepage2\img\trangthietbi\thietbi1.png" />
-    <Content Include="Areas\Administrator\Content\Homepage2\img\trangthietbi\thietbi10.png" />
-    <Content Include="Areas\Administrator\Content\Homepage2\img\trangthietbi\thietbi11.png" />
-    <Content Include="Areas\Administrator\Content\Homepage2\img\trangthietbi\thietbi2.png" />
-    <Content Include="Areas\Administrator\Content\Homepage2\img\trangthietbi\thietbi3.png" />
-    <Content Include="Areas\Administrator\Content\Homepage2\img\trangthietbi\thietbi4.png" />
-    <Content Include="Areas\Administrator\Content\Homepage2\img\trangthietbi\thietbi5.png" />
-    <Content Include="Areas\Administrator\Content\Homepage2\img\trangthietbi\thietbi6.png" />
-    <Content Include="Areas\Administrator\Content\Homepage2\img\trangthietbi\thietbi7.png" />
-    <Content Include="Areas\Administrator\Content\Homepage2\img\trangthietbi\thietbi8.png" />
-    <Content Include="Areas\Administrator\Content\Homepage2\img\trangthietbi\thietbi9.png" />
+    <Content Include="Areas\Administrator\Content\Homepage2\img\trangthietbi\thietbi1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Areas\Administrator\Content\Homepage2\img\trangthietbi\thietbi10.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Areas\Administrator\Content\Homepage2\img\trangthietbi\thietbi11.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Areas\Administrator\Content\Homepage2\img\trangthietbi\thietbi2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Areas\Administrator\Content\Homepage2\img\trangthietbi\thietbi3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Areas\Administrator\Content\Homepage2\img\trangthietbi\thietbi4.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Areas\Administrator\Content\Homepage2\img\trangthietbi\thietbi5.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Areas\Administrator\Content\Homepage2\img\trangthietbi\thietbi6.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Areas\Administrator\Content\Homepage2\img\trangthietbi\thietbi7.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Areas\Administrator\Content\Homepage2\img\trangthietbi\thietbi8.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Areas\Administrator\Content\Homepage2\img\trangthietbi\thietbi9.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Areas\Administrator\Content\Homepage2\img\up_icon.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -576,48 +606,22 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Areas\Administrator\Content\Homepage2\index.html" />
-    <Content Include="Areas\Administrator\Content\Homepage2\js\bootstrap.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Areas\Administrator\Content\Homepage2\js\creative.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Areas\Administrator\Content\Homepage2\js\creative.min.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Areas\Administrator\Content\Homepage2\js\jquery.flexslider-min.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Areas\Administrator\Content\Homepage2\js\jquery.min.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Areas\Administrator\Content\Homepage2\js\jquery.mixitup.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Areas\Administrator\Content\Homepage2\js\npm.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Areas\Administrator\Content\Homepage2\js\response.min.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Areas\Administrator\Content\Homepage2\js\responsiveslides.min.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Areas\Administrator\Content\Homepage2\js\bootstrap.js" />
+    <Content Include="Areas\Administrator\Content\Homepage2\js\creative.js" />
+    <Content Include="Areas\Administrator\Content\Homepage2\js\creative.min.js" />
+    <Content Include="Areas\Administrator\Content\Homepage2\js\jquery.flexslider-min.js" />
+    <Content Include="Areas\Administrator\Content\Homepage2\js\jquery.min.js" />
+    <Content Include="Areas\Administrator\Content\Homepage2\js\jquery.mixitup.js" />
+    <Content Include="Areas\Administrator\Content\Homepage2\js\npm.js" />
+    <Content Include="Areas\Administrator\Content\Homepage2\js\response.min.js" />
+    <Content Include="Areas\Administrator\Content\Homepage2\js\responsiveslides.min.js" />
     <Content Include="Areas\Administrator\Content\Homepage2\License.txt" />
     <Content Include="Areas\Administrator\Content\Homepage2\pricing.html" />
     <Content Include="Areas\Administrator\Content\Homepage2\services.html" />
-    <Content Include="Areas\Administrator\Content\Homepage2\vendor\bootstrap\css\bootstrap.css">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Areas\Administrator\Content\Homepage2\vendor\bootstrap\css\bootstrap.min.css">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Areas\Administrator\Content\Homepage2\vendor\bootstrap\js\bootstrap.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Areas\Administrator\Content\Homepage2\vendor\bootstrap\js\bootstrap.min.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Areas\Administrator\Content\Homepage2\vendor\bootstrap\css\bootstrap.css" />
+    <Content Include="Areas\Administrator\Content\Homepage2\vendor\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Areas\Administrator\Content\Homepage2\vendor\bootstrap\js\bootstrap.js" />
+    <Content Include="Areas\Administrator\Content\Homepage2\vendor\bootstrap\js\bootstrap.min.js" />
     <Content Include="Areas\Administrator\Content\Homepage2\vendor\font-awesome\css\font-awesome.css" />
     <Content Include="Areas\Administrator\Content\Homepage2\vendor\font-awesome\css\font-awesome.min.css" />
     <Content Include="Areas\Administrator\Content\Homepage2\vendor\jquery\jquery.js" />
@@ -627,111 +631,41 @@
     <Content Include="Areas\Administrator\Content\Homepage2\vendor\magnific-popup\magnific-popup.css" />
     <Content Include="Areas\Administrator\Content\Homepage2\vendor\scrollreveal\scrollreveal.js" />
     <Content Include="Areas\Administrator\Content\Homepage2\vendor\scrollreveal\scrollreveal.min.js" />
-    <Content Include="Areas\Administrator\Content\images\1.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Areas\Administrator\Content\images\4.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Areas\Administrator\Content\images\american-express.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Areas\Administrator\Content\images\back_disabled.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Areas\Administrator\Content\images\back_enabled.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Areas\Administrator\Content\images\back_enabled_hover.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Areas\Administrator\Content\images\bootstrap-colorpicker\alpha-horizontal.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Areas\Administrator\Content\images\bootstrap-colorpicker\alpha.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Areas\Administrator\Content\images\bootstrap-colorpicker\hue-horizontal.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Areas\Administrator\Content\images\bootstrap-colorpicker\hue.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Areas\Administrator\Content\images\bootstrap-colorpicker\saturation.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Areas\Administrator\Content\images\data.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Areas\Administrator\Content\images\favicon.ico">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Areas\Administrator\Content\images\forward_disabled.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Areas\Administrator\Content\images\forward_enabled.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Areas\Administrator\Content\images\forward_enabled_hover.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Areas\Administrator\Content\images\icons.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Areas\Administrator\Content\images\img.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Areas\Administrator\Content\images\loading.gif">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Areas\Administrator\Content\images\mastercard.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Areas\Administrator\Content\images\paypal2.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Areas\Administrator\Content\images\picture-2.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Areas\Administrator\Content\images\picture.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Areas\Administrator\Content\images\picture2.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Areas\Administrator\Content\images\prod1.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Areas\Administrator\Content\images\prod2.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Areas\Administrator\Content\images\prod3.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Areas\Administrator\Content\images\prod4.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Areas\Administrator\Content\images\prod5.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Areas\Administrator\Content\images\sprite-skin-flat.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Areas\Administrator\Content\images\sprite-skin-modern.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Areas\Administrator\Content\images\sprite-skin-nice.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Areas\Administrator\Content\images\sprite-skin-simple.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Areas\Administrator\Content\images\user.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Areas\Administrator\Content\images\visa.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Areas\Administrator\Content\images\1.png" />
+    <Content Include="Areas\Administrator\Content\images\4.jpg" />
+    <Content Include="Areas\Administrator\Content\images\american-express.png" />
+    <Content Include="Areas\Administrator\Content\images\back_disabled.png" />
+    <Content Include="Areas\Administrator\Content\images\back_enabled.png" />
+    <Content Include="Areas\Administrator\Content\images\back_enabled_hover.png" />
+    <Content Include="Areas\Administrator\Content\images\bootstrap-colorpicker\alpha-horizontal.png" />
+    <Content Include="Areas\Administrator\Content\images\bootstrap-colorpicker\alpha.png" />
+    <Content Include="Areas\Administrator\Content\images\bootstrap-colorpicker\hue-horizontal.png" />
+    <Content Include="Areas\Administrator\Content\images\bootstrap-colorpicker\hue.png" />
+    <Content Include="Areas\Administrator\Content\images\bootstrap-colorpicker\saturation.png" />
+    <Content Include="Areas\Administrator\Content\images\data.png" />
+    <Content Include="Areas\Administrator\Content\images\favicon.ico" />
+    <Content Include="Areas\Administrator\Content\images\forward_disabled.png" />
+    <Content Include="Areas\Administrator\Content\images\forward_enabled.png" />
+    <Content Include="Areas\Administrator\Content\images\forward_enabled_hover.png" />
+    <Content Include="Areas\Administrator\Content\images\icons.png" />
+    <Content Include="Areas\Administrator\Content\images\img.jpg" />
+    <Content Include="Areas\Administrator\Content\images\loading.gif" />
+    <Content Include="Areas\Administrator\Content\images\mastercard.png" />
+    <Content Include="Areas\Administrator\Content\images\paypal2.png" />
+    <Content Include="Areas\Administrator\Content\images\picture-2.jpg" />
+    <Content Include="Areas\Administrator\Content\images\picture.jpg" />
+    <Content Include="Areas\Administrator\Content\images\picture2.jpg" />
+    <Content Include="Areas\Administrator\Content\images\prod1.jpg" />
+    <Content Include="Areas\Administrator\Content\images\prod2.jpg" />
+    <Content Include="Areas\Administrator\Content\images\prod3.jpg" />
+    <Content Include="Areas\Administrator\Content\images\prod4.jpg" />
+    <Content Include="Areas\Administrator\Content\images\prod5.jpg" />
+    <Content Include="Areas\Administrator\Content\images\sprite-skin-flat.png" />
+    <Content Include="Areas\Administrator\Content\images\sprite-skin-modern.png" />
+    <Content Include="Areas\Administrator\Content\images\sprite-skin-nice.png" />
+    <Content Include="Areas\Administrator\Content\images\sprite-skin-simple.png" />
+    <Content Include="Areas\Administrator\Content\images\user.png" />
+    <Content Include="Areas\Administrator\Content\images\visa.png" />
     <Content Include="Areas\Administrator\Content\js\custom.js" />
     <Content Include="Areas\Administrator\Content\js\datepicker\daterangepicker.js" />
     <Content Include="Areas\Administrator\Content\js\flot\curvedLines.js" />
@@ -4363,11 +4297,6 @@
     <Content Include="Areas\Administrator\vendors\validator\validator.js" />
     <Content Include="Areas\Administrator\vendors\validator\validator.min.js" />
     <Content Include="Areas\Administrator\vendors\vuejs\vue.min.js" />
-    <Content Include="Areas\Administrator\Views\Shared\_Layout.cshtml">
-      <SubType>Code</SubType>
-    </Content>
-    <Content Include="Areas\Administrator\Views\Shared\_LoginCommon.cshtml" />
-    <Content Include="Areas\Administrator\Views\Shared\_SharedLogin.cshtml" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -4376,6 +4305,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Areas\Administrator\Views\web.config" />
     <Content Include="Areas\Administrator\vendors\autosize\.bower.json" />
     <Content Include="Areas\Administrator\vendors\autosize\bower.json" />
     <Content Include="Areas\Administrator\vendors\autosize\changelog.md" />
@@ -5170,7 +5100,9 @@
     <Content Include="Areas\Administrator\vendors\transitionize\.bower.json" />
     <Content Include="Areas\Administrator\vendors\transitionize\bower.json" />
     <Content Include="Areas\Administrator\vendors\transitionize\package.json" />
-    <Content Include="Areas\Administrator\vendors\update\.bower.json" />
+    <Content Include="Areas\Administrator\vendors\update\.bower.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Areas\Administrator\vendors\update\.editorconfig" />
     <Content Include="Areas\Administrator\vendors\update\.eslintrc.json" />
     <Content Include="Areas\Administrator\vendors\update\.travis.yml" />
@@ -5205,6 +5137,9 @@
     <Content Include="Areas\Administrator\vendors\validator\README.md" />
     <Content Include="Areas\Administrator\vendors\validator\validator.jquery.json" />
     <Content Include="Areas\Administrator\Content\js\maps\us-unemployment.json" />
+    <Content Include="Areas\Administrator\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Administrator\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Administrator\Views\Shared\_LoginCommon.cshtml" />
     <Content Include="Areas\HopDongLayMau\Views\YeuCauLayMau\Create.cshtml" />
     <Content Include="Areas\HopDongLayMau\Views\YeuCauLayMau\Delete.cshtml" />
     <Content Include="Areas\HopDongLayMau\Views\YeuCauLayMau\Details.cshtml" />
@@ -5234,7 +5169,14 @@
     <Content Include="Areas\QuanLyKetQuaPhanTich\Views\SoKQThuNghiem\Edit.cshtml" />
     <Content Include="Areas\QuanLyKetQuaPhanTich\Views\FormKQ\Index.cshtml" />
     <Content Include="Areas\QuanLyKetQuaPhanTich\Views\SoKQThuNghiem\Details.cshtml" />
+    <Content Include="Areas\Administrator\Views\User\Create.cshtml" />
+    <Content Include="Areas\Administrator\Views\User\Delete.cshtml" />
+    <Content Include="Areas\Administrator\Views\User\Details.cshtml" />
+    <Content Include="Areas\Administrator\Views\User\Edit.cshtml" />
+    <Content Include="Areas\Administrator\Views\User\Index.cshtml" />
+    <Content Include="Areas\Administrator\Views\Shared\_SharedLogin.cshtml" />
     <Content Include="App_Browsers\qt.browser" />
+    <Content Include="Areas\Administrator\Views\DashBoard\Index.cshtml" />
     <Content Include="Areas\Administrator\vendors\DateJS\.bower.json" />
     <Content Include="Areas\Administrator\vendors\DateJS\bower.json" />
     <Content Include="Areas\Administrator\vendors\DateJS\LICENSE" />
@@ -5258,34 +5200,21 @@
     <Content Include="Areas\QuanLyKetQuaPhanTich\Views\FormKQ\Details.cshtml" />
     <Content Include="Areas\QuanLyKetQuaPhanTich\Views\FormKQ\Create.cshtml" />
     <Content Include="Areas\QuanLyKetQuaPhanTich\Views\FormKQ\Edit.cshtml" />
+    <Content Include="Areas\Administrator\Views\QuanLyKhachHang\Index.cshtml" />
+    <Content Include="Areas\Administrator\Views\QuanLyKhachHang\Create.cshtml" />
+    <Content Include="Areas\Administrator\Views\QuanLyKhachHang\Delete.cshtml" />
+    <Content Include="Areas\Administrator\Views\QuanLyKhachHang\Details.cshtml" />
+    <Content Include="Areas\Administrator\Views\QuanLyKhachHang\Edit.cshtml" />
     <Content Include="Areas\Administrator\Views\Shared\_HomepageLayout.cshtml" />
-    <Content Include="Areas\Administrator\Views\web.config" />
-    <Content Include="Areas\Administrator\Views\_ViewStart.cshtml">
-      <SubType>Code</SubType>
-    </Content>
-    <Content Include="Areas\Administrator\Content\Homepage2\css\bootstrap-theme.css.map">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Areas\Administrator\Content\Homepage2\css\bootstrap.css.map">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Areas\Administrator\Content\Homepage2\css\bootstrap-theme.css.map" />
+    <Content Include="Areas\Administrator\Content\Homepage2\css\bootstrap.css.map" />
     <Content Include="Areas\Administrator\Content\Homepage2\img\dichvu\license\license.pdf" />
     <Content Include="Areas\Administrator\Content\Homepage2\img\my-icons-collection\license\license.pdf" />
-    <Content Include="Areas\Administrator\Content\Homepage2\vendor\bootstrap\fonts\glyphicons-halflings-regular.eot">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Areas\Administrator\Content\Homepage2\vendor\bootstrap\fonts\glyphicons-halflings-regular.svg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Areas\Administrator\Content\Homepage2\vendor\bootstrap\fonts\glyphicons-halflings-regular.ttf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Areas\Administrator\Content\Homepage2\vendor\bootstrap\fonts\glyphicons-halflings-regular.woff">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Areas\Administrator\Content\Homepage2\vendor\bootstrap\fonts\glyphicons-halflings-regular.woff2">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Areas\Administrator\Content\Homepage2\vendor\bootstrap\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Areas\Administrator\Content\Homepage2\vendor\bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Areas\Administrator\Content\Homepage2\vendor\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Areas\Administrator\Content\Homepage2\vendor\bootstrap\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Areas\Administrator\Content\Homepage2\vendor\bootstrap\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Areas\Administrator\Content\Homepage2\vendor\font-awesome\fonts\fontawesome-webfont.eot" />
     <Content Include="Areas\Administrator\Content\Homepage2\vendor\font-awesome\fonts\fontawesome-webfont.svg" />
     <Content Include="Areas\Administrator\Content\Homepage2\vendor\font-awesome\fonts\fontawesome-webfont.ttf" />
@@ -5344,9 +5273,7 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
@@ -5365,8 +5292,6 @@
   <ItemGroup>
     <Folder Include="App_Code\" />
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Administrator\vendors\google-code-prettify\bin\" />
-    <Folder Include="Areas\Administrator\vendors\update\bin\" />
     <Folder Include="Areas\BaoGiaChiTieu\BusinessLogic\Utils\" />
     <Folder Include="Areas\BaoGiaChiTieu\Views\Api\" />
     <Folder Include="Areas\BaoGiaChiTieu\Views\Shared\" />
@@ -5378,7 +5303,6 @@
     <Folder Include="Areas\QuanLySoChuyenMau\Views\API\" />
     <Folder Include="Areas\QuanLySoChuyenMau\Views\Shared\" />
     <Folder Include="Areas\QuanLySoNhanMau\Views\API\" />
-    <Folder Include="Rotativa\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

@@ -100,7 +100,7 @@
                                 Ngày gửi/lấy mẫu <span class="required">*</span>
                             </label>
                             <div class="form-group input-group-sm col-md-6 col-sm-6 col-xs-12">
-                                @Html.TextBoxFor(model => model.NgayLayMau, new { @class = "date-picker form-control col-md-7 col-xs-12 active", placeholder = "Nhập ngày gửi/lấy mẫu vào đây", required = "required", type = "date", id = "NgayLayMau" })                   
+                                @Html.TextBoxFor(model => model.NgayLayMau, new { @class = "date-picker form-control col-md-7 col-xs-12 active", placeholder = "Nhập ngày gửi/lấy mẫu vào đây", required = "required", id = "NgayLayMau" })                   
                             </div>
                         </div>
                         <div class="item form-group"> 
@@ -393,7 +393,7 @@
     <!--nthoang-PhieuYeuCauThuNghiemView: Editable Table-->
     <!--nthoang-Cac logic lien quan den Bang Mau duoc code tai day-->
     
-@*<script>
+<script>
     $(document).ready(
         function () {
         $('#NgayLayMau').daterangepicker({
@@ -405,7 +405,7 @@
         
             
     });
-</script>*@
+</script>
 
 <script>
     $(document).ready(function () {
