@@ -239,6 +239,7 @@
     <Compile Include="Areas\Administrator\Models\User.cs">
       <DependentUpon>IERSystemModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Areas\Administrator\Models\UserInputModel.cs" />
     <Compile Include="Areas\BaoGiaChiTieu\BaoGiaChiTieuAreaRegistration.cs" />
     <Compile Include="Areas\BaoGiaChiTieu\BusinessLogic\BaoGiaChiTieuSheetParser.cs" />
     <Compile Include="Areas\BaoGiaChiTieu\BusinessLogic\TableForms\ChiTieuPhanTichAPIImpl.cs" />
