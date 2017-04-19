@@ -24,8 +24,8 @@ namespace IERSystem.BusinessLogic.TableForms
                     NoiDung = new List<SoChuyenMauOpenRowOutputModel>(target_sochuyenmau.SoChuyenMaus.Select((scm_row) =>
                         new SoChuyenMauOpenRowOutputModel()
                         {
-                            NguoiGiaoMau = "N/A",
-                            NguoiNhanMau = "N/A",
+                            NguoiGiaoMau = scm_row.CreatedBy.Username,
+                            NguoiNhanMau = scm_row.MauLayHienTruong.SoNhanMau.CreatedBy.Username,
                             MaMau = scm_row.MauLayHienTruong.MaMau,
                             MaKhachHang = scm_row.MauLayHienTruong.PhieuYeuCau.MaDon,
                             NgayGiao = scm_row.NgayGiaoMau.ToShortDateString(),
@@ -73,6 +73,7 @@ namespace IERSystem.BusinessLogic.TableForms
                         MauLayHienTruong = mau_tobeadded,
                         NgayGiaoMau = today,
                         NgayTraKQ = mau_tobeadded.PhieuYeuCau.NgayHenTraKQ
+    
                     });
                     //nthoang: TODO: (SHORTCUT) add into SoKQThiNghiem also
                     SoKQThuNghiemAPIImpl.AddKetQuaPT(new Areas.QuanLyKetQuaPhanTich.Models.SoKQThuNghiemInputModel()

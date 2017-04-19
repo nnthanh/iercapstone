@@ -24,6 +24,7 @@ namespace IERSystem.Areas.Administrator.Models
         public string MaMau { get; set; }
         public System.DateTime NgayNhanMau { get; set; }
         public System.DateTime NgayTraMau { get; set; }
+        public System.DateTime NgayThemVaoSo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<KQThuNghiemMau> KQThuNghiemMaus { get; set; }

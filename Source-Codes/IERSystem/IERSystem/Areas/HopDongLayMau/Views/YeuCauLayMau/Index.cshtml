@@ -190,24 +190,6 @@
             });
         }
 
-        $.ajax({
-            type: 'POST',
-            url: ' @Url.Action("GetNumberOfNewContracts", "API") ',
-            success: function (res) {
-                if (res.IsOK) {
-                    var result = res.Data;
-                    var contract = document.createElement('soan');
-                    contract.innerHTML = " " + result + " ";
-                    document.getElementById('newContract').appendChild(contract);
-                    if (result > 0) {
-                        $('#myNoti').fadeIn(1000);
-                    }
-                }
-            },
-            dataType: 'json',
-            contentType: 'application/json; charset=utf-8'
-        });
-
         //var listPhieu;
         $.ajax({
             type: 'POST',
@@ -215,6 +197,12 @@
             success: function (res) {
                 if (res.IsOK) {
                     var listPhieu = res.Data;
+                    var contract = document.createElement('soan');
+                    contract.innerHTML = " " + listPhieu.length + " ";
+                    document.getElementById('newContract').appendChild(contract);
+                    if (listPhieu.length > 0) {
+                        $('#myNoti').fadeIn(1000);
+                    }
                     recentlyAddedRows(listPhieu);
                 }
             },

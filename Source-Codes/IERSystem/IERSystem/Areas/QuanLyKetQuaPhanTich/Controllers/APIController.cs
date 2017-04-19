@@ -50,6 +50,35 @@ namespace IERSystem.Areas.QuanLyKetQuaPhanTich.Controllers
             }
         }
 
+        // POST: QuanLyKetQuaPhanTich/API/EditSoKQ
+        [HttpPost]
+        public JsonResult GetNewContracts()
+        {
+            var expire_date = DateTime.Today.AddDays(-3);
+            try
+            {
+                var result = (from mlth in db.MauLayHienTruongs
+                              join skqtn in db.SoKQThuNghiems on mlth.SoKQThuNghiem.Id equals skqtn.Id
+                              select new { MaMau = mlth.MaMau, SoKQThuNghiem = skqtn }).ToList()
+                             .Select((rowitem) => new SoKQThuNghiemOutputModel()
+                             {
+                                 MaMau = rowitem.MaMau,
+                                 //SoLuong = rowitem.SoKQThuNghiem.KQThuNghiemMaus.Count(),
+                                 SoLuongKetQua = db.KQThuNghiemMaus.Where((kqtn) => kqtn.KetQua != "" ).Count()
+                                 //rowitem.SoKQThuNghiem.KQThuNghiemMaus.Select((kqrow) => 
+                                 //new KQOutputModel(){
+                                 //    SoLuong = kqrow.KetQua.Count()
+                                 //})
+                             }).ToList();
+                
+                return Json(new GetDBResponse<IEnumerable<SoKQThuNghiemOutputModel>>() { IsOK = true, Data = result });
+            }
+            catch (InvalidOperationException e)
+            {
+                return Json(new GetDBResponse<SoKQThuNghiemOutputModel>() { IsOK = false, Data = null });
+            }
+        }
+
 
         protected override void Dispose(bool disposing)
         {

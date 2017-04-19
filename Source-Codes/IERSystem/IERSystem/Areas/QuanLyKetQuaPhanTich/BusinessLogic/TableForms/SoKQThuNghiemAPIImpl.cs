@@ -49,6 +49,7 @@ namespace IERSystem.BusinessLogic.TableForms
                 
                 var newkqthunghiem = new SoKQThuNghiem()
                 {
+                    NgayThemVaoSo = today,
                     MaMau = kq_inp.KiHieuMau,
                     MauLayHienTruong = target_mau,
                     NgayNhanMau = target_mau.PhieuYeuCau.NgayLayMau,
@@ -58,8 +59,9 @@ namespace IERSystem.BusinessLogic.TableForms
                     var kqitem = new KQThuNghiemMau()
                     {
                         ChiTieuPhanTich = chitieu,
-                        DonVi = "",
+                        DonVi = "N/A",
                         KetQua = "",
+                        //Add in SoChuyenMau???
                         NguoiThucHien = "N/A",
                     };
                     db.KQThuNghiemMaus.Add(kqitem);
