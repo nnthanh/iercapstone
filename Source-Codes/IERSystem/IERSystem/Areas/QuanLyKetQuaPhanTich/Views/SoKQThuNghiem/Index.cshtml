@@ -133,10 +133,8 @@
     <script>
         $(document).ready(function () {
             $('[data-toggle="tooltip"]').tooltip();
+            loadNoti();
         });
-        $(function () {
-            $('#myNoti').hide().fadeIn(1000);
-        })
         function delFailNoti() {
             new PNotify({
                 title: 'Hủy',
@@ -158,24 +156,31 @@
         }
 
         //var listPhieu;
-        $.ajax({
-            type: 'POST',
-            url: ' @Url.Action("GetNewContracts", "API") ',
-            success: function (res) {
-                if (res.IsOK) {
-                    var listPhieu = res.Data;
-                    var contract = document.createElement('soan');
-                    contract.innerHTML = " " + listPhieu.length + " ";
-                    document.getElementById('newContract').appendChild(contract);
-                    if (listPhieu.length > 0) {
-                        $('#myNoti').fadeIn(1000);
+        function loadNoti() {
+            $.ajax({
+                type: 'POST',
+                url: ' @Url.Action("GetNewContracts", "API") ',
+                success: function (res) {
+                    if (res.IsOK) {
+                        var listPhieu = res.Data;
+                        var contract = document.createElement('soan');
+                        document.getElementById('newContract').innerHTML = "";
+                        contract.innerHTML = " " + listPhieu.length + " ";
+                        document.getElementById('newContract').appendChild(contract);
+                        if (listPhieu.length > 0) {
+                            $('#myNoti').fadeIn(1000);
+                            recentlyAddedRows(listPhieu);
+                        }
+                        else {
+                            $('#myNoti').hide();
+                        }
+
                     }
-                    recentlyAddedRows(listPhieu);
-                }
-            },
-            dataType: 'json',
-            contentType: 'application/json; charset=utf-8'
-        });
+                },
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8'
+            });
+        }     
 
         function recentlyAddedRows(listPhieu) {
             var table = document.getElementById('ketquatable');

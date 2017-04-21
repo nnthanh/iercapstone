@@ -268,8 +268,10 @@
     <Compile Include="Areas\HopDongLayMau\BusinessLogic\YeuCauLayMauEncoding.cs" />
     <Compile Include="Areas\HopDongLayMau\Controllers\APIController.cs" />
     <Compile Include="Areas\HopDongLayMau\Controllers\DefaultController.cs" />
+    <Compile Include="Areas\HopDongLayMau\Models\DeleteItemInputModel.cs" />
     <Compile Include="Areas\HopDongLayMau\Models\GetCustomerInfoInputModel.cs" />
     <Compile Include="Areas\HopDongLayMau\Models\MauPTInputModel.cs" />
+    <Compile Include="Areas\HopDongLayMau\Models\RefreshOutputModel.cs" />
     <Compile Include="Areas\HopDongLayMau\Models\YeuCauLayMauInputModel.cs" />
     <Compile Include="Areas\HopDongLayMau\Controllers\YeuCauLayMauController.cs" />
     <Compile Include="Areas\HopDongLayMau\HopDongLayMauAreaRegistration.cs" />
@@ -291,6 +293,7 @@
     <Compile Include="Areas\QuanLySoChuyenMau\BusinessLogic\TableForms\MauLayHienTruongAPIImpl.cs" />
     <Compile Include="Areas\QuanLySoChuyenMau\BusinessLogic\TableForms\SoChuyenMauAPIImpl.cs" />
     <Compile Include="Areas\QuanLySoChuyenMau\Controllers\APIController.cs" />
+    <Compile Include="Areas\QuanLySoChuyenMau\Models\ReturnItemInputModel.cs" />
     <Compile Include="Areas\QuanLySoChuyenMau\Models\SoChuyenMauOpenInputModel.cs" />
     <Compile Include="Areas\QuanLySoChuyenMau\Models\MauPTAdderInputModel.cs" />
     <Compile Include="Areas\QuanLySoChuyenMau\Models\MauPTToBeAddedInputModel.cs" />
@@ -309,6 +312,7 @@
     <Compile Include="Areas\QuanLySoNhanMau\Models\MauPTAdderInputModel.cs" />
     <Compile Include="Areas\QuanLySoNhanMau\Models\MauPTToBeAddedInputModel.cs" />
     <Compile Include="Areas\QuanLySoNhanMau\Models\MauPTToBeAddedOutputModel.cs" />
+    <Compile Include="Areas\QuanLySoNhanMau\Models\ReturnItemInputModel.cs" />
     <Compile Include="Areas\QuanLySoNhanMau\Models\SoNhanMauCreateInputModel.cs" />
     <Compile Include="Areas\QuanLySoNhanMau\Models\SoNhanMauOpenInputModel.cs" />
     <Compile Include="Areas\QuanLySoNhanMau\Models\SoNhanMauOpenOutputModel.cs" />

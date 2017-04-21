@@ -97,6 +97,43 @@ namespace IERSystem.Areas.HopDongLayMau.Controllers
 
             
         }
+
+        [HttpPost]
+        public JsonResult RefreshTable()
+        {
+            try
+            {
+                return Json(new GetDBResponse<IEnumerable<RefreshOutputModel>>() 
+                { 
+                    IsOK = true, 
+                    Data = new List<RefreshOutputModel>(db.PhieuYeuCaus.Select(pyc => 
+                        new RefreshOutputModel()
+                        {
+                            MaDon = pyc.MaDon,
+                            TenKhachHang =pyc.TenKhachHang,
+                            TenDaiDien =pyc.TenDaiDien,
+                            DiaChiLayMau = pyc.DiaChiLayMau,
+                            DiaChiKH =pyc.DiaChiKhachHang,
+                            MaSoThue = pyc.MaSoThue,
+                            SDT =pyc.SoDienThoai,
+                            SoFax =pyc.SoFax,
+                            NgayTaoHD = pyc.NgayTaoHD,
+                            DuocTaoBoi =pyc.CreatedBy.Username,
+                            //ChinhSuaLanCuoiBoi =pyc.,
+                            //ChinhSuaLanCuoiLuc =pyc.ChinhSuaLanCuoiLuc,
+                            NgayTraMau = pyc.NgayHenTraKQ
+                        }
+                    )) 
+                });
+            }
+            catch (InvalidOperationException e)
+            {
+                Debug.Assert(false);
+                return Json(new GetDBResponse<PhieuYeuCau>() { IsOK = false, Data = null });
+            }
+
+
+        }
         protected override void Dispose(bool disposing) {
             if (disposing) {
                 db.Dispose();

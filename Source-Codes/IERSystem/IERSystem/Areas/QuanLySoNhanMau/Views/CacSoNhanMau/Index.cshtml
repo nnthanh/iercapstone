@@ -202,7 +202,7 @@
                     </thead>
 
                     <tbody>
-                        <tr v-for="sonhanmau in cacsonhanmau.NoiDung">
+                        <tr v-for="sonhanmau in cacsonhanmau.NoiDung" >
                             <td>
                                 {{sonhanmau.MaPhieuYeuCau}}
                             </td>
@@ -239,7 +239,7 @@
                                 @*<div slot="" style="display: none;">{{sonhanmau.Id}}</div>*@
                                 <button data-toggle="tooltip" title="Chỉnh sửa" v-on:click="location.href='QuanLySoNhanMau/SoNhanMau/Edit/' + sonhanmau.Id"><span class="fa fa-edit"></span></button>
                                 <button data-toggle="tooltip" title="Xem chi tiết" v-on:click="location.href='QuanLySoNhanMau/SoNhanMau/Details/' + sonhanmau.Id"><span class="fa fa-info"></span></button>
-                                <button data-toggle="tooltip" title="Trả về"><span class="fa fa-reply"></span></button>
+                                <button data-toggle="tooltip" title="Trả về" v-on:click="traVe(sonhanmau.MaMau)"><span class="fa fa-reply"></span></button>
                                 <button data-toggle="tooltip" title="Xóa"><span class="fa fa-trash"></span></button>
                             </td>
                         </tr>
@@ -442,6 +442,7 @@
                                     $cacsonhanmau_app.cacsonhanmaus_open.find(function (e) { return e.QuyenSo == id });
                                 if (refreshtarget != undefined) {
                                     refreshtarget.NoiDung = res.Data.NoiDung;
+                                    getNumber(id);
                                 } 
                             } else {
                                 console.log("Có lỗi khi mở sổ nhận mẫu " + id);
@@ -510,6 +511,7 @@
                             if (res.IsOK) {
                                 //window.location.reload(true);
                                 $cacsonhanmau_app.refreshOpenedSoNhanMau($target_cacsonhanmau);
+                                loadNoti();
                             } else {
                                 alert("Có lỗi khi thêm mẫu vào sổ nhận mẫu");
                             }
@@ -523,6 +525,30 @@
                     if (index > -1) {
                         this.cacsonhanmaus_open.splice(index, 1);
                     }
+                },
+                traVe: function(mamau){
+                    $.ajax({
+                    type: 'POST',
+                    url: ' @Url.Action("Return", "API")',
+                    data: JSON.stringify({MaMau: mamau}),
+                    success: function (res) {
+                        //window.location.reload(true);
+                        if (res.IsOK) {
+                            $cacsonhanmau_app.refreshOpenedSoNhanMau(res.Data);
+                            loadNoti();
+                            getNumber(red.Data);
+                        }
+                        else {
+                            new PNotify({
+                                title: 'Thất bại',
+                                text: 'đã có lỗi xảy ra (lưu ý: mẫu đã được chuyển không thể được trả về).',
+                                styling: 'bootstrap3'
+                            })
+                        }
+                    },
+                    dataType: 'json',
+                    contentType: 'application/json; charset=utf-8'
+                    }); 
                 }
             }
         });
@@ -530,7 +556,7 @@
     <script>
         $(document).ready(function () {
             $('[data-toggle="tooltip"]').tooltip();
-            
+            loadNoti();
         });
 
         $(function () {
@@ -607,29 +633,34 @@
             });
         }
 
-        $.ajax({
-            type: 'POST',
-            url: ' @Url.Action("GetNumberOfNewItems", "API") ',
-            data: JSON.stringify({
-                TuNgay: "1/1/1900",
-                DenNgay: "1/1/2500"
-            }),
-            success: function (res) {
-                if (res.IsOK) {
-                    var result = res.Data;
-                    var itemnew = document.createElement('span');
-                    itemnew.innerHTML = " " + result + " ";
-                    document.getElementById('NumOfNewItem').appendChild(itemnew);
-                    if (result > 0) {
-                        $('#myNoti').fadeIn(1000);
+        function loadNoti() {
+            $.ajax({
+                type: 'POST',
+                url: ' @Url.Action("GetNumberOfNewItems", "API") ',
+                data: JSON.stringify({
+                    TuNgay: "1/1/1900",
+                    DenNgay: "1/1/2500"
+                }),
+                success: function (res) {
+                    if (res.IsOK) {
+                        var result = res.Data;
+                        var itemnew = document.createElement('span');
+                        document.getElementById("NumOfNewItem").innerHTML = "";
+                        itemnew.innerHTML = " " + result + " ";
+                        document.getElementById('NumOfNewItem').appendChild(itemnew);
+                        if (result > 0) {
+                            $('#myNoti').fadeIn(1000);
+                        }
+                        else {
+                            $('#myNoti').hide();
+                        }
                     }
-                }
-            },
-            dataType: 'json',
-            contentType: 'application/json; charset=utf-8'
-        });
-
-
+                },
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8'
+            });
+        }
+        
         var listSoId = [];
 
         //Load noti table
@@ -675,6 +706,7 @@
                     if (res.IsOK) {
                         var result = res.Data;
                         var itemnew = document.createElement('i');
+                        document.getElementById("NewItemForOneBook").innerHTML = "";
                         itemnew.innerHTML = " " + result + " ";
                         document.getElementById('NewItemForOneBook').appendChild(itemnew);
                     }
@@ -714,6 +746,7 @@
                 }
             }
         }
+        
         
     </script>
 }

@@ -1,6 +1,7 @@
 ﻿using IERSystem.Areas.Administrator.Models;
 using IERSystem.Areas.QuanLySoChuyenMau.Models;
 using IERSystem.BusinessLogic.TableForms;
+using IERSystem.BusinessLogic.Utils;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -198,7 +199,66 @@ namespace IERSystem.Areas.QuanLySoChuyenMau.Controllers
         }
 
 
+        [HttpPost]
+        public async Task<JsonResult> Return(ReturnItemInputModel return_item)
+        {
+            if (ModelState.IsValid)
+            {
+                //Get Mau to be returned
+                var mau_tobereturned = (from mauht in db.MauLayHienTruongs
+                                        where mauht.MaMau == return_item.MaMau
+                                        select mauht).Single();
 
+                var target = db.CacSoNhanMaus.First((model) => model.Id == mau_tobereturned.SoNhanMau.CacSoNhanMauId);
+                var tinhtrang_chuyenmau = TinhTrangMauConverter.ToByte(TinhTrangMau.DaChuyen);
+                //Check if its still at TinhTrang [3], if its TinhTrang > [3], dont let them return it
+
+                if (mau_tobereturned.TinhTrang == tinhtrang_chuyenmau)
+                {
+                    try
+                    {
+                        mau_tobereturned.TinhTrang = TinhTrangMauConverter.ToByte(TinhTrangMau.DaNhan);
+                        db.MauLayHienTruongs.Attach(mau_tobereturned);
+                        db.Entry(mau_tobereturned).Property(x => x.TinhTrang).IsModified = true;
+
+                        var target_scm = (from scm in db.SoChuyenMaus
+                                          where scm.MauLayHienTruong.Id == mau_tobereturned.Id
+                                          select scm).Single();
+
+                        //await ReturnConfirmed(target_snm);
+                        var target_skqtn = (from skqtn in db.SoKQThuNghiems
+                                            where skqtn.MauLayHienTruong.Id == mau_tobereturned.Id
+                                            select skqtn).Single();
+                        try
+                        {
+                            db.KQThuNghiemMaus.RemoveRange(db.KQThuNghiemMaus.Where(kq => kq.SoKQThuNghiemId == target_skqtn.Id));
+                            //db.KQThuNghiemMaus.Where(kq => kq.SoKQThuNghiemId == target_skqtn.Id).ToList().ForEach(db.KQThuNghiemMaus.DeleteObject());
+                            db.SoKQThuNghiems.Remove(target_skqtn);
+                            db.SoChuyenMaus.Remove(target_scm);
+                            await db.SaveChangesAsync();
+
+                            return Json(new GetDBResponse<Int64>()
+                            {
+                                IsOK = true,
+                                Data = target_scm.CacSoChuyenMauId
+                            });
+                            //return Json(new UpsertDBResponse { IsOK = true, ErrMsg = "" });
+                        }
+                        catch
+                        {
+                            return Json(new GetDBResponse<Int64> { IsOK = false, Data = 0 });
+                        }
+
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                        return Json(new GetDBResponse<Int64> { IsOK = false, Data = 0 });
+                    }
+                }
+            }
+            return Json(new GetDBResponse<Int64> { IsOK = false, Data = 0 });
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

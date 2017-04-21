@@ -1,9 +1,12 @@
 ﻿using IERSystem.Areas.Administrator.Models;
 using IERSystem.Areas.QuanLySoNhanMau.Models;
 using IERSystem.BusinessLogic.TableForms;
+using IERSystem.BusinessLogic.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -218,6 +221,63 @@ namespace IERSystem.Areas.QuanLySoNhanMau.Controllers
                 return Json(new GetDBResponse<IEnumerable<MauPTToBeAddedOutputModel>> { IsOK = false, Data = null });
             }
         }
+
+       
+        [HttpPost]
+        public async Task<JsonResult> Return(ReturnItemInputModel return_item)
+        {
+            if (ModelState.IsValid)
+            {
+                //Get Mau to be returned
+                var mau_tobereturned = (from mauht in db.MauLayHienTruongs
+                                        where mauht.MaMau == return_item.MaMau
+                                        select mauht).Single();
+
+                var target = db.CacSoNhanMaus.First((model) => model.Id == mau_tobereturned.SoNhanMau.CacSoNhanMauId);
+                var tinhtrang_nhanmau = TinhTrangMauConverter.ToByte(TinhTrangMau.DaNhan);
+                //Check if its still at TinhTrang [2], if its TinhTrang > [2], dont let them return it
+                
+                if (mau_tobereturned.TinhTrang == tinhtrang_nhanmau)
+                {
+                    try
+                    {
+                        mau_tobereturned.TinhTrang = TinhTrangMauConverter.ToByte(TinhTrangMau.KhoiTao);
+                        db.MauLayHienTruongs.Attach(mau_tobereturned);
+                        db.Entry(mau_tobereturned).Property(x => x.TinhTrang).IsModified = true;
+
+                        var target_snm = (from snm in db.SoNhanMaus
+                                          where snm.MauLayHienTruong.Id == mau_tobereturned.Id
+                                          select snm).Single();
+
+                        //await ReturnConfirmed(target_snm);
+
+                        try
+                        {
+                            db.SoNhanMaus.Remove(target_snm);
+                            await db.SaveChangesAsync();
+                            return Json(new GetDBResponse<Int64>()
+                            {
+                                IsOK = true,
+                                Data = target_snm.CacSoNhanMauId
+                            });
+                            //return Json(new UpsertDBResponse { IsOK = true, ErrMsg = "" });
+                        }
+                        catch
+                        {
+                            return Json(new GetDBResponse<Int64> { IsOK = false, Data = 0 });
+                        }
+                        
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                        return Json(new GetDBResponse<Int64> { IsOK = false, Data = 0 });
+                    }
+                }              
+            }
+            return Json(new GetDBResponse<Int64> { IsOK = false, Data = 0 });
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

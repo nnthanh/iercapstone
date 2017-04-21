@@ -11,6 +11,7 @@ using System.IO;
 using Newtonsoft.Json;
 using IERSystem.Areas.HopDongLayMau.Models;
 using System.Data.Entity;
+using IERSystem.BusinessLogic.TableForms;
 
 namespace IERSystem.Areas.HopDongLayMau.Controllers
 {
@@ -93,30 +94,73 @@ namespace IERSystem.Areas.HopDongLayMau.Controllers
             return View(request);
         }
 
-        // GET: /HopDongLayMau/YeuCauLayMau/Delete/5
-        public async Task<ActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            PhieuYeuCau request = await db.PhieuYeuCaus.FindAsync(id);
-            if (request == null)
-            {
-                return HttpNotFound();
-            }
-            return View(request);
-        }
+        //// GET: /HopDongLayMau/YeuCauLayMau/Delete/5
+        //public async Task<ActionResult> Delete(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    PhieuYeuCau request = await db.PhieuYeuCaus.FindAsync(id);
+        //    if (request == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(request);
+        //}
 
-        // POST: /HopDongLayMau/YeuCauLayMau/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
+        //// POST: /HopDongLayMau/YeuCauLayMau/Delete/5
+        //[HttpPost, ActionName("xoaModal")]
+        //[ValidateAntiForgeryToken]
+        //public async Task<ActionResult> DeleteConfirmed(int id)
+        //{
+        //    PhieuYeuCau request = await db.PhieuYeuCaus.FindAsync(id);
+        //    db.PhieuYeuCaus.Remove(request);
+        //    await db.SaveChangesAsync();
+        //    return RedirectToAction("Index");
+        //}
+
+        public async Task<JsonResult> DeleteItem(DeleteItemInputModel del_input)
         {
-            PhieuYeuCau request = await db.PhieuYeuCaus.FindAsync(id);
-            db.PhieuYeuCaus.Remove(request);
-            await db.SaveChangesAsync();
-            return RedirectToAction("Index");
+            PhieuYeuCau request = await db.PhieuYeuCaus.FindAsync(del_input.id);
+
+            var is_shipped = request.MauLayHienTruongs.Any((kh) =>
+                    kh.TinhTrang.Equals(1) ||
+                    kh.TinhTrang.Equals(2) ||
+                    kh.TinhTrang.Equals(3));
+             
+            if (!is_shipped)
+            {
+                try
+                {
+                    var maus = (from mlth in db.MauLayHienTruongs
+                              where mlth.PhieuYeuCauId == request.Id
+                              select mlth).ToList();
+
+                   for(int i=0; i<maus.Count(); ++i){
+
+                       var mau_tobedel = db.MauLayHienTruongs.Find(maus[i].Id);
+                       db.Entry(mau_tobedel).Collection("ChiTieuPhanTiches").Load();
+
+                       var ct = mau_tobedel.ChiTieuPhanTiches.SelectMany(x=>x.Id);
+
+                       foreach (ChiTieuPhanTich item in db.ChiTieuPhanTiches)
+                       {
+                           db.ChiTieuPhanTiches chitieu =
+                       }
+                   }
+                    
+                    db.MauLayHienTruongs.RemoveRange(db.MauLayHienTruongs.Where(kq => kq.PhieuYeuCauId == request.Id));
+                    db.PhieuYeuCaus.Remove(request);
+                    await db.SaveChangesAsync();
+                    return Json(new GetDBResponse<string>() { IsOK = true, Data = "" });
+                }
+                catch (Exception e)
+                {
+                    return Json(new GetDBResponse<string>() { IsOK = false, Data = "" });
+                }
+            }
+            return Json(new GetDBResponse<string>() { IsOK = false, Data = "" }); 
         }
 
         protected override void Dispose(bool disposing)

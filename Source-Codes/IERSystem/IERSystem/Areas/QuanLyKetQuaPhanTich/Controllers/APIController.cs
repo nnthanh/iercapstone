@@ -64,7 +64,7 @@ namespace IERSystem.Areas.QuanLyKetQuaPhanTich.Controllers
                              {
                                  MaMau = rowitem.MaMau,
                                  //SoLuong = rowitem.SoKQThuNghiem.KQThuNghiemMaus.Count(),
-                                 SoLuongKetQua = db.KQThuNghiemMaus.Where((kqtn) => kqtn.KetQua != "" ).Count()
+                                 SoLuongKetQua = db.KQThuNghiemMaus.Where((kqtn) => kqtn.KetQua != "" && kqtn.SoKQThuNghiem.MauLayHienTruong.MaMau == rowitem.MaMau).Count()
                                  //rowitem.SoKQThuNghiem.KQThuNghiemMaus.Select((kqrow) => 
                                  //new KQOutputModel(){
                                  //    SoLuong = kqrow.KetQua.Count()
