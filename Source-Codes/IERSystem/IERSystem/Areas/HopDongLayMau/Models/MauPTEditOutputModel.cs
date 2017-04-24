@@ -17,4 +17,10 @@ namespace IERSystem.Areas.HopDongLayMau.Models
         public string MoTaMau { get; set; }
         public IEnumerable<ChiTieuPTSelectedOutputModel> ChiTieuPhanTiches { get; set; }
     }
+
+    public class ChiTieuPTSelectedOutputModel
+    {
+        public string TenChiTieu { get; set; }
+        public string NhomChiTieu { get; set; }
+    }
 }

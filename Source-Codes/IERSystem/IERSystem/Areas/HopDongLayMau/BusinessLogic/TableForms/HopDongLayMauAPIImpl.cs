@@ -34,7 +34,7 @@ namespace IERSystem.BusinessLogic.TableForms
             db.PhieuYeuCaus.Add(yeucaulaymau_model);
         }
 
-        public static YeuCauLayMauEditOutputModel GetPhieuYC(long id, IERSystemModelContainer db)
+        public static YeuCauLayMauEditOutputModel GetPhieuYCEdit(long id, IERSystemModelContainer db)
         {
             var target_phieuyc = db.PhieuYeuCaus.Find(id);
             if (target_phieuyc == null) return null;
@@ -52,7 +52,7 @@ namespace IERSystem.BusinessLogic.TableForms
             };
         }
 
-        public static IEnumerable<MauPTEditOutputModel> GetMauPTs(long id, IERSystemModelContainer db)
+        public static IEnumerable<MauPTEditOutputModel> GetMauPTsEdit(long id, IERSystemModelContainer db)
         {
             var target_phieuyc = db.PhieuYeuCaus.Find(id);
             if (target_phieuyc != null)
@@ -67,7 +67,7 @@ namespace IERSystem.BusinessLogic.TableForms
                 {
                     Id = mht.Id,
                     //nthoang: Using HopDongLayMauEncoding API to extract KiHieuMau from MaMau
-                    KiHieuMau = HopDongLayMauEncoding.ExtractKiHieuMauFromMaMau(mht.MaMau),
+                    KiHieuMau = HopDongLayMauEncoding.ToKiHieuMauViewString(mht.MaMau),
                     MaMauKH = mht.MaMauKH,
                     MoTaMau = mht.MoTaMau,
                     SoLuong = mht.SoLuong,

@@ -23,6 +23,22 @@ namespace IERSystem.BusinessLogic
             else return mamau_str.Substring(0, 2);
         }
 
+        public static string ToKiHieuMauViewString(string mamau_str)
+        {
+            var kh_mau = ExtractKiHieuMauFromMaMau(mamau_str);
+            switch (kh_mau)
+            {
+                case "NT": return "NT: Nước Thải";
+                case "NC": return "NC: Nước Cấp";
+                case "NM": return "NM: Nước Mặt";
+                case "KK": return "KK: Không Khí";
+                case "B": return "B: Bùn Thải";
+                case "Đ": return "Đ: Đất";
+                case "TP": return "TP: Thực Phẩm";
+                default: throw new InvalidOperationException("Unknown KiHieuMau");
+            }
+        }
+
         private static string stringifyNumberTo2Digit(int number) {
             //if (reqnumber <= 0)
             //    throw new ArgumentException("reqnumber must be positive");

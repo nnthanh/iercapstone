@@ -170,7 +170,7 @@
                                             </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <button id="saveMauBtn" type="button" class="btn btn-success" @*data-dismiss="modal"*@>Thêm Mẫu</button>
+                                            <button v-on:click="saveMauEdited" type="button" class="btn btn-success" data-dismiss="modal">Thêm Mẫu</button>
                                             <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
                                         </div>
                                     </div>
@@ -287,9 +287,9 @@
     <script src="~/Areas/Administrator/vendors/vuejs/vue.min.js"></script>
     <!-- VueJS App -->
     <script>
-        @*nthoang: Temporary solution to parse uri string to get id, last element of url splitted by '/' token*@
         var $CacheChiTieu = {};
         
+        @*nthoang: Temporary solution to parse uri string to get id, last element of url splitted by '/' token*@
         function getIdFromUrl() {
             var url_parts = location.href.split("/");
             return url_parts[url_parts.length - 1];
@@ -349,8 +349,6 @@
         var $phieuyeucauedit_app = new Vue({
             el: '#phieuyeucauedit-app',
             data: {
-                promptedDelMauPT: undefined,
-                maupteditpicked: undefined,
                 @*nthoang: This is the input model (To be submitted to server)*@
                 phieuyeucauedit: {
                     @*nthoang: Populate input model with loaded Phieu Yeu Cau data (Server rendering)*@
@@ -379,16 +377,31 @@
                 setDeleteMauPT: function (maupt) {
                     maupt.ModifiedState = 2;
                 },
+                saveMauEdited: function () {
+                    var target_maupt = this.phieuyeucauedit.MauLayHienTruongs;
+                    target_maupt.ModifiedState = 1;
+                    target_maupt.MaMauKH = $("#ma-mau").val();
+                    target_maupt.KiHieuMau = $("#kh-mau").val();
+                    target_maupt.ViTriLayMau = $("#vitri-laymau").val();
+                    target_maupt.SoLuong = $("#so-luong").val();
+                    target_maupt.DonVi = $("#don-vi").val();
+                    target_maupt.MoTaMau = $("#mota-mau").val();
+                    target_maupt.ChiTieuPhanTiches = $("#chitieu-yeucau").val().map(function (ten_chitieu) {
+                        return {
+                            NhomChiTieu: $("#loai-chitieu").val(),
+                            TenChiTieu: ten_chitieu
+                        };
+                    });
+                },
                 openChinhMauModal: function (maupt) {
-                    var contents = maupt;
-                    $("#ma-mau").val(contents.MaMauKH);
-                    $("#kh-mau").val(contents.KiHieuMau);
-                    $("#vitri-laymau").val(contents.ViTriLayMau);
-                    $("#so-luong").val(contents.SoLuong);
-                    $("#don-vi").val(contents.DonVi);
-                    $("#mota-mau").val(contents.MoTaMau);
-                    $("#loai-chitieu").val(contents.ChiTieuPhanTiches[0].NhomChiTieu);
-                    reloadChiTieuMultiBox(contents.ChiTieuPhanTiches.map(function (e) { return e.TenChiTieu; }));
+                    $("#ma-mau").val(maupt.MaMauKH);
+                    $("#kh-mau").val(maupt.KiHieuMau);
+                    $("#vitri-laymau").val(maupt.ViTriLayMau);
+                    $("#so-luong").val(maupt.SoLuong);
+                    $("#don-vi").val(maupt.DonVi);
+                    $("#mota-mau").val(maupt.MoTaMau);
+                    $("#loai-chitieu").val(maupt.ChiTieuPhanTiches[0].NhomChiTieu);
+                    reloadChiTieuMultiBox(maupt.ChiTieuPhanTiches.map(function (e) { return e.TenChiTieu; }));
                     $("#suaMauModal").modal("toggle");
                 }
             }

@@ -5,9 +5,10 @@ using System.Web;
 
 namespace IERSystem.Areas.HopDongLayMau.Models
 {
-    [Serializable]
-    public class MauPTInputModel
+    public class MauPTEditInputModel
     {
+        public long Id { get; set; }
+        public byte ModifiedState { get; set; }
         //nthoang Encoded string value for Mau Phan Tich (the AAZZZ/MM formatted string)
         public String MaMau { get; set; }
         public String MaMauKH { get; set; }
@@ -20,11 +21,4 @@ namespace IERSystem.Areas.HopDongLayMau.Models
 
         public IEnumerable<ChiTieuPTSelectedInputModel> ChiTieuPhanTiches { get; set; }
     }
-
-    public class ChiTieuPTSelectedInputModel
-    {
-        public string TenChiTieu { get; set; }
-        public string NhomChiTieu { get; set; }
-    }
-
 }

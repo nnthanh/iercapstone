@@ -17,12 +17,7 @@ namespace IERSystem.Areas.HopDongLayMau.Models
         public System.DateTime NgayLayMau { get; set; }
         public System.DateTime NgayHenTraKQ { get; set; }
 
-        public virtual ICollection<MauLayHienTruongEditInputModel> MauLayHienTruongs { get; set; }
+        public virtual IEnumerable<MauPTEditInputModel> MauLayHienTruongs { get; set; }
     }
 
-    public class MauLayHienTruongEditInputModel
-    {
-        public byte ModifiedState { get; set; }
-        public MauPTInputModel Contents { get; set; }
-    }
 }

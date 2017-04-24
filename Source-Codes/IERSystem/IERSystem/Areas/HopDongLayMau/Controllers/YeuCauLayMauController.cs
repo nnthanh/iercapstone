@@ -70,7 +70,7 @@ namespace IERSystem.Areas.HopDongLayMau.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var editmodel = HopDongLayMauAPIImpl.GetPhieuYC(id.Value, db);
+            var editmodel = HopDongLayMauAPIImpl.GetPhieuYCEdit(id.Value, db);
             if (editmodel == null)
             {
                 return HttpNotFound();

@@ -105,7 +105,7 @@ namespace IERSystem.Areas.HopDongLayMau.Controllers
             {
                 try
                 {
-                    var result = HopDongLayMauAPIImpl.GetMauPTs(id.Value, db);
+                    var result = HopDongLayMauAPIImpl.GetMauPTsEdit(id.Value, db);
                     return Json(
                         new GetDBResponse<IEnumerable<MauPTEditOutputModel>>()
                         {
