@@ -5,7 +5,7 @@ using System.Web;
 
 namespace IERSystem.Areas.HopDongLayMau.Models
 {
-    public class PhieuYeuCauEditOutputModel
+    public class YeuCauLayMauEditInputModel
     {
         public string TenKhachHang { get; set; }
         public string MaSoThue { get; set; }
@@ -17,16 +17,12 @@ namespace IERSystem.Areas.HopDongLayMau.Models
         public System.DateTime NgayLayMau { get; set; }
         public System.DateTime NgayHenTraKQ { get; set; }
 
-        public virtual ICollection<MauLayHienTruongEditOutputModel> MauLayHienTruongs { get; set; }
+        public virtual ICollection<MauLayHienTruongEditInputModel> MauLayHienTruongs { get; set; }
     }
 
-    public class MauLayHienTruongEditOutputModel
+    public class MauLayHienTruongEditInputModel
     {
-        public string MaMau { get; set; }
-        public string MaMauKH { get; set; }
-        public string ViTriLayMau { get; set; }
-        public int SoLuong { get; set; }
-        public string MoTaMau { get; set; }
-        public string ChiTieuPTs { get; set; }
+        public byte ModifiedState { get; set; }
+        public MauPTInputModel Contents { get; set; }
     }
 }

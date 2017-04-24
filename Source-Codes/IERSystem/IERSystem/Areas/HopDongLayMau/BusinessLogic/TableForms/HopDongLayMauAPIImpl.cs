@@ -34,6 +34,61 @@ namespace IERSystem.BusinessLogic.TableForms
             db.PhieuYeuCaus.Add(yeucaulaymau_model);
         }
 
+        public static YeuCauLayMauEditOutputModel GetPhieuYC(long id, IERSystemModelContainer db)
+        {
+            var target_phieuyc = db.PhieuYeuCaus.Find(id);
+            if (target_phieuyc == null) return null;
+            return new YeuCauLayMauEditOutputModel()
+            {
+                TenKhachHang = target_phieuyc.TenKhachHang,
+                TenDaiDien = target_phieuyc.TenDaiDien,
+                SoFax = target_phieuyc.SoFax,
+                SoDienThoai = target_phieuyc.SoDienThoai,
+                NgayLayMau = target_phieuyc.NgayLayMau,
+                NgayHenTraKQ = target_phieuyc.NgayHenTraKQ,
+                MaSoThue = target_phieuyc.MaSoThue,
+                DiaChiLayMau = target_phieuyc.DiaChiLayMau,
+                DiaChiKhachHang = target_phieuyc.DiaChiKhachHang
+            };
+        }
+
+        public static IEnumerable<MauPTEditOutputModel> GetMauPTs(long id, IERSystemModelContainer db)
+        {
+            var target_phieuyc = db.PhieuYeuCaus.Find(id);
+            if (target_phieuyc != null)
+            {
+                //nthoang: Filter result that has not been added to So Chuyen and So Nhan yet
+                var result = target_phieuyc.MauLayHienTruongs.Where((mht) => {
+                    var tinhtrang = TinhTrangMauConverter.ToTinhTrangMau(mht.TinhTrang);
+                    return tinhtrang == TinhTrangMau.KhoiTao;
+                });
+                //nthoang: Map result into Output model
+                return result.Select((mht) => new MauPTEditOutputModel()
+                {
+                    Id = mht.Id,
+                    //nthoang: Using HopDongLayMauEncoding API to extract KiHieuMau from MaMau
+                    KiHieuMau = HopDongLayMauEncoding.ExtractKiHieuMauFromMaMau(mht.MaMau),
+                    MaMauKH = mht.MaMauKH,
+                    MoTaMau = mht.MoTaMau,
+                    SoLuong = mht.SoLuong,
+                    DonVi = mht.DonVi,
+                    ViTriLayMau = mht.ViTriLayMau,
+                    ChiTieuPhanTiches = mht.ChiTieuPhanTiches.Select((ctpt) =>
+                    {
+                        return new ChiTieuPTSelectedOutputModel()
+                        {
+                            TenChiTieu = ctpt.TenChiTieu,
+                            NhomChiTieu = ctpt.NhomChiTieu.TenNhom
+                        };
+                    })
+                });
+            }
+            else
+            {
+                throw new InvalidOperationException("No Entity found with id = " + id);
+            }
+        }
+
         /// <summary>
         /// Convert InputModel to Database Model
         /// </summary>
@@ -108,7 +163,6 @@ namespace IERSystem.BusinessLogic.TableForms
                         return null;
                     }
                 }).ToList();
-
 
                 //nthoang: here MauLayHienTruong should already been Encoded
                 Debug.Assert(elem.MaMau != null);

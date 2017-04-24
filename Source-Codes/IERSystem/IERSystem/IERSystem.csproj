@@ -262,13 +262,17 @@
     <Compile Include="Areas\Administrator\Controllers\SoKQThuNghiemController.cs" />
     <Compile Include="Areas\Administrator\Controllers\SoNhanMauController.cs" />
     <Compile Include="Areas\HopDongLayMau\BusinessLogic\Utils\LoaiMauConverter.cs" />
+    <Compile Include="Areas\HopDongLayMau\BusinessLogic\Utils\MauPTModifiedStateConverter.cs" />
     <Compile Include="Areas\HopDongLayMau\BusinessLogic\Utils\TinhTrangMauConverter.cs" />
     <Compile Include="Areas\HopDongLayMau\BusinessLogic\Utils\DateTimeUtils.cs" />
     <Compile Include="Areas\HopDongLayMau\BusinessLogic\YeuCauLayMauEncoding.cs" />
     <Compile Include="Areas\HopDongLayMau\Controllers\APIController.cs" />
     <Compile Include="Areas\HopDongLayMau\Controllers\DefaultController.cs" />
     <Compile Include="Areas\HopDongLayMau\Models\GetCustomerInfoInputModel.cs" />
+    <Compile Include="Areas\HopDongLayMau\Models\MauPTEditOutputModel.cs" />
     <Compile Include="Areas\HopDongLayMau\Models\MauPTInputModel.cs" />
+    <Compile Include="Areas\HopDongLayMau\Models\YeuCauLayMauEditInputModel.cs" />
+    <Compile Include="Areas\HopDongLayMau\Models\YeuCauLayMauEditOutputModel.cs" />
     <Compile Include="Areas\HopDongLayMau\Models\YeuCauLayMauInputModel.cs" />
     <Compile Include="Areas\HopDongLayMau\Controllers\YeuCauLayMauController.cs" />
     <Compile Include="Areas\HopDongLayMau\HopDongLayMauAreaRegistration.cs" />

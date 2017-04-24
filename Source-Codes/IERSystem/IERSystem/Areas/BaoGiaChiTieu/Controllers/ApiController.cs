@@ -30,19 +30,19 @@ namespace IERSystem.Areas.BaoGiaChiTieu.Controllers
             }
         }
 
-        // POST: BaoGiaChiTieu/API/GetNhomChiTieu/
-        [HttpPost]
+        // GET: BaoGiaChiTieu/API/GetNhomChiTieu/
+        [HttpGet]
         public ActionResult GetNhomChiTieu()
         {
             if (ModelState.IsValid)
             {
                 var result =
                     ChiTieuPhanTichAPIImpl.GetNhomCT(db);
-                return Json(result);
+                return Json(result, JsonRequestBehavior.AllowGet);
             }
             else
             {
-                return Json(new UpsertDBResponse { IsOK = false, ErrMsg = "" });
+                return Json(new UpsertDBResponse { IsOK = false, ErrMsg = "" }, JsonRequestBehavior.AllowGet);
             }
         }
 

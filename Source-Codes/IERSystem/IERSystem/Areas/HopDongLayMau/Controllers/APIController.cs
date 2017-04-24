@@ -97,6 +97,47 @@ namespace IERSystem.Areas.HopDongLayMau.Controllers
 
             
         }
+
+        [HttpGet]
+        public JsonResult GetMauPTs(long? id) 
+        {
+            if (id.HasValue)
+            {
+                try
+                {
+                    var result = HopDongLayMauAPIImpl.GetMauPTs(id.Value, db);
+                    return Json(
+                        new GetDBResponse<IEnumerable<MauPTEditOutputModel>>()
+                        {
+                            IsOK = true,
+                            Data = result
+                        },
+                        JsonRequestBehavior.AllowGet
+                    ); 
+                } catch (InvalidOperationException e) {
+                    return Json(
+                        new GetDBResponse<string>()
+                        {
+                            IsOK = false,
+                            Data = "Phieu Yeu Cau Id " + id.ToString() + " not found."
+                        },
+                        JsonRequestBehavior.AllowGet
+                    );
+                }
+                
+            }
+            else
+            {
+                return Json(
+                    new GetDBResponse<string>() {
+                        IsOK = false,
+                        Data = "No parameter provided."
+                    },
+                    JsonRequestBehavior.AllowGet
+                );
+            }
+        }
+
         protected override void Dispose(bool disposing) {
             if (disposing) {
                 db.Dispose();

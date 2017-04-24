@@ -16,7 +16,7 @@ namespace IERSystem.BusinessLogic
         /// </summary>
         /// <param name="mamau_str">string formatted AAZZZ/MM</param>
         /// <returns>the AA part</returns>
-        public static string extractKiHieuMauFromMaMau(string mamau_str)
+        public static string ExtractKiHieuMauFromMaMau(string mamau_str)
         {
             if (mamau_str == null) throw new ArgumentException("mamau_str cannot be null");
             if (mamau_str[0] == 'B' || mamau_str[0] == 'Đ') return mamau_str[0].ToString();
@@ -71,9 +71,10 @@ namespace IERSystem.BusinessLogic
                 //nthoang: And group them by their KiHieuMau (using extractKiHieuMauFromMaMau() function)
                 //nthoang: Into (Sample Type, Count)
                 var this_month_samples_by_khm = getSamplesOfThisMonth(db, this_month, this_year);
-                        
+
 
                 //nthoang: Create Count Hash for the input samples by their type (KiHieuMau)
+                //nthoang: Into (Sample Type, Count)
                 var samples_inp_by_knm =
                         request_inp.MauLayHienTruongs
                                    .Select((item) => item.KiHieuMau)
@@ -127,7 +128,7 @@ namespace IERSystem.BusinessLogic
                         && request.NgayTaoHD.Year.Equals(this_year))
                  select new { Sample = sample }
                 ).ToList();
-            return result.GroupBy((item) => extractKiHieuMauFromMaMau(item.Sample.MaMau))
+            return result.GroupBy((item) => ExtractKiHieuMauFromMaMau(item.Sample.MaMau))
                          .Select((item) => new SampleCounter() { SampleType = item.Key, Count = item.Count() })
                          .ToDictionary((item) => item.SampleType, (item) => item.Count);
         }

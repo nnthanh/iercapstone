@@ -415,7 +415,7 @@
         var chitieu_selectbox = $("#chitieu-yeucau");
 
         $.ajax({
-            type: 'POST',
+            type: 'GET',
             url: ' @Url.Action("GetNhomChiTieu", "API", new { area = "BaoGiaChiTieu" })',
             success: function (res) {
                 var loaimau_selectbox = $("#loai-chitieu");
