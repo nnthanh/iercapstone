@@ -23,5 +23,8 @@ namespace IERSystem.Areas.QuanLySoNhanMau.Models
         public string NgayNhan { get; set; }
         public string NgayTraKQ { get; set; }
         public string MaMauKH { get; set; }
+        public bool KHKyTraTien { get; set; }
+        public bool KHKyTraKQ {get; set;}
+        public string AddedBy { get; set; }
     }
 }

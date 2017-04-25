@@ -231,7 +231,17 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-
+                                        @foreach (var item in Model.MauLayHienTruongs)
+                                        {
+                                            <tr>
+                                                <td>@Html.DisplayFor(model => item.MaMau)</td>
+                                                <td>@Html.DisplayFor(model => item.MaMauKH)</td>
+                                                <td>@Html.DisplayFor(model => item.ViTriLayMau)</td>
+                                                <td>@Html.DisplayFor(model => item.SoLuong) @Html.DisplayFor(model => item.DonVi)</td>
+                                                <td>@Html.DisplayFor(model => item.MoTaMau)</td>
+                                                @*<td>@Html.DisplayFor(model => String.Join(", ", item.ChiTieuPhanTiches.Select((x) => x.TenChiTieu)))</td>*@
+                                            </tr>
+                                        }
                                     </tbody>
                                 </table>
                             </div>

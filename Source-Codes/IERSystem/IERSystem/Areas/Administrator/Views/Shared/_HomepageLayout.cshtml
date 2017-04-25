@@ -30,6 +30,10 @@
           <![endif]-->
     <style>
         #wrapper {
+            background-color: rgba(141,204,58,0.9);
+        }
+
+        #wrapper1 {
             background-color: green;
         }
 
@@ -114,7 +118,7 @@
                         @*<img src="~/Areas/Administrator/Content/Homepage2/img/logo1.png" style="width: 120px; height:120px; padding-top:0px; margin-bottom:0" />
                         <img src="~/Areas/Administrator/Content/Homepage2/img/logo2.png" style="width: 120px; height:80px; padding-top:0px; margin-bottom:0" />
                         <br />*@
-                        <a class="navbar-brand page-scroll" href="@Url.Action("Login","Account","")">Hệ thống quản lý <span>IER</span></a>
+                        <a class="navbar-brand page-scroll" href="@Url.Action("Login","Account","")"> <span>Hệ thống quản lý IER</span></a>
                     </div>
 
                     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -187,11 +191,11 @@
     </div>
 
     <div class="clearfix"></div>
-    <img src="~/Areas/Administrator/Content/Homepage2/img/header.jpg" />
+    <img src="~/Areas/Administrator/Content/Homepage2/img/header5.jpg" />
     @RenderBody()
 
     <!--FOOTER-->
-    <div class="footer" id="wrapper">
+    <div class="footer" id="wrapper1">
         <div class="container">
             <div class="col-sm-2">
                 <h5>Bản đồ</h5>
