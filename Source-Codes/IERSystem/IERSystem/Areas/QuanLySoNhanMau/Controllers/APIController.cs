@@ -180,21 +180,47 @@ namespace IERSystem.Areas.QuanLySoNhanMau.Controllers
             var expire_date = DateTime.Today.AddDays(-3);
             if (ModelState.IsValid)
             {
-                //var target_sonhanmau = db.CacSoNhanMaus.Single((snm) => snm.Id == id);
-                var result = from snm in db.SoNhanMaus
+                var result = (from snm in db.SoNhanMaus
                              join csnm in db.CacSoNhanMaus on snm.CacSoNhanMauId equals csnm.Id
                              where snm.NgayNhanMau > expire_date && csnm.Id == sonhanmauopen_inp.Id
-                             select snm.MauLayHienTruong.PhieuYeuCau.MaDon;                     
+                             select snm.MauLayHienTruong.PhieuYeuCau.MaDon);                     
 
                 return Json(new GetDBResponse<IEnumerable<string>>()
                 {
                     IsOK = true,
                     Data = result
                 });
+                
             }
             else
             {
-                return Json(new GetDBResponse<IEnumerable<MauPTToBeAddedOutputModel>> { IsOK = false, Data = null });
+                return Json(new GetDBResponse<IEnumerable<NewItemsOutputModel>> { IsOK = false, Data = null });
+            }
+        }
+
+        [HttpPost]
+        public JsonResult RefreshBoxes(SoNhanMauOpenInputModel sonhanmauopen_inp)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = new List<NewItemsOutputModel>(db.SoNhanMaus.Where(x => x.CacSoNhanMauId == sonhanmauopen_inp.Id)
+                    .Select(y => new NewItemsOutputModel()
+                    {
+                        MaDon = y.MauLayHienTruong.PhieuYeuCau.MaDon,
+                        KHKyTraTien = y.KHKiNhanTraTien,
+                        KHKyTraKQ = y.KHKiNhanTraKQ
+                    }));
+
+                return Json(new GetDBResponse<IEnumerable<NewItemsOutputModel>>()
+                {
+                    IsOK = true,
+                    Data = result
+                });
+
+            }
+            else
+            {
+                return Json(new GetDBResponse<IEnumerable<NewItemsOutputModel>> { IsOK = false, Data = null });
             }
         }
 
@@ -276,6 +302,54 @@ namespace IERSystem.Areas.QuanLySoNhanMau.Controllers
                 }              
             }
             return Json(new GetDBResponse<Int64> { IsOK = false, Data = 0 });
+        }
+
+        [HttpPost]
+        public async Task<JsonResult> AddSignature(AddSignatureInputModel input_req)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    String[] tokens;
+                    long cacsonhanmau_id = 0;
+                    string madon;
+                    bool chk_kq, chk_tien;
+                    for (int i = 0; i < input_req.Attribute.Length; ++i )
+                    {
+                        tokens = input_req.Attribute[i].Split(',');
+                        madon = tokens[0];
+                        chk_tien = Convert.ToBoolean(tokens[1]);
+                        chk_kq = Convert.ToBoolean(tokens[2]);
+
+                        var result = (from snm in db.SoNhanMaus
+                                      where snm.MauLayHienTruong.PhieuYeuCau.MaDon == madon
+                                      select snm).FirstOrDefault();       
+
+                        result.KHKiNhanTraTien = chk_tien;
+                        result.KHKiNhanTraKQ = chk_kq;
+
+                        if (i == input_req.Attribute.Length-1)
+                        {
+                            cacsonhanmau_id = result.CacSoNhanMauId;
+                        }
+                        
+                    }
+
+                    await db.SaveChangesAsync();
+                    Console.WriteLine("OK");
+                    return Json(new GetDBResponse<Int64> { IsOK = true, Data = cacsonhanmau_id });
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                    return Json(new GetDBResponse<Int64> { IsOK = false, Data = 0 });
+                }
+            }
+            else
+            {
+                return Json(new GetDBResponse<Int64> { IsOK = false, Data = 0 });
+            }
         }
 
         protected override void Dispose(bool disposing)

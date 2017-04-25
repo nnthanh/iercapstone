@@ -97,32 +97,14 @@
                                 </td>
                                 <td>
                                     <button data-toggle="tooltip" title="Nhập kết quả" onclick="location.href='@Url.Action("AddResult", "SoKQThuNghiem", new { id = item.Id })'"><i class="fa fa-file-text"></i></button>
-                                    <button data-toggle="tooltip" title="Chỉnh sửa" onclick="location.href='@Url.Action("Edit", "SoKQThuNghiem", new { id = item.Id })'"><span class="fa fa-edit"></span></button>
+                                    @*<button data-toggle="tooltip" title="Chỉnh sửa" onclick="location.href='@Url.Action("Edit", "SoKQThuNghiem", new { id = item.Id })'"><span class="fa fa-edit"></span></button>*@
                                     <button data-toggle="tooltip" title="Xem chi tiết" onclick="location.href='@Url.Action("Details", "SoKQThuNghiem", new { id = item.Id })'"><span class="fa fa-info"></span></button>
                                     <button data-toggle="tooltip" title="In" onclick="location.href='@Url.Action("", "")'"><span class="fa fa-print"></span></button>
-                                    <button data-toggle="modal" data-target="#xoaModal"><span class="fa fa-trash"></span></button>
                                 </td>
                             </tr>
                         }
                     </tbody>
                 </table>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Modal -->
-<div id="xoaModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-body">
-                <h4>Bạn có chắc chắn muốn xóa mẫu này?</h4>
-                <h5>Bạn sẽ không để hoàn tác hành động này.</h5>
-                <div class="form-group" align="center">
-                    <button type="button" class="btn btn-success" data-dismiss="modal" onclick="delSucNoti()"><span class="fa fa-check"></span></button>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="delFailNoti()"><span class="fa fa-close"></span></button>
-                </div>
             </div>
         </div>
     </div>

@@ -308,10 +308,12 @@
     <Compile Include="Areas\QuanLySoNhanMau\BusinessLogic\TableForms\SoNhanMauAPIImpl.cs" />
     <Compile Include="Areas\QuanLySoNhanMau\Controllers\APIController.cs" />
     <Compile Include="Areas\QuanLySoNhanMau\Controllers\CacSoNhanMauController.cs" />
+    <Compile Include="Areas\QuanLySoNhanMau\Models\AddSignatureInputModel.cs" />
     <Compile Include="Areas\QuanLySoNhanMau\Models\CacSoNhanMauOutputModel.cs" />
     <Compile Include="Areas\QuanLySoNhanMau\Models\MauPTAdderInputModel.cs" />
     <Compile Include="Areas\QuanLySoNhanMau\Models\MauPTToBeAddedInputModel.cs" />
     <Compile Include="Areas\QuanLySoNhanMau\Models\MauPTToBeAddedOutputModel.cs" />
+    <Compile Include="Areas\QuanLySoNhanMau\Models\NewItemsOutputModel.cs" />
     <Compile Include="Areas\QuanLySoNhanMau\Models\ReturnItemInputModel.cs" />
     <Compile Include="Areas\QuanLySoNhanMau\Models\SoNhanMauCreateInputModel.cs" />
     <Compile Include="Areas\QuanLySoNhanMau\Models\SoNhanMauOpenInputModel.cs" />

@@ -120,6 +120,7 @@ namespace IERSystem.Areas.HopDongLayMau.Controllers
         //    return RedirectToAction("Index");
         //}
 
+        [HttpPost]
         public async Task<JsonResult> DeleteItem(DeleteItemInputModel del_input)
         {
             PhieuYeuCau request = await db.PhieuYeuCaus.FindAsync(del_input.id);
@@ -133,22 +134,24 @@ namespace IERSystem.Areas.HopDongLayMau.Controllers
             {
                 try
                 {
-                    var maus = (from mlth in db.MauLayHienTruongs
-                              where mlth.PhieuYeuCauId == request.Id
-                              select mlth).ToList();
+                    //Delete many to many  records
+                    var maus_tobedeleted = (from mlht in db.MauLayHienTruongs
+                                            where mlht.PhieuYeuCauId == del_input.id
+                                            select mlht).ToList();
 
-                   for(int i=0; i<maus.Count(); ++i){
+                    for(int i=0; i<maus_tobedeleted.Count(); ++i)
+                    {
+                        for (int j = 0; j < maus_tobedeleted[i].ChiTieuPhanTiches.Count(); ++j )
+                        {
+                            //.FirstOrDefault<MauLayHienTruong>()
+                            MauLayHienTruong mau_tobedeleted = maus_tobedeleted[i];
+                            ChiTieuPhanTich chitieu = mau_tobedeleted.ChiTieuPhanTiches.FirstOrDefault<ChiTieuPhanTich>();
 
-                       var mau_tobedel = db.MauLayHienTruongs.Find(maus[i].Id);
-                       db.Entry(mau_tobedel).Collection("ChiTieuPhanTiches").Load();
-
-                       var ct = mau_tobedel.ChiTieuPhanTiches.SelectMany(x=>x.Id);
-
-                       foreach (ChiTieuPhanTich item in db.ChiTieuPhanTiches)
-                       {
-                           db.ChiTieuPhanTiches chitieu =
-                       }
-                   }
+                            //remove chitieuphantich from maulayhientruong
+                            mau_tobedeleted.ChiTieuPhanTiches.Remove(chitieu);
+                        }
+                    }
+                    
                     
                     db.MauLayHienTruongs.RemoveRange(db.MauLayHienTruongs.Where(kq => kq.PhieuYeuCauId == request.Id));
                     db.PhieuYeuCaus.Remove(request);

@@ -100,37 +100,72 @@ namespace IERSystem.Areas.HopDongLayMau.Controllers
 
         [HttpPost]
         public JsonResult RefreshTable()
-        {
-            try
+        {     
+            try 
             {
-                return Json(new GetDBResponse<IEnumerable<RefreshOutputModel>>() 
-                { 
-                    IsOK = true, 
-                    Data = new List<RefreshOutputModel>(db.PhieuYeuCaus.Select(pyc => 
-                        new RefreshOutputModel()
-                        {
-                            MaDon = pyc.MaDon,
-                            TenKhachHang =pyc.TenKhachHang,
-                            TenDaiDien =pyc.TenDaiDien,
-                            DiaChiLayMau = pyc.DiaChiLayMau,
-                            DiaChiKH =pyc.DiaChiKhachHang,
-                            MaSoThue = pyc.MaSoThue,
-                            SDT =pyc.SoDienThoai,
-                            SoFax =pyc.SoFax,
-                            NgayTaoHD = pyc.NgayTaoHD,
-                            DuocTaoBoi =pyc.CreatedBy.Username,
-                            //ChinhSuaLanCuoiBoi =pyc.,
-                            //ChinhSuaLanCuoiLuc =pyc.ChinhSuaLanCuoiLuc,
-                            NgayTraMau = pyc.NgayHenTraKQ
-                        }
-                    )) 
-                });
+                try 
+                {
+
+                    var temp = (from p in db.PhieuYeuCaus
+                                select p).ToList();
+
+                    DateTime[] date_create = new DateTime[temp.Count()];
+                    DateTime[] date_return = new DateTime[temp.Count()];
+
+                    for(int i=0; i<temp.Count(); ++i)
+                    {
+                        date_create[i] = temp[i].NgayTaoHD;
+                        date_return[i] = temp[i].NgayHenTraKQ;
+                    }
+
+                    var result = new List<RefreshOutputModel>(db.PhieuYeuCaus.Select(pyc =>
+                    new RefreshOutputModel()
+                    {
+                        Id = pyc.Id,
+                        MaDon = pyc.MaDon,
+                        TenKhachHang = pyc.TenKhachHang,
+                        TenDaiDien = pyc.TenDaiDien,
+                        DiaChiLayMau = pyc.DiaChiLayMau,
+                        DiaChiKH = pyc.DiaChiKhachHang,
+                        MaSoThue = pyc.MaSoThue,
+                        SDT = pyc.SoDienThoai,
+                        SoFax = pyc.SoFax,
+                        //NgayTaoHD = pyc.NgayTaoHD,
+                        //NgayTraMau = pyc.NgayHenTraKQ,
+                        DuocTaoBoi = pyc.CreatedBy.Fullname
+                        //ChinhSuaLanCuoiBoi =pyc.,
+                        //ChinhSuaLanCuoiLuc =pyc.ChinhSuaLanCuoiLuc                       
+                    }
+                    ));
+
+                    for (int j = 0; j < result.Count(); ++j )
+                    {
+                        result[j].NgayTaoHD = date_create[j].ToShortDateString();
+                        result[j].NgayTraMau = date_return[j].ToShortDateString();
+                    }
+
+                    return Json(new GetDBResponse<IEnumerable<RefreshOutputModel>>()
+                    {
+                        IsOK = true,
+                        Data = result
+                    });
+                }
+                catch (InvalidOperationException e)
+                {
+                    throw e;
+                }
+
+                
             }
             catch (InvalidOperationException e)
             {
-                Debug.Assert(false);
-                return Json(new GetDBResponse<PhieuYeuCau>() { IsOK = false, Data = null });
+                return Json(new GetDBResponse<IEnumerable<RefreshOutputModel>>()
+                {
+                    IsOK = false,
+                    Data = null
+                });
             }
+                
 
 
         }

@@ -49,8 +49,9 @@
 
         <div class="clearfix"></div>
 
+
         <!--Table dynamic-->
-        <div class="col-md-12 col-sm-12 col-xs-12">
+        <div v-for="phieuyeucau in tableData" class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
                     <h2>DANH SÁCH PHIẾU YÊU CẦU <small><i class="green" id="newContract"></i> hợp đồng mới</small></h2>
@@ -82,63 +83,53 @@
                                 <th>Số Fax</th>
                                 <th>Ngày tạo HD</th>
                                 <th>Được tạo bởi</th>
-                                <th>Chỉnh sửa lần cuối bởi</th>
-                                <th>Lần chỉnh sửa cuối lúc</th>
+                                @*<th>Chỉnh sửa lần cuối bởi</th>
+                                <th>Lần chỉnh sửa cuối lúc</th>*@
                                 <th>Ngày trả mẫu</th>
                                 <th>Hành động</th>
                             </tr>
                         </thead>
 
                         <tbody>
-                            @foreach (var item in Model)
+                            <!--Normal data load-->
+                            @*@foreach (var item in Model)
                             {
-                                <tr @*v-for="data in tableData[0]"*@>
+                                <tr>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.MaDon)
-                                        @*{{data.MaDon}}*@
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.TenKhachHang)
-                                        @*{{data.TenKhachHang}}*@
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.TenDaiDien)
-                                        @*{{data.TenDaiDien}}*@
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.DiaChiLayMau)
-                                        @*{{data.DiaChiLayMau}}*@
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.DiaChiKhachHang)
-                                        @*{{data.DiaChiKhachHang}}*@
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.MaSoThue)
-                                        @*{{data.MaSoThue}}*@
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.SoDienThoai)
-                                        @*{{data.SoDienThoai}}*@
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.SoFax)
-                                        @*{{data.SoFax}}*@
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.NgayTaoHD)
-                                        @*{{data.NgayTaoHD}}*@
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.CreatedBy.Username)
-                                        @*{{data.CreatedBy}}*@
+                                        @Html.DisplayFor(modelItem => item.CreatedBy.Fullname)
                                     </td>
                                     <td></td>
                                     <td></td>
                                     <td>
                                         <!--Ngay tra mau = NgayTaoHD + so ngay-->
                                         @Html.DisplayFor(modelItem => item.NgayTaoHD)
-                                        @*{{data.NgayTaoHD}}*@
                                     </td>
                                     <td>
                                         <button data-toggle="tooltip" title="Chỉnh sửa" onclick="location.href='@Url.Action("Edit", "YeuCauLayMau", new { id = item.Id })'"><span class="fa fa-edit"></span></button>
@@ -147,7 +138,53 @@
                                         <button data-toggle="modal" data-target="#xoaModal" data-id="@item.Id" class="open-XoaModal"><span class="fa fa-trash"></span></button>
                                     </td>
                                 </tr>
-                            }
+                            }*@
+                            <!--Vue.js data load-->
+                            <tr v-for="data in tableData[0]">
+                                <td>
+                                    {{data.MaDon}}
+                                </td>
+                                <td>
+                                    {{data.TenKhachHang}}
+                                </td>
+                                <td>
+                                    {{data.TenDaiDien}}
+                                </td>
+                                <td>
+                                    {{data.DiaChiLayMau}}
+                                </td>
+                                <td>
+                                    {{data.DiaChiKH}}
+                                </td>
+                                <td>
+                                    {{data.MaSoThue}}
+                                </td>
+                                <td>
+                                    {{data.SDT}}
+                                </td>
+                                <td>
+                                    {{data.SoFax}}
+                                </td>
+                                <td>
+                                    {{data.NgayTaoHD}}
+                                </td>
+                                <td>
+                                    {{data.DuocTaoBoi}}
+                                </td>
+                                @*<td></td>
+                                <td></td>*@
+                                <td>
+                                    <!--Ngay tra mau = NgayTaoHD + so ngay-->
+                                    {{data.NgayTaoHD}}
+                                </td>
+                                <td>
+                                    <button data-toggle="tooltip" title="Chỉnh sửa" onclick="location.href='@Url.Action("Edit", "YeuCauLayMau")' "><span class="fa fa-edit"></span></button>
+                                    <button data-toggle="tooltip" title="Xem chi tiết" onclick="location.href='@Url.Action("Details", "YeuCauLayMau")' "><span class="fa fa-info"></span></button>
+                                    <button data-toggle="tooltip" title="In" onclick="location.href='@Url.Action("", "")'"><span class="fa fa-print"></span></button>
+                                    <button data-toggle="modal" data-target="#xoaModal" v-bind:data-id="data.Id" class="open-XoaModal"><span class="fa fa-trash"></span></button>
+                                </td>
+                            </tr>
+
                         </tbody>
                     </table>
                 </div>
@@ -165,8 +202,8 @@
                 <h5>Bạn sẽ không để hoàn tác hành động này.</h5>
                 <div class="form-group" align="center">
                     <i id="bookID"></i>
-                    <button type="button" class="btn btn-success" data-dismiss="modal" onclick="deleteItem($('#bookID').val())"><span class="fa fa-check"></span></button>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="delFailNoti()"><span class="fa fa-close"></span></button>
+                    <button id="modalSubmitBtn" type="button" class="btn btn-success" data-dismiss="modal" onclick="deleteItem($('#bookID').val())"><span class="fa fa-check"></span></button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="fa fa-close"></span></button>
                 </div>
             </div>
         </div>
@@ -180,61 +217,9 @@
     <script>
         $(document).ready(function () {
             $('[data-toggle="tooltip"]').tooltip();
-            loadNoti();
             $phieuyeucauu_app.refreshTable();
+            loadNoti();    
         });
-
-        $(document).on("click", ".open-XoaModal", function () {
-            var itemID = $(this).data('id');
-            $(".modal-body #bookID").val(itemID);
-        });
-
-        function scrollDown() {
-            $("html, body").animate({ scrollTop: $("#phieuyeucautable").offset().top }, 1000);
-        }
-
-        function delSucNoti()
-        {
-            new PNotify({
-                title: 'Thành công',
-                text: 'xóa mẫu thành công khỏi dữ liệu.',
-                type: 'success',
-                styling: 'bootstrap3'
-            })
-        }
-
-        function delFailNoti()
-        {
-            new PNotify({
-                title: 'Hủy',
-                text: 'mẫu không được xóa khỏi dữ liệu.',
-                styling: 'bootstrap3'
-            });
-        }
-
-        function deleteItem(id) {
-            $.ajax({
-                type: 'POST',
-                url: ' @Url.Action("DeleteItem", "YeuCauLayMau") ',
-                data: JSON.stringify({ Id: id }),
-                success: function (res) {
-                    if (res.IsOK) {
-                        refreshTable();
-                        loadNoti();
-                    }
-                    else
-                    {
-                        new PNotify({
-                            title: 'Hủy',
-                            text: 'mẫu không được xóa khỏi dữ liệu (có thể do đã đc chuyển đi qua các sổ khác).',
-                            styling: 'bootstrap3'
-                        });
-                    }
-                },
-                dataType: 'json',
-                contentType: 'application/json; charset=utf-8'
-            });
-        }
 
         var $target_cacsonhanmau = undefined;
 
@@ -250,6 +235,9 @@
                         url: ' @Url.Action("RefreshTable", "API")',
                         success: function (res) {
                             if (res.IsOK) {
+                                //var tabledata = $("#phieuyeucautable").DataTable();
+                                //tabledata.clear();
+                                $phieuyeucauu_app.tableData = [];
                                 $phieuyeucauu_app.tableData.push(res.Data);
                                 loadNoti();
                             }
@@ -262,7 +250,50 @@
                     });
                 }
             }
+        });    
+
+
+
+        $(document).on("click", ".open-XoaModal", function () {
+            var itemID = $(this).data('id');
+            $(".modal-body #bookID").val(itemID);
         });
+
+        function scrollDown() {
+            $("html, body").animate({ scrollTop: $("#phieuyeucautable").offset().top }, 1000);
+        }
+
+        function deleteItem(id) {
+            $.ajax({
+                type: 'POST',
+                url: ' @Url.Action("DeleteItem", "YeuCauLayMau") ',
+                data: JSON.stringify({ Id: id }),
+                success: function (res) {
+                    if (res.IsOK) {
+                        $phieuyeucauu_app.refreshTable();
+                        loadNoti();
+                        new PNotify({
+                            title: 'Thành công',
+                            text: 'xóa mẫu thành công khỏi dữ liệu.',
+                            type: 'success',
+                            styling: 'bootstrap3'
+                        })
+                    }
+                    else
+                    {
+                        new PNotify({
+                            title: 'Hủy',
+                            text: 'mẫu không được xóa khỏi dữ liệu (có thể do đã đc chuyển đi qua các sổ khác).',
+                            styling: 'bootstrap3'
+                        });
+                    }
+                },
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8'
+            });
+        }
+
+        
 
         //var listPhieu;
         function loadNoti() {

@@ -208,10 +208,9 @@
                         {{sochuyenmau.MaKhachHang}}
                     </td>*@
                             <td>
-                                <button data-toggle="tooltip" title="Chỉnh sửa" v-on:click="location.href='QuanLySoChuyenMau/SoChuyenMau/Edit/' + sochuyenmau.Id"><span class="fa fa-edit"></span></button>
+                                <button data-toggle="tooltip" title="Lưu" v-on:click="location.href='QuanLySoChuyenMau/SoChuyenMau/Edit/' + sochuyenmau.Id"><span class="fa fa-check-square-o"></span></button>
                                 <button data-toggle="tooltip" title="Xem chi tiết" v-on:click="location.href='QuanLySoChuyenMau/SoChuyenMau/Details/' + sochuyenmau.Id"><span class="fa fa-info"></span></button>
                                 <button data-toggle="tooltip" title="Trả về" v-on:click="traVe(sochuyenmau.MaMau)"><span class="fa fa-reply"></span></button>
-                                <button data-toggle="modal" data-target="#xoaModal"><span class="fa fa-trash"></span></button>
                             </td>
                         </tr>
 
@@ -277,23 +276,6 @@
     </div>
 </div>
 
-<!-- Modal -->
-<div id="xoaModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-body">
-                <h4>Bạn có chắc chắn muốn xóa mẫu này?</h4>
-                <h5>Bạn sẽ không để hoàn tác hành động này.</h5>
-                <div class="form-group" align="center">
-                    <button type="button" class="btn btn-success" data-dismiss="modal" onclick="delSucNoti()"><span class="fa fa-check"></span></button>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="delFailNoti()"><span class="fa fa-close"></span></button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     <script src="~/Areas/Administrator/vendors/vuejs/vue.min.js"></script>
@@ -314,44 +296,6 @@
                 }
             });
         });
-        function delSucNoti() {
-            new PNotify({
-                title: 'Thành công',
-                text: 'xóa mẫu thành công khỏi dữ liệu.',
-                type: 'success',
-                styling: 'bootstrap3'
-            })
-        }
-        function delFailNoti() {
-            new PNotify({
-                title: 'Hủy',
-                text: 'mẫu không được xóa khỏi dữ liệu.',
-                styling: 'bootstrap3'
-            });
-        }
-        function addItem() {
-            new PNotify({
-                title: 'Thành công',
-                text: 'thêm mẫu thành công vào dữ liệu.',
-                type: 'success',
-                styling: 'bootstrap3'
-            })
-        }
-        function addItemFail() {
-            new PNotify({
-                title: 'Hủy',
-                text: 'mẫu không được thêm vào dữ liệu.',
-                styling: 'bootstrap3'
-            })
-        }
-        function returnItem() {
-            new PNotify({
-                title: 'Thông báo',
-                text: 'mẫu đã được hoàn trả.',
-                type: 'info',
-                styling: 'bootstrap3'
-            });
-        }
     </script>
 
     <!-- VueJS App -->
