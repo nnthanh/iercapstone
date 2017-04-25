@@ -15,11 +15,12 @@ namespace IERSystem.Areas.HopDongLayMau.Models
         public int SoLuong { get; set; }
         public String DonVi { get; set; }
         public string MoTaMau { get; set; }
-        public IEnumerable<ChiTieuPTSelectedOutputModel> ChiTieuPhanTiches { get; set; }
+        public IEnumerable<ChiTieuPTEditedOutputModel> ChiTieuPhanTiches { get; set; }
     }
 
-    public class ChiTieuPTSelectedOutputModel
+    public class ChiTieuPTEditedOutputModel
     {
+        public long Id { get; set; }
         public string TenChiTieu { get; set; }
         public string NhomChiTieu { get; set; }
     }

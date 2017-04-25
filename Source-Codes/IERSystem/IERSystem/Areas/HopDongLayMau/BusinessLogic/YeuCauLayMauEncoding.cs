@@ -23,6 +23,21 @@ namespace IERSystem.BusinessLogic
             else return mamau_str.Substring(0, 2);
         }
 
+        public static string KiHieuMauModifiedOf(string mamau_str, string new_kihieumau)
+        {
+            if (mamau_str == null) throw new ArgumentException("mamau_str cannot be null");
+            if (mamau_str[0] == 'B' || mamau_str[0] == 'Đ')
+            {
+                var trimmed_kihieumau = mamau_str.Remove(0, 1);
+                return new_kihieumau + trimmed_kihieumau;
+            }
+            else
+            {
+                var trimmed_kihieumau = mamau_str.Remove(0, 2);
+                return new_kihieumau + trimmed_kihieumau;
+            }
+        }
+
         public static string ToKiHieuMauViewString(string mamau_str)
         {
             var kh_mau = ExtractKiHieuMauFromMaMau(mamau_str);

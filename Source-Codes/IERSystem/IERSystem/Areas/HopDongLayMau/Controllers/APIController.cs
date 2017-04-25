@@ -38,6 +38,51 @@ namespace IERSystem.Areas.HopDongLayMau.Controllers
             //    return Json(new UpsertDBResponse { IsOK = false, ErrMsg = "" }); 
             //}
         }
+
+        // POST: /HopDongLayMau/API/Edit
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        public JsonResult Edit(YeuCauLayMauEditInputModel edit_request)
+        {
+            //if (ModelState.IsValid) {
+            try
+            {
+                //input_request.CreatedBy = db.Users.Find((long)Session["loggedID"]);
+                var successfullyaddeditems = HopDongLayMauAPIImpl.ModifyModel(edit_request, db);
+                db.SaveChanges();
+
+                var testalladded = true;
+                foreach (var maupt in edit_request.MauLayHienTruongs)
+                {
+                    if (!successfullyaddeditems.Contains(maupt.Id))
+                    {
+                        testalladded = false;
+                        break;
+                    }
+                }
+                if (testalladded)
+                {
+                    return Json(new UpsertDBResponse { IsOK = true, ErrMsg = "Các mẫu đã được cập nhật thành công." });
+                }
+                else
+                {
+                    return Json(new UpsertDBResponse { 
+                        IsOK = true, 
+                        ErrMsg = "Chỉ 1 vài mẫu có id sau đã được cập nhật: " + String.Join(", ", successfullyaddeditems) 
+                    });
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return Json(new UpsertDBResponse { IsOK = false, ErrMsg = "Internal Error" });
+            }
+            //} else {
+            //    return Json(new UpsertDBResponse { IsOK = false, ErrMsg = "" }); 
+            //}
+        }
+
         [HttpPost]
         public JsonResult GetCustomer()
         {

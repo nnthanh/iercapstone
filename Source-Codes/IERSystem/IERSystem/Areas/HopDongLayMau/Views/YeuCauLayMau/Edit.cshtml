@@ -92,8 +92,7 @@
                                 Ngày gửi/lấy mẫu <span class="required">*</span>
                             </label>
                             <div class="form-group input-group-sm col-md-6 col-sm-6 col-xs-12">
-                                @Html.TextBoxFor(model => model.NgayLayMau, new { @class = "form-control col-md-4 col-xs-12" })
-                                @Html.ValidationMessageFor(model => model.NgayLayMau)
+                                @Html.TextBoxFor(model => model.NgayLayMau, new { @class = "date-picker form-control col-md-7 col-xs-12 active", placeholder = "Nhập ngày gửi/lấy mẫu vào đây", required = "required", id = "NgayLayMau" })
                             </div>
                         </div>
                         <div class="item form-group">
@@ -101,8 +100,12 @@
                                 Ngày dự kiến trả mẫu <span class="required">*</span>
                             </label>
                             <div class="form-group input-group-sm col-md-6 col-sm-6 col-xs-12">
-                                @Html.TextBoxFor(model => model.NgayHenTraKQ, new { @class = "form-control col-md-4 col-xs-12" })
-                                @Html.ValidationMessageFor(model => model.NgayHenTraKQ)
+                                <select class="form-control col-md-4 col-xs-12" id="NgayHenTraKQ" required="required">
+                                    <option>Chọn ngày trả mẫu</option>
+                                    <option>2 ngày</option>
+                                    <option>7 ngày</option>
+                                    <option>10 ngày</option>
+                                </select>
                             </div>
                         </div>
 
@@ -177,28 +180,6 @@
                                 </div>
                             </div>
 
-                            <!-- Confirm Delete MauPT Modal -->
-                            <div id="confirmDelMauPTModal" class="modal fade" role="dialog">
-                                <div class="modal-dialog">
-                                    <!-- Modal content-->
-                                    <div class="modal-content">
-                                        <div class="modal-body">
-                                            <h4>Bạn có chắc chắn muốn xóa mẫu?</h4>
-                                            <div class="form-group" align="center">
-                                                <button type="submit" class="btn btn-success"
-                                                        data-dismiss="modal"
-                                                        v-on:click="setDeleteMauPT(promptedDelMauPT)">
-                                                    <span class="fa fa-check"></span>
-                                                </button>
-                                                <button type="button" class="btn btn-danger"
-                                                        data-dismiss="modal">
-                                                    <span class="fa fa-close"></span>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12 col-sm-12 col-xs-12">
@@ -225,17 +206,23 @@
                                             <td>{{ maupt.MoTaMau }}</td>
                                             <td>{{ renderedChiTieuPTCell(maupt) }}</td>
                                             <td class="column-title">
-                                                <button title="Chỉnh sửa"
+                                                <button v-if="maupt.ModifiedState == 0" 
+                                                        title="Chỉnh sửa"
                                                         type="button"
                                                         v-on:click="openChinhMauModal(maupt)">
                                                     <span class="fa fa-edit"></span>
                                                 </button>
-                                                <button title="Xóa"
+                                                <button v-if="maupt.ModifiedState == 0"
+                                                        title="Xóa"
                                                         type="button"
-                                                        data-toggle="tooltip"
-                                                        data-target="#confirmDelMauPTModal"
                                                         v-on:click="setDeleteMauPT(maupt)">
                                                     <span class="fa fa-trash"></span>
+                                                </button>
+                                                <button v-if="maupt.ModifiedState != 0"
+                                                        title="Phục hồi"
+                                                        type="button"
+                                                        v-on:click="setRecoverMauPT(maupt)">
+                                                    <span class="fa fa-reply"></span>
                                                 </button>
                                             </td>
                                         </tr>
@@ -246,7 +233,7 @@
                         <div class="ln_solid"></div>
                         <div class="form-group">
                             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-5">
-                                <input type="button" id="submitBtn" value="Lưu" class="btn btn-success" />
+                                <input type="button" v-on:click="submitEditedData" value="Lưu" class="btn btn-success" />
                                 <input type="button" class="btn btn-danger" value="Quay lại" data-toggle="modal" data-target="#confirmModal" />
                             </div>
                         </div>
@@ -288,6 +275,8 @@
     <!-- VueJS App -->
     <script>
         var $CacheChiTieu = {};
+        var $OldMauPTVersions = [];
+        var $MauPTModifiedTarget_Id = undefined;
         
         @*nthoang: Temporary solution to parse uri string to get id, last element of url splitted by '/' token*@
         function getIdFromUrl() {
@@ -352,15 +341,15 @@
                 @*nthoang: This is the input model (To be submitted to server)*@
                 phieuyeucauedit: {
                     @*nthoang: Populate input model with loaded Phieu Yeu Cau data (Server rendering)*@
-                    TenKhachHang: $("#TenKhachHang").val(),
-                    MaSoThue: $("#MaSoThue").val(),
-                    TenDaiDien: $("#TenDaiDien").val(),
-                    SoDienThoai: $("#SoDienThoai").val(),
-                    SoFax: $("#SoFax").val(),
-                    DiaChiLayMau: $("#DiaChiLayMau").val(),
-                    DiaChiKhachHang: $("#DiaChiKhachHang").val(),
-                    NgayLayMau: $("#NgayLayMau").val(),
-                    NgayHenTraKQ: $("#NgayHenTraKQ").val().split(" ")[0],
+                    //TenKhachHang: $("#TenKhachHang").val(),
+                    //MaSoThue: $("#MaSoThue").val(),
+                    //TenDaiDien: $("#TenDaiDien").val(),
+                    //SoDienThoai: $("#SoDienThoai").val(),
+                    //SoFax: $("#SoFax").val(),
+                    //DiaChiLayMau: $("#DiaChiLayMau").val(),
+                    //DiaChiKhachHang: $("#DiaChiKhachHang").val(),
+                    //NgayLayMau: $("#NgayLayMau").val(),
+                    //NgayHenTraKQ: $("#NgayHenTraKQ").val().split(" ")[0],
                     MauLayHienTruongs: []
                 }
             },
@@ -371,27 +360,113 @@
                 renderedChiTieuPTCell: function (maupt) {
                     return maupt.ChiTieuPhanTiches.map(function (e) { return e.TenChiTieu }).join(", ");
                 },
-                unsetDeleteMauPT: function (maupt) {
-                    maupt.ModifiedState = 0;
-                },
                 setDeleteMauPT: function (maupt) {
                     maupt.ModifiedState = 2;
                 },
+                submitEditedData: function() {
+                    var submitData = {
+                        @*nthoang: Convert Id string from url to number*@
+                        Id: Number(getIdFromUrl()),
+                        @*nthoang: Populate input model with loaded Phieu Yeu Cau data (Server rendering)*@
+                        TenKhachHang: $("#TenKhachHang").val(),
+                        MaSoThue: $("#MaSoThue").val(),
+                        TenDaiDien: $("#TenDaiDien").val(),
+                        SoDienThoai: $("#SoDienThoai").val(),
+                        SoFax: $("#SoFax").val(),
+                        DiaChiLayMau: $("#DiaChiLayMau").val(),
+                        DiaChiKhachHang: $("#DiaChiKhachHang").val(),
+                        NgayLayMau: $("#NgayLayMau").val(),
+                        NgayHenTraKQ: $("#NgayHenTraKQ").val().split(" ")[0],
+                        MauLayHienTruongs: $phieuyeucauedit_app.phieuyeucauedit.MauLayHienTruongs
+                    };
+                    $.ajax({
+                        type: 'POST',
+                        url: '@Url.Action("Edit", "API")',
+                        data: JSON.stringify(submitData),
+                        success: function (res) {
+                            if (res.IsOK) {
+                                new PNotify({
+                                    title: 'Thành công',
+                                    text: 'chỉnh sửa hợp đồng mới hợp lệ, thông tin hợp đồng đã được cập nhật vào lưu trữ',
+                                    type: 'success',
+                                    styling: 'bootstrap3'
+                                });
+                                new PNotify({
+                                    title: 'Thông tin',
+                                    text: res.ErrMsg,
+                                    type: 'success',
+                                    styling: 'bootstrap3'
+                                });
+                                setTimeout(function () {
+                                    window.location.href = '@Url.Action("Index", "YeuCauLayMau")'
+                                }, 1500);
+                            } else {
+                                new PNotify({
+                                    title: 'Thất bại',
+                                    text: 'Có lỗi khi cập nhật thông tin hợp đồng, bạn vui lòng thử lại sau.',
+                                    type: 'error',
+                                    styling: 'bootstrap3'
+                                });
+                                new PNotify({
+                                    title: 'Thông tin',
+                                    text: res.ErrMsg,
+                                    type: 'success',
+                                    styling: 'bootstrap3'
+                                });
+                                setTimeout(function () {
+                                    window.location.href = '@Url.Action("Index", "YeuCauLayMau")'
+                                }, 1500);
+                            }
+                        },
+                        dataType: 'json',
+                        contentType: 'application/json; charset=utf-8'
+                    });
+                },
+                setRecoverMauPT: function (maupt) {
+                    if (maupt.ModifiedState == 2) {
+                        maupt.ModifiedState = 0;
+                    } else {
+                        var default_maupt = $OldMauPTVersions.find(function (e) {
+                            return e.Id == maupt.Id;
+                        });
+                        maupt.ModifiedState = 0;
+                        maupt.MaMauKH = default_maupt.MaMauKH;
+                        maupt.KiHieuMau = default_maupt.KiHieuMau;
+                        maupt.ViTriLayMau = default_maupt.ViTriLayMau;
+                        maupt.SoLuong = default_maupt.SoLuong;
+                        maupt.DonVi = default_maupt.DonVi;
+                        maupt.MoTaMau = default_maupt.MoTaMau;
+                        maupt.ChiTieuPhanTiches = default_maupt.ChiTieuPhanTiches;
+                    }
+                },
                 saveMauEdited: function () {
-                    var target_maupt = this.phieuyeucauedit.MauLayHienTruongs;
+                    var target_maupt = $phieuyeucauedit_app.phieuyeucauedit.MauLayHienTruongs.find(function (e) {
+                        return e.Id == $MauPTModifiedTarget_Id;
+                    });
+                    var old_maupt = {};
+                    old_maupt.Id = target_maupt.Id;
+                    old_maupt.ModifiedState = 0;
                     target_maupt.ModifiedState = 1;
+                    old_maupt.MaMauKH = target_maupt.MaMauKH;
                     target_maupt.MaMauKH = $("#ma-mau").val();
+                    old_maupt.KiHieuMau = target_maupt.KiHieuMau.split(":")[0];
                     target_maupt.KiHieuMau = $("#kh-mau").val();
+                    old_maupt.ViTriLayMau = target_maupt.ViTriLayMau;
                     target_maupt.ViTriLayMau = $("#vitri-laymau").val();
+                    old_maupt.SoLuong = target_maupt.SoLuong;
                     target_maupt.SoLuong = $("#so-luong").val();
+                    old_maupt.DonVi = target_maupt.DonVi;
                     target_maupt.DonVi = $("#don-vi").val();
+                    old_maupt.MoTaMau = target_maupt.MoTaMau;
                     target_maupt.MoTaMau = $("#mota-mau").val();
+                    old_maupt.ChiTieuPhanTiches = target_maupt.ChiTieuPhanTiches;
                     target_maupt.ChiTieuPhanTiches = $("#chitieu-yeucau").val().map(function (ten_chitieu) {
                         return {
                             NhomChiTieu: $("#loai-chitieu").val(),
                             TenChiTieu: ten_chitieu
                         };
                     });
+                    $OldMauPTVersions.push(old_maupt);
                 },
                 openChinhMauModal: function (maupt) {
                     $("#ma-mau").val(maupt.MaMauKH);
@@ -403,6 +478,8 @@
                     $("#loai-chitieu").val(maupt.ChiTieuPhanTiches[0].NhomChiTieu);
                     reloadChiTieuMultiBox(maupt.ChiTieuPhanTiches.map(function (e) { return e.TenChiTieu; }));
                     $("#suaMauModal").modal("toggle");
+                    @*Target maupt id for edit*@
+                    $MauPTModifiedTarget_Id = maupt.Id;
                 }
             }
         });

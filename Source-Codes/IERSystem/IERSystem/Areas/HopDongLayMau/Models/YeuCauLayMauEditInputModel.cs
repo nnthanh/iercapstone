@@ -7,6 +7,8 @@ namespace IERSystem.Areas.HopDongLayMau.Models
 {
     public class YeuCauLayMauEditInputModel
     {
+        public long Id { get; set; }
+
         public string TenKhachHang { get; set; }
         public string MaSoThue { get; set; }
         public string TenDaiDien { get; set; }

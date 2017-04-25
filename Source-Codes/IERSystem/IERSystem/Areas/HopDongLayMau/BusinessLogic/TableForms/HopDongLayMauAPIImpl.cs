@@ -33,6 +33,124 @@ namespace IERSystem.BusinessLogic.TableForms
             //yeucaulaymau_model.CreatedBy = (int)Session["loggedID"];
             db.PhieuYeuCaus.Add(yeucaulaymau_model);
         }
+        
+        public static IEnumerable<long> ModifyModel(YeuCauLayMauEditInputModel edit_request, IERSystemModelContainer db)
+        {
+            var result = new List<long>();
+            //mau_tobeadded.TinhTrang = TinhTrangMauConverter.ToByte(TinhTrangMau.DaNhan);
+            //db.MauLayHienTruongs.Attach(mau_tobeadded);
+            //db.Entry(mau_tobeadded).Property(x => x.TinhTrang).IsModified = true;
+            var edit_model = db.PhieuYeuCaus.Find(edit_request.Id);
+
+            db.PhieuYeuCaus.Attach(edit_model);
+            edit_model.MaSoThue = edit_request.MaSoThue;
+            db.Entry(edit_model).Property(x => x.MaSoThue).IsModified = true;
+            edit_model.NgayHenTraKQ = edit_request.NgayHenTraKQ;
+            db.Entry(edit_model).Property(x => x.NgayHenTraKQ).IsModified = true;
+            edit_model.NgayLayMau = edit_request.NgayLayMau;
+            db.Entry(edit_model).Property(x => x.NgayLayMau).IsModified = true;
+            edit_model.NoiLayMau = edit_request.DiaChiLayMau;
+            db.Entry(edit_model).Property(x => x.NoiLayMau).IsModified = true;
+            edit_model.SoDienThoai = edit_request.SoDienThoai;
+            db.Entry(edit_model).Property(x => x.SoDienThoai).IsModified = true;
+            edit_model.SoFax = edit_request.SoFax;
+            db.Entry(edit_model).Property(x => x.SoFax).IsModified = true;
+            edit_model.TenDaiDien = edit_request.TenDaiDien;
+            db.Entry(edit_model).Property(x => x.TenDaiDien).IsModified = true;
+            edit_model.TenKhachHang = edit_request.TenKhachHang;
+            db.Entry(edit_model).Property(x => x.TenKhachHang).IsModified = true;
+            edit_model.DiaChiKhachHang = edit_request.DiaChiKhachHang;
+            db.Entry(edit_model).Property(x => x.DiaChiKhachHang).IsModified = true;
+            foreach (var edit_maupt in edit_request.MauLayHienTruongs) {
+                try
+                {
+                    var edit_maupt_model = edit_model.MauLayHienTruongs.First((maupt_db) => maupt_db.Id == edit_maupt.Id);
+                    if (edit_maupt.ModifiedState == MauPTModifiedStateConverter.ToByte(MauPTModifiedState.Edited))
+                    {
+                        //nthoang: Only works if edit_maupt is in khoitao
+                        if (edit_maupt_model.TinhTrang == TinhTrangMauConverter.ToByte(TinhTrangMau.KhoiTao))
+                        {
+                            db.MauLayHienTruongs.Attach(edit_maupt_model);
+                            edit_maupt_model.MaMauKH = edit_maupt.MaMauKH;
+                            db.Entry(edit_maupt_model).Property(x => x.MaMauKH).IsModified = true;
+                            //nthoang: Replace the AA part of AAZZZ/MM MaMau in model to the new KiHieuMau from edit_maupt
+                            edit_maupt_model.MaMau =
+                                HopDongLayMauEncoding.KiHieuMauModifiedOf(edit_maupt_model.MaMau, edit_maupt.MaMau);
+                            db.Entry(edit_maupt_model).Property(x => x.MaMau).IsModified = true;
+                            edit_maupt_model.MoTaMau = edit_maupt.MoTaMau;
+                            db.Entry(edit_maupt_model).Property(x => x.MoTaMau).IsModified = true;
+                            edit_maupt_model.SoLuong = edit_maupt.SoLuong;
+                            db.Entry(edit_maupt_model).Property(x => x.SoLuong).IsModified = true;
+                            edit_maupt_model.DonVi = edit_maupt.DonVi;
+                            db.Entry(edit_maupt_model).Property(x => x.DonVi).IsModified = true;
+                            edit_maupt_model.ViTriLayMau = edit_maupt.ViTriLayMau;
+                            db.Entry(edit_maupt_model).Property(x => x.ViTriLayMau).IsModified = true;
+                            //nthoang: Handle all diff in ChiTieuPhanTiches sets in both model and edit request
+                            //nthoang: First case, handle every ChiTieuPhanTiches in edit request
+                            foreach (var edit_chitieu in edit_maupt.ChiTieuPhanTiches)
+                            {
+                                var exists_target_chitieu_model = edit_maupt_model.ChiTieuPhanTiches.Any((ctpt) =>
+                                    ctpt.Id == edit_chitieu.Id
+                                );
+
+                                if (!exists_target_chitieu_model)
+                                {
+                                    //nthoang: This happens when This is the new chi tieu added in edit_maupt
+                                    //nthoang: Find the info of new chitieuphantich in db
+                                    //nthoang: Then add it to model
+
+                                    //nthoang: Should always succeed
+                                    var target_chitieu_model = db.ChiTieuPhanTiches.First((ctpt) =>
+                                        ctpt.Id == edit_chitieu.Id
+                                    );
+                                    edit_maupt_model.ChiTieuPhanTiches.Add(target_chitieu_model);
+                                }
+                            }
+                            //nthoang: Second case, handle every ChiTieuPhanTiches in model
+                            foreach (var edit_chitieu in edit_maupt_model.ChiTieuPhanTiches)
+                            {
+                                var exists_target_chitieu_model = edit_maupt.ChiTieuPhanTiches.Any((ctpt) =>
+                                    ctpt.Id == edit_chitieu.Id
+                                );
+
+                                if (!exists_target_chitieu_model)
+                                {
+                                    //nthoang: This happens when the chi tieu has been removed in edit_maupt
+                                    //nthoang: Find the info of new chitieuphantich in db
+                                    //nthoang: Then remove it from model
+
+                                    //nthoang: Should always succeed
+                                    var target_chitieu_model = db.ChiTieuPhanTiches.First((ctpt) =>
+                                        ctpt.Id == edit_chitieu.Id
+                                    );
+                                    edit_maupt_model.ChiTieuPhanTiches.Remove(target_chitieu_model);
+                                }
+                            }
+                            //nthoang: Add successfully added maupt id to return output
+                            result.Add(edit_maupt_model.Id);
+                        }
+                    }
+                    else if (edit_maupt.ModifiedState == MauPTModifiedStateConverter.ToByte(MauPTModifiedState.Deleted))
+                    {
+                        //nthoang: Only works if edit_maupt is in khoitao
+                        if (edit_maupt_model.TinhTrang == TinhTrangMauConverter.ToByte(TinhTrangMau.KhoiTao))
+                        {
+                            var delete_maupt_model =
+                                edit_model.MauLayHienTruongs.First((maupt_db) => maupt_db.Id == edit_maupt.Id);
+                            edit_model.MauLayHienTruongs.Remove(delete_maupt_model);
+                            //nthoang: Add successfully added maupt id to return output
+                            result.Add(edit_maupt_model.Id);
+                        }
+                    }
+
+                }
+                catch (InvalidOperationException e)
+                {
+                    //nthoang: Skip if error found
+                }
+            }
+            return result;
+        }
 
         public static YeuCauLayMauEditOutputModel GetPhieuYCEdit(long id, IERSystemModelContainer db)
         {
@@ -75,8 +193,9 @@ namespace IERSystem.BusinessLogic.TableForms
                     ViTriLayMau = mht.ViTriLayMau,
                     ChiTieuPhanTiches = mht.ChiTieuPhanTiches.Select((ctpt) =>
                     {
-                        return new ChiTieuPTSelectedOutputModel()
+                        return new ChiTieuPTEditedOutputModel()
                         {
+                            Id = ctpt.Id,
                             TenChiTieu = ctpt.TenChiTieu,
                             NhomChiTieu = ctpt.NhomChiTieu.TenNhom
                         };
