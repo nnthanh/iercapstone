@@ -146,8 +146,17 @@ namespace IERSystem.BusinessLogic.TableForms
                         if (edit_maupt_model.TinhTrang == TinhTrangMauConverter.ToByte(TinhTrangMau.KhoiTao))
                         {
                             var delete_maupt_model =
-                                edit_model.MauLayHienTruongs.First((maupt_db) => maupt_db.Id == edit_maupt.Id);
-                            edit_model.MauLayHienTruongs.Remove(delete_maupt_model);
+                                db.MauLayHienTruongs.First((maupt_db) => maupt_db.Id == edit_maupt.Id);
+
+                            //nthoang: Remove all associated chitieuphantich relations from delete_maupt_model
+                            var all_ctpt_tobedeleteds = delete_maupt_model.ChiTieuPhanTiches.ToList();
+                            foreach (var ctpt_tobedeleted in all_ctpt_tobedeleteds)
+                            {
+                                delete_maupt_model.ChiTieuPhanTiches.Remove(ctpt_tobedeleted);
+                                //ctpt_tobedeleted.MauLayHienTruongs.Remove(delete_maupt_model);
+                            }
+
+                            db.MauLayHienTruongs.Remove(delete_maupt_model);
                             //nthoang: Add successfully added maupt id to return output
                             result.Add(edit_maupt_model.Id);
                         }

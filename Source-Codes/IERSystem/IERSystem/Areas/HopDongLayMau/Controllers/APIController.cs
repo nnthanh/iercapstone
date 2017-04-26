@@ -1,6 +1,7 @@
 ﻿using IERSystem.Areas.Administrator.Models;
 using IERSystem.Areas.HopDongLayMau.Models;
 using IERSystem.BusinessLogic.TableForms;
+using IERSystem.BusinessLogic.Utils;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -49,13 +50,14 @@ namespace IERSystem.Areas.HopDongLayMau.Controllers
             try
             {
                 //input_request.CreatedBy = db.Users.Find((long)Session["loggedID"]);
-                var successfullyaddeditems = HopDongLayMauAPIImpl.ModifyModel(edit_request, db);
+                var successfullymodifieditems = HopDongLayMauAPIImpl.ModifyModel(edit_request, db);
                 db.SaveChanges();
 
                 var testalladded = true;
                 foreach (var maupt in edit_request.MauLayHienTruongs)
                 {
-                    if (!successfullyaddeditems.Contains(maupt.Id))
+                    if (!successfullymodifieditems.Contains(maupt.Id) && 
+                        maupt.ModifiedState != MauPTModifiedStateConverter.ToByte(MauPTModifiedState.NoChange))
                     {
                         testalladded = false;
                         break;
@@ -69,7 +71,7 @@ namespace IERSystem.Areas.HopDongLayMau.Controllers
                 {
                     return Json(new UpsertDBResponse { 
                         IsOK = true, 
-                        ErrMsg = "Chỉ 1 vài mẫu có id sau đã được cập nhật: " + String.Join(", ", successfullyaddeditems) 
+                        ErrMsg = "Chỉ 1 vài mẫu có id sau đã được cập nhật: " + String.Join(", ", successfullymodifieditems) 
                     });
                 }
             }
