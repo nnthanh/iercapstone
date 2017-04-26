@@ -45,7 +45,7 @@ namespace IERSystem.BusinessLogic.TableForms
             db.PhieuYeuCaus.Attach(edit_model);
             edit_model.MaSoThue = edit_request.MaSoThue;
             db.Entry(edit_model).Property(x => x.MaSoThue).IsModified = true;
-            edit_model.NgayHenTraKQ = edit_request.NgayHenTraKQ;
+            edit_model.NgayHenTraKQ = edit_request.NgayLayMau.AddDays(edit_request.NgayHenTraKQ);
             db.Entry(edit_model).Property(x => x.NgayHenTraKQ).IsModified = true;
             edit_model.NgayLayMau = edit_request.NgayLayMau;
             db.Entry(edit_model).Property(x => x.NgayLayMau).IsModified = true;
@@ -75,7 +75,7 @@ namespace IERSystem.BusinessLogic.TableForms
                             db.Entry(edit_maupt_model).Property(x => x.MaMauKH).IsModified = true;
                             //nthoang: Replace the AA part of AAZZZ/MM MaMau in model to the new KiHieuMau from edit_maupt
                             edit_maupt_model.MaMau =
-                                HopDongLayMauEncoding.KiHieuMauModifiedOf(edit_maupt_model.MaMau, edit_maupt.MaMau);
+                                HopDongLayMauEncoding.KiHieuMauModifiedOf(edit_maupt_model.MaMau, edit_maupt.KiHieuMau);
                             db.Entry(edit_maupt_model).Property(x => x.MaMau).IsModified = true;
                             edit_maupt_model.MoTaMau = edit_maupt.MoTaMau;
                             db.Entry(edit_maupt_model).Property(x => x.MoTaMau).IsModified = true;
@@ -87,6 +87,7 @@ namespace IERSystem.BusinessLogic.TableForms
                             db.Entry(edit_maupt_model).Property(x => x.ViTriLayMau).IsModified = true;
                             //nthoang: Handle all diff in ChiTieuPhanTiches sets in both model and edit request
                             //nthoang: First case, handle every ChiTieuPhanTiches in edit request
+                            var tobeadded_ctpts = new List<ChiTieuPhanTich>();
                             foreach (var edit_chitieu in edit_maupt.ChiTieuPhanTiches)
                             {
                                 var exists_target_chitieu_model = edit_maupt_model.ChiTieuPhanTiches.Any((ctpt) =>
@@ -103,10 +104,15 @@ namespace IERSystem.BusinessLogic.TableForms
                                     var target_chitieu_model = db.ChiTieuPhanTiches.First((ctpt) =>
                                         ctpt.Id == edit_chitieu.Id
                                     );
-                                    edit_maupt_model.ChiTieuPhanTiches.Add(target_chitieu_model);
+                                    tobeadded_ctpts.Add(target_chitieu_model);
                                 }
                             }
+                            foreach (var tobeadded_ctpt in tobeadded_ctpts)
+                            {
+                                edit_maupt_model.ChiTieuPhanTiches.Add(tobeadded_ctpt);
+                            }
                             //nthoang: Second case, handle every ChiTieuPhanTiches in model
+                            var tobedeleted_ctpts = new List<ChiTieuPhanTich>();
                             foreach (var edit_chitieu in edit_maupt_model.ChiTieuPhanTiches)
                             {
                                 var exists_target_chitieu_model = edit_maupt.ChiTieuPhanTiches.Any((ctpt) =>
@@ -123,8 +129,12 @@ namespace IERSystem.BusinessLogic.TableForms
                                     var target_chitieu_model = db.ChiTieuPhanTiches.First((ctpt) =>
                                         ctpt.Id == edit_chitieu.Id
                                     );
-                                    edit_maupt_model.ChiTieuPhanTiches.Remove(target_chitieu_model);
+                                    tobedeleted_ctpts.Add(target_chitieu_model);
                                 }
+                            }
+                            foreach (var tobedeleted_ctpt in tobedeleted_ctpts)
+                            {
+                                edit_maupt_model.ChiTieuPhanTiches.Remove(tobedeleted_ctpt);
                             }
                             //nthoang: Add successfully added maupt id to return output
                             result.Add(edit_maupt_model.Id);
@@ -162,8 +172,8 @@ namespace IERSystem.BusinessLogic.TableForms
                 TenDaiDien = target_phieuyc.TenDaiDien,
                 SoFax = target_phieuyc.SoFax,
                 SoDienThoai = target_phieuyc.SoDienThoai,
-                NgayLayMau = target_phieuyc.NgayLayMau,
-                NgayHenTraKQ = target_phieuyc.NgayHenTraKQ,
+                NgayLayMau = target_phieuyc.NgayLayMau.ToShortDateString(),
+                NgayHenTraKQ = (target_phieuyc.NgayHenTraKQ - target_phieuyc.NgayLayMau).Days,
                 MaSoThue = target_phieuyc.MaSoThue,
                 DiaChiLayMau = target_phieuyc.DiaChiLayMau,
                 DiaChiKhachHang = target_phieuyc.DiaChiKhachHang

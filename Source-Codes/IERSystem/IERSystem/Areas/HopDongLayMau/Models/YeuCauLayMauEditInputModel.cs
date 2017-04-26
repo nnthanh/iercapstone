@@ -17,7 +17,7 @@ namespace IERSystem.Areas.HopDongLayMau.Models
         public string DiaChiLayMau { get; set; }
         public string DiaChiKhachHang { get; set; }
         public System.DateTime NgayLayMau { get; set; }
-        public System.DateTime NgayHenTraKQ { get; set; }
+        public int NgayHenTraKQ { get; set; }
 
         public virtual IEnumerable<MauPTEditInputModel> MauLayHienTruongs { get; set; }
     }

@@ -169,7 +169,8 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="email">Chỉ Tiêu Yêu Cầu <span class="required">*</span></label>
-                                                <select class="select2_multiple form-control " multiple="multiple" required="required" id="chitieu-yeucau" style="width: 100%;"></select>
+                                                <select class="select2_multiple form-control " multiple="multiple" required="required" id="chitieu-yeucau" style="width: 100%;">
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
@@ -272,11 +273,28 @@
     @Scripts.Render("~/bundles/jqueryval")
 
     <script src="~/Areas/Administrator/vendors/vuejs/vue.min.js"></script>
+
+    <script>
+        $(document).ready(
+            function () {
+                $('#NgayLayMau').daterangepicker({
+                    singleDatePicker: true,
+                    calender_style: "picker_1"
+                }, function (start, end, label) {
+                    console.log(start.toISOString(), end.toISOString(), label);
+                });
+            });
+    </script>
+    
     <!-- VueJS App -->
     <script>
         var $CacheChiTieu = {};
         var $OldMauPTVersions = [];
         var $MauPTModifiedTarget_Id = undefined;
+        $(document).ready(function () {
+            @*nthoang: Insert default date difference into NgayHenTraKQ selectbox*@
+            $("#NgayHenTraKQ").val('@(Model.NgayHenTraKQ)' + ' ngày');
+        });
         
         @*nthoang: Temporary solution to parse uri string to get id, last element of url splitted by '/' token*@
         function getIdFromUrl() {
@@ -286,7 +304,6 @@
 
         function reloadChiTieuMultiBox(chitieu_selected_data) {
             //nthoang: AJAX call ChiTieuMau suggestion list
-            var chitieu_selectbox = $("#chitieu-yeucau");
             var formData2 = {
                 TenNhom: $("#loai-chitieu").val()
             };
@@ -296,22 +313,24 @@
                     url: '@Url.Action("FindChiTieu", "API", new { area = "BaoGiaChiTieu" })',
                     data: JSON.stringify(formData2),
                     success: function (res) {
-                        chitieu_selectbox.empty();
+                        $("#chitieu-yeucau").empty();
                         $CacheChiTieu[formData2.TenNhom] = res;
                         res.forEach(function (item) {
-                            chitieu_selectbox.append("<option>" + item.TenChiTieu + "</option>");
+                            $("#chitieu-yeucau").append("<option>" + item.TenChiTieu + "</option>");
                         });
+                        $phieuyeucauedit_app.chitieupt_selectbox = res;
                         $("#chitieu-yeucau").val(chitieu_selected_data).trigger('change');
                     },
                     dataType: 'json',
                     contentType: 'application/json; charset=utf-8'
                 });
             } else {
-                chitieu_selectbox.empty();
+                $("#chitieu-yeucau").empty();
                 var cached_ct = $CacheChiTieu[formData2.TenNhom];
                 cached_ct.forEach(function (item) {
-                    chitieu_selectbox.append("<option>" + item.TenChiTieu + "</option>");
+                    $("#chitieu-yeucau").append("<option>" + item.TenChiTieu + "</option>");
                 });
+                $phieuyeucauedit_app.chitieupt_selectbox = cached_ct;
                 $("#chitieu-yeucau").val(chitieu_selected_data).trigger('change');
             }
         }
@@ -338,18 +357,9 @@
         var $phieuyeucauedit_app = new Vue({
             el: '#phieuyeucauedit-app',
             data: {
+                chitieupt_selectbox: [],
                 @*nthoang: This is the input model (To be submitted to server)*@
                 phieuyeucauedit: {
-                    @*nthoang: Populate input model with loaded Phieu Yeu Cau data (Server rendering)*@
-                    //TenKhachHang: $("#TenKhachHang").val(),
-                    //MaSoThue: $("#MaSoThue").val(),
-                    //TenDaiDien: $("#TenDaiDien").val(),
-                    //SoDienThoai: $("#SoDienThoai").val(),
-                    //SoFax: $("#SoFax").val(),
-                    //DiaChiLayMau: $("#DiaChiLayMau").val(),
-                    //DiaChiKhachHang: $("#DiaChiKhachHang").val(),
-                    //NgayLayMau: $("#NgayLayMau").val(),
-                    //NgayHenTraKQ: $("#NgayHenTraKQ").val().split(" ")[0],
                     MauLayHienTruongs: []
                 }
             },
@@ -377,7 +387,11 @@
                         DiaChiKhachHang: $("#DiaChiKhachHang").val(),
                         NgayLayMau: $("#NgayLayMau").val(),
                         NgayHenTraKQ: $("#NgayHenTraKQ").val().split(" ")[0],
-                        MauLayHienTruongs: $phieuyeucauedit_app.phieuyeucauedit.MauLayHienTruongs
+                        MauLayHienTruongs: $phieuyeucauedit_app.phieuyeucauedit.MauLayHienTruongs.map(function (mpt) {
+                            mpt.KiHieuMau = mpt.KiHieuMau.split(":")[0];
+                            mpt.ChiTieuPhanTiches = mpt.ChiTieuPhanTiches.map(function (ctpt) { return { Id: ctpt.Id }; });
+                            return mpt;
+                        })
                     };
                     $.ajax({
                         type: 'POST',
@@ -449,7 +463,7 @@
                     target_maupt.ModifiedState = 1;
                     old_maupt.MaMauKH = target_maupt.MaMauKH;
                     target_maupt.MaMauKH = $("#ma-mau").val();
-                    old_maupt.KiHieuMau = target_maupt.KiHieuMau.split(":")[0];
+                    old_maupt.KiHieuMau = target_maupt.KiHieuMau;
                     target_maupt.KiHieuMau = $("#kh-mau").val();
                     old_maupt.ViTriLayMau = target_maupt.ViTriLayMau;
                     target_maupt.ViTriLayMau = $("#vitri-laymau").val();
@@ -462,6 +476,9 @@
                     old_maupt.ChiTieuPhanTiches = target_maupt.ChiTieuPhanTiches;
                     target_maupt.ChiTieuPhanTiches = $("#chitieu-yeucau").val().map(function (ten_chitieu) {
                         return {
+                            Id: $phieuyeucauedit_app.chitieupt_selectbox.find(function (ctpt) {
+                                return ctpt.TenChiTieu == ten_chitieu;
+                            }).Id,
                             NhomChiTieu: $("#loai-chitieu").val(),
                             TenChiTieu: ten_chitieu
                         };

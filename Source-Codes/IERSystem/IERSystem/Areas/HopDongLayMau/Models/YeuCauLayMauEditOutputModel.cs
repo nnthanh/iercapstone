@@ -16,8 +16,8 @@ namespace IERSystem.Areas.HopDongLayMau.Models
         public string SoFax { get; set; }
         public string DiaChiLayMau { get; set; }
         public string DiaChiKhachHang { get; set; }
-        public System.DateTime NgayLayMau { get; set; }
-        public System.DateTime NgayHenTraKQ { get; set; }
+        public string NgayLayMau { get; set; }
+        public int NgayHenTraKQ { get; set; }
     }
 
 }

@@ -30,9 +30,12 @@ namespace IERSystem.BusinessLogic
                     var phuongphap_cell = cur_row.GetCell(2, MissingCellPolicy.RETURN_BLANK_AS_NULL);
                     var dongia_cell = cur_row.GetCell(3, MissingCellPolicy.RETURN_BLANK_AS_NULL);
                     //nthoang: Import BaoGiaChiTieu: empty string cell as BLANK
-                    nhomchitieu = (nhomchitieu_cell == null) ? null : nhomchitieu_cell.ToString().Replace("  ", " ");
-                    chitieu = (chitieu_cell == null) ? null : chitieu_cell.ToString().Replace("  ", " ");
-                    phuongphap = (phuongphap_cell == null) ? null : phuongphap_cell.ToString().Replace("  ", " ");
+                    nhomchitieu = (nhomchitieu_cell == null) ? 
+                        null : nhomchitieu_cell.ToString().Replace("  ", " ").Trim();
+                    chitieu = (chitieu_cell == null) ? 
+                        null : chitieu_cell.ToString().Replace("  ", " ").Trim();
+                    phuongphap = (phuongphap_cell == null) ? 
+                        null : phuongphap_cell.ToString().Replace("  ", " ").Trim();
                     try
                     {
                         //nthoang: Import BaoGiaChiTieu: empty numeric cell as 0
