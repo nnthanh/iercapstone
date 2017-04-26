@@ -1,4 +1,4 @@
-﻿@model IERSystem.Areas.Administrator.Models.PhieuYeuCau
+﻿@model IERSystem.Areas.HopDongLayMau.Models.DetailsOutputModel
 
 @{
     ViewBag.Title = "Chi tiết";
@@ -166,7 +166,7 @@
                                             <th>Chỉ Tiêu Yêu Cầu</th>
                                     </thead>
                                     <tbody>
-                                        @foreach (var item in Model.MauLayHienTruongs)
+                                        @foreach (var item in Model.MauPT)
                                         {
                                             <tr>
                                                 <td>@Html.DisplayFor(model => item.MaMau)</td>
@@ -174,7 +174,7 @@
                                                 <td>@Html.DisplayFor(model => item.ViTriLayMau)</td>
                                                 <td>@Html.DisplayFor(model => item.SoLuong) @Html.DisplayFor(model => item.DonVi)</td>
                                                 <td>@Html.DisplayFor(model => item.MoTaMau)</td>
-                                                @*<td>@Html.DisplayFor(model => item.ChiTieuPhanTiches)</td>*@
+                                                <td>@Html.DisplayFor(model => item.ChiTieuPhanTiches)</td>
                                             </tr>
                                         }
                                     </tbody>
