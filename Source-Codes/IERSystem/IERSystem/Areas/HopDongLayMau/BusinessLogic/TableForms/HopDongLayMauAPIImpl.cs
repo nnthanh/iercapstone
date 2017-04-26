@@ -73,9 +73,9 @@ namespace IERSystem.BusinessLogic.TableForms
                             db.MauLayHienTruongs.Attach(edit_maupt_model);
                             edit_maupt_model.MaMauKH = edit_maupt.MaMauKH;
                             db.Entry(edit_maupt_model).Property(x => x.MaMauKH).IsModified = true;
-                            //nthoang: Replace the AA part of AAZZZ/MM MaMau in model to the new KiHieuMau from edit_maupt
+                            //nthoang: Encode MaMau again using the new KiHieuMau
                             edit_maupt_model.MaMau =
-                                HopDongLayMauEncoding.KiHieuMauModifiedOf(edit_maupt_model.MaMau, edit_maupt.KiHieuMau);
+                                HopDongLayMauEncoding.ReEncodeMaMau(edit_maupt_model.MaMau, edit_maupt.KiHieuMau, DateTime.Now, db);
                             db.Entry(edit_maupt_model).Property(x => x.MaMau).IsModified = true;
                             edit_maupt_model.MoTaMau = edit_maupt.MoTaMau;
                             db.Entry(edit_maupt_model).Property(x => x.MoTaMau).IsModified = true;

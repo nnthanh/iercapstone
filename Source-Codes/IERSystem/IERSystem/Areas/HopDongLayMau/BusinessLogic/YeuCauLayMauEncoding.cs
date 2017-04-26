@@ -23,19 +23,34 @@ namespace IERSystem.BusinessLogic
             else return mamau_str.Substring(0, 2);
         }
 
-        public static string KiHieuMauModifiedOf(string mamau_str, string new_kihieumau)
+        /// <summary>
+        /// Encode MaMau again. The method is used when kihieumau has been changed (During edit/modification procedures on
+        /// MauPhanTich)
+        /// </summary>
+        /// <param name="mamau_str">original MaMau</param>
+        /// <param name="new_kihieumau">new KiHieuMau provided</param>
+        /// <param name="today">Today dependency</param>
+        /// <param name="db">Database dependency</param>
+        /// <returns></returns>
+        public static string ReEncodeMaMau(string mamau_str, string new_kihieumau, DateTime today, IERSystemModelContainer db)
         {
             if (mamau_str == null) throw new ArgumentException("mamau_str cannot be null");
-            if (mamau_str[0] == 'B' || mamau_str[0] == 'Đ')
-            {
-                var trimmed_kihieumau = mamau_str.Remove(0, 1);
-                return new_kihieumau + trimmed_kihieumau;
-            }
-            else
-            {
-                var trimmed_kihieumau = mamau_str.Remove(0, 2);
-                return new_kihieumau + trimmed_kihieumau;
-            }
+            
+            var this_month = today.Month;
+            var this_year = today.Year;
+
+            var this_month_str = stringifyNumberTo2Digit(this_month);
+
+            //nthoang: retrieve samples count for this month with given type (kihieumau)
+            //nthoang: effectively recalculate the ZZZ part in AAZZZ/MM formatted MaMau
+            var this_month_samples_by_khm = getSampleCountOfThisMonthForType(db, this_month, this_year, new_kihieumau);
+
+            var sample_next_by_type =
+                stringifyNumberTo3Digit(this_month_samples_by_khm);
+
+            //nthoang: Sample ID == AAZZZ/MM (Refer to QT14 - TNYVKH & KKHD.doc)
+            //nthoang: Reencode MaMau with new kihieumau 
+            return new_kihieumau + sample_next_by_type + "/" + this_month_str;
         }
 
         public static string ToKiHieuMauViewString(string mamau_str)
@@ -83,7 +98,7 @@ namespace IERSystem.BusinessLogic
         /// will be generated here
         /// </summary>
         /// <param name="request_inp">The request that will be encoded</param>
-        /// <param name="db">DB Dependency</param>
+        /// <param name="db">Database Dependency</param>
         /// <returns>The encoded request_inp</returns>
         public static YeuCauLayMauInputModel Encode(
             YeuCauLayMauInputModel request_inp, IERSystemModelContainer db, DateTime today
@@ -149,6 +164,18 @@ namespace IERSystem.BusinessLogic
         private class SampleCounter {
             public string SampleType { get; set; }
             public int Count { get; set; }
+        }
+
+        private static int getSampleCountOfThisMonthForType(IERSystemModelContainer db, int this_month, int this_year, string kihieumau)
+        {
+            var result =
+                (from sample in db.MauLayHienTruongs
+                 join request in db.PhieuYeuCaus on sample.PhieuYeuCau.Id equals request.Id
+                 where (request.NgayTaoHD.Month.Equals(this_month)
+                        && request.NgayTaoHD.Year.Equals(this_year))
+                 select sample
+                ).ToList();
+            return result.Where(sample => ExtractKiHieuMauFromMaMau(sample.MaMau).Equals(kihieumau)).Count();
         }
 
         private static IDictionary<string, int> getSamplesOfThisMonth(IERSystemModelContainer db, int this_month, int this_year) {
