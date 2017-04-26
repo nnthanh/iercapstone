@@ -178,7 +178,7 @@
                     </thead>
 
                     <tbody>
-                        <tr v-for="sochuyenmau in cacsochuyenmau.NoiDung">
+                        <tr v-for="sochuyenmau in cacsochuyenmau.NoiDung" track-by="Id">
                             <td>
                                 {{sochuyenmau.MaKhachHang}}
                             </td>
@@ -207,8 +207,8 @@
                                 {{sochuyenmau.GhiChu}}
                             </td>
                             @*<td>
-                        {{sochuyenmau.MaKhachHang}}
-                    </td>*@
+                {{sochuyenmau.MaKhachHang}}
+            </td>*@
                             <td>
                                 <button data-toggle="tooltip" title="Lưu" v-on:click="location.href='QuanLySoChuyenMau/SoChuyenMau/Edit/' + sochuyenmau.Id"><span class="fa fa-check-square-o"></span></button>
                                 <button data-toggle="tooltip" title="Xem chi tiết" v-on:click="location.href='QuanLySoChuyenMau/SoChuyenMau/Details/' + sochuyenmau.Id"><span class="fa fa-info"></span></button>

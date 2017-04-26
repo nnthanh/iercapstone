@@ -478,25 +478,22 @@
         }
 
         $("#saveMauBtn").bind("click", function () {
-
-            var tabledata = $("#sampledata-table tbody");
-            var soluong = $("#so-luong").val();
-            var donvi = $("#don-vi").val();
-            var chitieuyeucaus = $(".select2-selection__choice").toArray().map(function (e) {
-                return {
-                    TenChiTieu: e.innerText.substr(1),
-                    NhomChiTieu: $("#loai-chitieu").val()
-                };
-            });
-            $Global.push({
-                SoLuong: soluong,
-                DonVi: donvi,
-                ChiTieuYeuCaus: chitieuyeucaus
-            });
-
-
-
             if ($('#vitri-laymau').val() && $('#mota-mau').val && $('#chitieu-yeucau').val()) {
+                var tabledata = $("#sampledata-table tbody");
+                var soluong = $("#so-luong").val();
+                var donvi = $("#don-vi").val();
+                var chitieuyeucaus = $(".select2-selection__choice").toArray().map(function (e) {
+                    return {
+                        TenChiTieu: e.innerText.substr(1),
+                        NhomChiTieu: $("#loai-chitieu").val()
+                    };
+                });
+                $Global.push({
+                    SoLuong: soluong,
+                    DonVi: donvi,
+                    ChiTieuYeuCaus: chitieuyeucaus
+                });
+
                 tabledata.append(
                 "<tr>" +
                 //"<td></td>" +
