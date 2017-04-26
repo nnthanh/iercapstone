@@ -371,9 +371,8 @@
                 },
                 openSoChuyenMau: function (id) {
                     $.ajax({
-                        type: 'POST',
-                        url: ' @Url.Action("OpenSoChuyenMau", "API")',
-                        data: JSON.stringify({ Id: id }),
+                        type: 'GET',
+                        url: ' @Url.Action("OpenSoChuyenMau", "API")/' + id,
                         success: function (res) {
                             if (res.IsOK) {
                                 //nthoang: res.Data is the new table
@@ -571,17 +570,16 @@
         }
 
         function recentlyAddedRows(listPhieu) {
-            $('.sochuyenmautable').each(function (table) {
+            $('.sochuyenmautable').each(function (i, table) {
                 var row, rows = table.rows;
                 var cell, cells;
                 var rowText;
                 for (var i = 1, iLen = rows.length; i < iLen; i++) {
                     row = rows[i];
-                    cell = row.cells[0];
+                    cell = row.cells[1];
                     if (jQuery.inArray(cell.textContent.trim(), listPhieu) != -1) {
                         jQuery(row).addClass("success");
                     }
-                    transformBox(row);
                 }
             });
         }
