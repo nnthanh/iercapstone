@@ -25,11 +25,14 @@ namespace IERSystem.BusinessLogic.TableForms
                     NoiDung = new List<SoNhanMauOpenRowOutputModel>(target_sonhanmau.SoNhanMaus.Select((snm_row) =>
                         new SoNhanMauOpenRowOutputModel()
                         {
+                            AddedBy = snm_row.CreatedBy.Fullname,
                             MaMau = snm_row.MauLayHienTruong.MaMau,
                             MaMauKH = snm_row.MauLayHienTruong.MaMauKH,
                             MaPhieuYeuCau = snm_row.MauLayHienTruong.PhieuYeuCau.MaDon,
                             NgayNhan = snm_row.NgayNhanMau.ToShortDateString(),
                             NgayTraKQ = snm_row.NgayTraKQ.ToShortDateString(),
+                            KHKyTraKQ = snm_row.KHKiNhanTraKQ,
+                            KHKyTraTien = snm_row.KHKiNhanTraTien,
                             TenDiaChiKH =
                                 snm_row.MauLayHienTruong.PhieuYeuCau.TenKhachHang + " / " +
                                 snm_row.MauLayHienTruong.PhieuYeuCau.DiaChiKhachHang,

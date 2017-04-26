@@ -186,7 +186,7 @@
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
-                <table id="sonhanmautable" class="datatable-buttons table table-striped table-bordered">
+                <table id="sonhanmautable" v-bind:class="[datatable]">
                     <thead>
                         <tr>
                             <th>Phiếu yêu cầu</th>
@@ -195,6 +195,7 @@
                             <th>Chỉ tiêu thử nghiệm</th>
                             <th>Ngày thêm vào sổ</th>
                             <th>Ngày trả kết quả</th>
+                            <th>Người thêm</th>
                             <th>KH ký nhận trả tiền</th>
                             <th>KH ký nhận trả kết quả</th>
                             <th>Hành động</th>
@@ -202,7 +203,7 @@
                     </thead>
 
                     <tbody>
-                        <tr v-for="sonhanmau in cacsonhanmau.NoiDung">
+                        <tr v-for="sonhanmau in cacsonhanmau.NoiDung" >
                             <td>
                                 {{sonhanmau.MaPhieuYeuCau}}
                             </td>
@@ -222,25 +223,18 @@
                                 {{sonhanmau.NgayTraKQ}}
                             </td>
                             <td>
-                                <div class="checkbox">
-                                    <label class="">
-                                        <input type="checkbox" class="flat" disabled="disabled" style="width:20px; height:20px">
-                                    </label>
-                                </div>
+                                {{sonhanmau.AddedBy}}
+                            </td>
+                            <td id="khky-tratien">
+                                {{sonhanmau.KHKyTraTien}}
+                            </td>
+                            <td id="khky-trakq">                         
+                                {{sonhanmau.KHKyTraKQ}}
                             </td>
                             <td>
-                                <div class="checkbox">
-                                    <label class="">
-                                        <input type="checkbox" class="flat" disabled="disabled" style="width:20px; height:20px">
-                                    </label>
-                                </div>
-                            </td>
-                            <td>
-                                @*<div slot="" style="display: none;">{{sonhanmau.Id}}</div>*@
-                                <button data-toggle="tooltip" title="Chỉnh sửa" v-on:click="location.href='QuanLySoNhanMau/SoNhanMau/Edit/' + sonhanmau.Id"><span class="fa fa-edit"></span></button>
+                                <button data-toggle="tooltip" title="Lưu" @*class="btn-AddSignature" type="button"*@ onclick="addSignature()"><span class="fa fa-check-square-o"></span></button>
                                 <button data-toggle="tooltip" title="Xem chi tiết" v-on:click="location.href='QuanLySoNhanMau/SoNhanMau/Details/' + sonhanmau.Id"><span class="fa fa-info"></span></button>
-                                <button data-toggle="tooltip" title="Trả về"><span class="fa fa-reply"></span></button>
-                                <button data-toggle="tooltip" title="Xóa"><span class="fa fa-trash"></span></button>
+                                <button data-toggle="tooltip" title="Trả về" v-on:click="traVe(sonhanmau.MaMau)"><span class="fa fa-reply"></span></button>
                             </td>
                         </tr>
                     </tbody>
@@ -382,24 +376,6 @@
 </div>
 
 <!-- Modal -->
-<div id="xoaModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-body">
-                <h4>Bạn có chắc chắn muốn xóa mẫu này?</h4>
-                <h5>Bạn sẽ không để hoàn tác hành động này.</h5>
-                <div class="form-group" align="center">
-                    @*TODO: nthoang: SoNhanMau Delete not supported yet*@
-                    <button type="button" id="delSonhanmauBtn" class="btn btn-success" data-dismiss="modal"><span class="fa fa-check"></span></button>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="fa fa-close"></span></button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Modal -->
 <div id="hopdongModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <!-- Modal content-->
@@ -423,12 +399,12 @@
     <script>
         //nthoang: Global state to store cacsonhanmauId for ReceiveMauPTs action 
         var $target_cacsonhanmau = undefined;
-
         var $cacsonhanmau_app = new Vue({
             el: '#cacsonhanmau-app',
             data: {
                 cacsonhanmaus_open: [],
-                mauptcandids: []
+                mauptcandids: [],
+                datatable: 'datatable-buttons table table-striped table-bordered'
             },
             methods: {
                 refreshOpenedSoNhanMau: function (id) {
@@ -442,10 +418,12 @@
                                     $cacsonhanmau_app.cacsonhanmaus_open.find(function (e) { return e.QuyenSo == id });
                                 if (refreshtarget != undefined) {
                                     refreshtarget.NoiDung = res.Data.NoiDung;
+                                    getNumber(id);
                                 } 
                             } else {
                                 alert("Có lỗi khi mở sổ nhận mẫu " + id);
                             }
+                            
                         },
                         dataType: 'json',
                         contentType: 'application/json; charset=utf-8'
@@ -458,8 +436,9 @@
                         data: JSON.stringify({Id: id}),
                         success: function (res) {
                             if (res.IsOK) {
-                                $cacsonhanmau_app.cacsonhanmaus_open.push(res.Data);
+                                $cacsonhanmau_app.cacsonhanmaus_open.push(res.Data);                            
                                 getNumber(id);
+                                //addBox();
                             } else {
                                 alert("Có lỗi khi mở sổ nhận mẫu");
                             }
@@ -510,6 +489,7 @@
                             if (res.IsOK) {
                                 //window.location.reload(true);
                                 $cacsonhanmau_app.refreshOpenedSoNhanMau($target_cacsonhanmau);
+                                loadNoti();
                             } else {
                                 alert("Có lỗi khi thêm mẫu vào sổ nhận mẫu");
                             }
@@ -523,15 +503,77 @@
                     if (index > -1) {
                         this.cacsonhanmaus_open.splice(index, 1);
                     }
-                }
+                },
+                traVe: function(mamau){
+                    $.ajax({
+                    type: 'POST',
+                    url: ' @Url.Action("Return", "API")',
+                    data: JSON.stringify({MaMau: mamau}),
+                    success: function (res) {
+                        //window.location.reload(true);
+                        if (res.IsOK) {
+                            $cacsonhanmau_app.refreshOpenedSoNhanMau(res.Data);
+                            loadNoti();
+                            getNumber(red.Data);
+                        }
+                        else {
+                            new PNotify({
+                                title: 'Thất bại',
+                                text: 'đã có lỗi xảy ra (lưu ý: mẫu đã được chuyển không thể được trả về).',
+                                styling: 'bootstrap3'
+                            })
+                        }
+                    },
+                    dataType: 'json',
+                    contentType: 'application/json; charset=utf-8'
+                    }); 
+                }       
             }
         });
     </script>
     <script>
         $(document).ready(function () {
             $('[data-toggle="tooltip"]').tooltip();
-            
+            loadNoti();          
         });
+        function addSignature() {
+            var table = document.getElementById('sonhanmautable');
+            var rows = table.rows;
+            var list = [], chk_tien, chk_kq;
+            for (var i = 1; i < rows.length; ++i) {
+                chk_tien = $(table).find('tr:eq(' + i + ') td:eq(7)').iCheck()[0].checked;
+                chk_kq = $(table).find('tr:eq(' + i + ') td:eq(8)').iCheck()[0].checked;
+                var result_row = rows[i].cells[0].textContent.trim() + "," + chk_tien.toString() + "," + chk_kq.toString();
+                list.push(result_row);
+            }
+
+            $.ajax({
+                type: 'POST',
+                url: ' @Url.Action("AddSignature", "API")',
+                data: JSON.stringify({ Attribute: list }),
+                success: function (res) {
+                    if (res.IsOK) {
+                        $cacsonhanmau_app.refreshOpenedSoNhanMau(res.Data);
+                        refreshBoxes(res.Data);
+                        new PNotify({
+                            title: 'Thành công',
+                            text: 'Trạng thái của mẫu đã được cập nhật',
+                            type: 'success',
+                            styling: 'bootstrap3'
+                        });
+                    } else {
+                        new PNotify({
+                            title: 'Thất bại',
+                            text: 'Cập nhật mẫu thất bại.',
+                            type: 'error',
+                            styling: 'bootstrap3'
+                        });
+                    }
+                },
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8'
+            });
+        };
 
         $(function () {
             $('#check-all').change(function(){
@@ -546,90 +588,34 @@
             });
         });
 
-        function delSucNoti()
-        {
-            new PNotify({
-                title: 'Thành công',
-                text: 'xóa mẫu thành công khỏi dữ liệu.',
-                type: 'success',
-                styling: 'bootstrap3'
-            })
-        }
-
-        function compContractSucNoti() {
-            new PNotify({
-                title: 'Thành công',
-                text: 'đã đánh dấu hợp đồng đã hoàn tất.',
-                type: 'success',
-                styling: 'bootstrap3'
-            })
-        }
-
-        function addItem() {
-            new PNotify({
-                title: 'Thành công',
-                text: 'thêm mẫu thành công vào dữ liệu.',
-                type: 'success',
-                styling: 'bootstrap3'
-            })
-        }
-
-        function delFailNoti() {
-            new PNotify({
-                title: 'Hủy',
-                text: 'mẫu không được xóa khỏi dữ liệu.',
-                styling: 'bootstrap3'
-            });
-        }
-
-        function compContractFailNoti() {
-            new PNotify({
-                title: 'Hủy',
-                text: 'hợp đồng không được đánh dấu hoàn thành.',
-                styling: 'bootstrap3'
-            })
-        }
-
-        function addItemFail() {
-            new PNotify({
-                title: 'Hủy',
-                text: 'mẫu không được thêm vào dữ liệu.',
-                styling: 'bootstrap3'
-            })
-        }
-
-        function returnItem() {
-            new PNotify({
-                title: 'Thông báo',
-                text: 'mẫu đã được hoàn trả.',
-                type: 'info',
-                styling: 'bootstrap3'
-            });
-        }
-
-        $.ajax({
-            type: 'POST',
-            url: ' @Url.Action("GetNumberOfNewItems", "API") ',
-            data: JSON.stringify({
-                TuNgay: "1/1/1900",
-                DenNgay: "1/1/2500"
-            }),
-            success: function (res) {
-                if (res.IsOK) {
-                    var result = res.Data;
-                    var itemnew = document.createElement('span');
-                    itemnew.innerHTML = " " + result + " ";
-                    document.getElementById('NumOfNewItem').appendChild(itemnew);
-                    if (result > 0) {
-                        $('#myNoti').fadeIn(1000);
+        function loadNoti() {
+            $.ajax({
+                type: 'POST',
+                url: ' @Url.Action("GetNumberOfNewItems", "API") ',
+                data: JSON.stringify({
+                    TuNgay: "1/1/1900",
+                    DenNgay: "1/1/2500"
+                }),
+                success: function (res) {
+                    if (res.IsOK) {
+                        var result = res.Data;
+                        var itemnew = document.createElement('span');
+                        document.getElementById("NumOfNewItem").innerHTML = "";
+                        itemnew.innerHTML = " " + result + " ";
+                        document.getElementById('NumOfNewItem').appendChild(itemnew);
+                        if (result > 0) {
+                            $('#myNoti').fadeIn(1000);
+                        }
+                        else {
+                            $('#myNoti').hide();
+                        }
                     }
-                }
-            },
-            dataType: 'json',
-            contentType: 'application/json; charset=utf-8'
-        });
-
-
+                },
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8'
+            });
+        }
+        
         var listSoId = [];
 
         //Load noti table
@@ -675,6 +661,7 @@
                     if (res.IsOK) {
                         var result = res.Data;
                         var itemnew = document.createElement('i');
+                        document.getElementById("NewItemForOneBook").innerHTML = "";
                         itemnew.innerHTML = " " + result + " ";
                         document.getElementById('NewItemForOneBook').appendChild(itemnew);
                     }
@@ -698,7 +685,86 @@
                 contentType: 'application/json; charset=utf-8'
             }); 
             
+            
+        }
 
+        function refreshBoxes(id) {
+            var listPhieu;
+
+            $.ajax({
+                type: 'POST',
+                url: ' @Url.Action("RefreshBoxes", "API")',
+                data: JSON.stringify({ Id: id }),
+                success: function (res) {
+                    if (res.IsOK) {
+                        listPhieu = res.Data;
+                        var table = document.getElementById('sonhanmautable');
+                        var row, rows = table.rows;
+                        var cell, cells;
+                        var rowText;
+
+                        //REDEFINE EACH CELL VALUE INTO BOOLEAN
+                        listPhieu.forEach(function AddSuccessRow(val, index, ar) {
+                            for (var j = 1, jLen = rows.length; j < jLen; ++j) {
+                                row = rows[j];
+                                cell_madon = row.cells[0];
+                                if (cell_madon.textContent.trim() == val.MaDon) {
+                                    row.cells[7].innerHTML = val.KHKyTraTien.toString();
+                                    row.cells[8].innerHTML = val.KHKyTraKQ.toString();
+                                    transformBox(row);
+                                    break;
+                                }                            
+                            }
+                        });
+                    }
+                },
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8'
+            });     
+        }
+
+        function transformBox(row) {
+            //TRANSFER BOOLEAN TO BOX
+
+            //CELL TIEN
+            cell_tien = row.cells[7];
+            if (cell_tien.textContent.trim() == "true") {
+                cell_tien.innerHTML =
+                    "<div class='checkbox'>" +
+                    "<label class=''>" +
+                    "<input type='checkbox' class='flat' checked='checked' disabled='disabled' style='width:20px; height: 20px'>" +
+                    "</label>" +
+                    "</div>";
+            }
+            else if (cell_tien.textContent.trim() == "false") {
+                cell_tien.innerHTML =
+                    "<div class='checkbox'>" +
+                    "<label class=''>" +
+                    "<input type='checkbox' class='flat' style='width:20px; height: 20px'>" +
+                    "</label>" +
+                    "</div>";
+            }
+
+            //CELL KET QUA
+            cell_kq = row.cells[8];
+            if (cell_kq.textContent.trim() == "true") {
+                cell_kq.innerHTML = "";
+                cell_kq.innerHTML =
+                    "<div class='checkbox'>" +
+                    "<label class=''>" +
+                    "<input type='checkbox' class='flat' checked='checked' disabled='disabled' style='width:20px; height: 20px'>" +
+                    "</label>" +
+                    "</div>";
+            }
+            else if (cell_kq.textContent.trim() == "false") {
+                cell_kq.innerHTML = "";
+                cell_kq.innerHTML =
+                    "<div class='checkbox'>" +
+                    "<label class=''>" +
+                    "<input type='checkbox' class='flat' style='width:20px; height: 20px'>" +
+                    "</label>" +
+                    "</div>";
+            }        
         }
 
         function recentlyAddedRows(listPhieu){
@@ -706,14 +772,14 @@
             var row, rows = table.rows;
             var cell, cells;
             var rowText;
-            for(var i=0, iLen=rows.length; i<iLen; i++){
+            for(var i=1, iLen=rows.length; i<iLen; i++){
                 row = rows[i];
                 cell = row.cells[0];
                 if (jQuery.inArray(cell.textContent.trim(), listPhieu) != -1){
                     jQuery(row).addClass("success");
                 }
+                transformBox(row);
             }
         }
-        
     </script>
 }

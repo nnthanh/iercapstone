@@ -94,30 +94,76 @@ namespace IERSystem.Areas.HopDongLayMau.Controllers
         //    return View(request);
         //}
 
-        // GET: /HopDongLayMau/YeuCauLayMau/Delete/5
-        public async Task<ActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            PhieuYeuCau request = await db.PhieuYeuCaus.FindAsync(id);
-            if (request == null)
-            {
-                return HttpNotFound();
-            }
-            return View(request);
-        }
+        //// GET: /HopDongLayMau/YeuCauLayMau/Delete/5
+        //public async Task<ActionResult> Delete(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    PhieuYeuCau request = await db.PhieuYeuCaus.FindAsync(id);
+        //    if (request == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(request);
+        //}
 
-        // POST: /HopDongLayMau/YeuCauLayMau/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
+        //// POST: /HopDongLayMau/YeuCauLayMau/Delete/5
+        //[HttpPost, ActionName("xoaModal")]
+        //[ValidateAntiForgeryToken]
+        //public async Task<ActionResult> DeleteConfirmed(int id)
+        //{
+        //    PhieuYeuCau request = await db.PhieuYeuCaus.FindAsync(id);
+        //    db.PhieuYeuCaus.Remove(request);
+        //    await db.SaveChangesAsync();
+        //    return RedirectToAction("Index");
+        //}
+
+        [HttpPost]
+        public async Task<JsonResult> DeleteItem(DeleteItemInputModel del_input)
         {
-            PhieuYeuCau request = await db.PhieuYeuCaus.FindAsync(id);
-            db.PhieuYeuCaus.Remove(request);
-            await db.SaveChangesAsync();
-            return RedirectToAction("Index");
+            PhieuYeuCau request = await db.PhieuYeuCaus.FindAsync(del_input.id);
+
+            var is_shipped = request.MauLayHienTruongs.Any((kh) =>
+                    kh.TinhTrang.Equals(1) ||
+                    kh.TinhTrang.Equals(2) ||
+                    kh.TinhTrang.Equals(3));
+             
+            if (!is_shipped)
+            {
+                try
+                {
+                    //Delete many to many  records
+                    var maus_tobedeleted = (from mlht in db.MauLayHienTruongs
+                                            where mlht.PhieuYeuCauId == del_input.id
+                                            select mlht).ToList();
+
+                    for(int i=0; i<maus_tobedeleted.Count(); ++i)
+                    {
+                        for (int j = 0; j < maus_tobedeleted[i].ChiTieuPhanTiches.Count(); ++j )
+                        {
+                            //.FirstOrDefault<MauLayHienTruong>()
+                            MauLayHienTruong mau_tobedeleted = maus_tobedeleted[i];
+                            ChiTieuPhanTich chitieu = mau_tobedeleted.ChiTieuPhanTiches.FirstOrDefault<ChiTieuPhanTich>();
+
+                            //remove chitieuphantich from maulayhientruong
+                            mau_tobedeleted.ChiTieuPhanTiches.Remove(chitieu);
+                        }
+                    }
+                    
+                    
+                    db.MauLayHienTruongs.RemoveRange(db.MauLayHienTruongs.Where(kq => kq.PhieuYeuCauId == request.Id));
+                    db.PhieuYeuCaus.Remove(request);
+                    await db.SaveChangesAsync();
+                    return Json(new GetDBResponse<string>() { IsOK = true, Data = "" });
+                }
+                catch (Exception e)
+                {
+                    return Json(new GetDBResponse<string>() { IsOK = false, Data = "" });
+                }
+            }
+            return Json(new GetDBResponse<string>() { IsOK = false, Data = "" }); 
         }
 
         protected override void Dispose(bool disposing)

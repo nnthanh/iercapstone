@@ -24,8 +24,8 @@ namespace IERSystem.BusinessLogic.TableForms
                     NoiDung = new List<SoChuyenMauOpenRowOutputModel>(target_sochuyenmau.SoChuyenMaus.Select((scm_row) =>
                         new SoChuyenMauOpenRowOutputModel()
                         {
-                            NguoiGiaoMau = scm_row.CreatedBy.Username,
-                            NguoiNhanMau = scm_row.MauLayHienTruong.SoNhanMau.CreatedBy.Username,
+                            NguoiGiaoMau = scm_row.CreatedBy.Fullname,
+                            NguoiNhanMau = scm_row.MauLayHienTruong.SoNhanMau.CreatedBy.Fullname,
                             MaMau = scm_row.MauLayHienTruong.MaMau,
                             MaKhachHang = scm_row.MauLayHienTruong.PhieuYeuCau.MaDon,
                             NgayGiao = scm_row.NgayGiaoMau.ToShortDateString(),

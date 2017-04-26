@@ -208,10 +208,9 @@
                         {{sochuyenmau.MaKhachHang}}
                     </td>*@
                             <td>
-                                <button data-toggle="tooltip" title="Chỉnh sửa" v-on:click="location.href='QuanLySoChuyenMau/SoChuyenMau/Edit/' + sochuyenmau.Id"><span class="fa fa-edit"></span></button>
+                                <button data-toggle="tooltip" title="Lưu" v-on:click="location.href='QuanLySoChuyenMau/SoChuyenMau/Edit/' + sochuyenmau.Id"><span class="fa fa-check-square-o"></span></button>
                                 <button data-toggle="tooltip" title="Xem chi tiết" v-on:click="location.href='QuanLySoChuyenMau/SoChuyenMau/Details/' + sochuyenmau.Id"><span class="fa fa-info"></span></button>
-                                <button data-toggle="tooltip" title="Trả về" onclick="returnItem()"><span class="fa fa-reply"></span></button>
-                                <button data-toggle="modal" data-target="#xoaModal"><span class="fa fa-trash"></span></button>
+                                <button data-toggle="tooltip" title="Trả về" v-on:click="traVe(sochuyenmau.MaMau)"><span class="fa fa-reply"></span></button>
                             </td>
                         </tr>
 
@@ -277,29 +276,13 @@
     </div>
 </div>
 
-<!-- Modal -->
-<div id="xoaModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-body">
-                <h4>Bạn có chắc chắn muốn xóa mẫu này?</h4>
-                <h5>Bạn sẽ không để hoàn tác hành động này.</h5>
-                <div class="form-group" align="center">
-                    <button type="button" class="btn btn-success" data-dismiss="modal" onclick="delSucNoti()"><span class="fa fa-check"></span></button>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="delFailNoti()"><span class="fa fa-close"></span></button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     <script src="~/Areas/Administrator/vendors/vuejs/vue.min.js"></script>
     <script>
         $(document).ready(function () {
             $('[data-toggle="tooltip"]').tooltip();
+            loadNoti();
         });
         $(function () {
             $('#check-all').change(function () {
@@ -313,44 +296,6 @@
                 }
             });
         });
-        function delSucNoti() {
-            new PNotify({
-                title: 'Thành công',
-                text: 'xóa mẫu thành công khỏi dữ liệu.',
-                type: 'success',
-                styling: 'bootstrap3'
-            })
-        }
-        function delFailNoti() {
-            new PNotify({
-                title: 'Hủy',
-                text: 'mẫu không được xóa khỏi dữ liệu.',
-                styling: 'bootstrap3'
-            });
-        }
-        function addItem() {
-            new PNotify({
-                title: 'Thành công',
-                text: 'thêm mẫu thành công vào dữ liệu.',
-                type: 'success',
-                styling: 'bootstrap3'
-            })
-        }
-        function addItemFail() {
-            new PNotify({
-                title: 'Hủy',
-                text: 'mẫu không được thêm vào dữ liệu.',
-                styling: 'bootstrap3'
-            })
-        }
-        function returnItem() {
-            new PNotify({
-                title: 'Thông báo',
-                text: 'mẫu đã được hoàn trả.',
-                type: 'info',
-                styling: 'bootstrap3'
-            });
-        }
     </script>
 
     <!-- VueJS App -->
@@ -376,8 +321,8 @@
                                     $cacsochuyenmau_app.cacsochuyenmaus_open.find(function (e) { return e.QuyenSo == id });
                                 if (refreshtarget != undefined) {
                                     refreshtarget.NoiDung = res.Data.NoiDung;
-                                }
-                                getNumber(id);
+                                    getNumber(id);
+                                }                               
                             } else {
                                 alert("Có lỗi khi mở sổ chuyển mẫu " + id);
                             }
@@ -419,6 +364,7 @@
                             if (res.IsOK) {
                                 $cacsochuyenmau_app.mauptcandids = res.Data;
                                 $target_cacsochuyenmau = cacsochuyenmauid;
+                                getNumber(id);
                             } else {
                                 alert("Có lỗi khi lấy danh sách mẫu");
                             }
@@ -446,6 +392,7 @@
                             if (res.IsOK) {
                                 //window.location.reload(true);
                                 $cacsochuyenmau_app.refreshOpenedSoChuyenMau($target_cacsochuyenmau);
+                                loadNoti();
                             } else {
                                 alert("Có lỗi khi thêm mẫu vào sổ chuyển mẫu");
                             }
@@ -459,33 +406,62 @@
                     if (index > -1) {
                         this.cacsochuyenmaus_open.splice(index, 1);
                     }
+                },
+                traVe: function (mamau) {
+                    $.ajax({
+                        type: 'POST',
+                        url: ' @Url.Action("Return", "API")',
+                        data: JSON.stringify({ MaMau: mamau }),
+                        success: function (res) {
+                            //window.location.reload(true);
+                            if (res.IsOK) {
+                                $cacsochuyenmau_app.refreshOpenedSoChuyenMau(res.Data);
+                                loadNoti();
+                                getNumber(red.Data);
+                            }
+                            else {
+                                new PNotify({
+                                    title: 'Thất bại',
+                                    text: 'đã có lỗi xảy ra (lưu ý: mẫu đã có kết quả không thể được trả về).',
+                                    styling: 'bootstrap3'
+                                })
+                            }
+                        },
+                        dataType: 'json',
+                        contentType: 'application/json; charset=utf-8'
+                    });
                 }
             }
         });
 
         
-
-        $.ajax({
-            type: 'POST',
-            url: ' @Url.Action("GetNumberOfNewItems", "API") ',
-            data: JSON.stringify({
-                TuNgay: "1/1/1900",
-                DenNgay: "1/1/2500"
-            }),
-            success: function (res) {
-                if (res.IsOK) {
-                    var result = res.Data;
-                    var itemnew = document.createElement('i');
-                    itemnew.innerHTML = " " + result + " ";
-                    document.getElementById('NumOfNewItem').appendChild(itemnew);
-                    if (result > 0) {
-                        $('#myNoti').fadeIn(1000);
+        function loadNoti() {
+            $.ajax({
+                type: 'POST',
+                url: ' @Url.Action("GetNumberOfNewItems", "API") ',
+                data: JSON.stringify({
+                    TuNgay: "1/1/1900",
+                    DenNgay: "1/1/2500"
+                }),
+                success: function (res) {
+                    if (res.IsOK) {
+                        var result = res.Data;
+                        var itemnew = document.createElement('i');
+                        document.getElementById("NumOfNewItem").innerHTML = "";
+                        itemnew.innerHTML = " " + result + " ";
+                        document.getElementById('NumOfNewItem').appendChild(itemnew);
+                        if (result > 0) {
+                            $('#myNoti').fadeIn(1000);
+                        }
+                        else {
+                            $('#myNoti').hide();
+                        }
                     }
-                }
-            },
-            dataType: 'json',
-            contentType: 'application/json; charset=utf-8'
-        });
+                },
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8'
+            });
+        }
         var listSoId = [];
 
         //Load noti table
@@ -531,6 +507,7 @@
                     if (res.IsOK) {
                         var result = res.Data;
                         var itemnew = document.createElement('i');
+                        document.getElementById("NewItemForOneBook").innerHTML = "";
                         itemnew.innerHTML = " " + result + " ";
                         document.getElementById('NewItemForOneBook').appendChild(itemnew);
                     }

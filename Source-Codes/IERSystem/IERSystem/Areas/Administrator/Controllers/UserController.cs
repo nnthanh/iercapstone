@@ -10,6 +10,12 @@ using IERSystem.Areas.Administrator.Models;
 
 namespace IERSystem.Areas.Administrator.Controllers
 {
+    public class UpsertDBResponse
+    {
+        public bool IsOK { get; set; }
+        public string ErrMsg { get; set; }
+    }
+
     public class UserController : Controller
     {
         private IERSystemModelContainer db = new IERSystemModelContainer();
@@ -46,19 +52,57 @@ namespace IERSystem.Areas.Administrator.Controllers
         // POST: /Administrator/User/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<ActionResult> Create([Bind(Include="Id,Username,Password,Phone,Fullname,RoleMasterId")] User user)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Users.Add(user);
+        //        await db.SaveChangesAsync();
+        //        return RedirectToAction("Index");
+        //    }
+
+        //    ViewBag.RoleMasterId = new SelectList(db.RoleMasters, "Id", "RoleName", user.RoleMasterId);
+        //    return View(user);
+        //}
+
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include="Id,Username,Password,Phone,Fullname,RoleMasterId")] User user)
+        public JsonResult Create(UserInputModel input_request)
         {
-            if (ModelState.IsValid)
+            //if (ModelState.IsValid) {
+            var duplicate_exists = db.Users.Any((kh) =>
+                    kh.Username.Equals(input_request.username)
+                );
+            
+            try
             {
-                db.Users.Add(user);
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                if (!duplicate_exists)
+                {
+                    db.Users.Add(new User()
+                    {
+                        Username = input_request.username,
+                        Password = input_request.password,
+                        Phone = input_request.phone,
+                        Fullname = input_request.fullname,
+                        RoleMasterId = input_request.rolemasterid
+                    });
+                    db.SaveChanges();
+
+                    Console.WriteLine("OK");
+                    return Json(new UpsertDBResponse { IsOK = true, ErrMsg = "" });
+                }
+                else return Json(new UpsertDBResponse { IsOK = false, ErrMsg = "" });
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return Json(new UpsertDBResponse { IsOK = false, ErrMsg = "" });
             }
 
-            ViewBag.RoleMasterId = new SelectList(db.RoleMasters, "Id", "RoleName", user.RoleMasterId);
-            return View(user);
+            //} else {
+            //    return Json(new UpsertDBResponse { IsOK = false, ErrMsg = "" }); 
+            //}
         }
 
         // GET: /Administrator/User/Edit/5
