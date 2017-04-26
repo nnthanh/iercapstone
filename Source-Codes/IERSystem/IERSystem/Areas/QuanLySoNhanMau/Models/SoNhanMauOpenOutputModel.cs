@@ -11,6 +11,8 @@ namespace IERSystem.Areas.QuanLySoNhanMau.Models
         public string TuNgay { get; set; }
         public string DenNgay { get; set; }
         public IEnumerable<SoNhanMauOpenRowOutputModel> NoiDung { get; set; }
+
+        public string DomId { get; set; }
     }
 
     public class SoNhanMauOpenRowOutputModel
