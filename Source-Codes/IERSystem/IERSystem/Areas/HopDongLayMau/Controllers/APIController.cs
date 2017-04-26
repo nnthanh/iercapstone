@@ -1,6 +1,7 @@
 ﻿using IERSystem.Areas.Administrator.Models;
 using IERSystem.Areas.HopDongLayMau.Models;
 using IERSystem.BusinessLogic.TableForms;
+using IERSystem.BusinessLogic.Utils;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -38,6 +39,52 @@ namespace IERSystem.Areas.HopDongLayMau.Controllers
             //    return Json(new UpsertDBResponse { IsOK = false, ErrMsg = "" }); 
             //}
         }
+
+        // POST: /HopDongLayMau/API/Edit
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        public JsonResult Edit(YeuCauLayMauEditInputModel edit_request)
+        {
+            //if (ModelState.IsValid) {
+            try
+            {
+                //input_request.CreatedBy = db.Users.Find((long)Session["loggedID"]);
+                var successfullymodifieditems = HopDongLayMauAPIImpl.ModifyModel(edit_request, db);
+                db.SaveChanges();
+
+                var testalladded = true;
+                foreach (var maupt in edit_request.MauLayHienTruongs)
+                {
+                    if (!successfullymodifieditems.Contains(maupt.Id) && 
+                        maupt.ModifiedState != MauPTModifiedStateConverter.ToByte(MauPTModifiedState.NoChange))
+                    {
+                        testalladded = false;
+                        break;
+                    }
+                }
+                if (testalladded)
+                {
+                    return Json(new UpsertDBResponse { IsOK = true, ErrMsg = "Các mẫu đã được cập nhật thành công." });
+                }
+                else
+                {
+                    return Json(new UpsertDBResponse { 
+                        IsOK = true, 
+                        ErrMsg = "Chỉ 1 vài mẫu có id sau đã được cập nhật: " + String.Join(", ", successfullymodifieditems) 
+                    });
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return Json(new UpsertDBResponse { IsOK = false, ErrMsg = "Internal Error" });
+            }
+            //} else {
+            //    return Json(new UpsertDBResponse { IsOK = false, ErrMsg = "" }); 
+            //}
+        }
+
         [HttpPost]
         public JsonResult GetCustomer()
         {
@@ -98,6 +145,46 @@ namespace IERSystem.Areas.HopDongLayMau.Controllers
             
         }
 
+        [HttpGet]
+        public JsonResult GetMauPTs(long? id) 
+        {
+            if (id.HasValue)
+            {
+                try
+                {
+                    var result = HopDongLayMauAPIImpl.GetMauPTsEdit(id.Value, db);
+                    return Json(
+                        new GetDBResponse<IEnumerable<MauPTEditOutputModel>>()
+                        {
+                            IsOK = true,
+                            Data = result
+                        },
+                        JsonRequestBehavior.AllowGet
+                    ); 
+                } catch (InvalidOperationException e) {
+                    return Json(
+                        new GetDBResponse<string>()
+                        {
+                            IsOK = false,
+                            Data = "Phieu Yeu Cau Id " + id.ToString() + " not found."
+                        },
+                        JsonRequestBehavior.AllowGet
+                    );
+                }
+                
+            }
+            else
+            {
+                return Json(
+                    new GetDBResponse<string>() {
+                        IsOK = false,
+                        Data = "No parameter provided."
+                    },
+                    JsonRequestBehavior.AllowGet
+                );
+            }
+        }
+
         [HttpPost]
         public JsonResult RefreshTable()
         {     
@@ -105,7 +192,6 @@ namespace IERSystem.Areas.HopDongLayMau.Controllers
             {
                 try 
                 {
-
                     var temp = (from p in db.PhieuYeuCaus
                                 select p).ToList();
 
@@ -165,10 +251,8 @@ namespace IERSystem.Areas.HopDongLayMau.Controllers
                     Data = null
                 });
             }
-                
-
-
         }
+
         protected override void Dispose(bool disposing) {
             if (disposing) {
                 db.Dispose();

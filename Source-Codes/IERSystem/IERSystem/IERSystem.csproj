@@ -265,6 +265,7 @@
     <Compile Include="Areas\Administrator\Controllers\SoKQThuNghiemController.cs" />
     <Compile Include="Areas\Administrator\Controllers\SoNhanMauController.cs" />
     <Compile Include="Areas\HopDongLayMau\BusinessLogic\Utils\LoaiMauConverter.cs" />
+    <Compile Include="Areas\HopDongLayMau\BusinessLogic\Utils\MauPTModifiedStateConverter.cs" />
     <Compile Include="Areas\HopDongLayMau\BusinessLogic\Utils\TinhTrangMauConverter.cs" />
     <Compile Include="Areas\HopDongLayMau\BusinessLogic\Utils\DateTimeUtils.cs" />
     <Compile Include="Areas\HopDongLayMau\BusinessLogic\YeuCauLayMauEncoding.cs" />
@@ -272,7 +273,11 @@
     <Compile Include="Areas\HopDongLayMau\Controllers\DefaultController.cs" />
     <Compile Include="Areas\HopDongLayMau\Models\DeleteItemInputModel.cs" />
     <Compile Include="Areas\HopDongLayMau\Models\GetCustomerInfoInputModel.cs" />
+    <Compile Include="Areas\HopDongLayMau\Models\MauPTEditInputModel.cs" />
+    <Compile Include="Areas\HopDongLayMau\Models\MauPTEditOutputModel.cs" />
     <Compile Include="Areas\HopDongLayMau\Models\MauPTInputModel.cs" />
+    <Compile Include="Areas\HopDongLayMau\Models\YeuCauLayMauEditInputModel.cs" />
+    <Compile Include="Areas\HopDongLayMau\Models\YeuCauLayMauEditOutputModel.cs" />
     <Compile Include="Areas\HopDongLayMau\Models\RefreshOutputModel.cs" />
     <Compile Include="Areas\HopDongLayMau\Models\YeuCauLayMauInputModel.cs" />
     <Compile Include="Areas\HopDongLayMau\Controllers\YeuCauLayMauController.cs" />
@@ -376,9 +381,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Areas\Administrator\Content\Homepage2\img\giangday\giangday3.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Areas\Administrator\Content\Homepage2\img\header.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Areas\Administrator\Content\Homepage2\img\left-arrow.jpg">
