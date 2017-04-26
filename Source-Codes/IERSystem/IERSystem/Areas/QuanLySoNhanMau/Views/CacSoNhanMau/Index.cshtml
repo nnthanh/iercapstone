@@ -806,18 +806,19 @@
         }
 
         function recentlyAddedRows(listPhieu){
-            var table = $('.sonhanmautable')[0];
-            var row, rows = table.rows;
-            var cell, cells;
-            var rowText;
-            for(var i=1, iLen=rows.length; i<iLen; i++){
-                row = rows[i];
-                cell = row.cells[0];
-                if (jQuery.inArray(cell.textContent.trim(), listPhieu) != -1){
-                    jQuery(row).addClass("success");
+            $('.sonhanmautable').each(function (table) {
+                var row, rows = table.rows;
+                var cell, cells;
+                var rowText;
+                for (var i = 1, iLen = rows.length; i < iLen; i++) {
+                    row = rows[i];
+                    cell = row.cells[0];
+                    if (jQuery.inArray(cell.textContent.trim(), listPhieu) != -1) {
+                        jQuery(row).addClass("success");
+                    }
+                    transformBox(row);
                 }
-                transformBox(row);
-            }
+            });
         }
     </script>
 }
