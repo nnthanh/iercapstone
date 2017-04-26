@@ -272,7 +272,9 @@
     <Compile Include="Areas\HopDongLayMau\Controllers\APIController.cs" />
     <Compile Include="Areas\HopDongLayMau\Controllers\DefaultController.cs" />
     <Compile Include="Areas\HopDongLayMau\Models\DeleteItemInputModel.cs" />
+    <Compile Include="Areas\HopDongLayMau\Models\DetailsOutputModel.cs" />
     <Compile Include="Areas\HopDongLayMau\Models\GetCustomerInfoInputModel.cs" />
+    <Compile Include="Areas\HopDongLayMau\Models\MauDetailsOutputModel.cs" />
     <Compile Include="Areas\HopDongLayMau\Models\MauPTEditInputModel.cs" />
     <Compile Include="Areas\HopDongLayMau\Models\MauPTEditOutputModel.cs" />
     <Compile Include="Areas\HopDongLayMau\Models\MauPTInputModel.cs" />

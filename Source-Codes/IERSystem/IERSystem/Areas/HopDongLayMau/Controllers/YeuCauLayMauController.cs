@@ -34,11 +34,38 @@ namespace IERSystem.Areas.HopDongLayMau.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             PhieuYeuCau request = await db.PhieuYeuCaus.FindAsync(id);
+
             if (request == null)
             {
                 return HttpNotFound();
             }
-            return View(request);
+
+            DetailsOutputModel result = new DetailsOutputModel()
+            {
+                Id = request.Id,
+                MaDon = request.MaDon,
+                TenKhachHang = request.TenKhachHang,
+                TenDaiDien = request.TenDaiDien,
+                DiaChiLayMau = request.DiaChiLayMau,
+                DiaChiKhachHang = request.DiaChiKhachHang,
+                MaSoThue = request.MaSoThue,
+                SoDienThoai = request.SoDienThoai,
+                SoFax = request.SoFax,
+                NgayTaoHD = request.NgayTaoHD.ToShortDateString(),
+                NgayHenTraKQ = request.NgayHenTraKQ.ToShortDateString(),
+                MauPT = (db.MauLayHienTruongs.Where(x => x.PhieuYeuCauId == request.Id).ToList()
+                    .Select(y => new MauDetailsOutputModel()
+                    {
+                        MaMau = y.MaMau,
+                        MaMauKH = y.MaMauKH,
+                        ViTriLayMau = y.ViTriLayMau,
+                        SoLuong = y.SoLuong,
+                        DonVi = y.DonVi,
+                        MoTaMau = y.MoTaMau,
+                        ChiTieuPhanTiches = String.Join(", ", y.ChiTieuPhanTiches.Select((item) => item.TenChiTieu))
+                    }))
+            };
+            return View(result);
         }
 
         // GET: /HopDongLayMau/YeuCauLayMau/Create
