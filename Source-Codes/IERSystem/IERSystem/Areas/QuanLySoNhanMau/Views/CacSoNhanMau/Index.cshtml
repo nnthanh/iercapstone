@@ -165,7 +165,9 @@
                         </a>
                     </li>
                     <li data-toggle="tooltip" title="Thêm mẫu">
-                        <a data-toggle="modal" v-on:click="openThemMauModal(cacsonhanmau.TuNgay, cacsonhanmau.DenNgay, cacsonhanmau.QuyenSo)" data-target="#themMauModal" role="button" aria-expanded="false">
+                        <a data-toggle="modal" 
+                           v-on:click="openThemMauModal(cacsonhanmau.TuNgay, cacsonhanmau.DenNgay, cacsonhanmau.QuyenSo)" 
+                           data-target="#themMauModal" role="button" aria-expanded="false">
                             <i class="fa fa-plus"></i>
                         </a>
                     </li>
@@ -186,7 +188,7 @@
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
-                <table id="sonhanmautable" v-bind:class="[datatable]">
+                <table v-bind:id="cacsonhanmau.DomId" v-bind:class="[datatable]">
                     <thead>
                         <tr>
                             <th>Phiếu yêu cầu</th>
@@ -203,7 +205,7 @@
                     </thead>
 
                     <tbody>
-                        <tr v-for="sonhanmau in cacsonhanmau.NoiDung" >
+                        <tr v-for="sonhanmau in cacsonhanmau.NoiDung" track-by="Id">
                             <td>
                                 {{sonhanmau.MaPhieuYeuCau}}
                             </td>
@@ -228,7 +230,7 @@
                             <td id="khky-tratien">
                                 {{sonhanmau.KHKyTraTien}}
                             </td>
-                            <td id="khky-trakq">                         
+                            <td id="khky-trakq">
                                 {{sonhanmau.KHKyTraKQ}}
                             </td>
                             <td>
@@ -397,6 +399,41 @@
     <script src="~/Areas/Administrator/vendors/vuejs/vue.min.js"></script>
     <!-- VueJS App -->
     <script>
+        function createDataTable(target_id) {
+            return $('#' + target_id).DataTable({
+                keys: true,
+                dom: "Bfrtip",
+                buttons: [
+                  {
+                      extend: "copy",
+                      className: "btn-sm"
+                  },
+                  {
+                      extend: "pdfHtml5",
+                      className: "btn-sm"
+                  },
+                  {
+                      extend: "print",
+                      className: "btn-sm"
+                  },
+                ],
+                responsive: true
+            });
+        }
+
+        function initDataTable(target, vuejs_appobj) {
+            vuejs_appobj.$nextTick(function () {
+                target.DataTable = createDataTable(target.DomId);
+            })
+        }
+
+        function refreshDataTable(target, vuejs_appobj) {
+            target.DataTable.destroy();
+            vuejs_appobj.$nextTick(function () {
+                target.DataTable = createDataTable(target.DomId);
+            })
+        }
+
         //nthoang: Global state to store cacsonhanmauId for ReceiveMauPTs action 
         var $target_cacsonhanmau = undefined;
         var $cacsonhanmau_app = new Vue({
@@ -404,20 +441,20 @@
             data: {
                 cacsonhanmaus_open: [],
                 mauptcandids: [],
-                datatable: 'datatable-buttons table table-striped table-bordered'
+                datatable: 'datatable-buttons table table-striped table-bordered sonhanmautable'
             },
             methods: {
                 refreshOpenedSoNhanMau: function (id) {
                     $.ajax({
-                        type: 'POST',
-                        url: ' @Url.Action("OpenSoNhanMau", "API")',
-                        data: JSON.stringify({Id: id}),
+                        type: 'GET',
+                        url: ' @Url.Action("OpenSoNhanMau", "API")/' + id,
                         success: function (res) {
                             if (res.IsOK) {
                                 var refreshtarget = 
                                     $cacsonhanmau_app.cacsonhanmaus_open.find(function (e) { return e.QuyenSo == id });
                                 if (refreshtarget != undefined) {
                                     refreshtarget.NoiDung = res.Data.NoiDung;
+                                    refreshDataTable(refreshtarget, $cacsonhanmau_app);
                                     getNumber(id);
                                 } 
                             } else {
@@ -431,12 +468,14 @@
                 },
                 openSoNhanMau: function (id) {
                     $.ajax({
-                        type: 'POST',
-                        url: ' @Url.Action("OpenSoNhanMau", "API")',
-                        data: JSON.stringify({Id: id}),
+                        type: 'GET',
+                        url: '@Url.Action("OpenSoNhanMau", "API")/' + id,
+                        //data: JSON.stringify({Id: id}),
                         success: function (res) {
                             if (res.IsOK) {
+                                //nthoang: res.Data is the new table
                                 $cacsonhanmau_app.cacsonhanmaus_open.push(res.Data);                            
+                                initDataTable(res.Data, $cacsonhanmau_app);
                                 getNumber(id);
                                 //addBox();
                             } else {
@@ -461,7 +500,7 @@
                             if (res.IsOK) {
                                 $cacsonhanmau_app.mauptcandids = res.Data;
                                 $target_cacsonhanmau = cacsonhanmauid;
-                                getNumber(id);
+                                getNumber(cacsonhanmauid);
                             } else {
                                 alert("Có lỗi khi lấy danh sách mẫu");
                             }
@@ -487,7 +526,6 @@
                         data: JSON.stringify(formData1),
                         success: function (res) {
                             if (res.IsOK) {
-                                //window.location.reload(true);
                                 $cacsonhanmau_app.refreshOpenedSoNhanMau($target_cacsonhanmau);
                                 loadNoti();
                             } else {
@@ -514,7 +552,7 @@
                         if (res.IsOK) {
                             $cacsonhanmau_app.refreshOpenedSoNhanMau(res.Data);
                             loadNoti();
-                            getNumber(red.Data);
+                            getNumber(res.Data);
                         }
                         else {
                             new PNotify({
@@ -768,18 +806,19 @@
         }
 
         function recentlyAddedRows(listPhieu){
-            var table = document.getElementById('sonhanmautable');
-            var row, rows = table.rows;
-            var cell, cells;
-            var rowText;
-            for(var i=1, iLen=rows.length; i<iLen; i++){
-                row = rows[i];
-                cell = row.cells[0];
-                if (jQuery.inArray(cell.textContent.trim(), listPhieu) != -1){
-                    jQuery(row).addClass("success");
+            $('.sonhanmautable').each(function (i, table) {
+                var row, rows = table.rows;
+                var cell, cells;
+                var rowText;
+                for (var i = 1, iLen = rows.length; i < iLen; i++) {
+                    row = rows[i];
+                    cell = row.cells[0];
+                    if (jQuery.inArray(cell.textContent.trim(), listPhieu) != -1) {
+                        jQuery(row).addClass("success");
+                    }
+                    transformBox(row);
                 }
-                transformBox(row);
-            }
+            });
         }
     </script>
 }

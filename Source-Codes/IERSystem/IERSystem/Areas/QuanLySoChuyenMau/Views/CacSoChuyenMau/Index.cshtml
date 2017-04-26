@@ -140,7 +140,9 @@
                         </a>
                     </li>
                     <li data-toggle="tooltip" title="Thêm mẫu">
-                        <a data-toggle="modal" v-on:click="openThemMauModal(cacsochuyenmau.TuNgay, cacsochuyenmau.DenNgay, cacsochuyenmau.QuyenSo)" data-target="#themMauModal" role="button" aria-expanded="false">
+                        <a data-toggle="modal" 
+                           v-on:click="openThemMauModal(cacsochuyenmau.TuNgay, cacsochuyenmau.DenNgay, cacsochuyenmau.QuyenSo)" 
+                           data-target="#themMauModal" role="button" aria-expanded="false">
                             <i class="fa fa-plus"></i>
                         </a>
                     </li>
@@ -158,7 +160,7 @@
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
-                <table id="sochuyenmautable" class="datatable-buttons table table-striped table-bordered">
+                <table v-bind:id="cacsochuyenmau.DomId" class="sochuyenmautable datatable-buttons table table-striped table-bordered">
                     <thead>
                         <tr>
                             <th>Mã khách hàng</th>
@@ -300,6 +302,41 @@
 
     <!-- VueJS App -->
     <script>
+        function createDataTable(target_id) {
+            return $('#' + target_id).DataTable({
+                keys: true,
+                dom: "Bfrtip",
+                buttons: [
+                  {
+                      extend: "copy",
+                      className: "btn-sm"
+                  },
+                  {
+                      extend: "pdfHtml5",
+                      className: "btn-sm"
+                  },
+                  {
+                      extend: "print",
+                      className: "btn-sm"
+                  },
+                ],
+                responsive: true
+            });
+        }
+
+        function initDataTable(target, vuejs_appobj) {
+            vuejs_appobj.$nextTick(function () {
+                target.DataTable = createDataTable(target.DomId);
+            })
+        }
+
+        function refreshDataTable(target, vuejs_appobj) {
+            target.DataTable.destroy();
+            vuejs_appobj.$nextTick(function () {
+                target.DataTable = createDataTable(target.DomId);
+            })
+        }
+
         //nthoang: Global state to store cacsonhanmauId for ReceiveMauPTs action
         var $target_cacsochuyenmau = undefined;
 
@@ -312,15 +349,15 @@
             methods: {
                 refreshOpenedSoChuyenMau: function (id) {
                     $.ajax({
-                        type: 'POST',
-                        url: ' @Url.Action("OpenSoChuyenMau", "API")',
-                        data: JSON.stringify({ Id: id }),
+                        type: 'GET',
+                        url: ' @Url.Action("OpenSoChuyenMau", "API")/' + id,
                         success: function (res) {
                             if (res.IsOK) {
                                 var refreshtarget =
                                     $cacsochuyenmau_app.cacsochuyenmaus_open.find(function (e) { return e.QuyenSo == id });
                                 if (refreshtarget != undefined) {
                                     refreshtarget.NoiDung = res.Data.NoiDung;
+                                    refreshDataTable(refreshtarget, $cacsochuyenmau_app);
                                     getNumber(id);
                                 }                               
                             } else {
@@ -334,12 +371,13 @@
                 },
                 openSoChuyenMau: function (id) {
                     $.ajax({
-                        type: 'POST',
-                        url: ' @Url.Action("OpenSoChuyenMau", "API")',
-                        data: JSON.stringify({ Id: id }),
+                        type: 'GET',
+                        url: ' @Url.Action("OpenSoChuyenMau", "API")/' + id,
                         success: function (res) {
                             if (res.IsOK) {
+                                //nthoang: res.Data is the new table
                                 $cacsochuyenmau_app.cacsochuyenmaus_open.push(res.Data);
+                                initDataTable(res.Data, $cacsochuyenmau_app);
                                 getNumber(id);
                             } else {
                                 alert("Có lỗi khi mở sổ chuyển mẫu");
@@ -364,7 +402,7 @@
                             if (res.IsOK) {
                                 $cacsochuyenmau_app.mauptcandids = res.Data;
                                 $target_cacsochuyenmau = cacsochuyenmauid;
-                                getNumber(id);
+                                getNumber(cacsochuyenmauid);
                             } else {
                                 alert("Có lỗi khi lấy danh sách mẫu");
                             }
@@ -390,7 +428,6 @@
                         data: JSON.stringify(formData1),
                         success: function (res) {
                             if (res.IsOK) {
-                                //window.location.reload(true);
                                 $cacsochuyenmau_app.refreshOpenedSoChuyenMau($target_cacsochuyenmau);
                                 loadNoti();
                             } else {
@@ -417,7 +454,7 @@
                             if (res.IsOK) {
                                 $cacsochuyenmau_app.refreshOpenedSoChuyenMau(res.Data);
                                 loadNoti();
-                                getNumber(red.Data);
+                                getNumber(res.Data);
                             }
                             else {
                                 new PNotify({
@@ -533,17 +570,18 @@
         }
 
         function recentlyAddedRows(listPhieu) {
-            var table = document.getElementById('sochuyenmautable');
-            var row, rows = table.rows;
-            var cell, cells;
-            var rowText;
-            for (var i = 0, iLen = rows.length; i < iLen; i++) {
-                row = rows[i];
-                cell = row.cells[1];
-                if (jQuery.inArray(cell.textContent.trim(), listPhieu) != -1) {
-                    jQuery(row).addClass("success");
+            $('.sochuyenmautable').each(function (i, table) {
+                var row, rows = table.rows;
+                var cell, cells;
+                var rowText;
+                for (var i = 1, iLen = rows.length; i < iLen; i++) {
+                    row = rows[i];
+                    cell = row.cells[1];
+                    if (jQuery.inArray(cell.textContent.trim(), listPhieu) != -1) {
+                        jQuery(row).addClass("success");
+                    }
                 }
-            }
+            });
         }
 
     </script>

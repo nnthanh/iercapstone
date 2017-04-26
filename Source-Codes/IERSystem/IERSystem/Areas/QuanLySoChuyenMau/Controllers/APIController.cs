@@ -63,18 +63,30 @@ namespace IERSystem.Areas.QuanLySoChuyenMau.Controllers
             }
         }
 
-        // POST: /QuanLyCacSoChuyenMau/API/OpenSoChuyenMau
-        [HttpPost]
-        public JsonResult OpenSoChuyenMau(SoChuyenMauOpenInputModel sochuyenmauopen_inp)
+        // GET: /QuanLyCacSoChuyenMau/API/OpenSoChuyenMau/1
+        [HttpGet]
+        public JsonResult OpenSoChuyenMau(long? id)
         {
             try
             {
-                var result = SoChuyenMauAPIImpl.FetchSoChuyenMau(sochuyenmauopen_inp.Id, db);
-                return Json(new GetDBResponse<SoChuyenMauOpenOutputModel>()
+                if (id.HasValue)
                 {
-                    IsOK = true,
-                    Data = result
-                });
+                    var result = SoChuyenMauAPIImpl.FetchSoChuyenMau(id.Value, db);
+                    return Json(new GetDBResponse<SoChuyenMauOpenOutputModel>()
+                    {
+                        IsOK = true,
+                        Data = result
+                    }, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(new GetDBResponse<SoChuyenMauOpenOutputModel>()
+                    {
+                        IsOK = false,
+                        Data = null
+                    }, JsonRequestBehavior.AllowGet);
+                }
+
             }
             catch (InvalidOperationException e)
             {
@@ -82,7 +94,7 @@ namespace IERSystem.Areas.QuanLySoChuyenMau.Controllers
                 {
                     IsOK = false,
                     Data = null
-                });
+                }, JsonRequestBehavior.AllowGet);
             }
         }
 

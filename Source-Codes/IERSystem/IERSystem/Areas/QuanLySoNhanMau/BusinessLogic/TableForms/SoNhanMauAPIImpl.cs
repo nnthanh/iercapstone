@@ -20,11 +20,13 @@ namespace IERSystem.BusinessLogic.TableForms
                 {
                     //nthoang: QuyenSo should start from 1
                     QuyenSo = target_sonhanmau.Id,
+                    DomId = "SoNhanMau_" + (target_sonhanmau.Id).ToString(),
                     TuNgay = target_sonhanmau.TuNgay.ToShortDateString(),
                     DenNgay = target_sonhanmau.DenNgay.ToShortDateString(),
                     NoiDung = new List<SoNhanMauOpenRowOutputModel>(target_sonhanmau.SoNhanMaus.Select((snm_row) =>
                         new SoNhanMauOpenRowOutputModel()
                         {
+                            Id = snm_row.Id,
                             AddedBy = snm_row.CreatedBy.Fullname,
                             MaMau = snm_row.MauLayHienTruong.MaMau,
                             MaMauKH = snm_row.MauLayHienTruong.MaMauKH,

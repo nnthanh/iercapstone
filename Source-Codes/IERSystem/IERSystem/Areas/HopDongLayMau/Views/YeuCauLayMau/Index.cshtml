@@ -5,7 +5,6 @@
     Layout = "~/Areas/Administrator/Views/Shared/_Layout.cshtml";
 }
 
-<br />
 <h2>MỤC LỤC</h2>
 <input type="button" class="btn btn-info" value="Tạo phiếu yêu cầu mới" onclick="location.href='@Url.Action("Create", "YeuCauLayMau")'" />
 <div>
@@ -91,54 +90,6 @@
                         </thead>
 
                         <tbody>
-                            <!--Normal data load-->
-                            @*@foreach (var item in Model)
-                            {
-                                <tr>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.MaDon)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.TenKhachHang)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.TenDaiDien)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.DiaChiLayMau)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.DiaChiKhachHang)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.MaSoThue)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.SoDienThoai)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.SoFax)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.NgayTaoHD)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.CreatedBy.Fullname)
-                                    </td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>
-                                        <!--Ngay tra mau = NgayTaoHD + so ngay-->
-                                        @Html.DisplayFor(modelItem => item.NgayTaoHD)
-                                    </td>
-                                    <td>
-                                        <button data-toggle="tooltip" title="Chỉnh sửa" onclick="location.href='@Url.Action("Edit", "YeuCauLayMau", new { id = item.Id })'"><span class="fa fa-edit"></span></button>
-                                        <button data-toggle="tooltip" title="Xem chi tiết" onclick="location.href='@Url.Action("Details", "YeuCauLayMau", new { id = item.Id })'"><span class="fa fa-info"></span></button>
-                                        <button data-toggle="tooltip" title="In" onclick="location.href='@Url.Action("", "")'"><span class="fa fa-print"></span></button>
-                                        <button data-toggle="modal" data-target="#xoaModal" data-id="@item.Id" class="open-XoaModal"><span class="fa fa-trash"></span></button>
-                                    </td>
-                                </tr>
-                            }*@
                             <!--Vue.js data load-->
                             <tr v-for="data in tableData[0]">
                                 <td>

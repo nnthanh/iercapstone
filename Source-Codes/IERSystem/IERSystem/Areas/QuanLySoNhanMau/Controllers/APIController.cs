@@ -42,17 +42,30 @@ namespace IERSystem.Areas.QuanLySoNhanMau.Controllers
             }
         }
 
-        // POST: /QuanLyCacSoNhanMau/API/OpenSoNhanMau
-        [HttpPost]
-        public JsonResult OpenSoNhanMau(SoNhanMauOpenInputModel sonhanmauopen_inp)
+        // GET: /QuanLyCacSoNhanMau/API/OpenSoNhanMau/1
+        [HttpGet]
+        public JsonResult OpenSoNhanMau(long? id)
         {
             try
             {
-                var result = SoNhanMauAPIImpl.FetchSoNhanMau(sonhanmauopen_inp.Id, db);
-                return Json(new GetDBResponse<SoNhanMauOpenOutputModel>() {
-                    IsOK = true,
-                    Data = result
-                });
+                if (id.HasValue)
+                {
+                    var result = SoNhanMauAPIImpl.FetchSoNhanMau(id.Value, db);
+                    return Json(new GetDBResponse<SoNhanMauOpenOutputModel>()
+                    {
+                        IsOK = true,
+                        Data = result
+                    }, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(new GetDBResponse<SoNhanMauOpenOutputModel>()
+                    {
+                        IsOK = false,
+                        Data = null
+                    }, JsonRequestBehavior.AllowGet);
+                }
+
             }
             catch (InvalidOperationException e)
             {
@@ -60,7 +73,7 @@ namespace IERSystem.Areas.QuanLySoNhanMau.Controllers
                 {
                     IsOK = false,
                     Data = null
-                });
+                }, JsonRequestBehavior.AllowGet);
             }
         }
 
