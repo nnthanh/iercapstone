@@ -50,7 +50,7 @@
 
 
         <!--Table dynamic-->
-        <div v-for="phieuyeucau in tableData" class="col-md-12 col-sm-12 col-xs-12">
+        @*<div v-for="phieuyeucau in tableData" class="col-md-12 col-sm-12 col-xs-12">*@
             <div class="x_panel">
                 <div class="x_title">
                     <h2>DANH SÁCH PHIẾU YÊU CẦU <small><i class="green" id="newContract"></i> hợp đồng mới</small></h2>
@@ -90,8 +90,53 @@
                         </thead>
 
                         <tbody>
+                            <!--Normal data load-->
+                            @foreach (var item in Model)
+                                    {
+                                       <tr>
+                                            <td>
+                                               @Html.DisplayFor(modelItem => item.MaDon)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.TenKhachHang)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.TenDaiDien)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.DiaChiLayMau)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.DiaChiKhachHang)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.MaSoThue)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.SoDienThoai)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.SoFax)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.NgayTaoHD)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.CreatedBy.Fullname)
+                                            </td>
+                                            <td>                       
+                                                @Html.DisplayFor(modelItem => item.NgayHenTraKQ)
+                                            </td>
+                                            <td>
+                                                <button data-toggle="tooltip" title="Chỉnh sửa" onclick="location.href='@Url.Action("Edit", "YeuCauLayMau", new { id = item.Id })'"><span class="fa fa-edit"></span></button>
+                                                <button data-toggle="tooltip" title="Xem chi tiết" onclick="location.href='@Url.Action("Details", "YeuCauLayMau", new { id = item.Id })'"><span class="fa fa-info"></span></button>
+                                                <button data-toggle="tooltip" title="In" onclick="location.href='@Url.Action("", "")'"><span class="fa fa-print"></span></button>
+                                                <button data-toggle="modal" data-target="#xoaModal" data-id="@item.Id" class="open-XoaModal"><span class="fa fa-trash"></span></button>
+                                            </td>
+                                        </tr>
+                                    }
                             <!--Vue.js data load-->
-                            <tr v-for="data in tableData[0]">
+                            @*<tr v-for="data in tableData[0]">
                                 <td>
                                     {{data.MaDon}}
                                 </td>
@@ -122,8 +167,6 @@
                                 <td>
                                     {{data.DuocTaoBoi}}
                                 </td>
-                                @*<td></td>
-                                <td></td>*@
                                 <td>
                                     <!--Ngay tra mau = NgayTaoHD + so ngay-->
                                     {{data.NgayTaoHD}}
@@ -134,14 +177,14 @@
                                     <button data-toggle="tooltip" title="In" onclick="location.href='@Url.Action("", "")'"><span class="fa fa-print"></span></button>
                                     <button data-toggle="modal" data-target="#xoaModal" v-bind:data-id="data.Id" class="open-XoaModal"><span class="fa fa-trash"></span></button>
                                 </td>
-                            </tr>
+                            </tr>*@
 
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
-    </div>
+    @*</div>*@
 </div>
 <!-- Modal -->
 <div id="xoaModal" class="modal fade" role="dialog">
@@ -168,7 +211,6 @@
     <script>
         $(document).ready(function () {
             $('[data-toggle="tooltip"]').tooltip();
-            $phieuyeucauu_app.refreshTable();
             loadNoti();    
         });
 
@@ -221,7 +263,7 @@
                 data: JSON.stringify({ Id: id }),
                 success: function (res) {
                     if (res.IsOK) {
-                        $phieuyeucauu_app.refreshTable();
+                        //$phieuyeucauu_app.refreshTable();
                         loadNoti();
                         new PNotify({
                             title: 'Thành công',
@@ -229,6 +271,8 @@
                             type: 'success',
                             styling: 'bootstrap3'
                         })
+                        setTimeout("location.reload(true);", 500);
+
                     }
                     else
                     {
