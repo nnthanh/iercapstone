@@ -41,6 +41,16 @@ namespace IERSystem.Controllers
         }
 
         //
+        // GET: /Account/Logout
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<ActionResult> Logout()
+        {
+            Session.Abandon();
+            return RedirectToAction("Login");
+        }
+
+        //
         // POST: /Account/Login
         [HttpPost]
         [AllowAnonymous]
