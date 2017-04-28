@@ -140,12 +140,12 @@
                 $.ajax({
                     type: 'POST',
                     url: ' @Url.Action("EditSoKQ", "API")',
-                        data: JSON.stringify({
-                            Id: @Model.Id,
-                            KetQuas: formData
-                        }),
-                        success: function (res) {
-                            location.href = '@Url.Action("Index", "SoKQThuNghiem")'
+                    data: JSON.stringify({
+                        Id: @Model.Id,
+                        KetQuas: formData
+                    }),
+                    success: function (res) {
+                        location.href = '@Url.Action("Index", "SoKQThuNghiem")'
                     },
                     dataType: 'json',
                     contentType: 'application/json; charset=utf-8'
