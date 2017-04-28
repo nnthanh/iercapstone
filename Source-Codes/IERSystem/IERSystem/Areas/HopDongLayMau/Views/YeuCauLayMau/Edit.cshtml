@@ -235,7 +235,7 @@
                         <div class="ln_solid"></div>
                         <div class="form-group">
                             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-5">
-                                <input type="button" v-on:click="submitEditedData" value="Lưu" class="btn btn-success" />
+                                <input type="button" id="submitBtn" v-on:click="submitEditedData" value="Lưu" class="btn btn-success" />
                                 <input type="button" class="btn btn-danger" value="Quay lại" data-toggle="modal" data-target="#confirmModal" />
                             </div>
                         </div>
@@ -374,7 +374,8 @@
                 setDeleteMauPT: function (maupt) {
                     maupt.ModifiedState = 2;
                 },
-                submitEditedData: function() {
+                submitEditedData: function () {
+                    $("#submitBtn").prop("disabled", true);
                     var submitData = {
                         @*nthoang: Convert Id string from url to number*@
                         Id: Number(getIdFromUrl()),
@@ -398,7 +399,17 @@
                         type: 'POST',
                         url: '@Url.Action("Edit", "API")',
                         data: JSON.stringify(submitData),
+                        error: function () {
+                            $("#submitBtn").prop("disabled", false);
+                            new PNotify({
+                                title: 'Thất bại',
+                                text: 'có lỗi xảy ra trong lúc truyền dữ liệu, bạn vui lòng thử lại sau',
+                                type: 'error',
+                                styling: 'bootstrap3'
+                            });
+                        },
                         success: function (res) {
+                            $("#submitBtn").prop("disabled", false);
                             if (res.IsOK) {
                                 new PNotify({
                                     title: 'Thành công',
@@ -416,6 +427,7 @@
                                     window.location.href = '@Url.Action("Index", "YeuCauLayMau")'
                                 }, 1500);
                             } else {
+                                $("#submitBtn").prop("disabled", false);
                                 new PNotify({
                                     title: 'Thất bại',
                                     text: 'Có lỗi khi cập nhật thông tin hợp đồng, bạn vui lòng thử lại sau.',
@@ -428,9 +440,6 @@
                                     type: 'info',
                                     styling: 'bootstrap3'
                                 });
-                                setTimeout(function () {
-                                    window.location.href = '@Url.Action("Index", "YeuCauLayMau")'
-                                }, 1500);
                             }
                         },
                         dataType: 'json',

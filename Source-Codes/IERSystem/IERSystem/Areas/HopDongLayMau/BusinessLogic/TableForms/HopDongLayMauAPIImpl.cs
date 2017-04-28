@@ -61,111 +61,118 @@ namespace IERSystem.BusinessLogic.TableForms
             db.Entry(edit_model).Property(x => x.TenKhachHang).IsModified = true;
             edit_model.DiaChiKhachHang = edit_request.DiaChiKhachHang;
             db.Entry(edit_model).Property(x => x.DiaChiKhachHang).IsModified = true;
-            foreach (var edit_maupt in edit_request.MauLayHienTruongs) {
-                try
+            if (edit_request.MauLayHienTruongs != null)
+            {
+                foreach (var edit_maupt in edit_request.MauLayHienTruongs)
                 {
-                    var edit_maupt_model = edit_model.MauLayHienTruongs.First((maupt_db) => maupt_db.Id == edit_maupt.Id);
-                    if (edit_maupt.ModifiedState == MauPTModifiedStateConverter.ToByte(MauPTModifiedState.Edited))
+                    try
                     {
-                        //nthoang: Only works if edit_maupt is in khoitao
-                        if (edit_maupt_model.TinhTrang == TinhTrangMauConverter.ToByte(TinhTrangMau.KhoiTao))
+                        var edit_maupt_model = edit_model.MauLayHienTruongs.First((maupt_db) => maupt_db.Id == edit_maupt.Id);
+                        if (edit_maupt.ModifiedState == MauPTModifiedStateConverter.ToByte(MauPTModifiedState.Edited))
                         {
-                            db.MauLayHienTruongs.Attach(edit_maupt_model);
-                            edit_maupt_model.MaMauKH = edit_maupt.MaMauKH;
-                            db.Entry(edit_maupt_model).Property(x => x.MaMauKH).IsModified = true;
-                            //nthoang: Encode MaMau again using the new KiHieuMau
-                            edit_maupt_model.MaMau =
-                                HopDongLayMauEncoding.ReEncodeMaMau(edit_maupt_model.MaMau, edit_maupt.KiHieuMau, DateTime.Now, db);
-                            db.Entry(edit_maupt_model).Property(x => x.MaMau).IsModified = true;
-                            edit_maupt_model.MoTaMau = edit_maupt.MoTaMau;
-                            db.Entry(edit_maupt_model).Property(x => x.MoTaMau).IsModified = true;
-                            edit_maupt_model.SoLuong = edit_maupt.SoLuong;
-                            db.Entry(edit_maupt_model).Property(x => x.SoLuong).IsModified = true;
-                            edit_maupt_model.DonVi = edit_maupt.DonVi;
-                            db.Entry(edit_maupt_model).Property(x => x.DonVi).IsModified = true;
-                            edit_maupt_model.ViTriLayMau = edit_maupt.ViTriLayMau;
-                            db.Entry(edit_maupt_model).Property(x => x.ViTriLayMau).IsModified = true;
-                            //nthoang: Handle all diff in ChiTieuPhanTiches sets in both model and edit request
-                            //nthoang: First case, handle every ChiTieuPhanTiches in edit request
-                            var tobeadded_ctpts = new List<ChiTieuPhanTich>();
-                            foreach (var edit_chitieu in edit_maupt.ChiTieuPhanTiches)
+                            //nthoang: Only works if edit_maupt is in khoitao
+                            if (edit_maupt_model.TinhTrang == TinhTrangMauConverter.ToByte(TinhTrangMau.KhoiTao))
                             {
-                                var exists_target_chitieu_model = edit_maupt_model.ChiTieuPhanTiches.Any((ctpt) =>
-                                    ctpt.Id == edit_chitieu.Id
-                                );
-
-                                if (!exists_target_chitieu_model)
+                                db.MauLayHienTruongs.Attach(edit_maupt_model);
+                                edit_maupt_model.MaMauKH = edit_maupt.MaMauKH;
+                                db.Entry(edit_maupt_model).Property(x => x.MaMauKH).IsModified = true;
+                                //nthoang: Encode MaMau again using the new KiHieuMau
+                                edit_maupt_model.MaMau =
+                                    HopDongLayMauEncoding.ReEncodeMaMau(
+                                        edit_maupt_model.MaMau, 
+                                        edit_maupt.KiHieuMau, DateTime.Now, db
+                                    );
+                                db.Entry(edit_maupt_model).Property(x => x.MaMau).IsModified = true;
+                                edit_maupt_model.MoTaMau = edit_maupt.MoTaMau;
+                                db.Entry(edit_maupt_model).Property(x => x.MoTaMau).IsModified = true;
+                                edit_maupt_model.SoLuong = edit_maupt.SoLuong;
+                                db.Entry(edit_maupt_model).Property(x => x.SoLuong).IsModified = true;
+                                edit_maupt_model.DonVi = edit_maupt.DonVi;
+                                db.Entry(edit_maupt_model).Property(x => x.DonVi).IsModified = true;
+                                edit_maupt_model.ViTriLayMau = edit_maupt.ViTriLayMau;
+                                db.Entry(edit_maupt_model).Property(x => x.ViTriLayMau).IsModified = true;
+                                //nthoang: Handle all diff in ChiTieuPhanTiches sets in both model and edit request
+                                //nthoang: First case, handle every ChiTieuPhanTiches in edit request
+                                var tobeadded_ctpts = new List<ChiTieuPhanTich>();
+                                foreach (var edit_chitieu in edit_maupt.ChiTieuPhanTiches)
                                 {
-                                    //nthoang: This happens when This is the new chi tieu added in edit_maupt
-                                    //nthoang: Find the info of new chitieuphantich in db
-                                    //nthoang: Then add it to model
-
-                                    //nthoang: Should always succeed
-                                    var target_chitieu_model = db.ChiTieuPhanTiches.First((ctpt) =>
+                                    var exists_target_chitieu_model = edit_maupt_model.ChiTieuPhanTiches.Any((ctpt) =>
                                         ctpt.Id == edit_chitieu.Id
                                     );
-                                    tobeadded_ctpts.Add(target_chitieu_model);
+
+                                    if (!exists_target_chitieu_model)
+                                    {
+                                        //nthoang: This happens when This is the new chi tieu added in edit_maupt
+                                        //nthoang: Find the info of new chitieuphantich in db
+                                        //nthoang: Then add it to model
+
+                                        //nthoang: Should always succeed
+                                        var target_chitieu_model = db.ChiTieuPhanTiches.First((ctpt) =>
+                                            ctpt.Id == edit_chitieu.Id
+                                        );
+                                        tobeadded_ctpts.Add(target_chitieu_model);
+                                    }
                                 }
-                            }
-                            foreach (var tobeadded_ctpt in tobeadded_ctpts)
-                            {
-                                edit_maupt_model.ChiTieuPhanTiches.Add(tobeadded_ctpt);
-                            }
-                            //nthoang: Second case, handle every ChiTieuPhanTiches in model
-                            var tobedeleted_ctpts = new List<ChiTieuPhanTich>();
-                            foreach (var edit_chitieu in edit_maupt_model.ChiTieuPhanTiches)
-                            {
-                                var exists_target_chitieu_model = edit_maupt.ChiTieuPhanTiches.Any((ctpt) =>
-                                    ctpt.Id == edit_chitieu.Id
-                                );
-
-                                if (!exists_target_chitieu_model)
+                                foreach (var tobeadded_ctpt in tobeadded_ctpts)
                                 {
-                                    //nthoang: This happens when the chi tieu has been removed in edit_maupt
-                                    //nthoang: Find the info of new chitieuphantich in db
-                                    //nthoang: Then remove it from model
-
-                                    //nthoang: Should always succeed
-                                    var target_chitieu_model = db.ChiTieuPhanTiches.First((ctpt) =>
+                                    edit_maupt_model.ChiTieuPhanTiches.Add(tobeadded_ctpt);
+                                }
+                                //nthoang: Second case, handle every ChiTieuPhanTiches in model
+                                var tobedeleted_ctpts = new List<ChiTieuPhanTich>();
+                                foreach (var edit_chitieu in edit_maupt_model.ChiTieuPhanTiches)
+                                {
+                                    var exists_target_chitieu_model = edit_maupt.ChiTieuPhanTiches.Any((ctpt) =>
                                         ctpt.Id == edit_chitieu.Id
                                     );
-                                    tobedeleted_ctpts.Add(target_chitieu_model);
+
+                                    if (!exists_target_chitieu_model)
+                                    {
+                                        //nthoang: This happens when the chi tieu has been removed in edit_maupt
+                                        //nthoang: Find the info of new chitieuphantich in db
+                                        //nthoang: Then remove it from model
+
+                                        //nthoang: Should always succeed
+                                        var target_chitieu_model = db.ChiTieuPhanTiches.First((ctpt) =>
+                                            ctpt.Id == edit_chitieu.Id
+                                        );
+                                        tobedeleted_ctpts.Add(target_chitieu_model);
+                                    }
                                 }
+                                foreach (var tobedeleted_ctpt in tobedeleted_ctpts)
+                                {
+                                    edit_maupt_model.ChiTieuPhanTiches.Remove(tobedeleted_ctpt);
+                                }
+                                //nthoang: Add successfully added maupt id to return output
+                                result.Add(edit_maupt_model.Id);
                             }
-                            foreach (var tobedeleted_ctpt in tobedeleted_ctpts)
-                            {
-                                edit_maupt_model.ChiTieuPhanTiches.Remove(tobedeleted_ctpt);
-                            }
-                            //nthoang: Add successfully added maupt id to return output
-                            result.Add(edit_maupt_model.Id);
                         }
-                    }
-                    else if (edit_maupt.ModifiedState == MauPTModifiedStateConverter.ToByte(MauPTModifiedState.Deleted))
-                    {
-                        //nthoang: Only works if edit_maupt is in khoitao
-                        if (edit_maupt_model.TinhTrang == TinhTrangMauConverter.ToByte(TinhTrangMau.KhoiTao))
+                        else if (edit_maupt.ModifiedState == MauPTModifiedStateConverter.ToByte(MauPTModifiedState.Deleted))
                         {
-                            var delete_maupt_model =
-                                db.MauLayHienTruongs.First((maupt_db) => maupt_db.Id == edit_maupt.Id);
-
-                            //nthoang: Remove all associated chitieuphantich relations from delete_maupt_model
-                            var all_ctpt_tobedeleteds = delete_maupt_model.ChiTieuPhanTiches.ToList();
-                            foreach (var ctpt_tobedeleted in all_ctpt_tobedeleteds)
+                            //nthoang: Only works if edit_maupt is in khoitao
+                            if (edit_maupt_model.TinhTrang == TinhTrangMauConverter.ToByte(TinhTrangMau.KhoiTao))
                             {
-                                delete_maupt_model.ChiTieuPhanTiches.Remove(ctpt_tobedeleted);
-                                //ctpt_tobedeleted.MauLayHienTruongs.Remove(delete_maupt_model);
+                                var delete_maupt_model =
+                                    db.MauLayHienTruongs.First((maupt_db) => maupt_db.Id == edit_maupt.Id);
+
+                                //nthoang: Remove all associated chitieuphantich relations from delete_maupt_model
+                                var all_ctpt_tobedeleteds = delete_maupt_model.ChiTieuPhanTiches.ToList();
+                                foreach (var ctpt_tobedeleted in all_ctpt_tobedeleteds)
+                                {
+                                    delete_maupt_model.ChiTieuPhanTiches.Remove(ctpt_tobedeleted);
+                                    //ctpt_tobedeleted.MauLayHienTruongs.Remove(delete_maupt_model);
+                                }
+
+                                db.MauLayHienTruongs.Remove(delete_maupt_model);
+                                //nthoang: Add successfully added maupt id to return output
+                                result.Add(edit_maupt_model.Id);
                             }
-
-                            db.MauLayHienTruongs.Remove(delete_maupt_model);
-                            //nthoang: Add successfully added maupt id to return output
-                            result.Add(edit_maupt_model.Id);
                         }
-                    }
 
-                }
-                catch (InvalidOperationException e)
-                {
-                    //nthoang: Skip if error found
+                    }
+                    catch (InvalidOperationException e)
+                    {
+                        //nthoang: Skip if error found
+                    }
                 }
             }
             return result;

@@ -497,13 +497,13 @@
                 tabledata.append(
                 "<tr>" +
                 //"<td></td>" +
-                "<td>" + $("#ma-mau").val() + "</td>" +
-                "<td>" + $("#kh-mau").val() + "</td>" +
-                "<td>" + $("#vitri-laymau").val() + "</td>" +
-                "<td>" + soluong + " " + donvi + "</td>" +
-                "<td>" + $("#mota-mau").val() + "</td>" +
-                "<td>" + chitieuyeucaus.map(function (e) { return e.TenChiTieu }).join(", ") + "</td>" +
-                "<td></td>" +
+                    "<td>" + $("#ma-mau").val() + "</td>" +
+                    "<td>" + $("#kh-mau").val() + "</td>" +
+                    "<td>" + $("#vitri-laymau").val() + "</td>" +
+                    "<td>" + soluong + " " + donvi + "</td>" +
+                    "<td>" + $("#mota-mau").val() + "</td>" +
+                    "<td>" + chitieuyeucaus.map(function (e) { return e.TenChiTieu }).join(", ") + "</td>" +
+                    "<td></td>" +
                 "</tr>");
                 //hide modal
                 $('#themMauModal').modal('toggle');
@@ -522,69 +522,90 @@
         });
 
         $("#submitBtn").bind("click", function () {
-            function getFormData() {
-                var res = {
-                    TenKhachHang: $("#TenKhachHang").val(),
-                    MaSoThue: $("#MaSoThue").val(),
-                    TenDaiDien: $("#TenDaiDien").val(),
-                    SoDienThoai: $("#SoDienThoai").val(),
-                    SoFax: $("#SoFax").val(),
-                    DiaChiLayMau: $("#DiaChiLayMau").val(),
-                    DiaChiKhachHang: $("#DiaChiKhachHang").val(),
-                    NgayLayMau: $("#NgayLayMau").val(),
-                    NgayHenTraKQ: $("#NgayHenTraKQ").val().split(" ")[0],
-                    PhuongPhapLayMau: $("#PhuongPhapLayMau").val(),
-                    TenTieuChuanDoiChieu: $("#TenTieuChuanDoiChieu").val(),
-                    PhiThiNghiemTamTinh: $("#PhiThiNghiemTamTinh").val(),
-                    TienKhachHangTraTruoc: $("#TienKhachHangTraTruoc").val(),
-                    KhachHangMoi: document.getElementById('isNewKH').checked
-                };
-                var sampledata = $("#sampledata-table tbody tr").map(function (i, elem) {
-                    var rowdata = $(elem).find("td").map(function () { return $(this).text(); }).get();
-                    //alert(rowdata);
-                    return {
-                        MaMauKH: rowdata[0],
-                        //nthoang: Get the first token of the string splitted by ':' character of Kí Hiệu Mẫu
-                        KiHieuMau: rowdata[1].split(":")[0],
-                        ViTriLayMau: rowdata[2],
-                        SoLuong:  $Global[i].SoLuong,
-                        DonVi:  $Global[i].DonVi,
-                        MoTaMau: rowdata[4],
-                        ChiTieuPhanTiches: $Global[i].ChiTieuYeuCaus
-                    }
-                }).get();
-                res.MauLayHienTruongs = sampledata;
-                console.log(res);
-                return res;
-            }
-            var formData = getFormData();
-            $.ajax({
-                type: 'POST',
-                url: ' @Url.Action("Create", "API")',
-                data: JSON.stringify(formData),
-                success: function (res) {
-                    if (res.IsOK) {
-                        new PNotify({
-                            title: 'Thành công',
-                            text: 'tạo hợp đồng mới hợp lệ, hợp đồng đã được thêm vào lưu trữ',
-                            type: 'success',
-                            styling: 'bootstrap3'
-                        });
-                        setTimeout(function () {
-                            window.location.href = '@Url.Action("Index", "YeuCauLayMau")'
-                        }, 1500);
-                    } else {
+            if ($("#sampledata-table tbody tr").length == 0) {
+                new PNotify({
+                    title: 'Lỗi',
+                    text: 'hợp đồng cần có ít nhất một mẫu phân tích.',
+                    type: 'error',
+                    styling: 'bootstrap3'
+                });
+            } else {
+                $("#submitBtn").prop("disabled", true);
+                function getFormData() {
+                    var res = {
+                        TenKhachHang: $("#TenKhachHang").val(),
+                        MaSoThue: $("#MaSoThue").val(),
+                        TenDaiDien: $("#TenDaiDien").val(),
+                        SoDienThoai: $("#SoDienThoai").val(),
+                        SoFax: $("#SoFax").val(),
+                        DiaChiLayMau: $("#DiaChiLayMau").val(),
+                        DiaChiKhachHang: $("#DiaChiKhachHang").val(),
+                        NgayLayMau: $("#NgayLayMau").val(),
+                        NgayHenTraKQ: $("#NgayHenTraKQ").val().split(" ")[0],
+                        PhuongPhapLayMau: $("#PhuongPhapLayMau").val(),
+                        TenTieuChuanDoiChieu: $("#TenTieuChuanDoiChieu").val(),
+                        PhiThiNghiemTamTinh: $("#PhiThiNghiemTamTinh").val(),
+                        TienKhachHangTraTruoc: $("#TienKhachHangTraTruoc").val(),
+                        KhachHangMoi: document.getElementById('isNewKH').checked
+                    };
+                    var sampledata = $("#sampledata-table tbody tr").map(function (i, elem) {
+                        var rowdata = $(elem).find("td").map(function () { return $(this).text(); }).get();
+                        //alert(rowdata);
+                        return {
+                            MaMauKH: rowdata[0],
+                            //nthoang: Get the first token of the string splitted by ':' character of Kí Hiệu Mẫu
+                            KiHieuMau: rowdata[1].split(":")[0],
+                            ViTriLayMau: rowdata[2],
+                            SoLuong: $Global[i].SoLuong,
+                            DonVi: $Global[i].DonVi,
+                            MoTaMau: rowdata[4],
+                            ChiTieuPhanTiches: $Global[i].ChiTieuYeuCaus
+                        }
+                    }).get();
+                    res.MauLayHienTruongs = sampledata;
+                    console.log(res);
+                    return res;
+                }
+                var formData = getFormData();
+                $.ajax({
+                    type: 'POST',
+                    url: ' @Url.Action("Create", "API")',
+                    data: JSON.stringify(formData),
+                    error: function () {
+                        $("#submitBtn").prop("disabled", false);
                         new PNotify({
                             title: 'Thất bại',
-                            text: 'kiểm tra lại thông tin về hợp đồng của bạn rồi thử lại.',
+                            text: 'có lỗi xảy ra trong lúc truyền dữ liệu, bạn vui lòng thử lại sau.',
                             type: 'error',
                             styling: 'bootstrap3'
                         });
-                    }
-                },
-                dataType: 'json',
-                contentType: 'application/json; charset=utf-8'
-            });
+                    },
+                    success: function (res) {
+                        if (res.IsOK) {
+                            new PNotify({
+                                title: 'Thành công',
+                                text: 'tạo hợp đồng mới hợp lệ, hợp đồng đã được thêm vào lưu trữ',
+                                type: 'success',
+                                styling: 'bootstrap3'
+                            });
+                            setTimeout(function () {
+                                window.location.href = '@Url.Action("Index", "YeuCauLayMau")'
+                            }, 1500);
+                        } else {
+                            $("#submitBtn").prop("disabled", false);
+                            new PNotify({
+                                title: 'Thất bại',
+                                text: 'kiểm tra lại thông tin về hợp đồng của bạn rồi thử lại.',
+                                type: 'error',
+                                styling: 'bootstrap3'
+                            });
+                        }
+                    },
+                    dataType: 'json',
+                    contentType: 'application/json; charset=utf-8'
+                });
+            }
+            
         });
     });
 
