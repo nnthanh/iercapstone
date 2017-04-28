@@ -21,8 +21,10 @@ namespace IERSystem.BusinessLogic.TableForms
             var i = 0;
             targetmodel.KQThuNghiemMaus.ToList().ForEach((kqtnmau) =>
             {
-                kqtnmau.KetQua = edit_inp.KetQuas.ElementAt(i).KetQua;
-                kqtnmau.DonVi = edit_inp.KetQuas.ElementAt(i).DonVi;
+                var edit_inp_ketqua = edit_inp.KetQuas.ElementAt(i).KetQua;
+                var edit_inp_donvi = edit_inp.KetQuas.ElementAt(i).DonVi;
+                kqtnmau.KetQua = (edit_inp_ketqua == null)? "" : edit_inp_ketqua;
+                kqtnmau.DonVi = (edit_inp_donvi == null)? "" : edit_inp_donvi;
                 db.KQThuNghiemMaus.Attach(kqtnmau);
                 db.Entry(kqtnmau).Property(x => x.KetQua).IsModified = true;
                 db.Entry(kqtnmau).Property(x => x.DonVi).IsModified = true;

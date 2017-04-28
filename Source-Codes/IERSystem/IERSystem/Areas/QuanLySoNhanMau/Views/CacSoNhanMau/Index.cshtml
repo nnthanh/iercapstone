@@ -154,10 +154,10 @@
     </div>
     <!-- danh sach so -->
     <!--Table dynamic-->
-    <div v-for="cacsonhanmau in cacsonhanmaus_open" class="col-md-12 col-sm-12 col-xs-12">
+    <div v-if="(sonhanmau_open != undefined)" class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
             <div class="x_title">
-                <h2>SỔ NHẬN MẪU - Quyển số {{ cacsonhanmau.QuyenSo }} ({{ cacsonhanmau.TuNgay }} - {{ cacsonhanmau.DenNgay }}) <small><i class="green" id="NewItemForOneBook"> </i> mẫu mới </small></h2>
+                <h2>SỔ NHẬN MẪU - Quyển số {{ sonhanmau_open.QuyenSo }} ({{ sonhanmau_open.TuNgay }} - {{ sonhanmau_open.DenNgay }}) <small><i class="green" id="NewItemForOneBook"> </i> mẫu mới </small></h2>
                 <ul class="nav navbar-right panel_toolbox">
                     <li>
                         <a class="collapse-link">
@@ -165,8 +165,8 @@
                         </a>
                     </li>
                     <li data-toggle="tooltip" title="Thêm mẫu">
-                        <a data-toggle="modal" 
-                           v-on:click="openThemMauModal(cacsonhanmau.TuNgay, cacsonhanmau.DenNgay, cacsonhanmau.QuyenSo)" 
+                        <a data-toggle="modal"
+                           v-on:click="openThemMauModal(sonhanmau_open.TuNgay, sonhanmau_open.DenNgay, sonhanmau_open.QuyenSo)"
                            data-target="#themMauModal" role="button" aria-expanded="false">
                             <i class="fa fa-plus"></i>
                         </a>
@@ -177,10 +177,7 @@
                         </a>
                     </li>
                     <li data-toggle="tooltip" title="Đóng">
-                        @*<a data-toggle="modal" data-target="#xoaModal">
-                                <i class="fa fa-close"></i>
-                            </a>*@
-                        <a v-on:click="closeSoNhanMau(cacsonhanmau.QuyenSo)" class="close-link">
+                        <a v-on:click="closeSoNhanMau(sonhanmau_open.QuyenSo)" class="close-link">
                             <i class="fa fa-close"></i>
                         </a>
                     </li>
@@ -188,7 +185,7 @@
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
-                <table v-bind:id="cacsonhanmau.DomId" v-bind:class="[datatable]">
+                <table v-bind:id="sonhanmau_open.DomId" v-bind:class="[datatable]">
                     <thead>
                         <tr>
                             <th>Phiếu yêu cầu</th>
@@ -205,7 +202,7 @@
                     </thead>
 
                     <tbody>
-                        <tr v-for="sonhanmau in cacsonhanmau.NoiDung" track-by="Id">
+                        <tr v-for="sonhanmau in sonhanmau_open.NoiDung" track-by="Id">
                             <td>
                                 {{sonhanmau.MaPhieuYeuCau}}
                             </td>
@@ -234,7 +231,7 @@
                                 {{sonhanmau.KHKyTraKQ}}
                             </td>
                             <td>
-                                <button data-toggle="tooltip" title="Lưu" @*class="btn-AddSignature" type="button"*@ onclick="addSignature()"><span class="fa fa-check-square-o"></span></button>
+                                <button data-toggle="tooltip" title="Lưu" onclick="addSignature()"><span class="fa fa-check-square-o"></span></button>
                                 <button data-toggle="tooltip" title="Xem chi tiết" v-on:click="location.href='QuanLySoNhanMau/SoNhanMau/Details/' + sonhanmau.Id"><span class="fa fa-info"></span></button>
                                 <button data-toggle="tooltip" title="Trả về" v-on:click="traVe(sonhanmau.MaMau)"><span class="fa fa-reply"></span></button>
                             </td>
@@ -424,7 +421,7 @@
         function initDataTable(target, vuejs_appobj) {
             vuejs_appobj.$nextTick(function () {
                 target.DataTable = createDataTable(target.DomId);
-            })
+            });
         }
 
         function refreshDataTable(target, vuejs_appobj) {
@@ -434,12 +431,18 @@
             })
         }
 
+        function destroyDataTable(target) {
+            if (target != undefined && target.DataTable != undefined) {
+                target.DataTable.destroy();
+            }
+        }
+
         //nthoang: Global state to store cacsonhanmauId for ReceiveMauPTs action 
         var $target_cacsonhanmau = undefined;
         var $cacsonhanmau_app = new Vue({
             el: '#cacsonhanmau-app',
             data: {
-                cacsonhanmaus_open: [],
+                sonhanmau_open: undefined,
                 mauptcandids: [],
                 datatable: 'datatable-buttons table table-striped table-bordered sonhanmautable'
             },
@@ -451,7 +454,7 @@
                         success: function (res) {
                             if (res.IsOK) {
                                 var refreshtarget = 
-                                    $cacsonhanmau_app.cacsonhanmaus_open.find(function (e) { return e.QuyenSo == id });
+                                    $cacsonhanmau_app.sonhanmau_open;
                                 if (refreshtarget != undefined) {
                                     refreshtarget.NoiDung = res.Data.NoiDung;
                                     refreshDataTable(refreshtarget, $cacsonhanmau_app);
@@ -474,8 +477,9 @@
                         success: function (res) {
                             if (res.IsOK) {
                                 //nthoang: res.Data is the new table
-                                $cacsonhanmau_app.cacsonhanmaus_open.push(res.Data);                            
-                                initDataTable(res.Data, $cacsonhanmau_app);
+                                destroyDataTable($cacsonhanmau_app.sonhanmau_open);
+                                $cacsonhanmau_app.sonhanmau_open = res.Data;
+                                initDataTable($cacsonhanmau_app.sonhanmau_open, $cacsonhanmau_app);
                                 getNumber(id);
                                 //addBox();
                             } else {
@@ -537,10 +541,8 @@
                     });
                 },
                 closeSoNhanMau: function (id) {
-                    var index = this.cacsonhanmaus_open.findIndex(function (so) { return so.QuyenSo == id; });
-                    if (index > -1) {
-                        this.cacsonhanmaus_open.splice(index, 1);
-                    }
+                    destroyDataTable(this.sonhanmau_open);
+                    this.sonhanmau_open = undefined;
                 },
                 traVe: function(mamau){
                     $.ajax({

@@ -53,26 +53,34 @@ namespace IERSystem.Areas.HopDongLayMau.Controllers
                 var successfullymodifieditems = HopDongLayMauAPIImpl.ModifyModel(edit_request, db);
                 db.SaveChanges();
 
-                var testalladded = true;
-                foreach (var maupt in edit_request.MauLayHienTruongs)
+                if (edit_request.MauLayHienTruongs != null)
                 {
-                    if (!successfullymodifieditems.Contains(maupt.Id) && 
-                        maupt.ModifiedState != MauPTModifiedStateConverter.ToByte(MauPTModifiedState.NoChange))
+                    var testalladded = true;
+                    foreach (var maupt in edit_request.MauLayHienTruongs)
                     {
-                        testalladded = false;
-                        break;
+                        if (!successfullymodifieditems.Contains(maupt.Id) &&
+                            maupt.ModifiedState != MauPTModifiedStateConverter.ToByte(MauPTModifiedState.NoChange))
+                        {
+                            testalladded = false;
+                            break;
+                        }
                     }
-                }
-                if (testalladded)
-                {
-                    return Json(new UpsertDBResponse { IsOK = true, ErrMsg = "Các mẫu đã được cập nhật thành công." });
+                    if (testalladded)
+                    {
+                        return Json(new UpsertDBResponse { IsOK = true, ErrMsg = "Các mẫu đã được cập nhật thành công." });
+                    }
+                    else
+                    {
+                        return Json(new UpsertDBResponse
+                        {
+                            IsOK = true,
+                            ErrMsg = "Chỉ 1 vài mẫu có id sau đã được cập nhật: " + String.Join(", ", successfullymodifieditems)
+                        });
+                    }
                 }
                 else
                 {
-                    return Json(new UpsertDBResponse { 
-                        IsOK = true, 
-                        ErrMsg = "Chỉ 1 vài mẫu có id sau đã được cập nhật: " + String.Join(", ", successfullymodifieditems) 
-                    });
+                    return Json(new UpsertDBResponse { IsOK = true, ErrMsg = "Các mẫu đã được cập nhật thành công." });
                 }
             }
             catch (Exception e)
@@ -80,9 +88,6 @@ namespace IERSystem.Areas.HopDongLayMau.Controllers
                 Console.WriteLine(e.Message);
                 return Json(new UpsertDBResponse { IsOK = false, ErrMsg = "Internal Error" });
             }
-            //} else {
-            //    return Json(new UpsertDBResponse { IsOK = false, ErrMsg = "" }); 
-            //}
         }
 
         [HttpPost]
