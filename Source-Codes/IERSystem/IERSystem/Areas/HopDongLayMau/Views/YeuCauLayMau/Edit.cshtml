@@ -208,7 +208,7 @@
                                             <td>{{ maupt.MoTaMau }}</td>
                                             <td>{{ renderedChiTieuPTCell(maupt) }}</td>
                                             <td class="column-title">
-                                                <button v-if="maupt.ModifiedState == 0"
+                                                <button v-if="maupt.ModifiedState != 2"
                                                         title="Chỉnh sửa"
                                                         type="button"
                                                         v-on:click="openChinhMauModal(maupt)">
@@ -409,7 +409,6 @@
                             });
                         },
                         success: function (res) {
-                            $("#submitBtn").prop("disabled", false);
                             if (res.IsOK) {
                                 new PNotify({
                                     title: 'Thành công',
