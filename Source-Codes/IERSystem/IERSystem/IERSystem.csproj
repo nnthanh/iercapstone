@@ -385,6 +385,9 @@
     <Content Include="Areas\Administrator\Content\Homepage2\img\giangday\giangday3.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Areas\Administrator\Content\Homepage2\img\header5.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Areas\Administrator\Content\Homepage2\img\left-arrow.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
